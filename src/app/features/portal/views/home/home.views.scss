@@ -1,0 +1,42 @@
+.container {
+  max-width: 800px; /* Ancho máximo del contenido */
+  margin: 0 auto; /* Centra el contenido horizontalmente */
+  padding: 20px; /* Espacio interior alrededor del contenido */
+
+  h1 {
+    font-size: 36px; /* Tamaño de fuente para el título principal */
+    margin-bottom: 20px; /* Espacio inferior después del título */
+  }
+
+  p {
+    font-size: 16px; /* Tamaño de fuente para los párrafos */
+    line-height: 1.5; /* Espaciado entre líneas para una mejor legibilidad */
+    margin-bottom: 10px; /* Espacio inferior después de los párrafos */
+  }
+
+  .highlight {
+    color: #148, 54, 22; /* Color de resaltado para nombres propios */
+    font-weight: bold; /* Hace que el texto resaltado sea más visible */
+  }
+
+  .quote {
+    font-style: italic; /* Estilo de fuente cursiva para citas */
+    margin-top: 20px; /* Espacio superior antes de las citas */
+  }
+
+}
+
+.btn {
+  display: block;
+  text-align: center;
+  margin-top: 20px;
+  color: #007bff;
+  font-weight: bold;
+  text-decoration: underline;
+  cursor: pointer;
+  transition: color 0.3s ease;
+
+  &:hover {
+    color: #0056b3;
+  }
+}

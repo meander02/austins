@@ -1,0 +1,23 @@
+<div class="policy-header">
+  <div class="logo-container">
+    <img
+      src="https://static.wixstatic.com/media/64de7c_29f387abde884a1e8f9df17220933df6~mv2.png/v1/fill/w_834,h_221,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/64de7c_29f387abde884a1e8f9df17220933df6~mv2.png"
+      alt="Logo de Tu Empresa"
+    />
+  </div>
+  <div class="button-container-mobile">
+    <button class="mobile-menu-btn" (click)="toggleMobileMenu()">☰</button>
+    <div class="mobile-menu" id="mobileMenu">
+      <div class="mobile-menu-item" (click)="redirectTo('home')">HOME</div>
+      <div class="mobile-menu-item" (click)="redirectTo('acercade')">ACERCA DE</div>
+      <div class="mobile-menu-item" (click)="redirectTo('politica')">Aviso de privacidad</div>
+      <div class="mobile-menu-item" (click)="redirectTo('home')">seee3</div>
+    </div>
+  </div>
+  <div class="button-container-pc">
+    <button class="menu-btn" (click)="redirectTo('home')">HOME</button>
+    <button class="menu-btn" (click)="redirectTo('acercade')">ACERCA DE</button>
+    <button class="menu-btn" (click)="redirectTo('politica')">Aviso de privacidad</button>
+    <button class="menu-btn" (click)="redirectTo('home')">seee3</button>
+  </div>
+</div>
