@@ -8,7 +8,12 @@
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
   padding: 20px;
-  font-family: 'Arial', sans-serif;
+  // font-family: 'Arial', sans-serif;
+  // font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  // font-family: 'Great Vibes', cursive;
+  /* Otros estilos para tus encabezados, como tamaño, color, etc. */
+  // font-size: 36px;
+  color: #333;
   color: #333;
   min-height: 80px; /* Fija la altura mínima del encabezado */
   transition: min-height 0.3s ease; /* Agrega una transición suave para la altura */
@@ -22,7 +27,7 @@
 }
 
 .logo-container img {
-  max-width: 100%;
+  max-width: 40%;
 }
 
 /* Estilos para dispositivos móviles (pantallas de hasta 768px de ancho) */
@@ -49,24 +54,33 @@
 /* Estilos para el botón de menú en pantallas de PC */
 .menu-btn {
   background-color: #f9f9f9; /* Color de fondo del botón */
-  color: #0f0a0a; /* Color del texto */
+  color: #f7a00b; /* Color del texto */
   border: none;
-  padding: 25px 20px;
-  font-size: 18px;
+  font-family: 'Great Vibes',initial;
+  font-weight: lighter;
+    padding: 25px 20px;
+  font-size: 14px;
   cursor: pointer;
-  border-radius: 10px; /* Borde redondeado */
-  margin-right: 10px; /* Espacio entre botones */
+  // border-radius: 5px; /* Borde redondeado */
+  margin-right: 14px; /* Espacio entre botones */
   transition: background-color 0.3s ease, transform 0.3s ease;
 
   /* Estilo al pasar el mouse sobre el botón */
   &:hover {
-    background-color: #f3dcb2; /* Color de fondo al pasar el mouse */
-    transform: scale(1.05); /* Efecto de escala al pasar el mouse */
+
+    border-radius: 2px;
+    border-bottom: 1.5px solid #e9ba81;
+    box-shadow: -4px 192px 300px -94px rgba(0,0,0,1);
+
+
+    transform: scale(1.1); /* Efecto de escala al pasar el mouse */
+    border-collapse:  separate;
   }
 
   /* Estilo al hacer clic en el botón */
   &:active {
-    background-color: #e9ba81; /* Color de fondo al hacer clic */
+    color: #1a1717;
+    // background-color: #d4d0cc; /* Color de fondo al hacer clic */
     transform: scale(0.95); /* Efecto de escala al hacer clic */
   }
 }
@@ -142,3 +156,11 @@
     min-height: 60px; /* Fija la altura mínima del encabezado en dispositivos móviles */
   }
 }
+
+  .divi {
+    height: 5px;
+    // background-color: #333;
+    background-color: #703724;
+  }
+
+
