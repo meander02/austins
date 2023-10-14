@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { Component, HostListener } from '@angular/core';
+
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -7,6 +8,7 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent {
 
+  isHeaderScrolled = false;
   constructor(private router: Router) {}
 
   redirectTo(route: string): void {
@@ -22,4 +24,14 @@ export class HeaderComponent {
       mobileMenu.style.display = 'none';
     }
   }
+
+  @HostListener('window:scroll', ['$event'])
+onWindowScroll() {
+  if (window.scrollY > 0) {
+    this.isHeaderScrolled = true;
+  } else {
+    this.isHeaderScrolled = false;
+  }
+}
+
 }

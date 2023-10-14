@@ -1,22 +1,20 @@
 /* Estilos generales para el componente */
 .policy-header {
+  position: fixed; /* Fija el header en la parte superior de la página */
+  top: 0;
+  left: 0;
+  right: 0;
+  transition:
+    background-color 2s ease,
+    color 1.2s ease; /* Transiciones suaves para el cambio de color de fondo y de texto */
+
+  z-index: 1000; /* Asegura que el header esté sobre otros elementos */
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #f9f9f9;
-  border: 1px solid #ddd;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-  border-radius: 10px;
+  z-index: 999; /* Valor de z-index más bajo que el contenido de la página */
   padding: 20px;
-  // font-family: 'Arial', sans-serif;
-  // font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-  // font-family: 'Great Vibes', cursive;
-  /* Otros estilos para tus encabezados, como tamaño, color, etc. */
-  // font-size: 36px;
-  color: #333;
-  color: #333;
-  min-height: 80px; /* Fija la altura mínima del encabezado */
-  transition: min-height 0.3s ease; /* Agrega una transición suave para la altura */
+  backdrop-filter: blur(10px); /* Aplica el efecto de desenfoque al fondo */
 }
 
 /* Estilos para el contenedor del logotipo */
@@ -45,36 +43,31 @@
   }
 }
 
-
-
-
-
-
-
 /* Estilos para el botón de menú en pantallas de PC */
 .menu-btn {
-  background-color: #f9f9f9; /* Color de fondo del botón */
-  color: #f7a00b; /* Color del texto */
+  background-color: transparent; /* Color de fondo del botón */
+  // color: #221f19; /* Color del texto */
+  color: #ffa500; /* Color del texto */
   border: none;
-  font-family: 'Great Vibes',initial;
+  font-family: "Great Vibes", initial;
   font-weight: lighter;
-    padding: 25px 20px;
+  padding: 25px 20px;
   font-size: 14px;
   cursor: pointer;
   // border-radius: 5px; /* Borde redondeado */
   margin-right: 14px; /* Espacio entre botones */
-  transition: background-color 0.3s ease, transform 0.3s ease;
+  transition:
+    background-color 7s ease,
+    transform 6s ease;
 
   /* Estilo al pasar el mouse sobre el botón */
   &:hover {
-
     border-radius: 2px;
     border-bottom: 1.5px solid #e9ba81;
-    box-shadow: -4px 192px 300px -94px rgba(0,0,0,1);
-
+    box-shadow: -4px 192px 300px -94px rgba(0, 0, 0, 1);
 
     transform: scale(1.1); /* Efecto de escala al pasar el mouse */
-    border-collapse:  separate;
+    border-collapse: separate;
   }
 
   /* Estilo al hacer clic en el botón */
@@ -84,7 +77,6 @@
     transform: scale(0.95); /* Efecto de escala al hacer clic */
   }
 }
-
 
 /* Estilos para la sección de menú móvil */
 .button-container-mobile {
@@ -112,6 +104,7 @@
   top: 100%;
   right: 0; /* Alinea el menú a la derecha */
   background-color: #fff;
+  backdrop-filter: blur(10px); /* Aplica el efecto de desenfoque al fondo */
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   border-radius: 5px;
   min-width: 150px;
@@ -156,11 +149,43 @@
     min-height: 60px; /* Fija la altura mínima del encabezado en dispositivos móviles */
   }
 }
+.mat-menu {
+  top: 0px;
+  left: 0px;
+  margin: 0px;
+  backdrop-filter: blur(10px); /* Aplica el efecto de desenfoque al fondo */
+  background-color: transparent;
+}
+.mobile-menu-item_b1 {
+  padding: 10px 20px;
+  background-color: transparent;
+  text-align: center;
+  // color: #333;
+  text-decoration: none;
+  display: block;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+  background: #333333;
+  color: #ffa500;
+  backdrop-filter: blur(10px); /* Aplica el efecto de desenfoque al fondo */
+}
 
-  .divi {
-    height: 5px;
-    // background-color: #333;
-    background-color: #703724;
+/* Agrega este bloque para cambiar el color del fondo y del texto al hacer scroll hacia abajo */
+.scroll-header {
+  // backdrop-filter: blur(10px);
+  background-color: #333;
+
+  .menu-btn {
+    // color: #ffa500 !important; /* Cambia el color del texto al hacer scroll hacia abajo */
+    color: #ffffff;
+  }
+  .mobile-menu-btn {
+    color: #ffffff;
   }
 
-
+  .mobile-menu-item_b1
+  {
+      color: #ffffff;
+  }
+}

@@ -15,13 +15,16 @@ const routes: Routes = [
     children: [
       {
         path: 'home',
+
         component: HomeViews,
       },
       {
+        title:"Politica |",
         path: 'politica',
         component: PoliticaPrivView,
       },
       {
+        title:"Acerca de |",
         path: 'acercade',
         component: AcercaDeView,
       }

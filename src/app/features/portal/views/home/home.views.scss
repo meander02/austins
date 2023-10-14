@@ -1,42 +1,95 @@
-.container {
-  max-width: 800px; /* Ancho máximo del contenido */
-  margin: 0 auto; /* Centra el contenido horizontalmente */
-  padding: 20px; /* Espacio interior alrededor del contenido */
+/* Estilos contentara el componente home */
+.home-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-image: url("https://static.wixstatic.com/media/64de7c_bd452d768bdf43498f0e94694ddc7040~mv2.jpg");
+  background-size: cover;
+  background-position: center;
+  color: white;
 
-  h1 {
-    font-size: 36px; /* Tamaño de fuente para el título principal */
-    margin-bottom: 20px; /* Espacio inferior después del título */
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7);
   }
 
-  p {
-    font-size: 16px; /* Tamaño de fuente para los párrafos */
-    line-height: 1.5; /* Espaciado entre líneas para una mejor legibilidad */
-    margin-bottom: 10px; /* Espacio inferior después de los párrafos */
+  .content {
+    text-align: center;
+    max-width: 600px;
+    padding: 20px;
+    border-radius: 10px;
+    position: relative;
+    // translate: calc(  100px +   0% - 10px - 10% );
+
+
+    h1 {
+      font-size: 36px;
+      margin: 0;
+      padding: 0;
+      line-height: 1.2;
+      color: #fff;
+    }
+
+    p {
+      font-size: 18px;
+      margin-top: 20px;
+      color: #fff;
+    }
   }
 
-  .highlight {
-    color: #148, 54, 22; /* Color de resaltado para nombres propios */
-    font-weight: bold; /* Hace que el texto resaltado sea más visible */
+  /* Estilo para la imagen de fondo */
+  img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.5);
   }
 
-  .quote {
-    font-style: italic; /* Estilo de fuente cursiva para citas */
-    margin-top: 20px; /* Espacio superior antes de las citas */
-  }
+  .btn-inicio {
+    background-color: transparent;
+    border: none;
+    color: #fff;
+    font-size: 24px;
+    cursor: pointer;
+    margin-top: 20px;
+    position: relative;
 
+    cursor: pointer;
+  transition: transform 0.3s ease;
+  }
 }
 
-.btn {
-  display: block;
-  text-align: center;
-  margin-top: 20px;
-  color: #007bff;
-  font-weight: bold;
-  text-decoration: underline;
-  cursor: pointer;
-  transition: color 0.3s ease;
+.btn-inicio:hover {
+  transform: scale(1.1); /* Aumenta ligeramente el tamaño del cursor en el hover */
+}
+.cursor {
+  position: fixed;
+  width: 0px;
+  height: 0px;
+  box-shadow:  0px 9px 40px 7px  #eff36d;
+  // background-color: rgba(218, 205, 205, 0.158); /* Personaliza el estilo del cursor según tus necesidades */
+  border-radius: 100%;
+  pointer-events: none; /* Asegura que el cursor no interfiera con los eventos de los elementos subyacentes */
+  transition: transform 20s ease; /* Agrega una transición suave */
+  z-index: 9999; /* Coloca el cursor en la parte superior del contenido */
+}
 
-  &:hover {
-    color: #0056b3;
-  }
+.cont2
+{
+  // justify-content: center;
+  // background-color:  #f3bd6d;
+  // perspective: 3rem;
+  // border-radius: 30%;
+  // translate: calc(0% - 110% + 220% + 100% );
 }
