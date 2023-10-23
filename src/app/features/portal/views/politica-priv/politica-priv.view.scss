@@ -1,51 +1,61 @@
 .policy-container {
-  max-width: 900px;
-  margin: 0 auto;
+  // width: 90%; /* Ancho del contenedor */
+  // max-width: 800px; /* Máximo ancho para evitar que sea demasiado ancho en pantallas grandes */
+  margin: 0 auto; /* Centrar el contenedor horizontalmente */
   padding: 20px;
   background-color: #f8f0f0;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
-  font-family: 'Open Sans', sans-serif; /* Utiliza la fuente Open Sans o la fuente que prefieras */
+  font-family: 'Open Sans', sans-serif;
   color: #333;
   line-height: 1.6;
 }
 
+/* Ajustes para el título */
 h1 {
-  font-size: 16px; /* Tamaño de letra más grande */
+  font-size: 24px; /* Tamaño de letra más grande */
   font-weight: bold;
   margin-bottom: 20px;
   color: #333;
+  text-align: center; /* Centrar el texto */
 }
 
+/* Ajustes para las secciones */
 section {
   margin-bottom: 30px;
+  text-align: left; /* Alinear el texto a la izquierda */
 }
 
+/* Ajustes para los subtítulos (h2) */
 h2 {
-  font-size: 16px; /* Tamaño de letra más grande */
+  font-size: 18px; /* Tamaño de letra más grande */
   font-weight: bold;
   margin-bottom: 10px;
-  color: #000000;
+  color: #000;
 }
 
+/* Ajustes para los iconos */
 i {
   margin-right: 10px;
-  font-size: 12px; /* Tamaño de letra más grande */
-  color: #000000;
+  font-size: 16px; /* Tamaño de letra para los íconos */
+  color: #007bff; /* Color personalizado para los íconos */
 }
 
+/* Ajustes para los párrafos (p) */
 p {
-  font-size: 12px; /* Tamaño de letra más grande */
+  font-size: 14px; /* Tamaño de letra más grande */
   color: #333;
 }
 
-.titul {
-  text-align: center;
-}
+/* Ajustes para el enlace "Ver Más" */
+a {
+  display: block; /* Convertir el enlace en un bloque para ocupar todo el ancho */
+  text-align: center; /* Centrar el texto del enlace */
+  // font-weight: bold;
 
-/* Estilo para los íconos de FontAwesome */
-i.fas {
-  font-family: 'Font Awesome 5 Free';
+  font-size: 16px; /* Tamaño de letra más grande para el enlace */
+  color: #007bff; /* Color personalizado para el enlace */
+  text-decoration: underline; /* Subrayar el enlace */
+  cursor: pointer;
 }
-
 

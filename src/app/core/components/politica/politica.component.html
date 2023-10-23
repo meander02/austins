@@ -1,4 +1,4 @@
-<div class="privacy-policy-container" *ngIf="isPrivacyPolicyVisible">
+<div [@fadeInOut]  class="privacy-policy-container" *ngIf="isPrivacyPolicyVisible">
   <div class="privacy-content">
     Al usar nuestra tienda, estás aceptando nuestras políticas de privacidad.
   </div>
@@ -6,6 +6,5 @@
   class="icon1"     src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAACXBIWXMAAAsTAAALEwEAmpwYAAAArElEQVR4nL3USwrCMBSF4X/kBnQs1JlYl9G16aQuxKEjJ4K4BE1id3MkIlqifSQtHrijcD9uQhIYM3LksmyTypF/IEspR6Eri6hyFL63Du10Y9ky7T6ogywb3+N7e0FhVJHJcJHllAzJMJfh/NyW5ZgEqYa8euIhBUgSpB9INPQ+2Irsa+3OuhfUNEk9nZAqZk2TxEGGiRxTOjLoQv4NKsd5tEO+EcsqdieteQAM1kjKxjZgswAAAABJRU5ErkJggg=="></a>
   <button class="close-button" (click)="closePrivacyPolicy()">X
     </button>
-
-  
 </div>
+
