@@ -1,0 +1,12 @@
+.con{
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  font-family: 'Arial', sans-serif;
+  color: #333;
+  margin-top: 130px; /* Agrega un margen superior para evitar que el contenido se superponga al encabezado fijo */
+}

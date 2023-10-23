@@ -1,4 +1,7 @@
-<div class="policy-header" [class.scroll-header]="isHeaderScrolled">
+
+<div *ngIf="!isAdminSection">
+  <!-- Contenido del encabezado de la sección principal -->
+  <div class="policy-header" [class.scroll-header]="isHeaderScrolled">
   <link
     href="https://fonts.googleapis.com/css?family=Great+Vibes"
     rel="stylesheet"
@@ -25,38 +28,56 @@
       <div class="mobile-menu-item" (click)="redirectTo('home')">seee3</div>
     </div>
   </div>
+
   <div class="button-container-pc">
-    <button class="menu-btn" (click)="redirectTo('home')">Home</button>
+    <button class="menu-btn" (click)="redirectTo('home')">HOME</button>
     <!-- <button class="menu-btn" (click)="redirectTo('acercade')">Acerca De</button> -->
+    <!-- ..... -->
     <button [matMenuTriggerFor]="productsMenu" class="menu-btn">
-      PRODUCTOS
+      ADMIN
     </button>
-    <mat-menu style="background-color: transparent;" class="menuweb" #productsMenu="matMenu" yPosition="below">
-      <div mat-menu-item class="mobile-menu-item_b1" (click)="redirectTo('home')">
-        Home
+    <mat-menu
+      style="background-color: transparent"
+      class="menuweb"
+      #productsMenu="matMenu"
+      yPosition="below"
+    >
+      <div
+        mat-menu-item
+        class="mobile-menu-item_b1"
+        (click)="redirectTo_adm('products-list')"
+      >
+       Productos
       </div>
       <div
         mat-menu-item
         class="mobile-menu-item_b1"
         (click)="redirectTo('acercade')"
       >
-        Acerca De
+      editar producto
       </div>
 
       <div
         mat-menu-item
         class="mobile-menu-item_b1"
-        (click)="redirectTo('politica')"
+        (click)="redirectTo('·')"
       >
         Aviso de privacidad
       </div>
-      <div mat-menu-item class="mobile-menu-item_b1" (click)="redirectTo('home')">
+      <div
+        mat-menu-item
+        class="mobile-menu-item_b1"
+      (click)="redirectTo('home')"
+      >
         seee3
       </div>
     </mat-menu>
-    <button class="menu-btn" (click)="redirectTo('politica')">
-      Aviso de privacidad
+
+        <!-- ..... -->
+    <button class="menu-btn" (click)="redirectTo('#')">
+      Aviso de Privacidad
     </button>
     <button class="menu-btn" (click)="redirectTo('home')">seee3</button>
   </div>
+</div>
 </div>

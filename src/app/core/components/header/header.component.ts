@@ -1,5 +1,6 @@
 import { Router } from '@angular/router';
 import { Component, HostListener } from '@angular/core';
+import { UserStateService } from '../../../features/admin/commons/services/user-state.service'; // Asegúrate de importar tu servicio de estado de usuario
 
 @Component({
   selector: 'app-header',
@@ -9,10 +10,13 @@ import { Component, HostListener } from '@angular/core';
 export class HeaderComponent {
 
   isHeaderScrolled = false;
-  constructor(private router: Router) {}
+  constructor(private router: Router,private userStateService: UserStateService) {}
 
   redirectTo(route: string): void {
     this.router.navigate(['/portal', route]); // Utiliza la navegación de Angular
+  }
+  redirectTo_adm(route: string): void {
+    this.router.navigate(['/admin', route]); // Utiliza la navegación de Angular
   }
 
   toggleMobileMenu() {
@@ -33,5 +37,12 @@ onWindowScroll() {
     this.isHeaderScrolled = false;
   }
 }
+
+
+
+
+  get isAdminSection(): boolean {
+    return this.userStateService.getIsAdminSection();
+  }
 
 }

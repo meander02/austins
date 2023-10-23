@@ -1,20 +1,17 @@
-
 .policy-container {
   max-width: 900px;
   margin: 0 auto;
   padding: 20px;
-  background-color: #f9f9f9;
-  border: 1px solid #ddd;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  background-color: #f8f0f0;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
-  font-family: 'Arial', sans-serif;
+  font-family: 'Open Sans', sans-serif; /* Utiliza la fuente Open Sans o la fuente que prefieras */
   color: #333;
-  margin-top: 130px; /* Agrega un margen superior para evitar que el contenido se superponga al encabezado fijo */
-
+  line-height: 1.6;
 }
 
 h1 {
-  font-size: 28px;
+  font-size: 16px; /* Tamaño de letra más grande */
   font-weight: bold;
   margin-bottom: 20px;
   color: #333;
@@ -22,33 +19,33 @@ h1 {
 
 section {
   margin-bottom: 30px;
+}
 
-  h2 {
-    font-size: 24px;
-    font-weight: bold;
-    margin-bottom: 10px;
-    color: #555;
+h2 {
+  font-size: 16px; /* Tamaño de letra más grande */
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #000000;
+}
 
-    i {
-      margin-right: 10px;
-      font-size: 24px;
-      color: #007bff; /* Color del ícono */
-    }
-  }
+i {
+  margin-right: 10px;
+  font-size: 12px; /* Tamaño de letra más grande */
+  color: #000000;
+}
 
-  p {
-    font-size: 18px;
-    line-height: 1.5;
-    color: #333;
-  }
+p {
+  font-size: 12px; /* Tamaño de letra más grande */
+  color: #333;
 }
 
 .titul {
-  justify-content: center;
   text-align: center;
 }
 
 /* Estilo para los íconos de FontAwesome */
 i.fas {
-  font-family: 'Font Awesome 5 Free'; /* Nombre de la fuente de íconos */
+  font-family: 'Font Awesome 5 Free';
 }
+
+

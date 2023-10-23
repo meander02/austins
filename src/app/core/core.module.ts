@@ -1,10 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { PoliticaComponent } from './componets/politica/politica.component';
 
 
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    PoliticaComponent
+  ],
   imports: [
     CommonModule
   ]

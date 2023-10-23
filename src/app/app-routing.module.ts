@@ -12,6 +12,12 @@ const routes: Routes = [
     loadChildren: () =>
       import('./features/portal/portal.module').then((m) => m.PortalModule),
   },
+  {
+    path: 'admin',
+    // canActivate:[isAdminGuard,isAuthenticatedGuard],
+    loadChildren: () =>
+      import('./features/admin/admin.module').then((m) => m.AdminModule),
+  },
 ];
 
 @NgModule({

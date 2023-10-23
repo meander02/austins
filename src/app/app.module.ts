@@ -9,7 +9,7 @@ import { CssStyleClass } from '@fortawesome/fontawesome-svg-core';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,

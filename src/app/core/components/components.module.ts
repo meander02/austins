@@ -9,16 +9,22 @@ import {  MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { RouterModule } from '@angular/router';
 import { MatBadgeModule} from '@angular/material/badge';
+import { PoliticaComponent } from './politica/politica.component';
+import { MatDialogModule } from '@angular/material/dialog';
+
+// import { MatDialog } from '@angular/material/dialog';
 // import { FooterModule } from '@coreui/angular';
 
 @NgModule({
   declarations: [
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    PoliticaComponent
   ],
   exports: [
+    // PoliticaComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,PoliticaComponent
   ],
   imports: [
     // FooterModule,
@@ -28,6 +34,7 @@ import { MatBadgeModule} from '@angular/material/badge';
     MatIconModule,
     MatMenuModule,
     RouterModule,
+    MatDialogModule,
     MatBadgeModule
   ]
 })
