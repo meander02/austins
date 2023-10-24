@@ -1,0 +1,97 @@
+.product-card {
+  width: calc(33.33% - 20px); /* Ajusta el ancho y el margen para que sean responsive */
+  margin: 10px;
+  display: inline-block; /* Para evitar saltos en la alineación */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra más destacada */
+  transition: transform 0.3s; /* Agrega una transición suave en el hover */
+  border-radius: 10px; /* Añade bordes redondeados al producto */
+
+  &:hover {
+    transform: scale(1.05); /* Escala ligeramente el producto en el hover */
+  }
+
+  mat-card {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px; /* Añade bordes redondeados al contenido */
+
+    .content-img {
+      text-align: center;
+      img {
+        margin-top: 10px;
+        height: 180px;
+        width: 220px;
+      }
+    }
+    mat-card-header {
+      position: relative;
+      height: 150px; /* Establece la altura de la cabecera */
+
+      mat-card-title {
+        text-align: center;
+        font-size: 1.5rem;
+        margin-top: 10px;
+        font-weight: bold; /* Añade negrita al título */
+        color: #703824; /* Color de texto de título */
+      }
+
+      mat-card-subtitle {
+        text-align: center;
+        font-weight: bold;
+        span {
+          margin-left: 10px;
+        }
+      }
+
+      div[mat-card-avatar] {
+        width: 50px;
+        height: 50px;
+        margin: 0 auto;
+        background: url('https://static.wixstatic.com/media/64de7c_5c0ba351459045d582cf3f4215ee9229~mv2.jpg/v1/fill/w_284,h_266,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/64de7c_5c0ba351459045d582cf3f4215ee9229~mv2.jpg') center/cover;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    }
+
+    mat-card-content {
+      flex: 1;
+      text-align: center;
+
+      p {
+        text-align: center;
+        font-size: 1rem;
+        margin-top: 15px;
+      }
+    }
+
+    mat-card-actions {
+      text-align: center;
+      justify-content: center;
+      padding: 12px;
+
+      button {
+        padding: 10px 20px;
+        margin: 0 5px;
+        background-color: #AB7038; /* Fondo del botón con el color de Austin's Pastelería */
+        border: none; /* Elimina el borde del botón */
+        border-radius: 4px;
+        font-size: 1.1rem;
+        font-weight: bold;
+        color: #ffffff; /* Color del texto del botón */
+        cursor: pointer;
+        transition: transform 0.3s, color 0.2s;
+        white-space: nowrap;
+        overflow: hidden;
+      }
+
+      .grow {
+        &:hover {
+          transform: scale(1.1);
+        }
+      }
+    }
+  }
+}

@@ -1,4 +1,4 @@
-/* Estilos contentara el componente home */
+/* Estilos para el componente Home */
 .home-container {
   position: relative;
   display: flex;
@@ -10,87 +10,63 @@
   background-size: cover;
   background-position: center;
   color: white;
+}
 
-  &::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.7);
-  }
+.home-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+}
 
-  .content {
-    text-align: center;
-    max-width: 600px;
-    padding: 20px;
-    border-radius: 10px;
-    position: relative;
-    // translate: calc(  100px +   0% - 10px - 10% );
+.content {
+  text-align: center;
+  max-width: 600px;
+  padding: 20px;
+  border-radius: 10px;
+  position: relative;
+}
 
-    h1 {
-      font-size: 36px;
-      margin: 0;
-      padding: 0;
-      line-height: 1.2;
-      color: #fff;
-    }
+.bienve {
+  font-size: 36px;
+  margin: 0;
+  padding: 0;
+  line-height: 1.2;
+  color: #fff;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
 
-    p {
-      font-size: 18px;
-      margin-top: 20px;
-      color: #fff;
-    }
-    .bienve {
-      font-family: sans-serif;
-    }
-  }
+p {
+  font-size: 18px;
+  margin-top: 20px;
+  color: #fff;
+}
 
-  /* Estilo para la imagen de fondo */
-  img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    filter: brightness(0.5);
-  }
+img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.5);
+}
 
-  .btn-inicio {
-    background-color: transparent;
-    border: none;
-    color: #fff;
-    font-size: 24px;
-    cursor: pointer;
-    margin-top: 20px;
-    position: relative;
-
-    cursor: pointer;
-    transition: transform 0.3s ease;
-  }
+.btn-inicio {
+  background-color: transparent;
+  border: none;
+  color: #fff;
+  font-size: 24px;
+  cursor: pointer;
+  margin-top: 20px;
+  position: relative;
+  transition: transform 0.3s ease;
 }
 
 .btn-inicio:hover {
   transform: scale(1.1); /* Aumenta ligeramente el tamaño del cursor en el hover */
 }
-.cursor {
-  position: fixed;
-  width: 0px;
-  height: 0px;
-  box-shadow: 0px 9px 40px 7px #eff36d;
-  // background-color: rgba(218, 205, 205, 0.158); /* Personaliza el estilo del cursor según tus necesidades */
-  border-radius: 100%;
-  pointer-events: none; /* Asegura que el cursor no interfiera con los eventos de los elementos subyacentes */
-  transition: transform 20s ease; /* Agrega una transición suave */
-  z-index: 9999; /* Coloca el cursor en la parte superior del contenido */
-}
 
-.cont2 {
-  // justify-content: center;
-  // background-color:  #f3bd6d;
-  // perspective: 3rem;
-  // border-radius: 30%;
-  // translate: calc(0% - 110% + 220% + 100% );
-}

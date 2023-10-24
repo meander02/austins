@@ -1,0 +1,22 @@
+<div *ngFor="let product of products" class="product-card">
+  <mat-card>
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image"></div>
+      <mat-card-title>{{ product.name }}</mat-card-title>
+      <mat-card-subtitle>
+        <p>{{ product.quantity }}<span>Precio: ${{ product.price }}</span></p>
+      </mat-card-subtitle>
+    </mat-card-header>
+    <div class="content-img" (click)="goToDetail('detail')">
+      <img mat-card-image src="https://static.wixstatic.com/media/64de7c_5c0ba351459045d582cf3f4215ee9229~mv2.jpg/v1/fill/w_284,h_266,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/64de7c_5c0ba351459045d582cf3f4215ee9229~mv2.jpg" alt="Photo of a Shiba Inu" >
+    </div>
+    <mat-card-content>
+      <p>{{ product.description }}</p>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button (click)="decrement()">-</button>
+      <button class="grow" mat-button (click)="add()">Agregar</button>
+      <button mat-button (click)="increment()">+</button>
+    </mat-card-actions>
+  </mat-card>
+</div>

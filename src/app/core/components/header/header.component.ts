@@ -1,6 +1,7 @@
+import { UserStateService } from '../../../features/admin/commons/services/user-state.service'; //
+import { AuthStateService } from './../../../features/auth/commons/services/auth-state.service';
 import { Router } from '@angular/router';
 import { Component, HostListener } from '@angular/core';
-import { UserStateService } from '../../../features/admin/commons/services/user-state.service'; // Asegúrate de importar tu servicio de estado de usuario
 
 @Component({
   selector: 'app-header',
@@ -10,15 +11,23 @@ import { UserStateService } from '../../../features/admin/commons/services/user-
 export class HeaderComponent {
 
   isHeaderScrolled = false;
-  constructor(private router: Router,private userStateService: UserStateService) {}
+  // constructor(private authStateService: AuthStateService, private userStateService: UserStateService) {}
+
+  constructor(private router: Router,private userStateService: UserStateService,private AuthStateService: AuthStateService) {}
+  get shouldShowHeader(): boolean {
+    return !this.AuthStateService.getisAuthS() && !this.userStateService.getIsAdminSection();
+  }
 
   redirectTo(route: string): void {
     this.router.navigate(['/portal', route]); // Utiliza la navegación de Angular
   }
+
   redirectTo_adm(route: string): void {
     this.router.navigate(['/admin', route]); // Utiliza la navegación de Angular
   }
-
+  redirectTo_Auth(route: string): void {
+    this.router.navigate(['/auth', route]); // Utiliza la navegación de Angular
+  }
   toggleMobileMenu() {
     const mobileMenu = document.getElementById('mobileMenu');
 

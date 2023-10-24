@@ -1,5 +1,6 @@
 
-<div *ngIf="!isAdminSection">
+<!-- <div *ngIf="!isAdminSection !isAuthSection" > -->
+<div *ngIf="shouldShowHeader" >
   <!-- Contenido del encabezado de la sección principal -->
   <div class="policy-header" [class.scroll-header]="isHeaderScrolled">
   <link
@@ -77,7 +78,8 @@
     <button class="menu-btn" (click)="redirectTo('#')">
       Aviso de Privacidad
     </button>
-    <button class="menu-btn" (click)="redirectTo('home')">seee3</button>
+    <button class="menu-btn" (click)="redirectTo_Auth('sign-in')">sign in</button>
+    <button class="menu-btn" (click)="redirectTo_Auth('sign-up')">sign up</button>
   </div>
 </div>
 </div>

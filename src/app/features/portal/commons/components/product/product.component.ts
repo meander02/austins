@@ -1,14 +1,16 @@
-import { Component ,HostListener} from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.views.html',
-  styleUrls: ['./home.views.scss']
+  selector: 'app-product',
+  templateUrl: './product.component.html',
+  styleUrls: ['./product.component.scss']
 })
-export class HomeViews {
+export class ProductComponent {
 
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+  ) {}
   products = [
     {
       name: "Tarta de Chocolate",
@@ -43,28 +45,34 @@ export class HomeViews {
       // Otras propiedades del producto
     }
   ];
-  @HostListener('mousemove', ['$event'])
-  onMouseMove(event: MouseEvent): void {
-    const cursor = document.querySelector('.cursor') as HTMLElement;
-    cursor.style.left = (event.clientX - 10) + 'px'; // Ajusta el offset según el tamaño de tu cursor
-    cursor.style.top = (event.clientY - 10) + 'px';
-  }
 
-  redirectTo(route: string): void {
-    console.log('redirect');
-    this.router.navigateByUrl('/portal/' + route);
-  }
+  // @Input()
+  // product!: Product;
+  // items: number=0;
 
 
-
+  // get cartItem(): CartItem {
+  //   return this.setCartItem();
+  // }
+  // constructor(private router: Router, public cartService: CartService) { }
+  // constructor(private router: Router, private cartService: CartService) { }
 
   ngOnInit(): void {
     // console.log('Producto en el presentador', this.product);
   }
 
-  goToDetail(): void {
-    // this.router.navigateByUrl(`portal/detail/${this.product._id}`);
-  }
+
+  // setCartItem(): CartItem {
+  //   const cartItem: CartItem = {
+  //     id: this.product._id,
+  //     name: this.product.name,
+  //     precio: this.product.price,
+  //     cantidad: 1,
+  //     image: this.product.image
+  //   }
+  //   return cartItem;
+  // }
+
   add(): void {
     // this.cartService.add(this.cartItem);
   }
@@ -75,5 +83,10 @@ export class HomeViews {
 
   decrement(): void {
     // this.cartService.remove(this.cartItem);
+  }
+
+  goToDetail(route: string): void {
+    console.log('redirect');
+    this.router.navigateByUrl('/portal/' + route);
   }
 }

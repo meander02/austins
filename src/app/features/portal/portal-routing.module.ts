@@ -4,6 +4,7 @@ import { PortalComponent } from './portal.component';
 import { HomeViews } from './views/home/home.views';
 import { PoliticaPrivView } from './views/politica-priv/politica-priv.view';
 import { AcercaDeView } from './views/acerca-de/acerca-de.view';
+import { DetailViews } from './views/detail/detail.views';
 
 const routes: Routes = [
   {
@@ -17,6 +18,10 @@ const routes: Routes = [
         path: 'home',
 
         component: HomeViews,
+      },
+      {
+        path: 'detail',
+        component: DetailViews,
       },
       {
         title:"Politica |",

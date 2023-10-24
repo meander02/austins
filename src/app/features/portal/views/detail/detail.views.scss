@@ -1,0 +1,13 @@
+:host {
+  display: flex;
+  padding-top: 100px;
+  margin-top: 60px; /* Agrega un margen superior para evitar que el contenido se superponga al encabezado fijo */
+
+  .detail-img {
+    width: 55%;
+  }
+
+  .detail-info {
+    width: 45%;
+  }
+}
