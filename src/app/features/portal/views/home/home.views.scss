@@ -1,8 +1,13 @@
 /* Estilos para el componente Home */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Arial', sans-serif;
+}
+
 .home-container {
   position: relative;
-  display: grid;
-  grid-template-columns: 1fr;
+  display: flex;
   align-items: center;
   justify-content: center;
   height: 100vh;
@@ -10,67 +15,70 @@
   background-size: cover;
   background-position: center;
   color: white;
-
-  &::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.7);
-  }
-
-  .content {
-    text-align: center;
-    max-width: 90%; /* Limita el ancho para que se ajuste a la pantalla */
-    padding: 20px;
-    border-radius: 10px;
-    position: relative;
-
-    h1 {
-      font-size: 4vw; /* Utiliza unidades relativas para el tamaño de fuente */
-      margin: 0;
-      padding: 0;
-      line-height: 1.2;
-      color: #fff;
-    }
-
-    p {
-      font-size: 2vw; /* Utiliza unidades relativas para el tamaño de fuente */
-      margin-top: 2vh; /* Espaciado en unidades relativas */
-      color: #fff;
-    }
-
-    .bienve {
-      font-family: sans-serif;
-    }
-  }
-
-  img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    filter: brightness(0.5);
-  }
-
-  .btn-inicio {
-    background-color: transparent;
-    border: none;
-    color: #fff;
-    font-size: 3.0vw; /* Utiliza unidades relativas para el tamaño de fuente */
-    cursor: pointer;
-    margin-top: 2vh; /* Espaciado en unidades relativas */
-    position: relative;
-    transition: transform 0.3s ease;
-  }
+  text-align: center;
 }
 
-.btn-inicio:hover {
-  transform: scale(1.1); /* Aumenta ligeramente el tamaño en el hover */
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 90%;
+  padding: 20px;
+  border-radius: 10px;
+  position: relative;
+  background: rgba(0, 0, 0, 0.7);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.text-content {
+  color: #fff;
+}
+
+h1 {
+  font-size: 3rem;
+  margin: 0;
+  padding: 0;
+  line-height: 1.2;
+  color: #fff;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+p {
+  font-size: 1.5rem;
+  margin: 1rem 0;
+  color: #fff;
+}
+
+.bienve {
+  font-family: 'Cursive', cursive;
+}
+
+.owner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 2rem;
+}
+
+h2 {
+  font-size: 1.5rem;
+  color: #fff;
+}
+
+.contact-owner {
+  background-color: #ff5733;
+  border: none;
+  color: #fff;
+  font-size: 1.2rem;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.contact-owner:hover {
+  background-color: #ff3d15;
+  transform: scale(1.05);
 }
 
 .cursor {
@@ -84,35 +92,51 @@
   z-index: 9999;
 }
 
-.cont2 {
-  display: flex;
-  justify-content: center;
-  margin-top: 2vh; /* Espaciado en unidades relativas */
+/* Estilos para dispositivos móviles (por ejemplo, pantalla de ancho menor a 600px) */
+@media (max-width: 600px) {
+  h1 {
+    font-size: 2rem;
+  }
+
+  p {
+    font-size: 1rem;
+  }
+
+  .contact-owner {
+    font-size: 1rem;
+    padding: 8px 16px;
+  }
 }
 
 /* Estilos para dispositivos móviles (por ejemplo, pantalla de ancho menor a 600px) */
 @media (max-width: 600px) {
   .home-container {
-    padding: 10px; /* Ajusta el espaciado para pantallas más pequeñas */
-  }
-
-  .content {
-    max-width: 100%; /* Haz que el contenido ocupe todo el ancho en pantallas pequeñas */
     padding: 10px;
   }
 
+  .content {
+    flex-direction: column; /* Cambia la dirección de flex a columna en dispositivos móviles */
+    align-items: center;
+    text-align: center;
+  }
+
+  .text-content {
+    text-align: center; /* Alinea el texto al centro en dispositivos móviles */
+  }
+
   h1 {
-    font-size: 6vw; /* Ajusta el tamaño de fuente para pantallas pequeñas */
+    font-size: 6vw;
   }
 
   p {
-    font-size: 3vw; /* Ajusta el tamaño de fuente para pantallas pequeñas */
+    font-size: 3vw;
   }
 
   .btn-inicio {
-    font-size: 4vw; /* Ajusta el tamaño de fuente para pantallas pequeñas */
+    font-size: 4vw;
   }
 }
+
 
 /* Estilos para el catálogo de productos */
 .prod {

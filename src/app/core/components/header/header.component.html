@@ -18,7 +18,7 @@
   </div>
   <div class="search-container">
     <input type="text" placeholder="Buscar..." >
-    <button (click)="search()"><i class='fas fa-search' style='font-size:48px;color:red'></i>
+    <button class="btnbusa" (click)="search()"><img width="40" height="40" src="https://img.icons8.com/ios-glyphs/30/search--v1.png" alt="search--v1"/>
 
     </button>
   </div>
@@ -30,9 +30,9 @@
         Acerca De
       </div>
 
-      <div class="mobile-menu-item" (click)="redirectTo('politica')">
+      <!-- <div class="mobile-menu-item" (click)="redirectTo('politica')">
         Aviso de privacidad
-      </div>
+      </div> -->
       <div class="mobile-menu-item" (click)="redirectTo('home')">seee3</div>
     </div>
   </div>
@@ -65,13 +65,13 @@
       editar producto
       </div>
 
-      <div
+      <!-- <div
         mat-menu-item
         class="mobile-menu-item_b1"
         (click)="redirectTo('·')"
       >
         Aviso de privacidad
-      </div>
+      </div> -->
       <div
         mat-menu-item
         class="mobile-menu-item_b1"
@@ -80,9 +80,9 @@
         seee3
       </div>
     </mat-menu>
-    <button class="menu-btn" (click)="redirectTo('#')">
+    <!-- <button class="menu-btn" (click)="redirectTo('#')">
       Aviso de Privacidad
-    </button>
+    </button> -->
     <button class="menu-btn" (click)="redirectTo_Auth('sign-in')">sign in</button>
     <button class="menu-btn" (click)="redirectTo_Auth('sign-up')">sign up</button>
   </div>

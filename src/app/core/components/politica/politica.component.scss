@@ -1,36 +1,58 @@
 .privacy-policy-container {
+  background-color: rgba(101, 101, 101, 0.5);
 
   position: fixed;
-  bottom: 15px; /* Ajusta según sea necesario */
-  right: 240px; /* Ajusta según sea necesario */
-  padding: 10px 15px ; /* Espaciado interno */
+  bottom: 15px;
+  right: 180px;
+  padding: 10px 15px;
   border-radius: 10px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra suave */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(23px);
   display: flex;
-  align-items: center; /* Centrar verticalmente */
+  align-items: center;
   justify-content: space-between;
-
 }
-
 .privacy-content {
-  flex-grow: 1;
-  padding-right: 0px;
+  position: relative;
+  z-index: 1;
+  color: #fff;
+  transition: color 0.3s; /* Agrega una transición suave para el cambio de color */
 }
-.privacy-button{
+
+.privacy-content::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+}
+/* Cambia el color del texto cuando está sobre un fondo blanco */
+.privacy-policy-container:hover .privacy-content {
+  // color: #000; /* Cambia el color del texto cuando el contenedor padre se encuentra en estado de :hover (sobre fondo blanco) */
+}
+
+.privacy-button {
   // text-decoration: underline;
 }
-.privacy-button:hover{
+
+.privacy-button:hover, .close-button:hover {
   text-decoration: underline;
+  // color: #000;
+  // background-color: #ffd500;
 }
-.close-button{
+
+.close-button {
   font-style: normal;
   font-weight: 900;
 }
-.privacy-button, .close-button {
+
+.privacy-button,
+.close-button {
   background-color: #007bff00;
   border: none;
-  color: #ffd500; /* Color del texto */
+  color: #ffd500;
   border-radius: 2px;
   padding: 10px 30px;
   font-weight: lighter;
@@ -39,19 +61,18 @@
 
 @media screen and (max-width: 767px) {
   .privacy-policy-container {
-    bottom: 10px; /* Ajusta según sea necesario */
-    right: 10px; /* Ajusta según sea necesario */
-    padding: 5px; /* Espaciado interno */
+    bottom: 10px;
+    right: 10px;
+    padding: 5px;
   }
 
   .privacy-button, .close-button {
     padding: 8px 16px;
-    font-weight: normal; /* Menos peso en la fuente para reducir el tamaño total */
+    font-weight: normal;
   }
 }
-.icon1{
+
+.icon1 {
   margin: 0%;
   margin-bottom: -2%;
 }
-
-

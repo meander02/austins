@@ -5,16 +5,17 @@
   left: 0;
   right: 0;
   transition:
-    background-color 2s ease,
-    color 1.2s ease; /* Transiciones suaves para el cambio de color de fondo y de texto */
+    background-color 0.5s ease, /* Transiciones suaves para el cambio de color de fondo */
+    color 0.5s ease; /* y de texto */
 
   z-index: 1000; /* Asegura que el header esté sobre otros elementos */
   display: flex;
   justify-content: space-between;
   align-items: center;
-  z-index: 999; /* Valor de z-index más bajo que el contenido de la página */
-  padding: 20px;
+  background-color: rgba(31, 29, 29, 0.49); /* Color de fondo semi-transparente */
   backdrop-filter: blur(10px); /* Aplica el efecto de desenfoque al fondo */
+  padding: 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sutil sombra */
 }
 
 /* Estilos para el contenedor del logotipo */
@@ -46,7 +47,6 @@
 /* Estilos para el botón de menú en pantallas de PC */
 .menu-btn {
   background-color: transparent; /* Color de fondo del botón */
-  // color: #221f19; /* Color del texto */
   color: #ffa500; /* Color del texto */
   border: none;
   font-family: "Great Vibes", initial;
@@ -187,5 +187,60 @@
   .mobile-menu-item_b1
   {
       color: #ffffff;
+  }
+}
+/* Estilos para el input de búsqueda */
+.search-container input {
+  padding: 10px; /* Espaciado interno para una apariencia más agradable */
+  border: none; /* Quita el borde del input */
+  border-radius: 20px; /* Agrega bordes redondeados */
+  background-color: rgba(255, 255, 255, 0.5); /* Fondo semitransparente */
+  color: #333; /* Color del texto */
+  font-size: 16px; /* Tamaño de fuente */
+  width: 320px; /* Ancho del input */
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+/* Estilos para el botón de búsqueda */
+.search-container {
+  display: flex;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.5); /* Fondo semi-transparente */
+  border-radius: 20px;
+  padding: 0px 10px;
+  width: 360px; /* Ancho del contenedor de búsqueda */
+  transition: background-color 0.3s ease;
+
+  input {
+    border: none; /* Quita el borde del input */
+    background: transparent; /* Fondo transparente del input */
+    color: #333; /* Color del texto */
+    font-size: 16px; /* Tamaño de fuente */
+    width: 100%; /* Ancho del input del 100% del contenedor */
+    outline: none; /* Quita el contorno al hacer clic en el input */
+  }
+
+  button {
+    background-color: transparent; /* Color de fondo del botón */
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
+  }
+}
+
+/* Estilo al pasar el mouse sobre el contenedor de búsqueda */
+.search-container:hover {
+  background-color: rgba(255, 255, 255, 0.7); /* Cambio de color al pasar el mouse */
+}
+
+/* Agrega este bloque para cambiar el color del fondo y del texto al hacer scroll hacia abajo */
+.scroll-header {
+  background-color: #1f1d1d; /* Cambia el color de fondo al hacer scroll hacia abajo */
+
+  .menu-btn,
+  .mobile-menu-btn,
+  .mobile-menu-item_b1 {
+    color: #fff; /* Cambia el color del texto al hacer scroll hacia abajo */
   }
 }
