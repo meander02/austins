@@ -11,7 +11,8 @@ import { Component, HostListener } from '@angular/core';
 export class HeaderComponent {
 
   isHeaderScrolled = false;
-  // constructor(private authStateService: AuthStateService, private userStateService: UserStateService) {}
+  searchQuery: string = ''; // Variable para almacenar la consulta de búsqueda
+
 
   constructor(private router: Router,private userStateService: UserStateService,private AuthStateService: AuthStateService) {}
   get shouldShowHeader(): boolean {
@@ -45,6 +46,7 @@ onWindowScroll() {
   } else {
     this.isHeaderScrolled = false;
   }
+
 }
 
 
@@ -52,6 +54,14 @@ onWindowScroll() {
 
   get isAdminSection(): boolean {
     return this.userStateService.getIsAdminSection();
+  }
+
+   // Función para realizar la búsqueda
+   search(): void {
+
+    if (this.searchQuery) {
+      
+    }
   }
 
 }

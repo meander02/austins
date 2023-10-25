@@ -11,8 +11,6 @@ import { MaterialModule } from './material/material.module';
     AuthComponentsModule,
     MaterialModule
   ],
-  imports: [
-    CommonModule
-  ]
+
 })
 export class AuthCommonsModule { }

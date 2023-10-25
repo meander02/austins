@@ -25,14 +25,12 @@ export class DetailImgComponent  implements OnInit,OnChanges{
     }
   }
   @Input() images: string[] = [
-    "https://static.wixstatic.com/media/64de7c_5c0ba351459045d582cf3f4215ee9229~mv2.jpg/v1/fill/w_284,h_266,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/64de7c_5c0ba351459045d582cf3f4215ee9229~mv2.jpg",
-    "https://static.wixstatic.com/media/64de7c_5c0ba351459045d582cf3f4215ee9229~mv2.jpg/v1/fill/w_284,h_266,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/64de7c_5c0ba351459045d582cf3f4215ee9229~mv2.jpg",
-    "https://static.wixstatic.com/media/64de7c_5c0ba351459045d582cf3f4215ee9229~mv2.jpg/v1/fill/w_284,h_266,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/64de7c_5c0ba351459045d582cf3f4215ee9229~mv2.jpg",
-    "https://static.wixstatic.com/media/64de7c_5c0ba351459045d582cf3f4215ee9229~mv2.jpg/v1/fill/w_284,h_266,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/64de7c_5c0ba351459045d582cf3f4215ee9229~mv2.jpg",
-    "https://static.wixstatic.com/media/64de7c_5c0ba351459045d582cf3f4215ee9229~mv2.jpg/v1/fill/w_284,h_266,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/64de7c_5c0ba351459045d582cf3f4215ee9229~mv2.jpg",
-    "https://static.wixstatic.com/media/64de7c_5c0ba351459045d582cf3f4215ee9229~mv2.jpg/v1/fill/w_284,h_266,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/64de7c_5c0ba351459045d582cf3f4215ee9229~mv2.jpg",
-    "https://static.wixstatic.com/media/64de7c_5c0ba351459045d582cf3f4215ee9229~mv2.jpg/v1/fill/w_284,h_266,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/64de7c_5c0ba351459045d582cf3f4215ee9229~mv2.jpg",
-    // Otras rutas de imágenes
+    // "https://static.wixstatic.com/media/64de7c_5c0ba351459045d582cf3f4215ee9229~mv2.jpg/v1/fill/w_284,h_266,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/64de7c_5c0ba351459045d582cf3f4215ee9229~mv2.jpg",
+    "/assets/64de7c_5c0ba351459045d582cf3f4215ee9229~mv2.webp",
+    "/assets/64de7c_5c0ba351459045d582cf3f4215ee9229~mv2.webp",
+    "/assets/64de7c_5c0ba351459045d582cf3f4215ee9229~mv2.webp",
+    "/assets/64de7c_5c0ba351459045d582cf3f4215ee9229~mv2.webp",
+
   ];
   // : string = ''; // Inicializa la imagen principal en blanco
   currentIndex: number = 0; // Inicializa el índice de la imagen actual en 0

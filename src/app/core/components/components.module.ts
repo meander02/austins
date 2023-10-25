@@ -12,8 +12,6 @@ import { MatBadgeModule} from '@angular/material/badge';
 import { PoliticaComponent } from './politica/politica.component';
 import { MatDialogModule } from '@angular/material/dialog';
 
-// import { MatDialog } from '@angular/material/dialog';
-// import { FooterModule } from '@coreui/angular';
 
 @NgModule({
   declarations: [
@@ -27,7 +25,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     FooterComponent,PoliticaComponent
   ],
   imports: [
-    // FooterModule,
+    // BrowserModule,
+
     CommonModule,
     MatToolbarModule,
     MatButtonModule,

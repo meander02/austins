@@ -1,5 +1,5 @@
-import { Component ,EventEmitter, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-sign-in-form',
@@ -7,32 +7,23 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
   styleUrls: ['./sign-in-form.component.scss']
 })
 export class SignInFormComponent implements OnInit {
-  // group: FormGroup;
+  group: FormGroup;
 
-  // @Output() formData: EventEmitter<ISingInRequest> =
-  //   new EventEmitter<ISingInRequest>();
-
-  // get emailFormControl(): FormControl {
-  //   console.log('email');
-  //   return this.group.get('email') as FormControl;
-  // }
-  // get passwordFormControl(): FormControl {
-  //   return this.group.get('password') as FormControl;
-  // }
-
-  constructor(private forBuilder: FormBuilder) {
-    // let validatorCustom= new SignInValidator()
-    // this.group = this.forBuilder.group({
-    //   email: ['',[Validators.required,Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]],
-    //   password: ['',[Validators.required,validatorCustom.formatPassword]],
-    // });
+  constructor(private formBuilder: FormBuilder) {
+    this.group = this.formBuilder.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required]]
+    });
   }
 
   ngOnInit(): void {}
-  // send(): void {
-  //   debugger;
-  //   if (this.group.valid) {
-  //     this.formData.emit(this.group.value);
-  //   }
-  // }
+
+  submitForm() {
+    if (this.group.valid) {
+      // Realiza la acción deseada cuando el formulario es válido
+      // Por ejemplo, envía los datos de inicio de sesión al servidor
+      const formData = this.group.value;
+      console.log(formData); // Puedes ver los datos en la consola
+    }
+  }
 }

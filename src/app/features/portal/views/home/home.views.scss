@@ -1,8 +1,8 @@
 /* Estilos para el componente Home */
 .home-container {
   position: relative;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 1fr;
   align-items: center;
   justify-content: center;
   height: 100vh;
@@ -10,63 +10,150 @@
   background-size: cover;
   background-position: center;
   color: white;
-}
 
-.home-container::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.7);
-}
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+  }
 
-.content {
-  text-align: center;
-  max-width: 600px;
-  padding: 20px;
-  border-radius: 10px;
-  position: relative;
-}
+  .content {
+    text-align: center;
+    max-width: 90%; /* Limita el ancho para que se ajuste a la pantalla */
+    padding: 20px;
+    border-radius: 10px;
+    position: relative;
 
-.bienve {
-  font-size: 36px;
-  margin: 0;
-  padding: 0;
-  line-height: 1.2;
-  color: #fff;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-}
+    h1 {
+      font-size: 4vw; /* Utiliza unidades relativas para el tamaño de fuente */
+      margin: 0;
+      padding: 0;
+      line-height: 1.2;
+      color: #fff;
+    }
 
-p {
-  font-size: 18px;
-  margin-top: 20px;
-  color: #fff;
-}
+    p {
+      font-size: 2vw; /* Utiliza unidades relativas para el tamaño de fuente */
+      margin-top: 2vh; /* Espaciado en unidades relativas */
+      color: #fff;
+    }
 
-img {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  filter: brightness(0.5);
-}
+    .bienve {
+      font-family: sans-serif;
+    }
+  }
 
-.btn-inicio {
-  background-color: transparent;
-  border: none;
-  color: #fff;
-  font-size: 24px;
-  cursor: pointer;
-  margin-top: 20px;
-  position: relative;
-  transition: transform 0.3s ease;
+  img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.5);
+  }
+
+  .btn-inicio {
+    background-color: transparent;
+    border: none;
+    color: #fff;
+    font-size: 3.0vw; /* Utiliza unidades relativas para el tamaño de fuente */
+    cursor: pointer;
+    margin-top: 2vh; /* Espaciado en unidades relativas */
+    position: relative;
+    transition: transform 0.3s ease;
+  }
 }
 
 .btn-inicio:hover {
-  transform: scale(1.1); /* Aumenta ligeramente el tamaño del cursor en el hover */
+  transform: scale(1.1); /* Aumenta ligeramente el tamaño en el hover */
 }
 
+.cursor {
+  position: fixed;
+  width: 0px;
+  height: 0px;
+  box-shadow: 0px 9px 40px 7px #eff36d;
+  border-radius: 100%;
+  pointer-events: none;
+  transition: transform 20s ease;
+  z-index: 9999;
+}
+
+.cont2 {
+  display: flex;
+  justify-content: center;
+  margin-top: 2vh; /* Espaciado en unidades relativas */
+}
+
+/* Estilos para dispositivos móviles (por ejemplo, pantalla de ancho menor a 600px) */
+@media (max-width: 600px) {
+  .home-container {
+    padding: 10px; /* Ajusta el espaciado para pantallas más pequeñas */
+  }
+
+  .content {
+    max-width: 100%; /* Haz que el contenido ocupe todo el ancho en pantallas pequeñas */
+    padding: 10px;
+  }
+
+  h1 {
+    font-size: 6vw; /* Ajusta el tamaño de fuente para pantallas pequeñas */
+  }
+
+  p {
+    font-size: 3vw; /* Ajusta el tamaño de fuente para pantallas pequeñas */
+  }
+
+  .btn-inicio {
+    font-size: 4vw; /* Ajusta el tamaño de fuente para pantallas pequeñas */
+  }
+}
+
+/* Estilos para el catálogo de productos */
+.prod {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+  margin-top: 2vh;
+}
+
+.product {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  min-height: 300px; /* Asegura que los productos tengan una altura mínima */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.product h2 {
+  font-size: 2.5vw; /* Ajusta el tamaño de fuente para el título del producto */
+  margin: 10px 0;
+}
+
+/* Estilos para dispositivos móviles (por ejemplo, pantalla de ancho menor a 600px) */
+@media (max-width: 600px) {
+  .prod {
+    grid-template-columns: 1fr; /* Muestra un producto por fila en la versión móvil */
+  }
+
+  .product {
+    margin-bottom: 20px; /* Espaciado entre productos en la versión móvil */
+  }
+
+  .product h2 {
+    font-size: 4vw; /* Ajusta el tamaño de fuente para el título del producto en móvil */
+  }
+
+  .btn-inicio {
+    font-size: 3vw; /* Ajusta el tamaño de fuente de los botones en la versión móvil */
+  }
+}
