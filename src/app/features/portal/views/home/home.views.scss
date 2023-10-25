@@ -185,16 +185,23 @@ h2 {
     font-size: 3vw; /* Ajusta el tamaño de fuente de los botones en la versión móvil */
   }
 }
+
+
+
+
 /* Estilos para dispositivos móviles (por ejemplo, pantalla de ancho menor a 600px) */
 @media (max-width: 600px) {
   .home-container {
-    padding: 4px;
+    padding: 10px;
+    margin-top: 0; /* Elimina el margen superior para quitar el espacio en blanco */
   }
 
   .content {
     flex-direction: column; /* Cambia la dirección de flex a columna en dispositivos móviles */
     align-items: center;
     text-align: center;
+    // margin-top: 0; /* Elimina el margen superior para quitar el espacio en blanco */
+
   }
 
   .text-content {
@@ -212,8 +219,8 @@ h2 {
   }
 
   .contact-owner {
-    font-size: 0.5rem;
-    padding: 9px 16px;
+    font-size: 0.8rem;
+    padding: 14px 16px;
   }
 
   .logo_mobil {
@@ -224,7 +231,7 @@ h2 {
     max-width: 30%; /* Ajusta el ancho máximo del logo al 80% del contenedor */
     display: block; /* Hace que la imagen sea un bloque para centrarla horizontalmente */
     margin: 0 auto; /* Centra la imagen horizontalmente en su contenedor */
-    padding: 10px; /* Agrega un espacio alrededor de la imagen para que se vea agradable */
+    padding: 0px; /* Agrega un espacio alrededor de la imagen para que se vea agradable */
   }
 }
 
