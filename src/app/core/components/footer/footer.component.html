@@ -1,9 +1,8 @@
-
-<footer *ngIf="shouldShowFooter" >
-  <div class="footer-container" >
+<footer *ngIf="shouldShowFooter">
+  <div class="footer-container">
     <div class="footer-logo">
       <img src="https://static.wixstatic.com/media/64de7c_29f387abde884a1e8f9df17220933df6~mv2.png/v1/fill/w_834,h_221,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/64de7c_29f387abde884a1e8f9df17220933df6~mv2.png"
-           alt="Logo de Tu Empresa" alt="Logo de MyCompany">
+           alt="Logo de MyCompany">
     </div>
     <div class="footer-links">
       <a href="#">Inicio</a>
@@ -11,15 +10,38 @@
       <a href="#">Contacto</a>
     </div>
     <div class="footer-social">
-      <a href="#" class="social-icon"><i class="fab fa-facebook"></i></a>
-      <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
-      <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+      <a href="https://www.facebook.com/mycompany" class="social-icon">
+        <img src="assets/icons/facebook_4494475.png" alt="Facebook">
+      </a>
+      <a href="https://www.twitter.com/mycompany" class="social-icon">
+        <img src="assets/icons/twitter_4494477.png" alt="Twitter">
+      </a>
+      <a href="https://www.instagram.com/mycompany" class="social-icon">
+        <img src="assets/icons/instagram_4494489.png" alt="Instagram">
+      </a>
+      <!-- Agrega más enlaces de redes sociales y sus iconos según sea necesario -->
+    </div>
+  </div>
+  <div class="footer-content">
+    <div class="contact-info">
+      <h3>Contáctanos</h3>
+      <ul> <!-- Utiliza una lista no ordenada para los elementos -->
+        <li>Teléfono: (123) 456-7890</li>
+        <li>Correo electrónico: info@mycompany.com</li>
+        <li>Dirección: 123 Calle Principal, Ciudad</li>
+      </ul>
+    </div>
+    <div class="quick-links">
+      <h3>Enlaces Rápidos</h3>
+      <ul> <!-- Utiliza una lista no ordenada para los elementos -->
+        <li><a href="#">Términos y Condiciones</a></li>
+        <li><a href="#">Política de Privacidad</a></li>
+        <li><a href="#">Preguntas Frecuentes</a></li>
+      </ul>
     </div>
   </div>
   <div class="copyright">
     <span>&copy; {{ anio }} MyCompany. Todos los derechos reservados.v3</span>
-    <!-- Reemplaza esto por el componente de política de privacidad -->
     <app-politica></app-politica>
   </div>
 </footer>
-

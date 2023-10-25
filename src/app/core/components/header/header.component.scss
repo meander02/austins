@@ -26,7 +26,7 @@
 }
 
 .logo-container img {
-  max-width: 40%;
+  max-width: 50%;
 }
 
 /* Estilos para dispositivos móviles (pantallas de hasta 768px de ancho) */
@@ -140,13 +140,14 @@
 @media (max-width: 768px) {
   .logo-container {
     flex: 1;
+
     text-align: center;
     margin-right: 0; /* Elimina el margen derecho para ajustar al centro */
   }
 
   .logo-container img {
     max-width: 100%; /* Asegura que el logotipo se ajuste al ancho de la pantalla */
-    display: block; /* Asegura que el logotipo ocupe el ancho completo disponible */
+    display: none; /* Asegura que el logotipo ocupe el ancho completo disponible */
   }
 
   .mobile-menu-btn {
@@ -169,9 +170,6 @@
     display: block; /* Muestra el menú al pasar el mouse sobre el botón */
   }
 
-  // .mobile-menu-btn {
-  //   display: block; /* Muestra el botón de menú en dispositivos móviles */
-  // }
 
   .button-container-pc {
     display: none; /* Oculta el contenedor de PC en dispositivos móviles */
