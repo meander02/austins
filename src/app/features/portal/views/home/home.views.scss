@@ -1,8 +1,16 @@
 /* Estilos para el componente Home */
+.bienve {
+  // font-size:x-small;
+  // font-weight: 900;
+  // font-size: xx-large;
+  font-size: 40px;
+  font-family: "cursive";
+  // font-family: "Brush Script MT";
+}
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Arial', sans-serif;
+  // font-family: 'Arial', sa ns-serif;
 }
 
 .home-container {
@@ -47,10 +55,6 @@ p {
   font-size: 1.5rem;
   margin: 1rem 0;
   color: #fff;
-}
-
-.bienve {
-  font-family: 'Cursive', cursive;
 }
 
 .owner {
@@ -179,5 +183,54 @@ h2 {
 
   .btn-inicio {
     font-size: 3vw; /* Ajusta el tamaño de fuente de los botones en la versión móvil */
+  }
+}
+/* Estilos para dispositivos móviles (por ejemplo, pantalla de ancho menor a 600px) */
+@media (max-width: 600px) {
+  .home-container {
+    padding: 4px;
+  }
+
+  .content {
+    flex-direction: column; /* Cambia la dirección de flex a columna en dispositivos móviles */
+    align-items: center;
+    text-align: center;
+  }
+
+  .text-content {
+    text-align: center; /* Alinea el texto al centro en dispositivos móviles */
+  }
+
+  h1 {
+    font-size: 2rem; /* Ajusta el tamaño de fuente del título en dispositivos móviles */
+    line-height: 1.2;
+  }
+
+  p {
+    font-size: 1rem; /* Ajusta el tamaño de fuente del párrafo en dispositivos móviles */
+    margin: 1rem 0;
+  }
+
+  .contact-owner {
+    font-size: 0.5rem;
+    padding: 9px 16px;
+  }
+
+  .logo_mobil {
+    text-align: center; /* Centra el logo horizontalmente */
+  }
+
+  .imgaem {
+    max-width: 30%; /* Ajusta el ancho máximo del logo al 80% del contenedor */
+    display: block; /* Hace que la imagen sea un bloque para centrarla horizontalmente */
+    margin: 0 auto; /* Centra la imagen horizontalmente en su contenedor */
+    padding: 10px; /* Agrega un espacio alrededor de la imagen para que se vea agradable */
+  }
+}
+
+/* Estilos para dispositivos de escritorio (por ejemplo, pantalla de ancho mayor a 600px) */
+@media (min-width: 601px) {
+  .logo_mobil {
+    display: none; /* Oculta el div del logo en dispositivos de escritorio */
   }
 }
