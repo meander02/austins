@@ -12,9 +12,13 @@ export class HeaderComponent {
 
   isHeaderScrolled = false;
   searchQuery: string = ''; // Variable para almacenar la consulta de búsqueda
+  badge:number=0
+  // constructor(private router: Router,private cartService:CartService) { }
 
 
-  constructor(private router: Router,private userStateService: UserStateService,private AuthStateService: AuthStateService) {}
+  constructor(private router: Router,private userStateService: UserStateService,private AuthStateService: AuthStateService) {
+
+  }
   get shouldShowHeader(): boolean {
     return !this.AuthStateService.getisAuthS() && !this.userStateService.getIsAdminSection();
   }
@@ -60,8 +64,11 @@ onWindowScroll() {
    search(): void {
 
     if (this.searchQuery) {
-      
+
     }
+  }
+  goToCart(): void{
+    this.router.navigateByUrl('/payment/cart')
   }
 
 }

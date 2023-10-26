@@ -1,91 +1,75 @@
-
-<script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+<script
+  src="https://kit.fontawesome.com/a076d05399.js"
+  crossorigin="anonymous"
+></script>
 <!-- <div *ngIf="!isAdminSection !isAuthSection" > -->
-<div *ngIf="shouldShowHeader" >
+
+
+<div *ngIf="shouldShowHeader">
   <!-- Contenido del encabezado de la sección principal -->
   <div class="policy-header" [class.scroll-header]="isHeaderScrolled">
-  <link
-    href="https://fonts.googleapis.com/css?family=Great+Vibes"
-    rel="stylesheet"
-  />
-
-  <!-- <div class="policy-header"> -->
-  <div class="logo-container">
-    <img
-      src="https://static.wixstatic.com/media/64de7c_29f387abde884a1e8f9df17220933df6~mv2.png/v1/fill/w_834,h_221,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/64de7c_29f387abde884a1e8f9df17220933df6~mv2.png"
-      alt="Logo de Tu Empresa"
+    <link
+      href="https://fonts.googleapis.com/css?family=Great+Vibes"
+      rel="stylesheet"
     />
-  </div>
-  <div class="search-container">
-    <input type="text" placeholder="Buscar..." >
-    <button class="btnbusa" (click)="search()"><img width="40" height="40" src="https://img.icons8.com/ios-glyphs/30/search--v1.png" alt="search--v1"/>
-
-    </button>
-  </div>
-  <div class="button-container-mobile">
-    <button class="mobile-menu-btn" (click)="toggleMobileMenu()">☰</button>
-    <div class="mobile-menu" id="mobileMenu">
-      <div class="mobile-menu-item" (click)="redirectTo('home')">Home</div>
-      <div class="mobile-menu-item" (click)="redirectTo('acercade')">
-        Acerca De
-      </div>
-
-      <!-- <div class="mobile-menu-item" (click)="redirectTo('politica')">
-        Aviso de privacidad
-      </div> -->
-      <div class="mobile-menu-item" (click)="redirectTo('home')">seee3</div>
+    <div class="logo-container">
+      <img        src="https://static.wixstatic.com/media/64de7c_29f387abde884a1e8f9df17220933df6~mv2.png/v1/fill/w_834,h_221,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/64de7c_29f387abde884a1e8f9df17220933df6~mv2.png"
+        alt="Logo de Tu Empresa"
+      />
     </div>
+
+
+    <div class="button-container-mobile">
+      <button class="mobile-menu-btn" (click)="toggleMobileMenu()">☰</button>
+      <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-menu-item" (click)="redirectTo('home')">Home</div>
+        <div class="mobile-menu-item" (click)="redirectTo('acercade')">
+          Acerca De
+        </div>
+
+        <div class="mobile-menu-item" (click)="redirectTo('home')">seee3</div>
+          <!-- Mostrar el icono del carrito en dispositivos móviles -->
+      <mat-icon [matBadge]="badge" matBadgeColor="warn" class="material-icons primary" (click)="goToCart()">shopping_cart</mat-icon>
+      </div>
+    </div>
+
+    <div class="search-container">
+      <mat-icon class="material-icons primary">search</mat-icon>
+      <input type="text" placeholder="Buscar..." />
+      <button class="btnbusa" (click)="search()"></button>
+    </div>
+    <div class="button-container-pc">
+      <button class="menu-btn" (click)="redirectTo('home')">HOME</button>
+      <button [matMenuTriggerFor]="productsMenu" class="menu-btn">ADMIN</button>
+      <mat-menu
+        style="background-color: transparent"
+        class="menuweb"
+        #productsMenu="matMenu"
+        yPosition="below"
+      >
+        <div
+          mat-menu-item
+          class="mobile-menu-item_b1"
+          (click)="redirectTo_adm('products-list')"
+        >
+          Productos
+        </div>
+        <div
+          mat-menu-item
+          class="mobile-menu-item_b1"
+          (click)="redirectTo('acercade')"
+        >
+          editar producto
+        </div>
+      </mat-menu>
+      <button class="menu-btn" (click)="redirectTo_Auth('sign-in')">
+        sign in
+      </button>
+      <button class="menu-btn" (click)="redirectTo_Auth('sign-up')">
+        sign up
+      </button>
+
+    </div>
+    <mat-icon [matBadge]="badge" matBadgeColor="warn" class="material-icons primary" (click)="goToCart()">shopping_cart</mat-icon>
   </div>
-
-  <div class="button-container-pc">
-    <button class="menu-btn" (click)="redirectTo('home')">HOME</button>
-    <!-- <button class="menu-btn" (click)="redirectTo('acercade')">Acerca De</button> -->
-    <!-- ..... -->
-    <button [matMenuTriggerFor]="productsMenu" class="menu-btn">
-      ADMIN
-    </button>
-    <mat-menu
-      style="background-color: transparent"
-      class="menuweb"
-      #productsMenu="matMenu"
-      yPosition="below"
-    >
-      <div
-        mat-menu-item
-        class="mobile-menu-item_b1"
-        (click)="redirectTo_adm('products-list')"
-      >
-       Productos
-      </div>
-      <div
-        mat-menu-item
-        class="mobile-menu-item_b1"
-        (click)="redirectTo('acercade')"
-      >
-      editar producto
-      </div>
-
-      <!-- <div
-        mat-menu-item
-        class="mobile-menu-item_b1"
-        (click)="redirectTo('·')"
-      >
-        Aviso de privacidad
-      </div> -->
-      <div
-        mat-menu-item
-        class="mobile-menu-item_b1"
-      (click)="redirectTo('home')"
-      >
-        seee3
-      </div>
-    </mat-menu>
-    <!-- <button class="menu-btn" (click)="redirectTo('#')">
-      Aviso de Privacidad
-    </button> -->
-    <button class="menu-btn" (click)="redirectTo_Auth('sign-in')">sign in</button>
-    <button class="menu-btn" (click)="redirectTo_Auth('sign-up')">sign up</button>
-  </div>
-
-</div>
 </div>

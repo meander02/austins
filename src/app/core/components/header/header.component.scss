@@ -29,29 +29,29 @@
   max-width: 50%;
 }
 
-/* Estilos para dispositivos móviles (pantallas de hasta 768px de ancho) */
-@media (max-width: 768px) {
-  .logo-container {
-    flex: 1;
-    text-align: center;
-    margin-right: 0; /* Elimina el margen derecho para ajustar al centro */
-  }
-  .logo-container img {
-    max-width: 100%; /* Asegura que el logotipo se ajuste al ancho de la pantalla */
-    display: block; /* Asegura que el logotipo ocupe el ancho completo disponible */
-  }
-  .policy-header {
-    min-height: 60px; /* Fija la altura mínima del encabezado en dispositivos móviles */
-    padding-top: 10px; /* Espaciado superior adicional para acomodar el botón móvil */
-    padding-bottom: 10px; /* Espaciado inferior adicional para acomodar el botón móvil */
-  }
-  .mobile-menu-btn {
-    display: block;
-  }
-  .button-container-pc {
-    display: none; /* Oculta el contenedor de PC en dispositivos móviles */
-  }
-}
+// /* Estilos para dispositivos móviles (pantallas de hasta 768px de ancho) */
+// @media (max-width: 768px) {
+//   .logo-container {
+//     flex: 1;
+//     text-align: center;
+//     margin-right: 0; /* Elimina el margen derecho para ajustar al centro */
+//   }
+//   .logo-container img {
+//     max-width: 100%; /* Asegura que el logotipo se ajuste al ancho de la pantalla */
+//     display: block; /* Asegura que el logotipo ocupe el ancho completo disponible */
+//   }
+//   .policy-header {
+//     min-height: 60px; /* Fija la altura mínima del encabezado en dispositivos móviles */
+//     padding-top: 10px; /* Espaciado superior adicional para acomodar el botón móvil */
+//     padding-bottom: 10px; /* Espaciado inferior adicional para acomodar el botón móvil */
+//   }
+//   .mobile-menu-btn {
+//     display: block;
+//   }
+//   .button-container-pc {
+//     display: none; /* Oculta el contenedor de PC en dispositivos móviles */
+//   }
+// }
 
 /* Estilos para el botón de menú en pantallas de PC */
 .menu-btn {
@@ -179,6 +179,10 @@
     min-height: 60px; /* Fija la altura mínima del encabezado en dispositivos móviles */
   }
 }
+
+
+
+
 .mat-menu {
   top: 0px;
   left: 0px;
@@ -231,6 +235,8 @@
   transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
+
+
 /* Estilos para el botón de búsqueda */
 .search-container {
   display: flex;
@@ -274,3 +280,26 @@
     color: #fff; /* Cambia el color del texto al hacer scroll hacia abajo */
   }
 }
+
+
+.material-icons.primary {
+  color: #ffa500; /* Cambia el color del icono */
+  font-size: 24px; /* Ajusta el tamaño del icono según tus preferencias */
+  margin: 0; /* Ajusta el margen según tus preferencias */
+  padding: 0; /* Ajusta el espaciado según tus preferencias */
+  cursor: pointer;
+  /* Agrega sombra al icono */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.mat-icon {
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .material-icons.primary {
+    font-size: 20px; /* Tamaño más pequeño para dispositivos móviles */
+    margin-left: 3%;
+  }
+}
+
