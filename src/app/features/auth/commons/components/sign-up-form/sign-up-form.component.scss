@@ -1,0 +1,227 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+
+/* Estilos generales */
+// .signup-container {
+//   max-width: 450px;
+//   margin: 0 auto;
+//   padding: 30px;
+//   text-align: center;
+//   background-color: #f7f7f7;
+//   border: 1px solid #e0e0e0;
+//   border-radius: 5px;
+//   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+// }
+.signup-container {
+  max-width: 600px; /* Cambia este valor según tu preferencia para el ancho máximo */
+  margin: 60px auto 50px; /* Ajusta el margen según tu preferencia */
+
+  // margin: 0 auto;
+  padding: 30px;
+  text-align: center;
+  background-color: #f7f7f7;
+  border: 1px solid #e0e0e0;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  /* Cambia el valor de altura según tu preferencia */
+  // height: auto;
+
+}
+
+
+.signup-container img {
+  max-width: 30%;
+  height: auto;
+}
+
+/* Título principal */
+
+h1 {
+  font-size: 24px;
+  color: #333;
+  margin: 20px 0;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+mat-form-field {
+  width: 100%;
+  margin: 0px 0;
+}
+
+
+h1, p.section-title {
+  font-size: 20px; /* Ajusta el tamaño según tu preferencia */
+}
+
+/* Estilos para botones */
+// .next-button,
+// .prev-button {
+//   display: inline-block;
+//   padding: 10px 20px;
+//   background-color: #007bff;
+//   color: #fff;
+//   border: none;
+//   border-radius: 5px;
+//   cursor: pointer;
+//   font-size: 16px;
+//   transition: background-color 0.3s;
+//   // margin-top: 20px;
+//   // margin-right: 10px;
+// }
+/* Estilos para botones */
+.next-button,
+.prev-button {
+  display: inline-block;
+  padding: 16px 30px; /* Ajusta el tamaño según tu preferencia */
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px; /* Ajusta el tamaño según tu preferencia */
+  transition: background-color 0.3s;
+  margin-top: 10px;
+  margin-right: 5px;
+  width: auto;
+  text-align: center;
+}
+
+.next-button:hover,
+.prev-button:hover {
+  background-color: #0056b3;
+}
+
+/* Estilos para botones de registro social */
+/* Estilos para los botones de registro social */
+.social-login {
+  margin: 10px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.social-icon {
+  display: inline-block;
+  margin: 0 10px; /* Añade un margen entre los iconos */
+}
+
+.social-icon img {
+  width: 150px; /* Ajusta el tamaño según tu preferencia */
+  height: auto;
+  border: 2px solid #ccc;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+
+/* Estilo para el contenedor .form-group */
+.form-group {
+  margin-bottom: 0px;
+  position: relative; /* Permite posicionar las etiquetas */
+  width: 100%;
+}
+
+/* Animación para campos de entrada dentro de .form-group */
+.form-group .animated input {
+  padding: 15px 10px;
+  border-radius: 5px;
+  font-size: 14px;
+  color: #333;
+  outline: none;
+  transition: all 0.3s;
+  width: 100%;
+}
+
+.form-group .animated label {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  font-size: 16px;
+  color: #777;
+  transition: all 0.3s;
+}
+
+
+.form-group .animated input:focus {
+  border-color: #007bff;
+}
+
+.form-group .animated input:focus + label {
+  top: -5px;
+  font-size: 14px;
+  color: #007bff;
+}
+
+/* Estilo para la barra de progreso */
+/* Estilo para la barra de progreso */
+/* Estilo para la barra de progreso */
+.progress-bar {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px 0;
+}
+
+.progress-step {
+  flex: 1;
+  text-align: center;
+  font-size: 14px;
+  color: #777; /* Color de los pasos no activos */
+}
+
+.progress-step.active {
+  color: #007bff; /* Color del paso activo */
+}
+
+
+/* Estilo para los comentarios */
+.comments {
+  margin: 20px 0;
+  font-size: 14px;
+  color: #777;
+  text-align: center;
+}
+
+.comments p {
+  margin: 5px 0;
+}
+/* Reducir el tamaño del título principal y el título de la sección */
+h1, p.section-title {
+  font-size: 20px; /* Ajusta el tamaño según tu preferencia */
+}
+
+// /* Reducir el tamaño de los botones y centrarlos */
+// .next-button, .prev-button {
+//   padding: 8px 16px; /* Ajusta el tamaño según tu preferencia */
+//   font-size: 14px; /* Ajusta el tamaño según tu preferencia */
+//   margin-top: 10px;
+//   margin-right: 5px;
+//   width: auto;
+//   display: inline-block;
+//   text-align: center;
+// }
+
+/* Centrar el texto en los botones */
+.next-button, .prev-button {
+  text-align: center;
+}
+
+/* Reducir el tamaño de la barra de progreso y centrar los pasos */
+.progress-bar {
+  justify-content: space-evenly;
+  font-size: 12px; /* Ajusta el tamaño según tu preferencia */
+  margin: 15px 0; /* Ajusta el margen según tu preferencia */
+}
+
+/* Alinear el texto de los comentarios en el centro */
+.comments {
+  text-align: center;
+}
