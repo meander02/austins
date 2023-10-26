@@ -4,44 +4,65 @@
       <img src="https://static.wixstatic.com/media/64de7c_29f387abde884a1e8f9df17220933df6~mv2.png/v1/fill/w_834,h_221,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/64de7c_29f387abde884a1e8f9df17220933df6~mv2.png"
            alt="Logo de MyCompany">
     </div>
-    <div class="footer-links">
-      <a href="#">Inicio</a>
-      <a href="#">Productos</a>
-      <a href="#">Contacto</a>
-    </div>
-    <div class="footer-social">
-      <a href="https://www.facebook.com/mycompany" class="social-icon">
-        <img src="assets/icons/facebook_4494475.png" alt="Facebook">
-      </a>
-      <a href="https://www.twitter.com/mycompany" class="social-icon">
-        <img src="assets/icons/twitter_4494477.png" alt="Twitter">
-      </a>
-      <a href="https://www.instagram.com/mycompany" class="social-icon">
-        <img src="assets/icons/instagram_4494489.png" alt="Instagram">
-      </a>
-      <!-- Agrega más enlaces de redes sociales y sus iconos según sea necesario -->
-    </div>
-  </div>
-  <div class="footer-content">
-    <div class="contact-info">
-      <h3>Contáctanos</h3>
-      <ul> <!-- Utiliza una lista no ordenada para los elementos -->
-        <li>Teléfono: (123) 456-7890</li>
-        <li>Correo electrónico: info@mycompany.com</li>
-        <li>Dirección: 123 Calle Principal, Ciudad</li>
+    <!-- Sección de Conócenos -->
+    <div class="footer-conocenos">
+      <h3>|Conócenos</h3>
+      <ul>
+        <li><a href="#">Historia</a></li>
+        <li><a href="#">Nuestra Misión</a></li>
+        <li><a href="#">Nuestro Equipo</a></li>
       </ul>
     </div>
-    <div class="quick-links">
-      <h3>Enlaces Rápidos</h3>
-      <ul> <!-- Utiliza una lista no ordenada para los elementos -->
-        <li><a href="#">Términos y Condiciones</a></li>
-        <li><a href="#">Política de Privacidad</a></li>
-        <li><a href="#">Preguntas Frecuentes</a></li>
+
+    <!-- Sección de Productos -->
+    <div class="footer-productos">
+      <h3>|Productos</h3>
+      <ul>
+        <li><a href="#">Tortas</a></li>
+        <li><a href="#">Pasteles</a></li>
+        <li><a href="#">Cupcakes</a></li>
+      </ul>
+    </div>
+
+    <!-- Sección de Contacto -->
+    <div class="footer-contacto">
+      <h3>|Contacto</h3>
+      <ul>
+
+         <li> <mat-icon> call</mat-icon>
+       : 01 789 896 4530</li>
+        <li><mat-icon> email</mat-icon>:info@austins.com.mx</li>
+        <li><mat-icon> location_on</mat-icon>:Avenida Profr.Toribio Reyes 5, Huejutla, Hidalgo</li>
       </ul>
     </div>
   </div>
+
+  <!-- Sección de Redes Sociales -->
+  <div class="footer-redes-sociales">
+    <a href="https://www.facebook.com/pasteleria" class="social-icon">
+      <img src="assets/icons/facebook_4494475.png" alt="Facebook">
+    </a>
+    <a href="https://www.instagram.com/pasteleria" class="social-icon">
+      <img src="assets/icons/instagram_4494489.png" alt="Instagram">
+    </a>
+    <a href="https://www.twitter.com/mycompany" class="social-icon">
+      <img src="assets/icons/twitter_4494477.png" alt="Twitter">
+    </a>
+    <!-- Agrega más enlaces de redes sociales y sus iconos según sea necesario -->
+  </div>
+
+  <!-- Sección de Enlaces Rápidos -->
+  <div class="footer-enlaces-rapidos">
+
+    <ul>
+      <li>|<a href="#">Términos y Condiciones</a>
+  |<a href="#">Política de Privacidad</a>
+     | <a href="#">Preguntas Frecuentes</a></li>
+    </ul>
+  </div>
+
   <div class="copyright">
-    <span>&copy; {{ anio }} MyCompany. Todos los derechos reservados.v3</span>
+    <span>&copy; {{ anio }} Pastelería. Todos los derechos reservados.</span>
     <app-politica></app-politica>
   </div>
 </footer>

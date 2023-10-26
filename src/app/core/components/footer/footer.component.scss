@@ -1,124 +1,154 @@
+/* Estilos generales para el pie de página */
 footer {
   background-color: #333;
   color: #fff;
   padding: 20px 0;
   font-family: Arial, sans-serif;
+}
 
-  .footer-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
+/* Contenedor principal del pie de página */
+.footer-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+/* Estilos para el logotipo de la empresa */
+.footer-logo img {
+  margin-left: 0px;
+  max-width: 300px;
+  left: 0%;
+  margin-right: 30px;
+  // height: auto;
+}
+
+/* Sección de Conócenos */
+.footer-conocenos,
+.footer-productos {
+  flex: 1;
+  margin: 0 px;
+}
+
+.footer-contacto {
+  flex: 1;
+  margin: 4px;
+}
+
+.footer-conocenos h3,
+.footer-productos h3,
+.footer-contacto h3 {
+  color: #fff;
+  font-size: 18px;
+}
+
+.footer-conocenos ul,
+.footer-productos ul,
+.footer-contacto ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.footer-conocenos ul li,
+.footer-productos ul li,
+.footer-contacto ul li {
+  margin: 8px 0;
+  font-size: 14px;
+}
+
+.footer-contacto ul li .mat-icon {
+  vertical-align: middle;
+  margin-right: 5px;
+}
+
+/* Sección de Redes Sociales */
+.footer-redes-sociales {
+  display: flex;
+  align-items: center;
+
+  a.social-icon {
+    font-size: 24px;
+    margin-right: 50px;
   }
 
-  .footer-logo {
-    img {
-      max-width: 250px;
-      height: auto;
-    }
-  }
-
-  .footer-links,
-  .footer-social {
-    display: flex;
-    align-items: center;
-
-    a {
-      color: #fff;
-      text-decoration: none;
-      margin-right: 20px;
-      font-weight: bold;
-
-      &:hover {
-        text-decoration: underline;
-        color: rgb(23, 31, 151);
-      }
-
-      &:last-child {
-        margin-right: 0;
-      }
-    }
-  }
-
-  .footer-social {
-    a.social-icon {
-      font-size: 24px;
-      img {
-        max-width: 30px;
-        height: auto;
-      }
-    }
-  }
-
-  .footer-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    margin-top: 40px;
-  }
-
-  .contact-info,
-  .quick-links {
-    flex: 1;
-    margin: 0 20px;
-  }
-
-  .contact-info h3,
-  .quick-links h3 {
-    color: #fff;
-    font-size: 18px;
-  }
-
-  .contact-info ul,
-  .quick-links ul {
-    list-style: disc; /* Utiliza viñetas para las listas */
-    padding-left: 20px; /* Añade un espacio a la izquierda de las viñetas */
-  }
-
-  .contact-info ul li,
-  .quick-links ul li {
-    margin: 8px 0;
-    font-size: 16px;
-  }
-
-  .quick-links a {
-    display: block;
-    margin: 8px 0;
-    font-size: 16px;
-  }
-
-  .copyright {
-    text-align: center;
-    margin-top: 20px;
-    font-size: 14px;
-
+  .social-icon img {
+    max-width: 30px;
+    height: auto;
   }
 }
 
+.footer-redes-sociales {
+  margin-left: 5%;
+}
+
+/* Sección de Enlaces Rápidos */
+.footer-enlaces-rapidos {
+  color: #fff;
+}
+
+.footer-enlaces-rapidos ul {
+  list-style: none;
+  justify-content: center;
+  padding-left: 0;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.footer-enlaces-rapidos h3 {
+  padding-left: 50px;
+}
+
+.footer-enlaces-rapidos ul li {
+  margin:0px 0px;
+  margin-bottom: 40px;
+  font-size: 16px;
+}
+
+/* Estilos generales para los enlaces */
 a {
   color: #fff;
   text-decoration: none;
   margin-left: 10px;
-
-  &:hover {
-    text-decoration: underline;
-  }
 }
+
+/* Estilos para los enlaces al hacer hover */
+a:hover {
+  text-decoration: underline;
+}
+
+/* Estilos para la sección de copyright */
+.copyright {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 14px;
+}
+
+/* Estilos para pantallas más pequeñas (menos de 768px) */
 @media screen and (max-width: 768px) {
   footer .footer-container {
     flex-direction: column;
     text-align: center;
     align-items: center;
-
-    .footer-links,
-    .footer-social,
-    .footer-content {
-      justify-content: center;
-      margin-top: 10px;
-    }
   }
+
+  .footer-conocenos,
+  .footer-productos,
+  .footer-contacto,
+  .footer-enlaces-rapidos {
+    flex: 1;
+    margin: 0;
+    text-align: center;
+  }
+
+  .footer-enlaces-rapidos ul li {
+    top: 0%;
+    margin-bottom: 70px;
+    margin: 10px 0;
+  }
+}
+.mat-icon{
+  font-size: 20px;
 }

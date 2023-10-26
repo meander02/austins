@@ -39,29 +39,30 @@ body {
 }
 
 .text-content {
-  color: #fff;
+  text-align: center;
+  max-width: 70%;
+  margin: 0 auto;
+  padding: 20px;
 }
 
-h1 {
-  font-size: 3rem;
+h1.bienve {
+  font-size: 2.5rem;
+  font-family: "cursive";
   margin: 0;
   padding: 0;
-  line-height: 1.2;
   color: #fff;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 p {
-  font-size: 1.5rem;
-  margin: 1rem 0;
+  font-size: 1.25rem;
+  margin: 20px 0;
   color: #fff;
 }
 
 .owner {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 2rem;
+  text-align: center;
+  margin-top: 20px;
 }
 
 h2 {
@@ -73,7 +74,7 @@ h2 {
   background-color: #ff5733;
   border: none;
   color: #fff;
-  font-size: 1.2rem;
+  font-size: 1.25rem;
   padding: 10px 20px;
   border-radius: 5px;
   cursor: pointer;
