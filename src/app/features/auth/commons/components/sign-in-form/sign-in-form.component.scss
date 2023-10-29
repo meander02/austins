@@ -1,88 +1,66 @@
-/* Reset de estilos por defecto */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: Arial, sans-serif;
-  background-color: #f2f2f2;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 60vh;
-  margin: 0;
-}
-
-.login-container {
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+.log {
   text-align: center;
-  padding: 10px;
-  max-width: 400px;
-  margin: 0 auto; /* Agregado para centrar horizontalmente */
+
+  margin-top: 2%;
 }
 
-.login-container img {
-  max-width: 100%;
+.logo {
+  max-width: 100px;
   height: auto;
-  border-top-left-radius: 8px;
-  border-top-right-radius: 8px;
+  border-radius: 8px;
 }
 
 h1 {
-  font-size: 24px;
   color: #333;
-  margin: 20px 0;
-}
-
-form {
-  display: flex;
-  flex-direction: column;
 }
 
 mat-form-field {
   width: 100%;
-  margin: 10px 0;
+  margin: 0;
 }
 
-mat-label {
-  color: #757575;
+.login-form {
+  background-color: #F5F5F5;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  padding: 1%;
+  max-width: 400px;
+  margin: 0 auto;
 }
 
-mat-error {
-  color: red;
-  font-size: 14px;
-}
-
-input[type="email"],
-input[type="password"] {
-  width: 100%;
+.login-form fieldset {
+  border: 1px solid #facca4;
+  border-radius: 8px;
   padding: 10px;
-  border-radius: 4px;
-  border: 1px solid #ccc;
-  background-color: #f9f9f9;
 }
-  .imgaem{
-    width: 100px;
-    height: 100px;
-  }
+
+.login-form legend {
+
+  color: #b49173;
+}
+
+.login-form input[type="email"],
+.login-form input[type="password"] {
+  margin: 0px 0;
+  border-radius: 100%;
+}
 
 .login-button {
-  background-color: #a54c2c;
+  margin-top: 10px;
+  background-color: #703824;
   color: #fff;
   border: none;
-  border-radius: 4px;
-  padding: 10px;
+  border-radius: 10px;
+  width: 300px;
+  padding: 10px 20px;
   cursor: pointer;
   font-size: 18px;
   transition: background-color 0.3s;
 }
 
 .login-button:hover {
-  background-color: #d32f2f;
+  background-color: #a54c2c;
 }
 
 p {
@@ -94,35 +72,130 @@ p {
 a {
   cursor: pointer;
   text-decoration: none;
-  color: #703824;
+  color: #a54c2c;
   font-weight: bold;
+}
+
+a:hover {
+  // color: #000;
+  text-decoration: underline;
+}
+.social-button {
+  display: flex;
+  align-items: center;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 40px;
+  padding: 10px;
+  margin: 0 10px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  font-size: 11px;
+  color: #333;
+}
+
+.social-button img {
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+}
+
+.social-button:hover {
+  color: #333;
+  background-color: #f2f2f2;
+}
+
+.social-button.google-button {
+  color: #615f5f;
+}
+
+.social-button.facebook-button {
+  color: #615f5f;
 }
 
 .social-login {
   display: flex;
   justify-content: center;
-  margin-top: 5px;
+  margin-top: 10px;
 }
 
-.social-icon {
-  background-color: #fff;
-  border: 1px solid #ccc;
-  border-radius: 50%;
-  width: 60px;
-  height: 60px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 0 10px;
+.form-group {
+  margin-bottom: 0;
+  position: relative;
+  width: 100%;
+}
+
+.form-group .animated input {
+  padding: 0px 0;
+  border-radius: 5px;
+  font-size: 14px;
+  transition: all 0.3s;
+  width: 100%;
+}
+
+.form-group .animated label {
+  position: absolute;
+  top: 1px;
+  left: 0;
+  font-size: 16px;
+  color: #242424;
+  transition: all 0.1s;
+}
+
+.form-group .animated input:focus {
+  border-color: #ffa500;
+}
+
+.form-group .animated input:focus + label {
+  top: -5px;
+  font-size: 14px;
+  color: #ffa500;
+}
+
+.login-form .password-input button {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
   cursor: pointer;
-  transition: background-color 0.3s;
+  background: transparent;
+  border: none;
+  font-size: 20px;
 }
 
-.social-icon img {
-  width: 30px;
-  height: 30px;
+.login-form .password-input mat-icon {
+  color: #aaa;
 }
 
-.social-icon:hover {
-  background-color: #f2f2f2;
+.login-form .email-input mat-icon {
+  color: #aaa;
+  position: absolute;
+  top: 50%;
+  left: 295px;
+  transform: translateY(-50%);
 }
+
+.login-form .password-input button:hover + mat-icon {
+  color: #333;
+}
+
+
+/* Estilos para dispositivos móviles */
+@media (max-width: 600px) {
+  .login-form {
+    padding: 3%;
+  }
+  .login-button {
+    margin-top: 0px;
+    border-radius: 20px;
+    width: 250px;
+  }
+}
+
+/* Estilos para tabletas (por ejemplo, iPads) */
+@media (min-width: 601px) and (max-width: 1024px) {
+  .login-form {
+    max-width: 80%;
+  }
+}
+

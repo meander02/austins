@@ -23,6 +23,12 @@ const routes: Routes = [
     loadChildren: () =>
       import('./features/auth/auth.module').then((m) => m.AuthModule),
   },
+  {
+    path: 'payment',
+    // canActivate:[isAuthenticatedGuard],
+    loadChildren: () =>
+      import('./features/payment/payment.module').then((m) => m.PaymentModule),
+  },
 ];
 
 @NgModule({

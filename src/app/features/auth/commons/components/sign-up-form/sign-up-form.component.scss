@@ -1,50 +1,54 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+/* Estilos base sin Media Queries */
 
-
-
-/* Estilos generales */
-// .signup-container {
-//   max-width: 450px;
-//   margin: 0 auto;
-//   padding: 30px;
-//   text-align: center;
-//   background-color: #f7f7f7;
-//   border: 1px solid #e0e0e0;
-//   border-radius: 5px;
-//   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-// }
-.signup-container {
-  max-width: 600px; /* Cambia este valor según tu preferencia para el ancho máximo */
-  margin: 60px auto 50px; /* Ajusta el margen según tu preferencia */
-
-  // margin: 0 auto;
-  padding: 30px;
+.log {
   text-align: center;
-  background-color: #f7f7f7;
-  border: 1px solid #e0e0e0;
-  border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  /* Cambia el valor de altura según tu preferencia */
-  // height: auto;
-
+  margin-top: 2%;
 }
 
-
-.signup-container img {
-  max-width: 30%;
+.logo {
+  max-width: 100px;
   height: auto;
+  border-radius: 8px;
 }
-
-/* Título principal */
 
 h1 {
-  font-size: 24px;
   color: #333;
-  margin: 20px 0;
+  margin-left: 0;
+  font-size: 24px;
+}
+
+p {
+  font-size: 14px;
+  color: #333;
+  margin: 10px 0;
+}
+
+a {
+  cursor: pointer;
+  text-decoration: none;
+  color: #a54c2c;
+  font-weight: bold;
+}
+
+a:hover {
+  // color: #000;
+  text-decoration: underline;
+}
+
+.signup-container {
+  margin-top: 0;
+  background-color: #f5f5f5;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  padding: 2%;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.signup-container img {
+  max-width: 20%;
+  height: auto;
 }
 
 form {
@@ -54,45 +58,21 @@ form {
 
 mat-form-field {
   width: 100%;
-  margin: 0px 0;
+  margin: 0;
 }
 
-
-h1, p.section-title {
-  font-size: 20px; /* Ajusta el tamaño según tu preferencia */
-}
-
-/* Estilos para botones */
-// .next-button,
-// .prev-button {
-//   display: inline-block;
-//   padding: 10px 20px;
-//   background-color: #007bff;
-//   color: #fff;
-//   border: none;
-//   border-radius: 5px;
-//   cursor: pointer;
-//   font-size: 16px;
-//   transition: background-color 0.3s;
-//   // margin-top: 20px;
-//   // margin-right: 10px;
-// }
-/* Estilos para botones */
 .next-button,
 .prev-button {
   display: inline-block;
-  padding: 16px 30px; /* Ajusta el tamaño según tu preferencia */
+  padding: 10px 20px;
   background-color: #007bff;
   color: #fff;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  font-size: 14px; /* Ajusta el tamaño según tu preferencia */
+  font-size: 16px;
   transition: background-color 0.3s;
-  margin-top: 10px;
-  margin-right: 5px;
-  width: auto;
-  text-align: center;
+  margin-right: 10px;
 }
 
 .next-button:hover,
@@ -100,41 +80,56 @@ h1, p.section-title {
   background-color: #0056b3;
 }
 
-/* Estilos para botones de registro social */
-/* Estilos para los botones de registro social */
-.social-login {
-  margin: 10px 0;
+/* Estiliza los botones sociales */
+.social-button {
   display: flex;
   align-items: center;
-  justify-content: center;
-}
-
-.social-icon {
-  display: inline-block;
-  margin: 0 10px; /* Añade un margen entre los iconos */
-}
-
-.social-icon img {
-  width: 150px; /* Ajusta el tamaño según tu preferencia */
-  height: auto;
-  border: 2px solid #ccc;
-  border-radius: 50%;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 40px;
+  padding: 10px;
+  margin: 0 10px;
   cursor: pointer;
-}
-
-
-/* Estilo para el contenedor .form-group */
-.form-group {
-  margin-bottom: 0px;
-  position: relative; /* Permite posicionar las etiquetas */
-  width: 100%;
-}
-
-/* Animación para campos de entrada dentro de .form-group */
-.form-group .animated input {
-  padding: 15px 10px;
-  border-radius: 5px;
+  transition: background-color 0.3s;
   font-size: 14px;
+  color: #333;
+}
+.social-button img {
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+}
+
+.social-button:hover {
+  color: #333;
+  background-color: #f2f2f2;
+}
+
+.social-button.google-button,
+.social-button.facebook-button {
+  color: #615f5f;
+}
+
+.social-login {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.form-group {
+  margin-bottom: 0;
+  position: relative;
+}
+.form-group mat-icon {
+  margin: 0;
+  color: #aaa;
+  position: absolute;
+  left: 90%;
+}
+
+.form-group .animated input {
+  margin: 0;
+  height: auto;
   color: #333;
   outline: none;
   transition: all 0.3s;
@@ -143,13 +138,12 @@ h1, p.section-title {
 
 .form-group .animated label {
   position: absolute;
-  top: 12px;
-  left: 12px;
+  top: 2px;
+  left: 2px;
   font-size: 16px;
   color: #777;
   transition: all 0.3s;
 }
-
 
 .form-group .animated input:focus {
   border-color: #007bff;
@@ -161,67 +155,110 @@ h1, p.section-title {
   color: #007bff;
 }
 
-/* Estilo para la barra de progreso */
-/* Estilo para la barra de progreso */
-/* Estilo para la barra de progreso */
+/* Estiliza los campos de entrada con animación */
+.form-group.mat-form-field .animated {
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: flex-start;
+  padding: 10px;
+  background-color: #f2f2f2;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.form-group.mat-form-field .animated input {
+  margin: 5px 0;
+  color: #333;
+  outline: none;
+  border: none;
+  width: 100%;
+  background-color: transparent;
+}
+
+.form-group.mat-form-field .animated label {
+  position: relative;
+  top: auto;
+  left: auto;
+  font-size: 16px;
+  color: #777;
+  transition: all 0.3s;
+}
+
+.form-group.mat-form-field .animated input:focus {
+  background-color: #f8f8f8;
+}
+
+.form-group.mat-form-field .animated input:focus + label {
+  top: -24px;
+  font-size: 14px;
+  color: #007bff;
+}
+
+/* Estiliza la barra de progreso */
 .progress-bar {
   display: flex;
-  justify-content: space-between;
-  margin: 20px 0;
+  justify-content: space-evenly;
+  font-size: 14px;
+  margin: 15px 0;
 }
 
 .progress-step {
   flex: 1;
   text-align: center;
-  font-size: 14px;
-  color: #777; /* Color de los pasos no activos */
+  color: #777;
+  transition: color 0.3s;
 }
 
 .progress-step.active {
-  color: #007bff; /* Color del paso activo */
+  color: #007bff;
 }
 
+h1,
+p.section-title {
+  font-size: 20px;
+}
 
-/* Estilo para los comentarios */
-.comments {
-  margin: 20px 0;
-  font-size: 14px;
-  color: #777;
+.next-button,
+.prev-button {
   text-align: center;
 }
 
-.comments p {
-  margin: 5px 0;
-}
-/* Reducir el tamaño del título principal y el título de la sección */
-h1, p.section-title {
-  font-size: 20px; /* Ajusta el tamaño según tu preferencia */
-}
-
-// /* Reducir el tamaño de los botones y centrarlos */
-// .next-button, .prev-button {
-//   padding: 8px 16px; /* Ajusta el tamaño según tu preferencia */
-//   font-size: 14px; /* Ajusta el tamaño según tu preferencia */
-//   margin-top: 10px;
-//   margin-right: 5px;
-//   width: auto;
-//   display: inline-block;
-//   text-align: center;
-// }
-
-/* Centrar el texto en los botones */
-.next-button, .prev-button {
-  text-align: center;
-}
-
-/* Reducir el tamaño de la barra de progreso y centrar los pasos */
 .progress-bar {
   justify-content: space-evenly;
-  font-size: 12px; /* Ajusta el tamaño según tu preferencia */
-  margin: 15px 0; /* Ajusta el margen según tu preferencia */
+  font-size: 12px;
+  margin: 15px 0;
 }
 
-/* Alinear el texto de los comentarios en el centro */
-.comments {
-  text-align: center;
+/* Media Queries para hacerlo responsive */
+
+@media (max-width: 768px) {
+  .signup-container {
+    padding: 5%;
+  }
+  .logo {
+    max-width: 80px;
+  }
+  h1,
+  p.section-title {
+    font-size: 18px;
+  }
+  .social-button {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .signup-container {
+    padding: 10%;
+  }
+  .logo {
+    max-width: 60px;
+  }
+  h1,
+  p.section-title {
+    font-size: 16px;
+  }
+  .social-button {
+    font-size: 12px;
+  }
 }

@@ -1,23 +1,24 @@
 import { Component, ElementRef, OnInit } from '@angular/core';
 
-import { FormsModule } from '@angular/forms'; // Importa FormsModule
-
 @Component({
   selector: 'app-sign-up-form',
   templateUrl: './sign-up-form.component.html',
   styleUrls: ['./sign-up-form.component.scss']
 })
 export class SignUpFormComponent implements OnInit {
-  step: 'personal' | 'contact' | 'credentials' = 'personal';
+  step: 'personal'|'contact'|'address'|'credentials' = 'personal';
 
   firstName: string = '';
   lastName: string = '';
   birthdate: string = '';
-  name: string = '';
   email: string = '';
   username: string = '';
   password: string = '';
   confirmPassword: string = '';
+
+  // Nuevas propiedades para datos de dirección
+  street: string = '';
+  city: string = '';
 
   constructor(private el: ElementRef) {}
 
@@ -25,9 +26,9 @@ export class SignUpFormComponent implements OnInit {
     const progressBar = this.el.nativeElement.querySelector('#progress-bar');
     const progressSteps = progressBar.querySelectorAll('.progress-step');
 
-    function updateProgressBar(step: 'personal' | 'contact' | 'credentials') {
+    function updateProgressBar(step: 'personal' | 'contact' | 'address' | 'credentials') {
       progressSteps.forEach((stepElement: HTMLElement, index: number) => {
-        if (index <= ['personal', 'contact', 'credentials'].indexOf(step)) {
+        if (index <= ['personal', 'contact', 'address', 'credentials'].indexOf(step)) {
           stepElement.classList.add('active');
         } else {
           stepElement.classList.remove('active');
@@ -41,7 +42,7 @@ export class SignUpFormComponent implements OnInit {
     });
   }
 
-  nextStep(targetStep: 'personal' | 'contact' | 'credentials') {
+  nextStep(targetStep: 'personal' | 'contact' | 'credentials'|'address') {
     this.step = targetStep;
     const event = new CustomEvent('formStepChange', {
       detail: { step: this.step },
@@ -53,8 +54,10 @@ export class SignUpFormComponent implements OnInit {
   prevStep() {
     if (this.step === 'contact') {
       this.step = 'personal';
-    } else if (this.step === 'credentials') {
+    } else if (this.step === 'address') {
       this.step = 'contact';
+    } else if (this.step === 'credentials') {
+      this.step = 'address';
     }
     const event = new CustomEvent('formStepChange', {
       detail: { step: this.step },
@@ -62,8 +65,6 @@ export class SignUpFormComponent implements OnInit {
     });
     document.dispatchEvent(event);
   }
-
-
 
 
   onSubmit() {
