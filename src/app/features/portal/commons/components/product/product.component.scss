@@ -102,3 +102,18 @@ mat-card {
     }
   }
 }
+.no-results-message {
+  text-align: center;
+  padding: 20px;
+  background-color: #f8f8f8;
+  border: 1px solid #e0e0e0;
+  border-radius: 5px;
+  margin: 20px auto;
+  max-width: 400px;
+
+  p {
+    font-size: 1.2rem;
+    margin: 10px 0;
+    color: #555;
+  }
+}

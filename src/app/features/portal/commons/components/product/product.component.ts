@@ -8,6 +8,7 @@ import { SearchService } from 'src/app/shared/services/search-service.service';
   styleUrls: ['./product.component.scss']
 })
 export class ProductComponent  implements OnInit {
+  hasSearchResults = true;
 
   constructor(
     private router: Router,
@@ -50,12 +51,26 @@ export class ProductComponent  implements OnInit {
     }
   ];
 
+  // ngOnInit(): void {
+  //   // Suscríbete al observable para recibir notificaciones de cambios en la búsqueda.
+  //   this.searchService.searchQuery$.subscribe((query) => {
+  //     // Filtra los productos en función de la consulta de búsqueda (query).
+  //     this.filterPost = query;
+  //   });
+  // }
+
   ngOnInit(): void {
     // Suscríbete al observable para recibir notificaciones de cambios en la búsqueda.
     this.searchService.searchQuery$.subscribe((query) => {
       // Filtra los productos en función de la consulta de búsqueda (query).
       this.filterPost = query;
+
+      // Verifica si se han encontrado resultados.
+      this.hasSearchResults = this.products.some((product) =>
+        product.name.toLowerCase().includes(query.toLowerCase())
+      );
     });
+
   }
 
 

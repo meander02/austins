@@ -1,36 +1,36 @@
-<!-- <div class="row">
-  <div class="col">
-    <div class="form-group">
-      <input
-        type="text"
-        class="form-control"
-        name="filterPost"
-        placeholder="Search..."
-        [(ngModel)]="filterPost"
-      />
-    </div>
-  </div>
-</div> -->
-<!-- <div *ngFor="let product of products" class="product-card"> -->
+<div *ngIf="hasSearchResults; else noResults">
   <div *ngFor="let product of products | filter : filterPost" class="product-card">
-  <mat-card>
-    <mat-card-header>
-      <div mat-card-avatar class="example-header-image"></div>
-      <mat-card-title>{{ product.name }}</mat-card-title>
-      <mat-card-subtitle>
-        <p>{{ product.quantity }} <span>Precio: ${{ product.price }}</span></p>
-      </mat-card-subtitle>
-    </mat-card-header>
-    <div class="content-img" (click)="goToDetail('detail')">
-      <img mat-card-image src="/assets/64de7c_5c0ba351459045d582cf3f4215ee9229~mv2.webp">
-    </div>
-    <mat-card-content>
-      <p>{{ product.description }}</p>
-    </mat-card-content>
-    <mat-card-actions>
-      <button mat-button (click)="decrement()">-</button>
-      <button class="grow" mat-button (click)="add()">Agregar</button>
-      <button mat-button (click)="increment()">+</button>
-    </mat-card-actions>
-  </mat-card>
+    <mat-card>
+      <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>{{ product.name }}</mat-card-title>
+        <mat-card-subtitle>
+          <p>{{ product.quantity }} <span>Precio: ${{ product.price }}</span></p>
+        </mat-card-subtitle>
+      </mat-card-header>
+      <div class="content-img" (click)="goToDetail('detail')">
+        <img mat-card-image src="/assets/64de7c_5c0ba351459045d582cf3f4215ee9229~mv2.webp">
+      </div>
+      <mat-card-content>
+        <p>{{ product.description }}</p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-button (click)="decrement()">-</button>
+        <button class="grow" mat-button (click)="add()">Agregar</button>
+        <button mat-button (click)="increment()">+</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+
 </div>
+
+<ng-template #noResults>
+  <!-- Cuando no hay resultados de búsqueda -->
+  <div class="no-results-message">
+    <p>No hay publicaciones que coincidan con tu búsqueda.</p>
+    <p>Revisa la ortografía de la palabra.</p>
+    <p>Utiliza palabras más genéricas o menos palabras.</p>
+    <p>Navega por las categorías para encontrar un producto similar.</p>
+  </div>
+</ng-template>
+
