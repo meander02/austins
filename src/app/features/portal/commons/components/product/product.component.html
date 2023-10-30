@@ -1,4 +1,18 @@
-<div *ngFor="let product of products" class="product-card">
+<div class="row">
+  <div class="col">
+    <div class="form-group">
+      <input
+        type="text"
+        class="form-control"
+        name="filterPost"
+        placeholder="Search..."
+        [(ngModel)]="filterPost"
+      />
+    </div>
+  </div>
+</div>
+<!-- <div *ngFor="let product of products" class="product-card"> -->
+  <div *ngFor="let product of products | filter : filterPost" class="product-card">
   <mat-card>
     <mat-card-header>
       <div mat-card-avatar class="example-header-image"></div>
