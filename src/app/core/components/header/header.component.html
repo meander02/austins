@@ -31,11 +31,23 @@
       </div>
     </div>
 
-    <div class="search-container">
+    <!-- <div class="search-container">
       <mat-icon class="material-icons primary">search</mat-icon>
       <input type="text" placeholder="Buscar..." />
       <button class="btnbusa" (click)="search()"></button>
+    </div> -->
+    <!-- <div class="search-container">
+      <button class="btnbusa" (click)="search()"><mat-icon class="material-icons primary">search</mat-icon></button>
+      <input type="text" [(ngModel)]="searchQuery" placeholder="Buscar..." />
+    </div> -->
+    <div class="search-container">
+      <button class="btnbusa"><mat-icon class="material-icons primary">search</mat-icon></button>
+      <input [(ngModel)]="searchQuery" (ngModelChange)="onSearchChange($event)" placeholder="Buscar..." />
     </div>
+
+
+
+
     <div class="button-container-pc">
       <button class="menu-btn" (click)="redirectTo('home')">HOME</button>
       <button [matMenuTriggerFor]="productsMenu" class="menu-btn">ADMIN</button>

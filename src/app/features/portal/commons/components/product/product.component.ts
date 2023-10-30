@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { SearchService } from 'src/app/shared/services/search-service.service';
 
 @Component({
   selector: 'app-product',
@@ -10,6 +11,8 @@ export class ProductComponent  implements OnInit {
 
   constructor(
     private router: Router,
+    private searchService: SearchService, // Inyecta el servicio de búsqueda
+
   ) {}
   filterPost = '';
   products = [
@@ -47,32 +50,15 @@ export class ProductComponent  implements OnInit {
     }
   ];
 
-  // @Input()
-  // product!: Product;
-  // items: number=0;
-
-
-  // get cartItem(): CartItem {
-  //   return this.setCartItem();
-  // }
-  // constructor(private router: Router, public cartService: CartService) { }
-  // constructor(private router: Router, private cartService: CartService) { }
-
   ngOnInit(): void {
-    // console.log('Producto en el presentador', this.product);
+    // Suscríbete al observable para recibir notificaciones de cambios en la búsqueda.
+    this.searchService.searchQuery$.subscribe((query) => {
+      // Filtra los productos en función de la consulta de búsqueda (query).
+      this.filterPost = query;
+    });
   }
 
 
-  // setCartItem(): CartItem {
-  //   const cartItem: CartItem = {
-  //     id: this.product._id,
-  //     name: this.product.name,
-  //     precio: this.product.price,
-  //     cantidad: 1,
-  //     image: this.product.image
-  //   }
-  //   return cartItem;
-  // }
 
   add(): void {
     // this.cartService.add(this.cartItem);

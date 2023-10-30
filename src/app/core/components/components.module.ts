@@ -11,6 +11,7 @@ import { RouterModule } from '@angular/router';
 import { MatBadgeModule} from '@angular/material/badge';
 import { PoliticaComponent } from './politica/politica.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -26,7 +27,7 @@ import { MatDialogModule } from '@angular/material/dialog';
   ],
   imports: [
     // BrowserModule,
-
+    FormsModule,
     CommonModule,
     MatToolbarModule,
     MatButtonModule,

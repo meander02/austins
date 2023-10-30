@@ -2,6 +2,7 @@ import { UserStateService } from '../../../features/admin/commons/services/user-
 import { AuthStateService } from './../../../features/auth/commons/services/auth-state.service';
 import { Router } from '@angular/router';
 import { Component, HostListener } from '@angular/core';
+import { SearchService } from 'src/app/shared/services/search-service.service';
 
 @Component({
   selector: 'app-header',
@@ -13,11 +14,23 @@ export class HeaderComponent {
   isHeaderScrolled = false;
   searchQuery: string = ''; // Variable para almacenar la consulta de búsqueda
   badge:number=0
-  // constructor(private router: Router,private cartService:CartService) { }
 
 
-  constructor(private router: Router,private userStateService: UserStateService,private AuthStateService: AuthStateService) {
+  // constructor(private searchService: SearchService,private router: Router,private userStateService: UserStateService,private AuthStateService: AuthStateService) {
 
+  // }
+  constructor(private searchService: SearchService, private router: Router, private userStateService: UserStateService, private AuthStateService: AuthStateService) { }
+
+  onSearchChange(query: string) {
+    // Llama al servicio para establecer la consulta de búsqueda en tiempo real.
+    this.searchService.setSearchQuery(query);
+  }
+
+  search(): void {
+    if (this.searchQuery) {
+      // Llama al servicio para establecer la consulta de búsqueda.
+      this.searchService.setSearchQuery(this.searchQuery);
+    }
   }
   get shouldShowHeader(): boolean {
     return !this.AuthStateService.getisAuthS() && !this.userStateService.getIsAdminSection();
@@ -60,13 +73,7 @@ onWindowScroll() {
     return this.userStateService.getIsAdminSection();
   }
 
-   // Función para realizar la búsqueda
-   search(): void {
 
-    if (this.searchQuery) {
-
-    }
-  }
   goToCart(): void{
     this.router.navigateByUrl('/payment/cart')
   }
