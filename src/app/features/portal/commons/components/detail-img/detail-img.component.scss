@@ -10,14 +10,14 @@
     justify-content: center;
   }
   .main-img img {
-    width: 350px;
-    height: 400px;
+    // width: 30px;
+    // height: 400px;
   }
 
 
   .image-zoom-container {
     position: relative;
-    width: 350px;
+    width: 320px;
     height: 400px;
     overflow: hidden;
     cursor: zoom-in; /* Cambia el cursor a un icono de lupa al hacer zoom */
@@ -43,12 +43,12 @@
   }
 
   .slider-wrapper {
-    max-height: 400px;
+    max-height: 200px;
     width: 16%;
     flex-direction: column;
     text-align: center;
-    padding-top: 20px;
-    margin-right: 5%;
+    padding-top: 0px;
+    margin-right: 2%;
 
     .up, .down {
       cursor: pointer;

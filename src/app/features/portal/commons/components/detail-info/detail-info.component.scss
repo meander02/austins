@@ -78,4 +78,14 @@
     box-shadow: 4px 0px 30px 0px rgba(0, 0, 0, 0.2);
     transform: scale3d(1.1, 1.1, 0.1);
   }
+  /* Aplicar cambios de estilo cuando el ancho de pantalla sea menor o igual a 768px (modo móvil) */
+@media screen and (max-width: 768px) {
+  .grow {
+
+    padding: 20px 50px;
+    font-size: 14px; /* Cambia el tamaño del texto del botón en modo móvil */
+  }
+  
+}
+
 }
