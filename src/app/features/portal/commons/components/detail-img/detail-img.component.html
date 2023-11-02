@@ -22,10 +22,10 @@
   </div>
   <div class="main-img">
     <div class="image-zoom-container">
-      <img [src]="srcMain" alt="" (mouseenter)="startZoom()" (mouseleave)="stopZoom()" (mousemove)="moveZoom($event)" />
-      <!-- <div class="image-zoom-box"></div> -->
-      <div class="image-zoom-box" #zoomBox></div>
-
+      <div class="zoomed-image">
+        <img [src]="srcMain" alt="" id="zoomed-img"/>
+      </div>
     </div>
+
   </div>
 </div>

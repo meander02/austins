@@ -22,6 +22,7 @@ export class DetailImgComponent implements OnInit, OnChanges {
   srcMain!: string;
 
   @ViewChild('zoomBox') zoomBox: ElementRef | undefined;
+  zoomActive: boolean = false;
 
   // @ViewChild('.image-zoom-box') zoomBox: ElementRef | undefined; // Agregar ViewChild para la lupa
 
@@ -44,14 +45,43 @@ export class DetailImgComponent implements OnInit, OnChanges {
 
   currentIndex: number = 0; // Inicializa el índice de la imagen actual en 0
 
+
   ngOnInit(): void {
     if (this.images.length > 0) {
       this.srcMain = this.images[0];
     }
+
+    const zoomedImg = document.getElementById("zoomed-img");
+    const zoomedContainer = document.querySelector(".image-zoom-container");
+
+    if (zoomedImg && zoomedContainer instanceof HTMLElement) {
+      zoomedContainer.addEventListener("mousemove", (e: MouseEvent) => {
+        const containerRect = zoomedContainer.getBoundingClientRect();
+        const x = (e.clientX - containerRect.left) / containerRect.width;
+        const y = (e.clientY - containerRect.top) / containerRect.height;
+
+        if (zoomedImg) {
+          zoomedImg.style.transformOrigin = `${x * 100}% ${y * 100}%`;
+        }
+      });
+
+      zoomedContainer.addEventListener("mouseenter", () => {
+        if (zoomedImg) {
+          zoomedImg.classList.add("zoomed");
+        }
+      });
+
+      zoomedContainer.addEventListener("mouseleave", () => {
+        if (zoomedImg) {
+          zoomedImg.classList.remove("zoomed");
+        }
+      });
+    }
   }
 
+
   toogleImg(url: string, index: number): void {
-    debugger
+    // debugger
     this.srcMain = url;
     this.currentIndex = index;
   }
@@ -62,41 +92,6 @@ export class DetailImgComponent implements OnInit, OnChanges {
 
   down(): void {
     this.sliderImg!.nativeElement.scrollTop += 80;
-  }
-
-  startZoom(): void {
-    debugger
-    if (this.zoomBox) {
-      const image = this.zoomBox.nativeElement.previousElementSibling as HTMLImageElement;
-      if (image) {
-        const scale = 2;
-        this.zoomBox.nativeElement.style.backgroundImage = `url('${this.srcMain}')`;
-        this.zoomBox.nativeElement.style.display = 'block';
-        this.zoomBox.nativeElement.style.width = `${100 * scale}px`;
-        this.zoomBox.nativeElement.style.height = `${100 * scale}px`;
-      }
-    }
-  }
-
-  stopZoom(): void {
-    if (this.zoomBox) {
-      this.zoomBox.nativeElement.style.display = 'none';
-    }
-  }
-
-  moveZoom(event: MouseEvent): void {
-    debugger
-    if (this.zoomBox) {
-      const image = this.zoomBox.nativeElement.previousElementSibling as HTMLImageElement;
-      if (image) {
-        const rect = image.getBoundingClientRect();
-        const x = event.clientX - rect.left;
-        const y = event.clientY - rect.top;
-        const scale = 2;
-        this.zoomBox.nativeElement.style.backgroundSize = `${image.width * scale}px ${image.height * scale}px`;
-        this.zoomBox.nativeElement.style.backgroundPosition = `-${x * scale}px -${y * scale}px`;
-      }
-    }
   }
 
 

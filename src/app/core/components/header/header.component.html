@@ -2,88 +2,96 @@
   src="https://kit.fontawesome.com/a076d05399.js"
   crossorigin="anonymous"
 ></script>
-<!-- <div *ngIf="!isAdminSection !isAuthSection" > -->
 
-<!-- <div *ngIf="shouldShowHeader" [ngClass]="{'is-detail-route': isDetailRoute}"> -->
-<!-- <div *ngIf="shouldShowHeader" [ngClass]="{ 'is-detail-route': isDetailRoute }"> -->
-  <div *ngIf="shouldShowHeader" [ngClass]="{ 'is-detail-route': isDetailRoute }">
-    <!-- Contenido del encabezado de la sección principal -->
-    <div class="policy-header" [class.scroll-header]="isHeaderScrolled">
-      <link
-        href="https://fonts.googleapis.com/css?family=Great+Vibes"
-        rel="stylesheet"
+<div *ngIf="shouldShowHeader">
+  <!-- Contenido del encabezado de la sección principal -->
+  <!-- <div class="policy-header" [class.scroll-header]="isHeaderScrolled"> -->
+  <div
+    class="policy-header"
+    [class.scroll-header]="isHeaderScrolled"
+    [class.is-detail-route]="isDetailRoute()"
+  >
+    <link
+      href="https://fonts.googleapis.com/css?family=Great+Vibes"
+      rel="stylesheet"
+    />
+    <div class="logo-container">
+      <img
+        src="https://static.wixstatic.com/media/64de7c_29f387abde884a1e8f9df17220933df6~mv2.png/v1/fill/w_834,h_221,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/64de7c_29f387abde884a1e8f9df17220933df6~mv2.png"
+        alt="Logo de Tu Empresa"
       />
-      <div class="logo-container">
-        <img
-          src="https://static.wixstatic.com/media/64de7c_29f387abde884a1e8f9df17220933df6~mv2.png/v1/fill/w_834,h_221,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/64de7c_29f387abde884a1e8f9df17220933df6~mv2.png"
-          alt="Logo de Tu Empresa"
-        />
-      </div>
+    </div>
 
-      <div class="button-container-mobile">
-        <button class="mobile-menu-btn" (click)="toggleMobileMenu()">☰</button>
-        <div class="mobile-menu" id="mobileMenu">
-          <div class="mobile-menu-item" (click)="redirectTo('home')">Home</div>
-          <div class="mobile-menu-item" (click)="redirectTo('acercade')">
-            Acerca De
-          </div>
+    <div class="button-container-mobile">
+      <!-- <button class="mobile-menu-btn" (click)="toggleMobileMenu()">☰</button> -->
 
-          <div class="mobile-menu-item" (click)="redirectTo_Auth('sign-in')">
-            sign-in
-          </div>
+      <button class="mobile-menu-btn" (click)="toggleMobileMenu()">
+        <ng-container *ngIf="isMobileMenuOpen; else iconMenu"
+          >&#10006;</ng-container
+        >
+        <ng-template #iconMenu>&#9776;</ng-template>
+      </button>
+
+      <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-menu-item" (click)="redirectTo('home')">Home</div>
+        <div class="mobile-menu-item" (click)="redirectTo('acercade')">
+          Acerca De
+        </div>
+
+        <div class="mobile-menu-item" (click)="redirectTo_Auth('sign-in')">
+          sign-in
         </div>
       </div>
-      <div class="search-container">
-        <button class="btnbusa">
-          <mat-icon class="material-icons primary">search</mat-icon>
-        </button>
-        <input
-          [(ngModel)]="searchQuery"
-          (ngModelChange)="onSearchChange($event)"
-          placeholder="Buscar..."
-        />
-      </div>
-
-      <div class="button-container-pc">
-        <button class="menu-btn" (click)="redirectTo('home')">HOME</button>
-        <button [matMenuTriggerFor]="productsMenu" class="menu-btn">
-          ADMIN
-        </button>
-        <mat-menu
-          style="background-color: transparent"
-          class="menuweb"
-          #productsMenu="matMenu"
-          yPosition="below"
-        >
-          <div
-            mat-menu-item
-            class="mobile-menu-item_b1"
-            (click)="redirectTo_adm('products-list')"
-          >
-            Productos
-          </div>
-          <div
-            mat-menu-item
-            class="mobile-menu-item_b1"
-            (click)="redirectTo('acercade')"
-          >
-            editar producto
-          </div>
-        </mat-menu>
-        <button class="menu-btn" (click)="redirectTo_Auth('sign-in')">
-          SIGN IN
-        </button>
-        <button class="menu-btn" (click)="redirectTo_Auth('sign-up')">
-          sign up
-        </button>
-      </div>
-      <mat-icon
-        [matBadge]="badge"
-        matBadgeColor="warn"
-        class="material-icons primary"
-        (click)="goToCart()"
-        >shopping_cart</mat-icon
-      >
     </div>
+    <div class="search-container">
+      <button class="btnbusa">
+        <mat-icon class="material-icons primary">search</mat-icon>
+      </button>
+      <input
+        [(ngModel)]="searchQuery"
+        (ngModelChange)="onSearchChange($event)"
+        placeholder="Buscar..."
+      />
+    </div>
+
+    <div class="button-container-pc">
+      <button class="menu-btn" (click)="redirectTo('home')">HOME</button>
+      <button [matMenuTriggerFor]="productsMenu" class="menu-btn">ADMIN</button>
+      <mat-menu
+        style="background-color: transparent"
+        class="menuweb"
+        #productsMenu="matMenu"
+        yPosition="below"
+      >
+        <div
+          mat-menu-item
+          class="mobile-menu-item_b1"
+          (click)="redirectTo_adm('products-list')"
+        >
+          Productos
+        </div>
+        <div
+          mat-menu-item
+          class="mobile-menu-item_b1"
+          (click)="redirectTo('acercade')"
+        >
+          editar producto
+        </div>
+      </mat-menu>
+      <button class="menu-btn" (click)="redirectTo_Auth('sign-in')">
+        SIGN IN
+      </button>
+      <button class="menu-btn" (click)="redirectTo_Auth('sign-up')">
+        sign up
+      </button>
+    </div>
+    <mat-icon
+      [matBadge]="badge"
+      matBadgeColor="warn"
+      class="material-icons primary"
+      (click)="goToCart()"
+      >shopping_cart</mat-icon
+    >
   </div>
+</div>
 <!-- </div> -->

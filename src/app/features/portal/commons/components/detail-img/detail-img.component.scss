@@ -14,32 +14,33 @@
     height: 400px;
   }
 
-  /* Efecto de lupa */
+
   .image-zoom-container {
     position: relative;
-    overflow: hidden;
-    background-color: aqua;
-    width: 350px; /* Tamaño de la imagen principal */
+    width: 350px;
     height: 400px;
+    overflow: hidden;
+    cursor: zoom-in; /* Cambia el cursor a un icono de lupa al hacer zoom */
+
   }
 
-  .image-zoom-container img {
+  .zoomed-image {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+  }
+
+  #zoomed-img {
     width: 100%;
     height: 100%;
     transition: transform 0.3s;
   }
 
-  .image-zoom-box {
-    position: absolute;
-    width: 100px; /* Tamaño de la lupa */
-    height: 100px;
-    border: 2px solid #333; /* Borde de la lupa */
-    background: rgba(148, 36, 36, 0.6); /* Fondo de la lupa */
-    pointer-events: none; /* No bloquea eventos del ratón */
-    display: none; /* Inicialmente oculto */
+  #zoomed-img.zoomed {
+    transform: scale(2); /* Cambiar el valor de escala para ajustar el nivel de zoom */
+    transform-origin: 0 0; /* Opción para ajustar el punto de zoom */
   }
-
-
 
   .slider-wrapper {
     max-height: 400px;
