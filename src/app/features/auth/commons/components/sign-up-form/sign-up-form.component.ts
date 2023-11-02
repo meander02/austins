@@ -15,8 +15,6 @@ export class SignUpFormComponent implements OnInit {
   username: string = '';
   password: string = '';
   confirmPassword: string = '';
-
-  // Nuevas propiedades para datos de dirección
   street: string = '';
   city: string = '';
 
@@ -68,6 +66,6 @@ export class SignUpFormComponent implements OnInit {
 
 
   onSubmit() {
-    // Aquí puedes agregar lógica para manejar el envío del formulario (no se incluye en este prototipo).
+
   }
 }

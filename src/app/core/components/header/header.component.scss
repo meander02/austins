@@ -5,9 +5,8 @@
   left: 0;
   right: 0;
   transition:
-    background-color 0.5s ease, /* Transiciones suaves para el cambio de color de fondo */
-    color 0.5s ease; /* y de texto */
-
+    background-color 0.5s ease,
+    /* Transiciones suaves para el cambio de color de fondo */ color 0.5s ease; /* y de texto */
   z-index: 1000; /* Asegura que el header esté sobre otros elementos */
   display: flex;
   justify-content: space-between;
@@ -18,7 +17,11 @@
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sutil sombra */
 }
 
-/* Estilos para el contenedor del logotipo */
+
+/* Agrega una regla para el fondo en la ruta de detalle */
+.is-detail-route .policy-header {
+  background-color: #080808; /* Cambia el color de fondo a lo que necesites */
+}
 .logo-container {
   flex: 1;
   text-align: center;
@@ -28,7 +31,6 @@
 .logo-container img {
   max-width: 60%;
 }
-
 
 /* Estilos para el botón de menú en pantallas de PC */
 .menu-btn {
@@ -62,6 +64,7 @@
     // background-color: #d4d0cc; /* Color de fondo al hacer clic */
     transform: scale(0.95); /* Efecto de escala al hacer clic */
   }
+
 }
 
 /* Estilos para la sección de menú móvil */
@@ -98,6 +101,8 @@
   min-width: 150px;
 }
 
+
+
 .mobile-menu-item {
   padding: 10px 20px;
   text-align: center;
@@ -127,10 +132,10 @@
     display: none; /* Asegura que el logotipo ocupe el ancho completo disponible */
   }
   .policy-header {
-        min-height: 60px; /* Fija la altura mínima del encabezado en dispositivos móviles */
-        padding-top: 10px; /* Espaciado superior adicional para acomodar el botón móvil */
-        padding-bottom: 10px; /* Espaciado inferior adicional para acomodar el botón móvil */
-      }
+    min-height: 60px; /* Fija la altura mínima del encabezado en dispositivos móviles */
+    padding-top: 10px; /* Espaciado superior adicional para acomodar el botón móvil */
+    padding-bottom: 10px; /* Espaciado inferior adicional para acomodar el botón móvil */
+  }
   .mobile-menu-btn {
     background-color: transparent;
     color: #ffa500;
@@ -151,7 +156,6 @@
     display: block; /* Muestra el menú al pasar el mouse sobre el botón */
   }
 
-
   .button-container-pc {
     display: none; /* Oculta el contenedor de PC en dispositivos móviles */
   }
@@ -160,9 +164,6 @@
     min-height: 60px; /* Fija la altura mínima del encabezado en dispositivos móviles */
   }
 }
-
-
-
 
 .mat-menu {
   top: 0px;
@@ -199,9 +200,8 @@
     color: #ffffff;
   }
 
-  .mobile-menu-item_b1
-  {
-      color: #ffffff;
+  .mobile-menu-item_b1 {
+    color: #ffffff;
   }
 }
 /* Estilos para el input de búsqueda */
@@ -213,10 +213,10 @@
   color: #333; /* Color del texto */
   font-size: 16px; /* Tamaño de fuente */
   width: 320px; /* Ancho del input */
-  transition: background-color 0.3s ease, transform 0.3s ease;
+  transition:
+    background-color 0.3s ease,
+    transform 0.3s ease;
 }
-
-
 
 /* Estilos para el botón de búsqueda */
 .search-container {
@@ -263,7 +263,6 @@
   }
 }
 
-
 .material-icons.primary {
   color: #ffa500; /* Cambia el color del icono */
   font-size: 24px; /* Ajusta el tamaño del icono según tus preferencias */
@@ -284,4 +283,3 @@
     margin-left: 3%;
   }
 }
-

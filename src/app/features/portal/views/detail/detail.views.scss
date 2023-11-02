@@ -1,13 +1,33 @@
-:host {
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
   display: flex;
   padding-top: 100px;
   margin-top: 60px; /* Agrega un margen superior para evitar que el contenido se superponga al encabezado fijo */
+}
 
+.detail-img, .detail-info {
+  width: 100%; /* Take full width on small screens */
+  margin: auto;
+}
+
+/* Adjust the widths for medium and large screens as needed */
+@media screen and (min-width: 601px) {
   .detail-img {
-    width: 55%;
+    width: 45%; /* Adjust width for medium screens */
   }
-
   .detail-info {
-    width: 45%;
+    width: 45%; /* Adjust width for medium screens */
+  }
+}
+
+@media screen and (min-width: 1025px) {
+  .detail-img {
+    width: 55%; /* Adjust width for large screens */
+  }
+  .detail-info {
+    width: 45%; /* Adjust width for large screens */
   }
 }

@@ -6,5 +6,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./cart.view.scss']
 })
 export class CartView {
+  
 
 }

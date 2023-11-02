@@ -1,6 +1,6 @@
 :host {
   display: flex;
-  // justify-content: center;
+  justify-content: center;
   * {
     // outline: 1px solid red;
   }
@@ -9,11 +9,37 @@
     display: flex;
     justify-content: center;
   }
-
   .main-img img {
     width: 350px;
     height: 400px;
   }
+
+  /* Efecto de lupa */
+  .image-zoom-container {
+    position: relative;
+    overflow: hidden;
+    background-color: aqua;
+    width: 350px; /* Tamaño de la imagen principal */
+    height: 400px;
+  }
+
+  .image-zoom-container img {
+    width: 100%;
+    height: 100%;
+    transition: transform 0.3s;
+  }
+
+  .image-zoom-box {
+    position: absolute;
+    width: 100px; /* Tamaño de la lupa */
+    height: 100px;
+    border: 2px solid #333; /* Borde de la lupa */
+    background: rgba(148, 36, 36, 0.6); /* Fondo de la lupa */
+    pointer-events: none; /* No bloquea eventos del ratón */
+    display: none; /* Inicialmente oculto */
+  }
+
+
 
   .slider-wrapper {
     max-height: 400px;
@@ -40,18 +66,3 @@
     height: 90px;
   }
 }
-
-
-// #slider-wrapper {
-//   max-width: 940px;
-//   display: flex;
-//   min-height: 100px;
-//   align-items: center;
-// }
-
-// #slider {
-//   width: 860px;
-//   display: flex;
-//   flex-wrap: nowrap;
-//   overflow-x: hidden;
-// }

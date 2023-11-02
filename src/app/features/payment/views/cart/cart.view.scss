@@ -1,3 +1,4 @@
+/* Base styles for all screens */
 h1 {
   font-size: 24px;
   text-align: center;
@@ -9,7 +10,7 @@ h1 {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 110px; /* Agrega un margen superior para evitar que el contenido se superponga al encabezado fijo */
+  margin-top: 110px; /* Add a top margin to avoid overlapping with a fixed header */
 }
 
 .item {
@@ -78,4 +79,43 @@ h1 {
 .checkout-button:hover,
 .clear-cart-button:hover {
   background-color: #0056b3;
+}
+
+/* Media query for screens with a maximum width of 768px (typical for mobile devices) */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 20px;
+    
+  }
+
+  .content {
+    margin-top: 10px;
+  }
+
+  .item {
+    flex-direction: column; /* Stack items on top of each other */
+  }
+
+  .item img {
+    width: 100%; /* Make the image width 100% of the container */
+    margin-right: 0;
+  }
+
+  .item-details {
+    margin-top: 10px;
+    text-align: center;
+  }
+
+  .item span {
+    font-size: 14px;
+  }
+
+  .subTotal p {
+    font-size: 16px;
+  }
+
+  .checkout-button,
+  .clear-cart-button {
+    width: 100%;
+  }
 }

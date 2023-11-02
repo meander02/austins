@@ -1,25 +1,29 @@
 import { UserStateService } from '../../../features/admin/commons/services/user-state.service'; //
 import { AuthStateService } from './../../../features/auth/commons/services/auth-state.service';
 import { Router } from '@angular/router';
-import { Component, HostListener } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { SearchService } from 'src/app/shared/services/search-service.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit {
 
   isHeaderScrolled = false;
   searchQuery: string = ''; // Variable para almacenar la consulta de búsqueda
   badge:number=0
+  isDetailRoute: boolean = false; // Declarar la variable isDetailRoute
 
 
   // constructor(private searchService: SearchService,private router: Router,private userStateService: UserStateService,private AuthStateService: AuthStateService) {
 
   // }
-  constructor(private searchService: SearchService, private router: Router, private userStateService: UserStateService, private AuthStateService: AuthStateService) { }
+  // constructor(private searchService: SearchService, private router: Router, private userStateService: UserStateService, private AuthStateService: AuthStateService) { }
+  constructor(private searchService: SearchService, private router: Router, private userStateService: UserStateService, private AuthStateService: AuthStateService, private route: ActivatedRoute) { }
+
 
   onSearchChange(query: string) {
     // Llama al servicio para establecer la consulta de búsqueda en tiempo real.
@@ -77,5 +81,13 @@ onWindowScroll() {
   goToCart(): void{
     this.router.navigateByUrl('/payment/cart')
   }
+  ngOnInit() {
+    debugger
+    this.route.url.subscribe(segments => {
+      this.isDetailRoute = segments[segments.length - 1].path === '/detail';
+    });
+  }
+
+
 
 }
