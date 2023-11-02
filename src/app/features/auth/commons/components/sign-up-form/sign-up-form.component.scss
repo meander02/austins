@@ -127,11 +127,20 @@ mat-form-field {
   margin-bottom: 0;
   position: relative;
 }
-.form-group mat-icon {
-  margin: 0;
-  color: #aaa;
+
+/* Estilos para los iconos en los campos de entrada */
+.form-group .mat-icon {
   position: absolute;
-  left: 90%;
+  top: 50%;
+  margin: 0;
+  transform: translateY(-50%);
+  left: 90%; /* Ajusta la distancia desde el borde izquierdo */
+  color: #aaa;
+}
+
+/* Ajusta la posición de los iconos en los campos de entrada con animación */
+.form-group.mat-form-field .animated .mat-icon {
+  // left: 10px; /* Ajusta la distancia desde el borde izquierdo */
 }
 
 .form-group .animated input {
