@@ -101,11 +101,24 @@ isDetailRoute(): boolean {
   return this.currentRoute === '/portal/detail'; // Cambia '/portal/detail' con la ruta deseada
 }
 
+// openSignInModal(): MatDialogRef<SignInView> {
+//   // console.log('Botón "sign-in" clicado');
+//   const dialogRef = this.dialog.open(SignInView, {
+//     width: '430px',
+//     height: '100%',
+//   });
+
+//   dialogRef.afterClosed().subscribe((result) => {
+//     console.log('Modal cerrado', result);
+//   });
+
+//   return dialogRef;
+// }
 openSignInModal(): MatDialogRef<SignInView> {
-  console.log('Botón "sign-in" clicado');
+  const isMobile = window.innerWidth < 768; // Puedes ajustar este valor según tus necesidades
   const dialogRef = this.dialog.open(SignInView, {
-    width: '400px',
-    height: 'auto',
+    width: isMobile ? '480px' : '430px', // Ajusta el ancho del modal para móvil
+    height: isMobile ? 'auto' : '95%', // Ajusta el alto del modal para móvil
   });
 
   dialogRef.afterClosed().subscribe((result) => {
