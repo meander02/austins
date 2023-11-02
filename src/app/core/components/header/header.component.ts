@@ -4,6 +4,8 @@ import { NavigationEnd, Router } from '@angular/router';
 import { Component, HostListener, OnInit } from '@angular/core';
 import { SearchService } from 'src/app/shared/services/search-service.service';
 import { ActivatedRoute } from '@angular/router';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { SignInView } from 'src/app/features/auth/views/sign-in/sign-in.view';
 
 @Component({
   selector: 'app-header',
@@ -14,13 +16,11 @@ export class HeaderComponent {
   isHeaderScrolled = false;
   searchQuery: string = ''; // Variable para almacenar la consulta de búsqueda
   badge: number = 0;
-  // isDetailRoute: boolean = false; // Declarar la variable isDetailRoute
   currentRoute!: string;
   isMobileMenuOpen: boolean = false;
 
-
   constructor(
-
+    public dialog: MatDialog,
     private searchService: SearchService,
     private router: Router,
     private userStateService: UserStateService,
@@ -63,7 +63,7 @@ export class HeaderComponent {
   redirectTo_Auth(route: string): void {
     this.router.navigate(['/auth', route]); // Utiliza la navegación de Angular
   }
- 
+
   toggleMobileMenu() {
     const mobileMenu = document.getElementById('mobileMenu');
     if (mobileMenu) {
@@ -97,11 +97,22 @@ export class HeaderComponent {
     // debugger
     this.router.navigateByUrl('/payment/cart');
   }
-  // Agrega esta función en tu HeaderComponent
 isDetailRoute(): boolean {
   return this.currentRoute === '/portal/detail'; // Cambia '/portal/detail' con la ruta deseada
 }
-// toggleMobileMenu() {
 
-// }
+openSignInModal(): MatDialogRef<SignInView> {
+  console.log('Botón "sign-in" clicado');
+  const dialogRef = this.dialog.open(SignInView, {
+    width: '400px',
+    height: 'auto',
+  });
+
+  dialogRef.afterClosed().subscribe((result) => {
+    console.log('Modal cerrado', result);
+  });
+
+  return dialogRef;
+}
+
 }

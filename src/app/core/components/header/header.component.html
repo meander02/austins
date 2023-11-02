@@ -4,8 +4,6 @@
 ></script>
 
 <div *ngIf="shouldShowHeader">
-  <!-- Contenido del encabezado de la sección principal -->
-  <!-- <div class="policy-header" [class.scroll-header]="isHeaderScrolled"> -->
   <div
     class="policy-header"
     [class.scroll-header]="isHeaderScrolled"
@@ -38,9 +36,13 @@
           Acerca De
         </div>
 
-        <div class="mobile-menu-item" (click)="redirectTo_Auth('sign-in')">
+        <!-- <div class="mobile-menu-item" (click)="redirectTo_Auth('sign-in')">
+          sign-in
+        </div> -->
+        <div class="mobile-menu-item" (click)="openSignInModal()">
           sign-in
         </div>
+
       </div>
     </div>
     <div class="search-container">
@@ -78,11 +80,8 @@
           editar producto
         </div>
       </mat-menu>
-      <button class="menu-btn" (click)="redirectTo_Auth('sign-in')">
-        SIGN IN
-      </button>
-      <button class="menu-btn" (click)="redirectTo_Auth('sign-up')">
-        sign up
+      <button class="menu-btn" (click)="openSignInModal()">
+        sign IN
       </button>
     </div>
     <mat-icon
@@ -94,4 +93,3 @@
     >
   </div>
 </div>
-<!-- </div> -->
