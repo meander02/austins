@@ -12,6 +12,8 @@ import { MatBadgeModule} from '@angular/material/badge';
 import { PoliticaComponent } from './politica/politica.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { FormsModule } from '@angular/forms';
+import { SignInService } from 'src/app/features/auth/commons/services/sign-in.service';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -35,7 +37,11 @@ import { FormsModule } from '@angular/forms';
     MatMenuModule,
     RouterModule,
     MatDialogModule,
-    MatBadgeModule
-  ]
+    MatBadgeModule,
+    HttpClientModule
+
+  ],
+  providers: [SignInService], // Asegúrate de incluir SignInService en la lista de providers.
+
 })
 export class CoreComponentsModule { }

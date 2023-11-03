@@ -1,8 +1,9 @@
-import { Component, OnInit, ElementRef } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component,EventEmitter, OnInit, ElementRef, Output } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-// import { SignInView } from '../../../views/sign-in/sign-in.view';
+import { ISingInRequest } from '../../../interfaces/sign-in-request.interface';
+import { SignInValidator } from 'src/app/shared/validators/sign-in-validator';
 
 
 @Component({
@@ -15,6 +16,8 @@ export class SignInFormComponent implements OnInit {
   group: FormGroup;
   passwordVisible = false;
   passwordFieldType = 'password';
+  @Output() formData: EventEmitter<ISingInRequest> =
+  new EventEmitter<ISingInRequest>();
 
   constructor(
 
@@ -24,23 +27,23 @@ export class SignInFormComponent implements OnInit {
     private dialogRef: MatDialogRef<SignInFormComponent> // Inyecta MatDialogRef
 
   ) {
+    let validatorCustom= new SignInValidator()
     this.group = this.formBuilder.group({
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required]],
+      email: ['',[Validators.required,Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]],
+      password: ['',[Validators.required,validatorCustom.formatPassword]],
     });
   }
 
   ngOnInit(): void {}
 
-
-  submitForm() {
-    if (this.group.valid) {
-      const formData = this.group.value;
-      console.log(formData);
-      // Cierra el modal al enviar el formulario
-      this.dialogRef.close(formData);
-    }
+  get emailFormControl(): FormControl {
+    console.log('email');
+    return this.group.get('email') as FormControl;
   }
+  get passwordFormControl(): FormControl {
+    return this.group.get('password') as FormControl;
+  }
+
 
   goToSigUP(): void {
     this.dialogRef.close(); // Cierra el modal
@@ -50,5 +53,13 @@ export class SignInFormComponent implements OnInit {
   togglePasswordVisibility() {
     this.passwordVisible = !this.passwordVisible;
     this.passwordFieldType = this.passwordVisible ? 'text' : 'password';
+  }
+  send(): void {
+    debugger;
+    const formData = this.group.value;
+    if (this.group.valid) {
+      this.formData.emit(this.group.value);
+    }
+    // this.dialogRef.close(formData);
   }
 }

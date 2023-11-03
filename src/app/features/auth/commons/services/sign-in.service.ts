@@ -3,8 +3,8 @@ import { AuthServicesModule } from './services.module';
 import { HttpClient } from '@angular/common/http';
 import { ISingInRequest } from '../../interfaces/sign-in-request.interface';
 import { Observable } from 'rxjs';
-import { environment } from 'src/environments/environment';
 import { IToken } from 'src/app/shared/interfaces/token.interface';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: AuthServicesModule

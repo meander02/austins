@@ -1,6 +1,6 @@
 import { AuthStateService } from './commons/services/auth-state.service';
 // import { AuthStateService } from './../../feactures/auth/services/auth-state.service';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 
 @Component({
@@ -8,7 +8,7 @@ import { Component } from '@angular/core';
   templateUrl: './auth.component.html',
   styleUrls: ['./auth.component.scss']
 })
-export class AuthComponent {
+export class AuthComponent implements OnInit{
 
 
   constructor(private AuthStateService: AuthStateService) {}

@@ -58,6 +58,8 @@
 
     <div class="button-container-pc">
       <button class="menu-btn" (click)="redirectTo('home')">HOME</button>
+      <button class="menu-btn" (click)="redirectTo('home')">HOME</button>
+      <button class="menu-btn" (click)="redirectTo('home')">HOME</button>
       <button [matMenuTriggerFor]="productsMenu" class="menu-btn">ADMIN</button>
       <mat-menu
         style="background-color: transparent"
@@ -68,7 +70,6 @@
         <div
           mat-menu-item
           class="mobile-menu-item_b1"
-          (click)="redirectTo_adm('products-list')"
         >
           Productos
         </div>
@@ -77,7 +78,7 @@
           class="mobile-menu-item_b1"
           (click)="redirectTo('acercade')"
         >
-          editar producto
+         acerca de
         </div>
       </mat-menu>
       <button class="menu-btn" (click)="openSignInModal()">

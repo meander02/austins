@@ -1,18 +1,17 @@
 <div class="log">
   <img
-  class="logo"
-  src="https://static.wixstatic.com/media/64de7c_4d76bd81efd44bb4a32757eadf78d898~mv2_d_1765_2028_s_2.png"
-  alt="Pastelería"
-/>
-<h1>Iniciar sesión</h1>
+    class="logo"
+    src="https://static.wixstatic.com/media/64de7c_4d76bd81efd44bb4a32757eadf78d898~mv2_d_1765_2028_s_2.png"
+    alt="Pastelería"
+  />
+  <h1>Iniciar sesión</h1>
 </div>
-<form class="login-form" [formGroup]="group" (ngSubmit)="submitForm()">
+<form class="login-form" [formGroup]="group" (ngSubmit)="send()">
   <p>¿No tienes cuenta? <a (click)="goToSigUP()">Regístrate</a></p>
-
   <fieldset>
     <legend>Ingresa tus credenciales</legend>
     <div class="input-group">
-      <div class="form-group email-input ">
+      <div class="form-group email-input">
         <mat-form-field class="animated">
           <input
             type="email"
@@ -25,39 +24,51 @@
           <mat-icon> email</mat-icon>
         </mat-form-field>
       </div>
+      <mat-error *ngIf="emailFormControl.hasError('required')">
+        Email is <strong>required</strong>
+      </mat-error>
 
       <div class="form-group password-input">
         <mat-form-field class="animated">
           <!-- ... tu input de contraseña ... -->
           <input
-          type="password"
-          matInput
-          formControlName="password"
-          placeholder="********"
-          [type]="passwordFieldType"
-          required
-        />
+            type="password"
+            matInput
+            formControlName="password"
+            placeholder="********"
+            [type]="passwordFieldType"
+            required
+          />
 
-        <label>password</label>
+          <label>password</label>
           <button
             mat-icon-button
+            type="button"
             (click)="togglePasswordVisibility()"
             [attr.aria-label]="
-              passwordVisible ? 'Ocultar contraseña' : 'Mostrar contraseña'"
+              passwordVisible ? 'Ocultar contraseña' : 'Mostrar contraseña'
+            "
           >
-          <mat-icon>{{ passwordVisible ? "visibility_off" : "visibility" }}</mat-icon>
-        </button>
+            <mat-icon>{{
+              passwordVisible ? "visibility_off" : "visibility"
+            }}</mat-icon>
+          </button>
         </mat-form-field>
       </div>
-
+      <mat-error *ngIf="passwordFormControl.hasError('required')">
+        Passsword is <strong>required</strong>
+      </mat-error>
+      <mat-error *ngIf="passwordFormControl.hasError('formatError')">
+        {{ passwordFormControl.errors?.['formatError'] }}
+      </mat-error>
     </div>
   </fieldset>
   <p>
     <a class="forgot-password-link">¿Olvidaste tu contraseña?</a>
   </p>
-
-  <button class="login-button">Ingresar</button>
-
+  <button type="submit" class="login-button" [disabled]="group.invalid">
+    Ingresar
+  </button>
   <div class="social-login">
     <button class="social-button google-button">
       <img src="assets/icons/icons8-google-30.svg" alt="Google" />

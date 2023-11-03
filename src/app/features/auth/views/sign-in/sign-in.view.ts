@@ -1,8 +1,11 @@
 import { Component , OnInit } from '@angular/core';
-import { StorageService } from 'src/app/core/services/storage.service';
-import { Router } from '@angular/router';
 import { ISingInRequest } from '../../interfaces/sign-in-request.interface';
 import { SignInService } from '../../commons/services/sign-in.service';
+import { StorageService } from 'src/app/core/services/storage.service';
+import { Router } from '@angular/router';
+import { HttpErrorResponse } from '@angular/common/http';
+import { catchError } from 'rxjs/operators';
+import { throwError } from 'rxjs';
 
 @Component({
   selector: 'app-sign-in',
@@ -10,21 +13,36 @@ import { SignInService } from '../../commons/services/sign-in.service';
   styleUrls: ['./sign-in.view.scss']
 })
 export class SignInView implements OnInit {
+  errorMessage!: string; // Define la variable para almacenar el mensaje de error
+
   constructor(
-    // private signInService: SignInService,
+    private signInService: SignInService,
     private storageService: StorageService,
     private router: Router,
-
   ) {}
 
   ngOnInit(): void {}
-  signIn(data: ISingInRequest): void {
 
-    // this.signInService.signIn(data).subscribe((Response) => {
-    //   if (Response) {
-    //     this.storageService.setToken(Response.token);
-    //     this.router.navigateByUrl('admin/products-list')
-    //   }
-    // });
+
+
+  signIn(data: ISingInRequest): void {
+    this.signInService.signIn(data)
+      .pipe(
+        catchError((error: HttpErrorResponse) => {
+          if (error.status === 404) {
+            this.errorMessage = error.error.message; // Asigna el mensaje de error del servidor a errorMessage
+            console.error(this.errorMessage);
+          } else {
+          }
+          return throwError('Error en la solicitud');
+        })
+      )
+      .subscribe((Response) => {
+        if (Response) {
+          this.storageService.setToken(Response.token);
+          this.router.navigateByUrl('/admin');
+        }
+      });
   }
+
 }
