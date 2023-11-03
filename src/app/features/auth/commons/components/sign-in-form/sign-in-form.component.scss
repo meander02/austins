@@ -181,6 +181,17 @@ a:hover {
 
 
 /* Estilos para dispositivos móviles */
+// @media (max-width: 600px) {
+//   .login-form {
+//     padding: 3%;
+//   }
+//   .login-button {
+//     margin-top: 0px;
+//     border-radius: 20px;
+//     width: 250px;
+//   }
+// }
+/* Estilos para dispositivos móviles */
 @media (max-width: 600px) {
   .login-form {
     padding: 3%;
@@ -189,6 +200,18 @@ a:hover {
     margin-top: 0px;
     border-radius: 20px;
     width: 250px;
+  }
+
+  /* Estilos para ajustar la posición de los iconos en dispositivos móviles */
+  .login-form .password-input button,
+  .login-form .email-input mat-icon {
+    top: 50%;
+    transform: translateY(-50%);
+    position: absolute;
+  }
+
+  .login-form .email-input mat-icon {
+    left: calc(100% - 45px);
   }
 }
 

@@ -6,6 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CssStyleClass } from '@fortawesome/fontawesome-svg-core';
+// import { SignInService } from './features/auth/commons/services/sign-in.service';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,6 @@ import { CssStyleClass } from '@fortawesome/fontawesome-svg-core';
     BrowserAnimationsModule,
     CoreComponentsModule
   ],
-  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
