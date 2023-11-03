@@ -60,6 +60,6 @@ export class SignInFormComponent implements OnInit {
     if (this.group.valid) {
       this.formData.emit(this.group.value);
     }
-    // this.dialogRef.close(formData);
   }
+  // this.dialogRef.close(formData);
 }

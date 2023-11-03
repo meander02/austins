@@ -1,6 +1,5 @@
 
 <app-sign-in-form  (formData)="signIn($event)"></app-sign-in-form>
-<!-- Agrega una sección para mostrar el mensaje de error -->
 <div class="error-message" *ngIf="errorMessage">
   {{ errorMessage }}
 </div>

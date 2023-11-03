@@ -58,12 +58,18 @@ mat-form-field {
   font-size: 18px;
   transition: background-color 0.3s;
 }
+.login-button:disabled {
+  background-color: #ccc;
+  color: #666;
+  cursor: not-allowed;
+}
 
-.login-button:hover {
+.login-button:not(:disabled):hover {
   background-color: #a54c2c;
 }
 
 p {
+
   font-size: 14px;
   color: #333;
   margin: 10px 0;
@@ -181,17 +187,6 @@ a:hover {
 
 
 /* Estilos para dispositivos móviles */
-// @media (max-width: 600px) {
-//   .login-form {
-//     padding: 3%;
-//   }
-//   .login-button {
-//     margin-top: 0px;
-//     border-radius: 20px;
-//     width: 250px;
-//   }
-// }
-/* Estilos para dispositivos móviles */
 @media (max-width: 600px) {
   .login-form {
     padding: 3%;
@@ -201,6 +196,12 @@ a:hover {
     border-radius: 20px;
     width: 250px;
   }
+  .login-button:disabled {
+    background-color: #ccc;
+    color: #666;
+    cursor: not-allowed;
+  }
+
 
   /* Estilos para ajustar la posición de los iconos en dispositivos móviles */
   .login-form .password-input button,

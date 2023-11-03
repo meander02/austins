@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-sign-in',
@@ -19,6 +20,8 @@ export class SignInView implements OnInit {
     private signInService: SignInService,
     private storageService: StorageService,
     private router: Router,
+    private dialogRef: MatDialogRef<SignInView> // Inyecta MatDialogRef
+
   ) {}
 
   ngOnInit(): void {}
@@ -40,6 +43,7 @@ export class SignInView implements OnInit {
       .subscribe((Response) => {
         if (Response) {
           this.storageService.setToken(Response.token);
+          this.dialogRef.close(); // Cierra el modal
           this.router.navigateByUrl('/admin');
         }
       });
