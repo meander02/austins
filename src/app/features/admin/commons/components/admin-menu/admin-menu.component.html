@@ -1,0 +1,69 @@
+<mat-sidenav-container class="sidenav-container">
+  <!-- <mat-sidenav #sidenav mode="over"> -->
+  <mat-sidenav #sidenav mode="side">
+    <!-- Cambiar mode a "side" -->
+
+    <div class="user-info">
+      <span>{{userName}}</span>
+      <span>Rol: {{rol}}</span>
+    </div>
+    <mat-nav-list>
+      <mat-list-item (click)="sidenav.toggle()" (click)="redirectTo('inicio')">
+        <mat-icon>home</mat-icon>
+        <span>Inicio</span>
+      </mat-list-item>
+      <mat-list-item [matMenuTriggerFor]="productosMenu">
+        <mat-icon>store</mat-icon>
+        <span>Productos</span>
+        <mat-icon class="dropdown-icon">keyboard_arrow_down</mat-icon>
+      </mat-list-item>
+      <mat-menu #productosMenu="matMenu">
+        <button
+          mat-menu-item
+          (click)="sidenav.toggle()"
+          (click)="redirectTo('products-list')"
+        >
+          Ver Productos
+        </button>
+        <button mat-menu-item>Editar Productos</button>
+        <button mat-menu-item>Dar de Alta Producto</button>
+      </mat-menu>
+      <mat-list-item routerLink="/usuarios" (click)="sidenav.toggle()">
+        <mat-icon>people</mat-icon>
+        <span>Usuarios</span>
+      </mat-list-item>
+      <mat-list-item routerLink="/ventas" (click)="sidenav.toggle()">
+        <mat-icon>monetization_on</mat-icon>
+        <span>Ventas</span>
+      </mat-list-item>
+      <mat-list-item routerLink="/compras" (click)="sidenav.toggle()">
+        <mat-icon>local_grocery_store</mat-icon>
+        <span>Compras</span>
+      </mat-list-item>
+      <mat-list-item routerLink="/proveedores" (click)="sidenav.toggle()">
+        <mat-icon>store_mall_directory</mat-icon>
+        <span>Proveedores</span>
+      </mat-list-item>
+      <mat-list-item routerLink="/pedidos" (click)="sidenav.toggle()">
+        <mat-icon>assignment</mat-icon>
+        <span>Pedidos</span>
+      </mat-list-item>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <!-- Muestra el icono solo cuando el menú esté cerrado -->
+    <!-- <div class="show-menu-button" (click)="sidenav.toggle()">
+      <mat-icon *ngIf="!sidenav.opened">chevron_right</mat-icon>
+                <mat-icon *ngIf="sidenav.opened">chevron_left</mat-icon>
+
+              </div> -->
+    <div class="bubble-container" (click)="sidenav.toggle()">
+      <mat-icon class="bubble-icon" *ngIf="!sidenav.opened"
+        >chevron_right</mat-icon
+      >
+      <mat-icon   class="bubble-icon"  *ngIf="sidenav.opened">chevron_left</mat-icon>
+    </div>
+
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

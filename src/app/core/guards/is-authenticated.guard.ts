@@ -20,7 +20,9 @@ export class isAuthenticatedGuard implements CanActivate {
       if(this.sessionService.isAutenticated()){
         return true
       }else{
-        this.router.navigateByUrl('auth/sign-in')
+        // debugger
+        this.router.navigateByUrl('/home'); // Asegúrate de que esta ruta exista en tu configuración de rutas
+        console.log("ruta")
       }
       return false
     }

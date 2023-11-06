@@ -1,0 +1,116 @@
+<h2>Editar Producto</h2>
+<form [formGroup]="editForm" (ngSubmit)="saveChanges()">
+  <div class="form-row">
+    <div class="form-group">
+      <mat-form-field appearance="outline">
+        <mat-label>Nombre del Producto</mat-label>
+        <input matInput formControlName="name" required>
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <mat-form-field appearance="outline">
+        <mat-label>SKU</mat-label>
+        <input matInput formControlName="sku" required>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group">
+      <mat-form-field appearance="outline">
+        <mat-label>Descripción</mat-label>
+        <input matInput formControlName="description" required>
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <mat-form-field appearance="outline">
+        <mat-label>Unidad</mat-label>
+        <input matInput formControlName="unit" required>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group">
+      <mat-form-field appearance="outline">
+        <mat-label>Precio</mat-label>
+        <input type="number" matInput formControlName="price" required>
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <mat-form-field appearance="outline">
+        <mat-label>Cantidad</mat-label>
+        <input type="number" matInput formControlName="quantity" required>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group">
+      <mat-form-field appearance="outline">
+        <mat-label>Fabricante</mat-label>
+        <input matInput formControlName="maker" required>
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <mat-form-field appearance="outline">
+        <mat-label>Fecha de Vencimiento</mat-label>
+        <input matInput formControlName="expiration" required>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <mat-form-field appearance="outline">
+      <mat-label>Información Nutricional</mat-label>
+      <input matInput formControlName="nutritionalInformation" required>
+    </mat-form-field>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group">
+      <mat-form-field appearance="outline">
+        <mat-label>Categoría</mat-label>
+        <select matNativeControl formControlName="category" required>
+          <option value="">Seleccione una categoría</option>
+          <option value="Electrónica">Electrónica</option>
+          <option value="Ropa">Ropa</option>
+          <option value="Hogar">Hogar</option>
+          <option value="Alimentos">Alimentos</option>
+        </select>
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <mat-form-field appearance="outline">
+        <mat-label>Peso</mat-label>
+        <input type="number" matInput formControlName="weight" required>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group">
+      <mat-checkbox formControlName="isFeatured">Destacado</mat-checkbox>
+    </div>
+    <div class="form-group">
+      <mat-checkbox formControlName="isVegetarian">Vegetariano</mat-checkbox>
+    </div>
+    <div class="form-group">
+      <mat-checkbox formControlName="isGlutenFree">Libre de Gluten</mat-checkbox>
+    </div>
+  </div>
+
+  <!-- Campo de selección de imagen -->
+  <div class="form-group">
+    <input type="file" (change)="onImageSelected($event)" accept="image/*" style="display: none;">
+    <label for="fileInput" class="custom-file-upload">
+      Seleccionar Imagen
+    </label>
+    <img [src]="productImage" alt="Imagen del producto" *ngIf="productImage" class="product-image">
+  </div>
+
+  <div class="form-actions">
+    <button mat-raised-button color="primary" type="submit">Guardar Cambios</button>
+    <button mat-button (click)="closeDialog()">Cancelar</button>
+  </div>
+</form>

@@ -1,0 +1,315 @@
+[
+  {
+    "_id": "6524f0282fb52b2d779594cc",
+    "sku": "PR12345",
+    "name": "Tarta de Chocolate",
+    "description": "Deliciosa tarta de chocolate",
+    "unit": "unidad",
+    "expiration": "2024-12-31",
+    "model": "Chocolate Supreme",
+    "quantity": "10",
+    "price": 15.99,
+    "category": "Repostería",
+    "maker": "Repostería La Delicia",
+    "images": [
+      "image1.jpg",
+      "image2.jpg"
+    ],
+    "status": "ACTIVE",
+    "weight": 500,
+    "ingredients": [
+      "Harina",
+      "Cacao en polvo",
+      "Azúcar",
+      "Huevos",
+      "Mantequilla"
+    ],
+    "allergens": [
+      "Huevos",
+      "Leche",
+      "Trigo"
+    ],
+    "nutritionalInformation": "Calorías: 350 por porción",
+    "isFeatured": true,
+    "isVegetarian": true,
+    "isGlutenFree": false
+  },
+  {
+    "_id": "6524f1f82fb52b2d779594cf",
+    "sku": "PR56789",
+    "name": "Galletas de Avena y Pasas",
+    "description": "Galletas saludables con avena y pasas",
+    "unit": "paquete",
+    "expiration": "2024-11-30",
+    "model": "Avena y Pasas Crunch",
+    "quantity": "20",
+    "price": 9.99,
+    "category": "Galletas",
+    "maker": "Bakery Health",
+    "images": [
+      "galleta1.jpg",
+      "galleta2.jpg"
+    ],
+    "status": "ACTIVE",
+    "weight": 250,
+    "ingredients": [
+      "Avena",
+      "Pasas",
+      "Harina de trigo",
+      "Azúcar",
+      "Aceite vegetal"
+    ],
+    "allergens": [
+      "Trigo",
+      "Frutos secos"
+    ],
+    "nutritionalInformation": "Calorías: 150 por porción",
+    "isFeatured": false,
+    "isVegetarian": true,
+    "isGlutenFree": false
+  },
+  {
+    "_id": "6524f2472fb52b2d779594d2",
+    "sku": "PR98765",
+    "name": "Pastel de Fresa",
+    "description": "Pastel fresco de fresa con crema batida",
+    "unit": "pastel",
+    "expiration": "2024-10-15",
+    "model": "Fresa Dream",
+    "quantity": "8",
+    "price": 24.99,
+    "category": "Pasteles",
+    "maker": "Sweet Delights Bakery",
+    "images": [
+      "pastel1.jpg",
+      "pastel2.jpg"
+    ],
+    "status": "ACTIVE",
+    "weight": 750,
+    "ingredients": [
+      "Fresas",
+      "Harina",
+      "Azúcar",
+      "Crema",
+      "Huevos"
+    ],
+    "allergens": [
+      "Huevos",
+      "Leche",
+      "Trigo"
+    ],
+    "nutritionalInformation": "Calorías: 300 por porción",
+    "isFeatured": true,
+    "isVegetarian": true,
+    "isGlutenFree": false
+  },
+  {
+    "_id": "6524f27a2fb52b2d779594d4",
+    "sku": "PR24680",
+    "name": "Brownie de Chocolate",
+    "description": "Delicioso brownie de chocolate negro",
+    "unit": "unidad",
+    "expiration": "2024-11-30",
+    "model": "Chocolate Bliss",
+    "quantity": "15",
+    "price": 6.99,
+    "category": "Brownies",
+    "maker": "Cocoa Heaven Bakery",
+    "images": [
+      "brownie1.jpg",
+      "brownie2.jpg"
+    ],
+    "status": "ACTIVE",
+    "weight": 200,
+    "ingredients": [
+      "Chocolate negro",
+      "Harina de trigo",
+      "Azúcar",
+      "Huevos",
+      "Mantequilla"
+    ],
+    "allergens": [
+      "Trigo",
+      "Huevos",
+      "Lácteos"
+    ],
+    "nutritionalInformation": "Calorías: 200 por porción",
+    "isFeatured": true,
+    "isVegetarian": true,
+    "isGlutenFree": false
+  },
+  {
+    "_id": "6547d1dace70555a86b91a37",
+    "sku": "PR24680",
+    "name": "Brownie de Chocolate",
+    "description": "Delicioso brownie de chocolate negro",
+    "unit": "unidad",
+    "expiration": "2024-11-30",
+    "model": "Chocolate Bliss",
+    "quantity": "15",
+    "price": 6.99,
+    "category": "Brownies",
+    "maker": "Cocoa Heaven Bakery",
+    "images": [
+      "brownie1.jpg",
+      "brownie2.jpg"
+    ],
+    "status": "ACTIVE",
+    "weight": 200,
+    "ingredients": [
+      "Chocolate negro",
+      "Harina de trigo",
+      "Azúcar",
+      "Huevos",
+      "Mantequilla"
+    ],
+    "allergens": [
+      "Trigo",
+      "Huevos",
+      "Lácteos"
+    ],
+    "nutritionalInformation": "Calorías: 200 por porción",
+    "isFeatured": true,
+    "isVegetarian": true,
+    "isGlutenFree": false
+  },
+  {
+    "_id": "6547d1e2ce70555a86b91a38",
+    "sku": "PR24680",
+    "name": "Brownie de Chocolate",
+    "description": "Delicioso brownie de chocolate negro",
+    "unit": "unidad",
+    "expiration": "2024-11-30",
+    "model": "Chocolate Bliss",
+    "quantity": "15",
+    "price": 6.99,
+    "category": "Brownies",
+    "maker": "Cocoa Heaven Bakery",
+    "images": [
+      "brownie1.jpg",
+      "brownie2.jpg"
+    ],
+    "status": "ACTIVE",
+    "weight": 200,
+    "ingredients": [
+      "Chocolate negro",
+      "Harina de trigo",
+      "Azúcar",
+      "Huevos",
+      "Mantequilla"
+    ],
+    "allergens": [
+      "Trigo",
+      "Huevos",
+      "Lácteos"
+    ],
+    "nutritionalInformation": "Calorías: 200 por porción",
+    "isFeatured": true,
+    "isVegetarian": true,
+    "isGlutenFree": false
+  },
+  {
+    "_id": "6547d1eace70555a86b91a39",
+    "sku": "PR24680",
+    "name": "Brownie de Chocolate",
+    "description": "Delicioso brownie de chocolate negro",
+    "unit": "unidad",
+    "expiration": "2024-11-30",
+    "model": "Chocolate Bliss",
+    "quantity": "15",
+    "price": 6.99,
+    "category": "Brownies",
+    "maker": "Cocoa Heaven Bakery",
+    "images": [
+      "brownie1.jpg",
+      "brownie2.jpg"
+    ],
+    "status": "ACTIVE",
+    "weight": 200,
+    "ingredients": [
+      "Chocolate negro",
+      "Harina de trigo",
+      "Azúcar",
+      "Huevos",
+      "Mantequilla"
+    ],
+    "allergens": [
+      "Trigo",
+      "Huevos",
+      "Lácteos"
+    ],
+    "nutritionalInformation": "Calorías: 200 por porción",
+    "isFeatured": true,
+    "isVegetarian": true,
+    "isGlutenFree": false
+  },
+  {
+    "_id": "6547e06c260e3bee5570a041",
+    "sku": "PR12345",
+    "name": "Tarta de Chocolate",
+    "description": "Deliciosa tarta de chocolate",
+    "unit": "unidad",
+    "expiration": "2024-12-31",
+    "model": "Chocolate Supreme",
+    "quantity": "10",
+    "price": 15.99,
+    "category": "Repostería",
+    "maker": "Repostería La Delicia",
+    "images": [
+      "image1.jpg",
+      "image2.jpg"
+    ],
+    "status": "ACTIVE",
+    "weight": 500,
+    "ingredients": [
+      "Harina",
+      "Cacao en polvo",
+      "Azúcar",
+      "Huevos",
+      "Mantequilla"
+    ],
+    "allergens": [
+      "Huevos",
+      "Leche",
+      "Trigo"
+    ],
+    "nutritionalInformation": "Calorías: 350 por porción",
+    "isFeatured": true,
+    "isVegetarian": true,
+    "isGlutenFree": false
+  },
+  {
+    "_id": "6547e701260e3bee5570a042",
+    "sku": "PR56789",
+    "name": "Galletas de Avena y Pasas",
+    "description": "Galletas saludables con avena y pasas",
+    "unit": "paquete",
+    "expiration": "2024-11-30",
+    "model": "Avena y Pasas Crunch",
+    "quantity": "20",
+    "price": 9.99,
+    "category": "Galletas",
+    "maker": "Bakery Health",
+    "images": [
+      "galleta1.jpg",
+      "galleta2.jpg"
+    ],
+    "status": "ACTIVE",
+    "weight": 250,
+    "ingredients": [
+      "Avena",
+      "Pasas",
+      "Harina de trigo",
+      "Azúcar",
+      "Aceite vegetal"
+    ],
+    "allergens": [
+      "Trigo",
+      "Frutos secos"
+    ],
+    "nutritionalInformation": "Calorías: 150 por porción",
+    "isFeatured": false,
+    "isVegetarian": true,
+    "isGlutenFree": false
+  }
+]

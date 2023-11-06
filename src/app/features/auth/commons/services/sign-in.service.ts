@@ -16,7 +16,7 @@ export class SignInService {
   ) { }
 
   signIn(request:ISingInRequest): Observable<IToken>{
-    debugger
+    // debugger
     return this.http.post<IToken>(`${environment.api}/auth/sign-in`, request)
   }
 }

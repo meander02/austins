@@ -55,7 +55,7 @@ export class SignInFormComponent implements OnInit {
     this.passwordFieldType = this.passwordVisible ? 'text' : 'password';
   }
   send(): void {
-    debugger;
+    // debugger;
     const formData = this.group.value;
     if (this.group.valid) {
       this.formData.emit(this.group.value);

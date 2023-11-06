@@ -17,7 +17,7 @@ export class StorageService {
   //   return JSON.parse(localStorage.getItem(this.keyCart)!) ///// verificar despues por  el "!" le puse para evitar el error
   // }
   setToken(token: string): void {
-    debugger
+    // debugger
     localStorage.setItem(this.keyToken, JSON.stringify(token));
   }
 

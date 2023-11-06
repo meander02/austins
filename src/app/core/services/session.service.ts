@@ -14,25 +14,20 @@ export class SessionService {
   }
   constructor(private storageService: StorageService) {}
 
-
-
   getUserData(): Iuser | undefined {
-    if(this.token){
-      return  (this.helper.decodeToken(this.token)!)
-    }
-    return undefined; // Devuelve undefined en caso de que no haya un token
-
+    const decodedData = this.helper.decodeToken(this.token);
+    return decodedData;
   }
 
-  getRol(): string{
-    return this.getUserData()!.rol
+  getRol(): string {
+    const userData = this.getUserData();
+    return userData ? userData.rol : 'invitado';
   }
+
   isAutenticated(): boolean {
-    debugger
+    // debugger
     return !!this.token && !this.isTokenExpired();
   }
-
-
   isTokenExpired(): boolean{
     return this.helper.isTokenExpired(this.token)
   }

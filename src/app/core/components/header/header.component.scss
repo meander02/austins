@@ -1,3 +1,4 @@
+
 /* Estilos generales para el componente */
 .policy-header {
   position: fixed; /* Fija el header en la parte superior de la página */
@@ -16,7 +17,6 @@
   padding: 20px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sutil sombra */
 }
-
 
 .logo-container {
   flex: 1;
@@ -60,7 +60,6 @@
     // background-color: #d4d0cc; /* Color de fondo al hacer clic */
     transform: scale(0.95); /* Efecto de escala al hacer clic */
   }
-
 }
 
 /* Estilos para la sección de menú móvil */
@@ -96,8 +95,6 @@
   border-radius: 5px;
   min-width: 150px;
 }
-
-
 
 .mobile-menu-item {
   padding: 10px 20px;
@@ -163,7 +160,6 @@
   .policy-header {
     min-height: 60px; /* Fija la altura mínima del encabezado en dispositivos móviles */
   }
-
 }
 
 .mat-menu {

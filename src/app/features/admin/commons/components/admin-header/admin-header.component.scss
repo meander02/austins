@@ -1,0 +1,84 @@
+:host{
+  *{
+        // outline: 1px solid red;
+//
+  }
+}
+.admin-header {
+  // background-color: #333;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.logo-container {
+  flex: 1;
+  text-align: left; /* Alinea el logo a la izquierda */
+  margin-right: 20px;
+}
+
+.logo-container img {
+  max-width: 20%;
+}
+
+.profile-container {
+  display: flex;
+  align-items: center;
+}
+
+.profile-info {
+  display: flex;
+  align-items: center;
+}
+
+.profile-info img {
+  max-width: 30px; /* Tamaño de la foto del administrador */
+  border-radius: 50%; /* Hace que la foto tenga forma de círculo */
+  margin-right: 10px;
+}
+
+.profile-info span {
+  color: #ffa500;
+  font-size: 18px;
+}
+
+.button-container-mobile {
+  display: none;
+}
+
+.button-container-pc {
+  display: flex;
+  align-items: center;
+}
+
+.menu-btn {
+  background-color: transparent;
+  color: #ffa500;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 10px 20px;
+  margin-right: 20px;
+}
+
+.menu-btn:hover {
+  color: #e9ba81;
+}
+
+.mobile-menu-item_b1 {
+  padding: 10px 20px;
+  background-color: transparent;
+  color: #ffa500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.material-icons {
+  font-size: 24px;
+  margin-right: 10px;
+}
+

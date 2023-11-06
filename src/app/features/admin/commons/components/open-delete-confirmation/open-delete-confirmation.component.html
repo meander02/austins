@@ -1,0 +1,7 @@
+<!-- delete-confirmation.component.html -->
+<div class="confirmation-dialog">
+  <h2>Confirmar eliminación</h2>
+  <p>¿Estás seguro de que deseas eliminar el producto "{{ data.product.name }}"?</p>
+  <button mat-raised-button color="warn" (click)="confirmDelete()">Sí</button>
+  <button mat-raised-button (click)="closeDialog()">No</button>
+</div>
