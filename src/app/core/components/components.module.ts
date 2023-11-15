@@ -14,18 +14,19 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { FormsModule } from '@angular/forms';
 import { SignInService } from 'src/app/features/auth/commons/services/sign-in.service';
 import { HttpClientModule } from '@angular/common/http';
+import { CookiesComponent } from './cookies/cookies.component';
 
 
 @NgModule({
   declarations: [
     HeaderComponent,
     FooterComponent,
-    PoliticaComponent
+    PoliticaComponent,CookiesComponent
   ],
   exports: [
     // PoliticaComponent,
     HeaderComponent,
-    FooterComponent,PoliticaComponent
+    FooterComponent,PoliticaComponent,CookiesComponent
   ],
   imports: [
     // BrowserModule,

@@ -8,8 +8,6 @@ import { MaterialModule } from './material/material.module';
 @NgModule({
   declarations: [],
   exports:[AdminComponentModule,ADMINServicesModule,MaterialModule],
-  imports: [
-    CommonModule
-  ]
+
 })
 export class AdminCommonsModule { }

@@ -55,15 +55,7 @@ import { EditProductComponentComponent } from './edit-product-component/edit-pro
     ReactiveFormsModule,
     MatFormFieldModule,
     FormsModule,
-    // MatButtonModule,
-    // MatTableModule,
-    // MatPaginatorModule,
-    // MatFormFieldModule,
-    // MatInputModule,
-    // MatSortModule,
 
-    // FormsModule
-    // BrowserAnimationsModule, // Asegúrate de importar BrowserAnimationsModule
   ],
   providers: [
     ProductService, // Agrega ProductService como proveedor aquí

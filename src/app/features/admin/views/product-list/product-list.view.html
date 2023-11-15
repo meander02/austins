@@ -50,7 +50,7 @@
       <mat-header-cell *matHeaderCellDef mat-sort-header>
          Estado
       </mat-header-cell>
-      <mat-cell *matCellDef="let product" [ngClass]="{'active': product.status === 'ACTIVE', 'deactive': product.status === 'DEACTIVE'}">
+      <mat-cell *matCellDef="let product" [ngClass]="{'active': product.status === 'ACTIVE', 'deactive': product.status === 'INACTIVE'}">
         {{ product.status }}
       </mat-cell>
     </ng-container>

@@ -5,6 +5,8 @@ import { HomeViews } from './views/home/home.views';
 import { PoliticaPrivView } from './views/politica-priv/politica-priv.view';
 import { AcercaDeView } from './views/acerca-de/acerca-de.view';
 import { DetailViews } from './views/detail/detail.views';
+import { PoliticaCookiesView } from './views/politica-cookies/politica-cookies.view';
+import { TerminosCondicionesView } from './views/terminos-condiciones/terminos-condiciones.view';
 
 const routes: Routes = [
   {
@@ -27,6 +29,16 @@ const routes: Routes = [
         title:"Politica |",
         path: 'politica',
         component: PoliticaPrivView,
+      },
+      {
+        title:"Politica |Cookies",
+        path: 'cookies',
+        component: PoliticaCookiesView,
+      },
+      {
+        title:"Terminos |Condiciones",
+        path: 'Terminos',
+        component: TerminosCondicionesView,
       },
       {
         title:"Acerca de |",

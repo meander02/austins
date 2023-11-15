@@ -1,9 +1,18 @@
-import { Component, Inject } from '@angular/core';
+// import { Component, Inject, ElementRef } from '@angular/core';
 import { Product } from '../../../models/Product.models';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { ProductService } from '../../services/product.service';
 
+import { COMMA, ENTER } from '@angular/cdk/keycodes';
+import { Component, ElementRef, Inject, inject } from '@angular/core';
+import { MatChipEditedEvent, MatChipInputEvent } from '@angular/material/chips';
+import { environment } from 'src/environments/environment';
+import { forkJoin } from 'rxjs';
+import { DomSanitizer } from '@angular/platform-browser';
+import { RestService } from '../../services/rest.service';
+import { CategoryService } from '../../services/category.service';
+import { Categoria } from '../../../models/Category.models';
 @Component({
   selector: 'app-edit-product-component',
   templateUrl: './edit-product-component.component.html',
@@ -13,14 +22,31 @@ export class EditProductComponentComponent {
   editForm: FormGroup;
   product: Product;
   productImage: File | null = null;
+  separatorKeysCodes = [ENTER, COMMA] as const;
+
+  chips: any[] = []; // Puedes ajustar el tipo según la estructura real de tus datos
+  productImages: any[] = []; // Agrega una propiedad para almacenar las imágenes
+  // Property to store selected images
+  selectedImages: File[] = [];
+  imagenPrevia: any;
+  files: any = [];
+  loading: boolean | undefined;
+  categories: Categoria[] = [];
+
 
   constructor(
     private dialogRef: MatDialogRef<EditProductComponentComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private fb: FormBuilder,
+    private el: ElementRef,
+    private sanitizer: DomSanitizer,
+    private rest: RestService,
+    private categoryService: CategoryService,
     private productService: ProductService // Inyecta el servicio de productos
   ) {
     this.product = data.product; // Obtiene el producto a editar de los datos pasados
+    // this.categories = data.categories; // Obtiene el producto a editar de los datos pasados
+    this.categories = []; // Puedes inicializarlo aquí o en el constructor según tus necesidades
 
     // Inicializa el formulario con los datos del producto
     this.editForm = this.fb.group({
@@ -32,6 +58,11 @@ export class EditProductComponentComponent {
       quantity: [this.product.quantity, Validators.required],
       category: [this.product.category, Validators.required],
       maker: [this.product.maker, Validators.required],
+      status: [this.product.status === 'ACTIVE', Validators.required], // Cambiado para reflejar el estado activo/inactivo con un checkbox
+      // Inicializa los campos relacionados con ingredientes y alérgenos
+      ingredients: this.fb.array(this.product.ingredients || []),
+      allergens: this.fb.array(this.product.allergens || []),
+      model: [this.product.model, Validators.required],
       expiration: [this.product.expiration, Validators.required],
       weight: [this.product.weight, Validators.required],
       nutritionalInformation: [
@@ -41,20 +72,62 @@ export class EditProductComponentComponent {
       isFeatured: [this.product.isFeatured, Validators.required],
       isVegetarian: [this.product.isVegetarian, Validators.required],
       isGlutenFree: [this.product.isGlutenFree, Validators.required],
+      images: this.fb.array(this.product.images || []),
     });
+    this.loadCategories(); // Llamada a loadCategories() aquí
+
+    // Agrega formControls para ingredientes y alérgenos
+    this.editForm.addControl('ingredientsInput', this.fb.control(''));
+    this.editForm.addControl('allergensInput', this.fb.control(''));
+  }
+
+  getIngredientsArray(): string[] {
+    const ingredientsControl = this.editForm.get('ingredients');
+    return ingredientsControl ? ingredientsControl.value : [];
+  }
+
+  getAllergensArray(): string[] {
+    const allergensControl = this.editForm.get('allergens');
+    return allergensControl ? allergensControl.value : [];
+  }
+  // Añade estas funciones para acceder a los valores de los controles de manera segura
+  getIngredientsInputValue(): string {
+    const ingredientsInputControl = this.editForm.get('ingredientsInput');
+    return ingredientsInputControl ? ingredientsInputControl.value : '';
+  }
+
+  getAllergensInputValue(): string {
+    const allergensInputControl = this.editForm.get('allergensInput');
+    return allergensInputControl ? allergensInputControl.value : '';
+  }
+  // Método para manejar la adición de ingredientes
+  agregarIngrediente() {
+    const ingredientsArray = this.editForm.get('ingredients') as FormArray;
+    ingredientsArray.push(this.fb.control('Nuevo ingrediente'));
+    console.log('Ingrediente agregado:', this.editForm.value.ingredients);
+  }
+
+  removeIngredient(index: number) {
+    const ingredientsArray = this.editForm.get('ingredients') as FormArray;
+    ingredientsArray.removeAt(index);
+    console.log('Ingrediente eliminado:', this.editForm.value.ingredients);
+  }
+
+  // Repite un proceso similar para los métodos relacionados con alérgenos y chips.
+
+  // Método para manejar la eliminación de alérgenos
+  removeAllergen(index: number) {
+    const allergensArray = this.editForm.get('allergens') as FormArray;
+    allergensArray.removeAt(index);
   }
 
   saveChanges(): void {
     if (this.editForm.valid) {
       // Obtiene los valores editados del formulario
-      const product = new Product();
-      const editedProductName: string = product.getNameUpperCase(
-        this.editForm.value.name
-      );
       const editedProduct: Product = {
         ...this.data.product, // Conserva los valores no editados
         name: this.editForm.value.name,
-        //   description: this.editForm.value.description,
+        description: this.editForm.value.description,
         unit: this.editForm.value.unit,
         expiration: this.editForm.value.expiration,
         model: this.product.model,
@@ -63,49 +136,43 @@ export class EditProductComponentComponent {
         category: this.editForm.value.category,
         maker: this.editForm.value.maker,
         images: this.product.images,
-        status: this.product.status,
+        status: this.editForm.value.status ? 'ACTIVE' : 'INACTIVE',
         weight: this.editForm.value.weight,
-        ingredients: this.product.ingredients,
-        allergens: this.product.allergens,
+        ingredients: this.getIngredientsArray(),
+        allergens: this.getAllergensArray(),
         nutritionalInformation: this.editForm.value.nutritionalInformation,
         isFeatured: this.editForm.value.isFeatured,
         isVegetarian: this.editForm.value.isVegetarian,
         isGlutenFree: this.editForm.value.isGlutenFree,
         // Agrega otros campos editados aquí
       };
-
-      // Lógica para actualizar la imagen (si se cambió)
       if (this.productImage) {
         // Llama al servicio correspondiente para subir la nueva imagen y obtiene la URL
         // Sustituye 'productService' por el servicio que utilizas para cargar imágenes
+        const formData = new FormData();
+        formData.append('file', this.productImage);
         this.productService
-          .uploadImage(this.productImage)
+          .uploadImage(formData)
           .subscribe((imageURL: string) => {
             editedProduct.images.push(imageURL); // Agrega la nueva URL de la imagen al producto
             this.updateProduct(editedProduct); // Llama a la función para actualizar el producto
+            // this.uploadImagesAndAddToForm();
+            this.uploadImagesAndAddToForm(editedProduct);
           });
       } else {
         this.updateProduct(editedProduct); // Llama a la función para actualizar el producto sin cambiar la imagen
+        // this.uploadImagesAndAddToForm(); // Upload images and add their URLs to the form
+        this.uploadImagesAndAddToForm(editedProduct);
       }
     }
   }
 
-  // Función para cerrar el modal
-  closeDialog(): void {
-    this.dialogRef.close();
-  }
-
-  // Función para manejar la selección de imagen
-  onImageSelected(event: Event): void {
-    const input = event.target as HTMLInputElement;
-    if (input.files && input.files.length > 0) {
-      this.productImage = input.files[0];
-    }
-  }
   // Función para actualizar el producto
   private updateProduct(product: Product): void {
     this.productService.updateProduct(product).subscribe(
       (updatedProduct: Product) => {
+        this.productImages = updatedProduct.images;
+
         // Manejar la respuesta actualizada, por ejemplo, mostrar un mensaje de éxito.
         console.log('Producto actualizado con éxito', updatedProduct);
         this.dialogRef.close(updatedProduct); // Cierra el modal y pasa los datos editados de vuelta a la vista principal
@@ -116,4 +183,156 @@ export class EditProductComponentComponent {
       }
     );
   }
+
+
+  toggleStatus(): void {
+    const statusControl = this.editForm.get('status');
+    if (statusControl) {
+      const currentStatus = statusControl.value;
+      statusControl.setValue(!currentStatus); // Cambiar el valor del checkbox
+    }
+  }
+
+  // Método para manejar la adición de chips (ingredientes o alérgenos)
+  addChip(event: MatChipInputEvent, controlName: string): void {
+    const value = (event.value || '').trim();
+    if (value) {
+      const control = this.editForm.get(controlName) as FormArray;
+      control.push(this.fb.control(value));
+    }
+
+    event.chipInput!.clear();
+  }
+  // En tu componente, en el método removeChip
+  removeChip(index: number, type: string) {
+    const formArray = type === 'ingredients' ? 'ingredients' : 'allergens';
+    (this.editForm.get(formArray) as FormArray).removeAt(index);
+  }
+
+  editIngredient(index: number, event: MatChipEditedEvent): void {
+    const value = event.value.trim();
+    if (!value) {
+      // Remove ingredient if it no longer has a name
+      this.removeIngredient(index);
+      return;
+    }
+
+    const ingredientsArray = this.editForm.get('ingredients') as FormArray;
+    ingredientsArray.at(index).setValue(value);
+  }
+  editAllergens(index: number, event: MatChipEditedEvent): void {
+    const value = event.value.trim();
+    if (!value) {
+      // Remove ingredient if it no longer has a name
+      this.removeAllergen(index);
+      return;
+    }
+
+    const AllergensArray = this.editForm.get('allergens') as FormArray;
+    AllergensArray.at(index).setValue(value);
+  }
+  // Agrega esta función para subir la imagen y actualizar el formulario
+
+  ngAfterViewInit() {
+    this.el.nativeElement.focus();
+  }
+  closeDialog(): void {
+    this.dialogRef.close();
+    this.editForm.reset(); // Reinicializa el formulario
+  }
+
+  // Método para manejar la edición de imágenes
+  // Función para manejar la selección de imagen
+  getImages(url: string): string {
+    return `${environment.api}/${url}`;
+  }
+  removeImage(index: number): void {
+    this.product.images.splice(index, 1);
+  }
+  removeSelectedImage(selectedImage: File): void {
+    const index = this.selectedImages.indexOf(selectedImage);
+    if (index !== -1) {
+      this.selectedImages.splice(index, 1);
+    }
+  }
+
+
+
+  onImagesSelected(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files.length > 0) {
+      this.selectedImages = Array.from(input.files);
+
+      // Muestra las imágenes seleccionadas en la vista previa
+      this.productImages = this.selectedImages.map((image: File) => ({
+        name: image.name,
+        url: URL.createObjectURL(image),
+      }));
+    }
+  }
+
+
+  uploadImagesAndAddToForm(product: Product): void {
+    const uploadObservables = this.selectedImages.map((image: File) => {
+      const formData = new FormData();
+      formData.append('file', image);
+
+      // Muestra la imagen seleccionada antes de cargarla
+      this.productImages.push({ name: image.name, url: URL.createObjectURL(image) });
+
+      return this.productService.uploadImage(formData);
+    });
+
+    forkJoin(uploadObservables).subscribe((imageURLs: string[]) => {
+      product.images = product.images.concat(imageURLs);
+
+      // Actualiza el control de imágenes en el formulario con las imágenes actualizadas
+      this.editForm.get('images')?.setValue(product.images);
+
+      // Limpia las imágenes seleccionadas después de cargar
+      this.selectedImages = [];
+    });
+  }
+
+  // Load images function
+  loadImages = () => {
+    try {
+      this.loading = true;
+      const uploadObservables = this.selectedImages.map((item: File) => {
+        const formData = new FormData();
+        formData.append('files', item, item.name);
+        return this.productService.uploadImage(formData);
+      });
+
+      forkJoin(uploadObservables).subscribe(
+        (imageURLs: string[]) => {
+          this.loading = false;
+          this.editForm.get('images')?.setValue(imageURLs);
+          this.updateProduct(this.editForm.value);
+        },
+        (error) => {
+          console.error('Error al cargar imágenes:', error);
+          this.loading = false;
+        }
+      );
+    } catch (e) {
+      console.log('ERROR', e);
+    }
+  };
+
+
+
+  loadCategories() {
+    this.categoryService.getAllCategories()
+      .subscribe(
+        (data: Categoria[]) => {
+          this.categories = data;
+        },
+        error => {
+          console.error('Error al cargar las categorías:', error);
+        }
+      );
+  }
+
+
 }

@@ -78,8 +78,6 @@ export class HeaderComponent {
     console.log(this.isMobileMenuOpen);
   }
 
-
-
   @HostListener('window:scroll', ['$event'])
   onWindowScroll() {
     if (window.scrollY > 0) {
@@ -97,22 +95,30 @@ export class HeaderComponent {
     // debugger
     this.router.navigateByUrl('/payment/cart');
   }
-isDetailRoute(): boolean {
-  return this.currentRoute === '/portal/detail'; // Cambia '/portal/detail' con la ruta deseada
-}
 
-openSignInModal(): MatDialogRef<SignInView> {
-  const isMobile = window.innerWidth < 480; // Puedes ajustar este valor según tus necesidades
-  const dialogRef = this.dialog.open(SignInView, {
-    width: isMobile ? '500px' : '430px', // Ajusta el ancho del modal para móvil
-    height: isMobile ? 'auto' : '95%', // Ajusta el alto del modal para móvil
-  });
+  isDetailRoute(): boolean {
+    return this.currentRoute === '/portal/detail'; // Cambia '/portal/detail' con la ruta deseada
+  }
+  isCookieRoute(): boolean {
+    return this.currentRoute === '/portal/cookies'; // Cambia '/portal/detail' con la ruta deseada
+  }
+  isPoliRoute(): boolean {
+    return this.currentRoute === '/portal/politica'; // Cambia '/portal/detail' con la ruta deseada
+  }
+  isTermRoute(): boolean {
+    return this.currentRoute === '/portal/Terminos'; // Cambia '/portal/detail' con la ruta deseada
+  }
+  openSignInModal(): MatDialogRef<SignInView> {
+    const isMobile = window.innerWidth < 480; // Puedes ajustar este valor según tus necesidades
+    const dialogRef = this.dialog.open(SignInView, {
+      width: isMobile ? '500px' : '430px', // Ajusta el ancho del modal para móvil
+      height: isMobile ? 'auto' : '95%', // Ajusta el alto del modal para móvil
+    });
 
-  dialogRef.afterClosed().subscribe((result) => {
-    console.log('Modal cerrado', result);
-  });
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log('Modal cerrado', result);
+    });
 
-  return dialogRef;
-}
-
+    return dialogRef;
+  }
 }

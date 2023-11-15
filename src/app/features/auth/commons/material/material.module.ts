@@ -8,11 +8,13 @@ import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms'; // Importa FormsModule
 // import { BrowserModule } from '@angular/platform-browser';
 
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatNativeDateModule} from '@angular/material/core';
 
 @NgModule({
   imports: [], // Agrega FormsModule a los imports
 
-  exports: [ FormsModule,MatCardModule,MatFormFieldModule,MatButtonModule,MatInputModule],
+  exports: [ FormsModule,MatCardModule,MatFormFieldModule,MatButtonModule,MatInputModule, MatDatepickerModule, MatNativeDateModule],
 
 })
 export class MaterialModule { }

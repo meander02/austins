@@ -1,0 +1,17 @@
+<div [@fadeInOut] class="privacy-cookies-container" *ngIf="isPrivacyCookiesVisible && !isCookieRoute()">
+  <div class="privacy-content">
+    <strong>🍪  hablemos de cookies 🍪</strong><br>
+    Utilizamos cookies esenciales para que el sitio  funcione. Nos gustaría utilizar otras cookies para personalizar y mejorar tu visita, adaptar los anuncios de el sitio  y de terceros a tus preferencias y analizar el desempeño de nuestro sitio web, pero solo si tú nos autorizas. Para más información sobre tus opciones,
+    <a (click)="redirectTo('cookies')" class="privacy-button">
+      nuestras políticas de cookies.
+    </a>
+  </div>
+  <div class="buttons-container">
+    <button class="accept-cookies-button blur-effect" (click)="closePrivacyCookies()">
+      Aceptar todas las cookies
+    </button>
+    <button class="manage-cookies-button" (click)="closePrivacyCookies()">
+      Administrar cookies
+    </button>
+  </div>
+</div>

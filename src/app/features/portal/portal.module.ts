@@ -11,12 +11,14 @@ import { PortalComponent } from './portal.component';
 import { PortalCommonsModule } from './commons/commons.module';
 import { PoliticaPrivView } from './views/politica-priv/politica-priv.view';
 import { AcercaDeView } from './views/acerca-de/acerca-de.view';
+import { PoliticaCookiesView } from './views/politica-cookies/politica-cookies.view';
+import { TerminosCondicionesView } from './views/terminos-condiciones/terminos-condiciones.view';
 
 
 // import { ErrorInterceptor } from 'src/app/shared/interceptor/error.interceptor';
 
 @NgModule({
-  declarations: [HomeViews, NotFondViews, DetailViews, AboutViews,PortalComponent, PoliticaPrivView, AcercaDeView],
+  declarations: [HomeViews, NotFondViews, DetailViews, AboutViews,PortalComponent, PoliticaPrivView, AcercaDeView, PoliticaCookiesView, TerminosCondicionesView],
   imports: [CommonModule, PortalRoutingModule,PortalCommonsModule],
   // providers: [
   //   { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },

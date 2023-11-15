@@ -8,13 +8,13 @@ import { MatTable, MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatIconModule } from '@angular/material/icon';
-import { MatPseudoCheckboxModule } from '@angular/material/core';
+import { MatOptionModule, MatPseudoCheckboxModule } from '@angular/material/core';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatSelectModule } from '@angular/material/select';
+import {MatChipsModule} from '@angular/material/chips';
+import { MatChipGrid } from '@angular/material/chips';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
-// import { BrowserModule } from '@angular/platform-browser';
-//
-// import { FormsModule } from '@angular/forms';
-//
 
 @NgModule({
   exports: [
@@ -27,7 +27,9 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     MatSortModule,
     MatIconModule,
     MatPseudoCheckboxModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatSelectModule,
+    MatOptionModule,MatChipsModule,MatProgressSpinnerModule
 
   ],
 })

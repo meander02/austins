@@ -1,0 +1,74 @@
+/* Estilos generales */
+
+
+.cookies-policy-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  margin-top: 130px;
+}
+
+a{
+  text-underline-offset: initial;
+  color:#222522 !important;
+  text-decoration: none;
+  cursor: pointer;
+  font-weight: 500;
+}
+h1 {
+  color: #333;
+}
+
+h2 {
+  color: #785e2e;
+}
+
+p {
+  color: #555;
+}
+
+/* Estilos para la tabla */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+
+  th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+
+  th {
+    background-color: #f2f2f2;
+  }
+}
+
+
+
+.feedback-buttons {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.feedback-buttons button {
+  margin: 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  background-color: #4CAF50; /* Color de fondo verde */
+  color: white;
+  border: none;
+  border-radius: 5px;
+}
+
+.feedback-buttons button:hover {
+  background-color: #45a049; /* Cambia el color de fondo al pasar el ratón sobre el botón */
+}
+
+.last-update {
+  margin-top: 20px;
+  text-align: right;
+  font-style: italic;
+  color: #888;
+}

@@ -16,6 +16,7 @@ import { FilterPipe } from 'src/app/shared/pipes/filter.pipe';
     MaterialModule,
     // DefaultImgModule
     // PortalServicesModule,
-  ]
+  ],
+
 })
 export class PortalCommonsModule { }

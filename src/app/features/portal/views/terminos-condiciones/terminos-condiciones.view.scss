@@ -1,0 +1,100 @@
+/* terminos-condiciones.component.css */
+
+.terminos-condiciones-container {
+  max-width: 800px;
+  margin: 0 auto;
+  margin-top: 130px;
+  padding: 20px;
+}
+
+.privacy-cookies-container {
+  background-color: rgba(101, 101, 101, 0.8);
+  position: fixed;
+  bottom: 15px;
+  padding: 15px;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.632);
+  backdrop-filter: blur(10px);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.privacy-content {
+  position: relative;
+  z-index: 1;
+  color: #fff;
+  transition: color 0.3s;
+  text-align: left;
+}
+
+.privacy-content strong {
+  font-weight: bold;
+}
+
+.privacy-button {
+  color: rgb(255, 233, 70);
+  text-decoration: underline;
+  cursor: pointer;
+  border: none;
+}
+
+.privacy-button:hover {
+  color: rgb(255, 192, 20);
+}
+
+.accept-cookies-button,
+.manage-cookies-button {
+  cursor: pointer;
+  border: none;
+}
+
+.accept-cookies-button:hover,
+.manage-cookies-button:hover {
+  color: #f1f1ee;
+}
+
+.buttons-container {
+  display: flex;
+  margin-top: 10px;
+}
+
+.accept-cookies-button {
+  background-color: #ab7038;
+  backdrop-filter: blur(5px);
+  color: #fff;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.manage-cookies-button {
+  background-color: transparent;
+  color: #fda400;
+  border: 2px solid #fda400;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.blur-effect {
+  backdrop-filter: blur(5px);
+}
+
+@media screen and (max-width: 767px) {
+  .privacy-cookies-container {
+    bottom: 10px;
+    right: 10px;
+    padding: 10px;
+  }
+
+  .accept-cookies-button,
+  .manage-cookies-button {
+    padding: 8px 16px;
+  }
+}
+
+/* ... (continuación del CSS) */

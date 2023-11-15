@@ -55,14 +55,15 @@
   <div class="footer-enlaces-rapidos">
 
     <ul>
-      <li>|<a href="#">Términos y Condiciones</a>
-  |<a href="#">Política de Privacidad</a>
-     | <a href="#">Preguntas Frecuentes</a></li>
+      <li>|<a (click)="redirectTo('Terminos')">Términos y Condiciones</a>
+  |<a (click)="redirectTo('politica')">Política de Privacidad</a>
+     | <a (click)="redirectTo('home')">Preguntas Frecuentes</a></li>
     </ul>
   </div>
 
   <div class="copyright">
     <span>&copy; {{ anio }} Pastelería. Todos los derechos reservados.</span>
-    <app-politica></app-politica>
+    <!-- <app-politica></app-politica> -->
+    <app-cookies></app-cookies>
   </div>
 </footer>
