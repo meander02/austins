@@ -1,34 +1,39 @@
 /* Estilos generales para el componente */
 .policy-header {
-  height: 5vh;
-  position: fixed;
+  height:5vh; /* Establece la altura del contenedor .policy-header a 80 píxeles */
+  position: fixed; /* Fija el header en la parte superior de la página */
   top: 0;
   left: 0;
   right: 0;
-  transition: background-color 0.5s ease, color 0.5s ease;
-  z-index: 1000;
+  // height: min-content;
+  transition:
+    background-color 0.5s ease,
+    /* Transiciones suaves para el cambio de color de fondo */ color 0.5s ease; /* y de texto */
+  z-index: 1000; /* Asegura que el header esté sobre otros elementos */
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: rgba(31, 29, 29, 0.49);
-  backdrop-filter: blur(10px);
-  padding: 20px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  background-color: rgba(31, 29, 29, 0.49); /* Color de fondo semi-transparente */
+  backdrop-filter: blur(10px); /* Aplica el efecto de desenfoque al fondo */
+  // padding: 4px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sutil sombra */
 }
 
 .logo-container {
   flex: 1;
   text-align: center;
-  margin-right: 60px;
+  margin-right: 20px;
 }
 
 .logo-container img {
-  max-width: 50%;
+  max-width: 60%;
 }
 
+
+/* Estilos para la sección de menú móvil */
 .button-container-mobile {
-  display: none;
-  position: relative;
+  display: none; /* Oculta el menú móvil por defecto en pantallas de PC */
+  position: relative; /* Agrega posición relativa al contenedor */
 }
 
 .mobile-menu-btn {
@@ -38,27 +43,29 @@
   font-size: 24px;
   cursor: pointer;
   padding: 0;
-  margin: 0 auto;
-  display: block;
+  margin: 0;
+  margin: 0 auto; /* Centra horizontalmente */
+  display: block; /* Asegura que el icono sea un bloque para centrarlo verticalmente */
 }
 
 .mobile-menu-btn:focus {
-  outline: none;
+  outline: none; /* Quita el contorno al hacer clic en el botón */
 }
 
 .mobile-menu {
   display: none;
   position: absolute;
   top: 100%;
-  right: 5;
+  right: 5; /* Alinea el menú a la derecha */
   background-color: #fff;
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px); /* Aplica el efecto de desenfoque al fondo */
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   border-radius: 5px;
   min-width: 150px;
 }
 
 .mobile-menu-item {
+  // padding: 10px 20px;
   text-align: center;
   color: #333;
   text-decoration: none;
@@ -69,26 +76,26 @@
 }
 
 .mobile-menu-item:hover {
-  background-color: #f3b5b2;
+  background-color: #f3b5b2; /* Color de fondo al pasar el mouse */
 }
 
 /* Estilos para dispositivos móviles (pantallas de hasta 768px de ancho) */
 @media (max-width: 768px) {
   .logo-container {
     flex: 1;
+
     text-align: center;
-    margin-right: 0;
+    margin-right: 0; /* Elimina el margen derecho para ajustar al centro */
   }
 
   .logo-container img {
-    max-width: 100%;
-    display: none;
+    max-width: 100%; /* Asegura que el logotipo se ajuste al ancho de la pantalla */
+    display: none; /* Asegura que el logotipo ocupe el ancho completo disponible */
   }
-
   .policy-header {
-    min-height: 60px;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    min-height: 60px; /* Fija la altura mínima del encabezado en dispositivos móviles */
+    padding-top: 10px; /* Espaciado superior adicional para acomodar el botón móvil */
+    padding-bottom: 10px; /* Espaciado inferior adicional para acomodar el botón móvil */
   }
 
   .mobile-menu-btn {
@@ -98,41 +105,41 @@
     font-size: 24px;
     cursor: pointer;
     padding: 10px;
-    margin: 0 auto;
-    display: block;
+    margin: 0 auto; /* Centra horizontalmente */
+    display: block; /* Asegura que el icono sea un bloque para centrarlo verticalmente */
   }
-
   .button-container-mobile {
-    display: flex;
+    display: flex; /* Muestra el menú móvil solo en dispositivos móviles */
     align-items: center;
     position: relative;
   }
 
   .button-container-mobile:hover .mobile-menu {
-    display: block;
+    display: block; /* Muestra el menú al pasar el mouse sobre el botón */
   }
 
   .button-container-pc {
-    display: none;
+    display: none; /* Oculta el contenedor de PC en dispositivos móviles */
   }
 
   .policy-header {
-    min-height: 60px;
+    min-height: 60px; /* Fija la altura mínima del encabezado en dispositivos móviles */
   }
 }
 
 .mat-menu {
-  top: 0;
-  left: 0;
-  margin: 0;
-  backdrop-filter: blur(10px);
+  top: 0px;
+  left: 0px;
+  // height: min-content;
+  margin: 0px;
+  backdrop-filter: blur(10px); /* Aplica el efecto de desenfoque al fondo */
   background-color: transparent;
 }
-
 .mobile-menu-item_b1 {
   padding: 10px 20px;
   background-color: transparent;
   text-align: center;
+  // color: #333;
   text-decoration: none;
   display: block;
   font-weight: bold;
@@ -140,42 +147,61 @@
   cursor: pointer;
   background: #333333;
   color: #ffa500;
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px); /* Aplica el efecto de desenfoque al fondo */
 }
 
+/* Agrega este bloque para cambiar el color del fondo y del texto al hacer scroll hacia abajo */
+.scroll-header {
+  // backdrop-filter: blur(10px);
+  background-color: #333;
+
+  .menu-btn {
+    // color: #ffa500 !important; /* Cambia el color del texto al hacer scroll hacia abajo */
+    color: #ffffff;
+  }
+  .mobile-menu-btn {
+    color: #ffffff;
+  }
+
+  .mobile-menu-item_b1 {
+    color: #ffffff;
+  }
+}
 /* Estilos para el input de búsqueda */
 .search-container input {
-  padding: 10px;
-  border: none;
-  border-radius: 20px;
-  background-color: rgba(255, 255, 255, 0.5);
-  color: #333;
-  font-size: 16px;
-  width: 320px;
-  transition: background-color 0.3s ease, transform 0.3s ease;
+  padding: 10px; /* Espaciado interno para una apariencia más agradable */
+  border: none; /* Quita el borde del input */
+  border-radius: 20px; /* Agrega bordes redondeados */
+  background-color: rgba(255, 255, 255, 0.5); /* Fondo semitransparente */
+  color: #333; /* Color del texto */
+  font-size: 16px; /* Tamaño de fuente */
+  width: 320px; /* Ancho del input */
+  transition:
+    background-color 0.3s ease,
+    transform 0.3s ease;
 }
 
 /* Estilos para el botón de búsqueda */
 .search-container {
   display: flex;
   align-items: center;
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(255, 255, 255, 0.5); /* Fondo semi-transparente */
   border-radius: 20px;
-  padding: 0 10px;
-  width: 360px;
+  padding: 0px 10px;
+  width: 360px; /* Ancho del contenedor de búsqueda */
   transition: background-color 0.3s ease;
 
   input {
-    border: none;
-    background: transparent;
-    color: #333;
-    font-size: 16px;
-    width: 100%;
-    outline: none;
+    border: none; /* Quita el borde del input */
+    background: transparent; /* Fondo transparente del input */
+    color: #333; /* Color del texto */
+    font-size: 16px; /* Tamaño de fuente */
+    width: 100%; /* Ancho del input del 100% del contenedor */
+    outline: none; /* Quita el contorno al hacer clic en el input */
   }
 
   button {
-    background-color: transparent;
+    background-color: transparent; /* Color de fondo del botón */
     border: none;
     cursor: pointer;
     padding: 0;
@@ -185,16 +211,27 @@
 
 /* Estilo al pasar el mouse sobre el contenedor de búsqueda */
 .search-container:hover {
-  background-color: rgba(255, 255, 255, 0.7);
+  background-color: rgba(255, 255, 255, 0.7); /* Cambio de color al pasar el mouse */
 }
 
-/* Estilos para el ícono de menú */
+/* Agrega este bloque para cambiar el color del fondo y del texto al hacer scroll hacia abajo */
+.scroll-header {
+  background-color: #1d1b1b; /* Cambia el color de fondo al hacer scroll hacia abajo */
+  .menu-btn,
+  .mobile-menu-btn,
+  .material-icons.primary,
+  .mobile-menu-item_b1 {
+    color: #fff; /* Cambia el color del texto al hacer scroll hacia abajo */
+  }
+}
+
 .material-icons.primary {
-  color: #ffa500;
-  font-size: 24px;
-  margin: 0;
-  padding: 0;
+  color: #ffa500; /* Cambia el color del icono */
+  font-size: 24px; /* Ajusta el tamaño del icono según tus preferencias */
+  margin: 0; /* Ajusta el margen según tus preferencias */
+  padding: 0; /* Ajusta el espaciado según tus preferencias */
   cursor: pointer;
+  /* Agrega sombra al icono */
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 }
 

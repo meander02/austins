@@ -10,8 +10,7 @@ import { SignInView } from 'src/app/features/auth/views/sign-in/sign-in.view';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss','./header.component0.scss'],
-
+  styleUrls: ['./header.component.scss', './header.component0.scss','./header.component02.scss'],
 })
 export class HeaderComponent {
   isHeaderScrolled = false;
@@ -108,8 +107,10 @@ export class HeaderComponent {
       height: isMobile ? 'auto' : 'auto',
       maxWidth: isMobile ? 'auto' : 'auto',
       maxHeight: isMobile ? 'auto' : '100vh',
-      panelClass: isMobile ? ['mat-dialog', 'no-padding', 'mobile-dialog'] : ['mat-dialog', 'no-padding', 'web-dialog'],
-      data: {}
+      panelClass: isMobile
+        ? ['mat-dialog', 'no-padding', 'mobile-dialog']
+        : ['mat-dialog', 'no-padding', 'web-dialog'],
+      data: {},
     });
 
     dialogRef.afterClosed().subscribe((result) => {
@@ -118,7 +119,4 @@ export class HeaderComponent {
 
     return dialogRef;
   }
-
 }
-
-
