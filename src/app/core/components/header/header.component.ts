@@ -10,7 +10,8 @@ import { SignInView } from 'src/app/features/auth/views/sign-in/sign-in.view';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss'],
+  styleUrls: ['./header.component.scss','./header.component0.scss'],
+
 })
 export class HeaderComponent {
   isHeaderScrolled = false;
