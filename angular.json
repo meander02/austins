@@ -53,6 +53,12 @@
                   "type": "anyComponentStyle",
                   "maximumWarning": "2kb",
                   "maximumError": "4kb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "name": "header.component.scss",
+                  "maximumError": "4kb",
+                  "maximumWarning": "2kb"
                 }
               ],
               "outputHashing": "all"
