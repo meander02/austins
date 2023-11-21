@@ -7,10 +7,7 @@
   <div
     class="policy-header"
     [class.scroll-header]="isHeaderScrolled"
-    [class.is-detail-route]="isTermRoute()"
-    [class.is-detail-route]="isDetailRoute()"
-    [class.is-detail-route]="isPoliRoute()"
-    [class.is-detail-route]="isCookieRoute()"
+    [class.is-detail-route]="!isRUTA_DISTINTE_ahome()"
   >
     <link
       href="https://fonts.googleapis.com/css?family=Great+Vibes"
@@ -39,11 +36,7 @@
           Acerca De
         </div>
 
-
-        <div class="mobile-menu-item" (click)="openSignInModal()">
-          sign-in
-        </div>
-
+        <div class="mobile-menu-item" (click)="openSignInModal()">sign-in</div>
       </div>
     </div>
     <div class="search-container">
@@ -68,23 +61,21 @@
         #productsMenu="matMenu"
         yPosition="below"
       >
-        <div
-          mat-menu-item
-          class="mobile-menu-item_b1"
-        >
-          Productos
-        </div>
+        <div mat-menu-item class="mobile-menu-item_b1">Productos</div>
         <div
           mat-menu-item
           class="mobile-menu-item_b1"
           (click)="redirectTo('acercade')"
         >
-         acerca de
+          acerca de
         </div>
       </mat-menu>
       <button class="menu-btn" (click)="openSignInModal()">
-        sign IN
+        <mat-icon >account_circle</mat-icon>
+
+
       </button>
+
     </div>
     <mat-icon
       [matBadge]="badge"
@@ -94,4 +85,22 @@
       >shopping_cart</mat-icon
     >
   </div>
+
+  <div class="filter-section">
+
+    <label for="categoryFilter">Categoría:
+    </label>
+    <button >
+      filtrar
+      <mat-icon >filter_alt</mat-icon>
+    </button>
+
+
+    <label for="sortOrder">Ordenar por:</label>
+    <select id="sortOrder">
+      <option value="nuevo">Nuevo</option>
+      <option value="popular">Popular</option>
+    </select>
+  </div>
+  <!-- Nueva sección de filtrado -->
 </div>

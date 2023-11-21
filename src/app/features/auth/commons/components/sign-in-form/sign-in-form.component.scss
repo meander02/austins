@@ -1,6 +1,11 @@
+
+
+/* Importa el archivo de estilos global */
+@import '/src/styles';
+
 .log {
   text-align: center;
-
+// background-color: #242424;
   margin-top: 2%;
 }
 
@@ -25,7 +30,12 @@ mat-form-field {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   text-align: center;
   padding: 1%;
-  max-width: 400px;
+  max-width: 430px;
+  // max-width: 100%; /* Ajusta según tus necesidades */
+  padding: 20px;
+  box-sizing: border-box;
+  // max-width: 90%; /* Ajuste para dispositivos móviles */
+
   margin: 0 auto;
 }
 
@@ -194,7 +204,9 @@ a:hover {
   .login-button {
     margin-top: 0px;
     border-radius: 20px;
-    width: 250px;
+    // width: 250px;
+    width: 80%; /* Ajuste para dispositivos móviles */
+    max-width: 300px; /* Ancho máximo para dispositivos móviles */
   }
   .login-button:disabled {
     background-color: #ccc;
@@ -214,6 +226,7 @@ a:hover {
   .login-form .email-input mat-icon {
     left: calc(100% - 45px);
   }
+
 }
 
 /* Estilos para tabletas (por ejemplo, iPads) */
@@ -223,3 +236,11 @@ a:hover {
   }
 }
 
+/* Agrega estilos específicos para dispositivos web */
+@media (min-width: 481px) {
+  .web-dialog {
+    max-height: 80vh; /* Ajusta según tus necesidades */
+    overflow-y: hidden; /* Agrega una barra de desplazamiento vertical si es necesario */
+    background-color: #ffa500;
+  }
+}

@@ -2,3 +2,21 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+/* styles.css */
+
+/* Agrega estilos específicos para dispositivos web */
+@media (min-width: 481px) {
+
+  .web-dialog {
+    max-height: 80vh; /* Ajusta según tus necesidades */
+    overflow-y: hidden; /* Agrega una barra de desplazamiento vertical si es necesario */
+    // background-color: aqua;
+  }
+  .mat-dialog {
+    overflow-wrap:  hidden;
+    // max-height: 80vh; /* Ajusta según tus necesidades */
+    // overflow-y: ; /* Agrega una barra de desplazamiento vertical si es necesario */
+    // background-color: aqua;
+  }
+
+}

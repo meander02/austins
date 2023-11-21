@@ -96,23 +96,19 @@ export class HeaderComponent {
     this.router.navigateByUrl('/payment/cart');
   }
 
-  isDetailRoute(): boolean {
-    return this.currentRoute === '/portal/detail'; // Cambia '/portal/detail' con la ruta deseada
-  }
-  isCookieRoute(): boolean {
-    return this.currentRoute === '/portal/cookies'; // Cambia '/portal/detail' con la ruta deseada
-  }
-  isPoliRoute(): boolean {
-    return this.currentRoute === '/portal/politica'; // Cambia '/portal/detail' con la ruta deseada
-  }
-  isTermRoute(): boolean {
-    return this.currentRoute === '/portal/Terminos'; // Cambia '/portal/detail' con la ruta deseada
+  isRUTA_DISTINTE_ahome(): boolean {
+    return this.currentRoute === '/portal/home'; // Cambia '/portal/detail' con la ruta deseada
   }
   openSignInModal(): MatDialogRef<SignInView> {
-    const isMobile = window.innerWidth < 480; // Puedes ajustar este valor según tus necesidades
+    const isMobile = window.innerWidth < 480;
+
     const dialogRef = this.dialog.open(SignInView, {
-      width: isMobile ? '500px' : '430px', // Ajusta el ancho del modal para móvil
-      height: isMobile ? 'auto' : '95%', // Ajusta el alto del modal para móvil
+      width: isMobile ? '120vw' : '460px',
+      height: isMobile ? 'auto' : 'auto',
+      maxWidth: isMobile ? 'auto' : 'auto',
+      maxHeight: isMobile ? 'auto' : '100vh',
+      panelClass: isMobile ? ['mat-dialog', 'no-padding', 'mobile-dialog'] : ['mat-dialog', 'no-padding', 'web-dialog'],
+      data: {}
     });
 
     dialogRef.afterClosed().subscribe((result) => {
@@ -121,4 +117,7 @@ export class HeaderComponent {
 
     return dialogRef;
   }
+
 }
+
+

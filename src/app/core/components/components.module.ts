@@ -15,16 +15,19 @@ import { FormsModule } from '@angular/forms';
 import { SignInService } from 'src/app/features/auth/commons/services/sign-in.service';
 import { HttpClientModule } from '@angular/common/http';
 import { CookiesComponent } from './cookies/cookies.component';
+import { BtnFloatComponent } from './btn-float/btn-float.component';
+// import {  } from './components.component';
 
 
 @NgModule({
   declarations: [
     HeaderComponent,
     FooterComponent,
-    PoliticaComponent,CookiesComponent
+    PoliticaComponent,CookiesComponent, BtnFloatComponent,
   ],
   exports: [
     // PoliticaComponent,
+    BtnFloatComponent,
     HeaderComponent,
     FooterComponent,PoliticaComponent,CookiesComponent
   ],

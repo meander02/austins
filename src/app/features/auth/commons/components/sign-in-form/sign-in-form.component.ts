@@ -62,4 +62,8 @@ export class SignInFormComponent implements OnInit {
     }
   }
   // this.dialogRef.close(formData);
+  redirectTo(route: string): void {
+    console.log('redirect');
+    this.router.navigateByUrl('/portal/' + route);
+  }
 }
