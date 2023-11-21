@@ -12,12 +12,6 @@
   border-radius: 8px;
 }
 
-h1 {
-  // color: #333;
-  // margin-left: 0;
-  // font-size: 20px;
-  // font-family: fantasy;
-}
 
 p {
   font-size: 14px;
@@ -138,10 +132,7 @@ mat-form-field {
   color: #aaa;
 }
 
-/* Ajusta la posición de los iconos en los campos de entrada con animación */
-.form-group.mat-form-field .animated .mat-icon {
-  // left: 10px; /* Ajusta la distancia desde el borde izquierdo */
-}
+
 
 .form-group .animated input {
   margin: 0;
@@ -306,7 +297,7 @@ p.section-title {
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  ransition: background-color 0.3s;
+  transition: background-color 0.3s;
   margin-right: 10px;
 }
 
