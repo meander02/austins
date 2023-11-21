@@ -1,7 +1,6 @@
 :host{
   *{
     // outline: 1px solid red;
-//
 }
 
 }
@@ -36,40 +35,6 @@
   max-width: 60%;
 }
 
-// /* Estilos para el botón de menú en pantallas de PC */
-// .menu-btn {
-//   background-color: transparent; /* Color de fondo del botón */
-//   color: #ffa500; /* Color del texto */
-//   border: none;
-//   font-family: "Great Vibes", initial;
-//   font-weight: lighter;
-//   height: auto;
-//   font-size: 14px;
-//   cursor: pointer;
-//   // border-radius: 5px; /* Borde redondeado */
-//   margin-right: 14px; /* Espacio entre botones */
-//   transition:
-//     background-color 7s ease,
-//     transform 6s ease;
-
-//   /* Estilo al pasar el mouse sobre el botón */
-//   &:hover {
-//     border-radius: 2px;
-//     // border-bottom: 1.5px solid #e9ba81;
-
-//     box-shadow: -4px 192px 300px -94px rgba(0, 0, 0, 1);
-
-//     transform: scale(1.1); /* Efecto de escala al pasar el mouse */
-//     // border-collapse: separate;
-//   }
-
-//   /* Estilo al hacer clic en el botón */
-//   &:active {
-//     color: #1a1717;
-//     // background-color: #d4d0cc; /* Color de fondo al hacer clic */
-//     transform: scale(0.95); /* Efecto de escala al hacer clic */
-//   }
-// }
 
 /* Estilos para la sección de menú móvil */
 .button-container-mobile {
@@ -368,54 +333,18 @@
     // background-color: #d4d0cc; /* Color de fondo al hacer clic */
     transform: scale(0.95); /* Efecto de escala al hacer clic */
   }
-  .mat-icon{
 
-    // top: 0;
-    // left: 0;
-    // background-color: transparent;
-    // font-size: 2rem;
-    // margin: auto;
-    // border: 0cap;
-    // font-weight: 200;
-    //  padding: 10%;
-  }
 }
 .menu-btn-icon {
 
   // background-color: transparent; /* Color de fondo del botón */
   color: #ffa500; /* Color del texto */
-  // border: none;
-  // left: 0%;
-  // top:100px;
-  // padding: 10px;
+
   font-size: 22;
   // height: 0%;
 
   cursor: pointer;
-  // height: auto;
-  // margin-bottom: 1px;
 
-  // margin-right: 14px; /* Espacio entre botones */
-  // transition:
-  //   background-color 1.5s ease,
-  //   transform 0.9s ease;
-
-  // /* Estilo al pasar el mouse sobre el botón */
-  // &:hover {
-  //   border-radius: 2px;
-  //   border-bottom: 1.5px solid #e9ba81;
-  //   box-shadow: -4px 192px 300px -94px rgba(0, 0, 0, 1);
-
-  //   transform: scale(1.1); /* Efecto de escala al pasar el mouse */
-  //   // border-collapse: separate;
-  // }
-
-  // /* Estilo al hacer clic en el botón */
-  // &:active {
-  //   color: #1a1717;
-  //   // background-color: #d4d0cc; /* Color de fondo al hacer clic */
-  //   transform: scale(0.95); /* Efecto de escala al hacer clic */
-  // }
 }
 
 /* Estilos para la sección de menú móvil */
