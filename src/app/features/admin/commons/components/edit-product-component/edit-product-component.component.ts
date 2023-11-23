@@ -13,6 +13,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { RestService } from '../../services/rest.service';
 import { CategoryService } from '../../services/category.service';
 import { Categoria } from '../../../models/Category.models';
+import { HttpErrorResponse } from '@angular/common/http';
 @Component({
   selector: 'app-edit-product-component',
   templateUrl: './edit-product-component.component.html',
@@ -73,6 +74,8 @@ export class EditProductComponentComponent {
       isVegetarian: [this.product.isVegetarian, Validators.required],
       isGlutenFree: [this.product.isGlutenFree, Validators.required],
       images: this.fb.array(this.product.images || []),
+      // images: this.fb.array(this.product.images || []),
+//
     });
     this.loadCategories(); // Llamada a loadCategories() aquí
 
@@ -149,10 +152,12 @@ export class EditProductComponentComponent {
       if (this.productImage) {
         // Llama al servicio correspondiente para subir la nueva imagen y obtiene la URL
         // Sustituye 'productService' por el servicio que utilizas para cargar imágenes
+        const productId = this.editForm.value._id; // Asegúrate de que el nombre del campo sea correcto
         const formData = new FormData();
         formData.append('file', this.productImage);
+
         this.productService
-          .uploadImage(formData)
+          .uploadImage(formData,productId)
           .subscribe((imageURL: string) => {
             editedProduct.images.push(imageURL); // Agrega la nueva URL de la imagen al producto
             this.updateProduct(editedProduct); // Llama a la función para actualizar el producto
@@ -183,6 +188,7 @@ export class EditProductComponentComponent {
       }
     );
   }
+
 
 
   toggleStatus(): void {
@@ -270,29 +276,45 @@ export class EditProductComponentComponent {
       }));
     }
   }
-
-
   uploadImagesAndAddToForm(product: Product): void {
     const uploadObservables = this.selectedImages.map((image: File) => {
       const formData = new FormData();
-      formData.append('file', image);
+      formData.append('file', image, image.name);
 
-      // Muestra la imagen seleccionada antes de cargarla
+      // Display the selected image before uploading
       this.productImages.push({ name: image.name, url: URL.createObjectURL(image) });
 
-      return this.productService.uploadImage(formData);
+      // Ensure that productId is correctly passed
+      const productId = this.product._id;
+
+      // Pass the form data to the uploadImage function
+      return this.productService.uploadImage(formData, productId);
     });
 
-    forkJoin(uploadObservables).subscribe((imageURLs: string[]) => {
-      product.images = product.images.concat(imageURLs);
+    forkJoin(uploadObservables).subscribe(
+      (imageURLs: string[]) => {
+        // Concatenate the new image URLs to the existing ones
+        product.images = product.images.concat(imageURLs);
 
-      // Actualiza el control de imágenes en el formulario con las imágenes actualizadas
-      this.editForm.get('images')?.setValue(product.images);
+        // Update the control of images in the form with the updated URLs
+        this.editForm.get('image')?.setValue(product.images);
 
-      // Limpia las imágenes seleccionadas después de cargar
-      this.selectedImages = [];
-    });
+        // Clear the selected images after uploading
+        this.selectedImages = [];
+      },
+      (error) => {
+        console.error('Error uploading images:', error);
+
+        // Print more detailed information about the error
+        if (error instanceof HttpErrorResponse) {
+          console.error('Status:', error.status);
+          console.error('Status Text:', error.statusText);
+          console.error('Message:', error.error);
+        }
+      }
+    );
   }
+
 
   // Load images function
   loadImages = () => {
@@ -301,7 +323,7 @@ export class EditProductComponentComponent {
       const uploadObservables = this.selectedImages.map((item: File) => {
         const formData = new FormData();
         formData.append('files', item, item.name);
-        return this.productService.uploadImage(formData);
+        return this.productService.uploadImage(formData,this.editForm.value._id);
       });
 
       forkJoin(uploadObservables).subscribe(

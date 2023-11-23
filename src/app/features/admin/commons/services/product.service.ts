@@ -1,7 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ADMINServicesModule } from './services.module';
-import { Observable, catchError, forkJoin, map } from 'rxjs';
+import { Observable, catchError, forkJoin, map, tap } from 'rxjs';
 import { IproductResponse } from '../../interfaces/Product.interface';
 import { environment } from 'src/environments/environment';
 import { Product } from '../../models/Product.models';
@@ -59,25 +59,34 @@ updateProduct(product: Product): Observable<Product> {
 deleteProduct(id: string): Observable<{ id: string }> {
   return this.http.delete<{ id: string }>(`${environment.api}/product/${id}`);
 }
+uploadImage(formData: FormData, productId: string): Observable<string> {
+  return this.http.put<string>(
+    `${environment.api}/product/upload-image/${productId}/`,
+    formData
+  ).pipe(
+    catchError((error: any) => {
+      console.error('Error uploading image:', error);
 
-uploadImage(formData: FormData): Observable<string> {
-  const headers = new HttpHeaders();
-  // Agrega cualquier encabezado necesario, por ejemplo, para enviar un token de autenticación
+      if (error.error instanceof ErrorEvent) {
+        console.error('Error Event:', error.error.message);
+      } else if (error.status === 0) {
+        console.error('Network error:', error);
+        // Puedes manejar errores de red de manera específica aquí
+      } else {
+        console.error('Server Response:', error);
+        // Puedes manejar otros errores de manera específica aquí
+      }
 
-  return this.http.post<string>(`${environment.api}/product/upload-image/`, formData, { headers })
-    .pipe(
-      catchError((error: any) => {
-        console.error('Error al cargar la imagen:', error);
-        // Muestra detalles del error
-        if (error.error instanceof ErrorEvent) {
-          console.error('Error Event:', error.error.message);
-        } else {
-          console.error('Server Response:', error);
-        }
-        throw error; // Reenvía el error para que se maneje en el componente que llama a esta función
-      })
-    );
+      throw error;
+    }),
+    tap((response: string) => {
+      console.log('Upload successful:', response);
+      // Puedes manejar la respuesta exitosa según tus necesidades
+    })
+  );
 }
+
+
 
 updateProductImage(productId: string, image: File): Observable<string> {
   const formData = new FormData();

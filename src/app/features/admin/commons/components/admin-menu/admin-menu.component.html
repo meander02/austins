@@ -51,12 +51,7 @@
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
-    <!-- Muestra el icono solo cuando el menú esté cerrado -->
-    <!-- <div class="show-menu-button" (click)="sidenav.toggle()">
-      <mat-icon *ngIf="!sidenav.opened">chevron_right</mat-icon>
-                <mat-icon *ngIf="sidenav.opened">chevron_left</mat-icon>
 
-              </div> -->
     <div class="bubble-container" (click)="sidenav.toggle()">
       <mat-icon class="bubble-icon" *ngIf="!sidenav.opened"
         >chevron_right</mat-icon

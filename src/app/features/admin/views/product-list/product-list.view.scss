@@ -1,8 +1,4 @@
-:host {
-  * {
-    // outline: 1px solid red;
-  }
-}
+/* Estilos Generales */
 
 :host {
   display: flex;
@@ -12,84 +8,127 @@
   background-color: #f0f0f0;
 }
 
+/* Contenedor principal */
+/* Estilos generales para el componente */
+.container {
+ 
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  padding: 20px;
+  font-family: 'Arial', sans-serif;
+  color: #333;
+  margin-top: 130px; /* Agrega un margen superior para evitar que el contenido se superponga al encabezado fijo */
+
+}
+
 .container {
   width: 100%;
-  max-width: 1200px;
+  max-width: 100%;
   margin: 0 auto;
-  padding: 100px;
+  padding: 16px;
   overflow-y: auto;
+  overflow-x: hidden;
   overflow-wrap: normal;
 }
 
+/* Títulos y Textos */
+
 .view-title {
   font-size: 24px;
-  margin-bottom: 20px;
+  margin-bottom: 16px;
 }
+
+/* Tabla y Celdas */
 
 .mat-table {
   width: 100%;
-}
-
-.product-image {
-  max-width: 50px;
-  max-height: 50px;
+  overflow-x: auto;
 }
 
 .mat-row {
   cursor: pointer;
+  &:hover {
+    background-color: #f5f5f5;
+  }
 }
 
-.mat-row:hover {
-  background-color: #f5f5f5;
+/* Imágenes */
+
+.product-image {
+  max-width: 100%;
+  height: auto;
+  max-height: 50px;
 }
 
-.actions-cell {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+/* Botones y Acciones */
+
+.mat-raised-button {
+  min-width: 0;
+  margin: 10px 0;
+  &:hover {
+    color: inherit;
+  }
 }
 
-.create-button {
-  margin: 20px 0;
-}
 .delete-button:hover {
-  color: RED;
+  color: red;
 }
+
 .edit-button:hover {
   color: green;
 }
 
+/* Responsividad en Dispositivos Móviles */
+
 @media (max-width: 600px) {
   .mat-table {
-    font-size: 14px;
+    font-size: 12px;
   }
 
   .product-image {
-    max-width: 40px;
-    max-height: 40px;
+    max-width: 30px;
+    max-height: 30px;
   }
 
+  .create-button,
   .edit-button,
   .delete-button {
-    font-size: 20px;
+    font-size: 14px;
   }
 
+  .actions-cell {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  /* Ocultar columnas en dispositivos móviles */
+  .mat-column-category,
+  .mat-column-weight {
+    display: none;
+  }
 }
 
+/* Estados y Paginator */
+
 .active {
-  color: #00B050;
+  color: #00b050;
+  &::before {
+    content: ' ● ';
+    color: #00b050;
+  }
 }
 
 .deactive {
   color: rgb(255, 0, 0);
+  &::before {
+    content: ' ● ';
+    color: rgb(255, 0, 0);
+  }
 }
 
-.active::before {
-  content: ' ● ';
-  color: #00B050;
-}
-
-.deactive::before {
-  content: ' ● ';
-  color: rgb(255, 0, 0);
+.paginator {
+  margin-top: 16px;
 }

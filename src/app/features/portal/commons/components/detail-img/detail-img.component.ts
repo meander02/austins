@@ -28,11 +28,11 @@ export class DetailImgComponent implements OnInit, OnChanges {
 
   @Input() images: string[] = [
     '/assets/64de7c_5c0ba351459045d582cf3f4215ee9229~mv2.webp',
-    '/assets/64de7c_5c0ba351459045d582cf3f4215ee9229~mv2.webp',
-    '/assets/64de7c_5c0ba351459045d582cf3f4215ee9229~mv2.webp',
-    '/assets/64de7c_5c0ba351459045d582cf3f4215ee9229~mv2.webp',
-    '/assets/64de7c_5c0ba351459045d582cf3f4215ee9229~mv2.webp',
-    '/assets/64de7c_5c0ba351459045d582cf3f4215ee9229~mv2.webp',
+    '/assets/64de7c_87239975fecc4ca3a2eb580f3b40788f~mv2_d_1736_2048_s_2.webp',
+    '/assets/64de7c_bfb1d846083f48f499a9d834fe7beea6~mv2.webp',
+    '/assets/64de7c_cffc88ce04d2467fa3d72c0a2e856f75~mv2_d_2048_1365_s_2.webp',
+    '/assets/64de7c_2df6898e14054b4bb18136013287c3e6~mv2.webp',
+    '/assets/64de7c_2df6898e14054b4bb18136013287c3e6~mv2.webp',
   ];
   constructor() {}
 

@@ -1,5 +1,5 @@
 <h2>Editar Producto</h2>
-<form [formGroup]="editForm" (ngSubmit)="saveChanges()">
+<form [formGroup]="editForm" (ngSubmit)="saveChanges()" enctype="multipart/form-data">
   <div class="form-row">
     <div class="form-group">
       <mat-form-field appearance="outline">
@@ -181,7 +181,7 @@
   <!-- Image Section -->
 
   <!-- Image Section -->
-  <div class="form-group">
+  <div class="form-group" >
     <input
       type="file"
       (change)="onImagesSelected($event)"
