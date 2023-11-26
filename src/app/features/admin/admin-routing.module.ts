@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AdminComponent } from './admin.component';
 import { ProductListView } from './views/product-list/product-list.view';
-import { ProductCreateView } from './views/product-create/product-create.view';
+// import { ProductCreateView } from './views/product-create/product-create.view';
 import { InicioAdView } from './views/incio-ad/incio-ad.view';
 const routes: Routes = [
   {

@@ -6,13 +6,19 @@ import { SearchService } from 'src/app/shared/services/search-service.service';
 import { ActivatedRoute } from '@angular/router';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { SignInView } from 'src/app/features/auth/views/sign-in/sign-in.view';
+import { CartService } from '../../services/cart.service';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss', './header.component0.scss','./header.component02.scss'],
+  styleUrls: [
+    './header.component.scss',
+    './header.component0.scss',
+    './header.component02.scss',
+  ],
 })
-export class HeaderComponent {
+export class HeaderComponent  implements OnInit {
+  
   isHeaderScrolled = false;
   searchQuery: string = ''; // Variable para almacenar la consulta de búsqueda
   badge: number = 0;
@@ -22,6 +28,7 @@ export class HeaderComponent {
   constructor(
     public dialog: MatDialog,
     private searchService: SearchService,
+    private cartService: CartService,
     private router: Router,
     private userStateService: UserStateService,
     private AuthStateService: AuthStateService,
@@ -33,6 +40,15 @@ export class HeaderComponent {
         this.currentRoute = event.url;
       }
     });
+    // this.cartService.itemsInCart.subscribe((value) => {
+    //   this.badge = value;
+    // });
+  }
+  ngOnInit(): void {
+    // this.badge=this.cartService.itemsInCart
+    this.cartService.itemsInCart.subscribe(value =>{
+      this.badge=value
+    })
   }
 
   onSearchChange(query: string) {

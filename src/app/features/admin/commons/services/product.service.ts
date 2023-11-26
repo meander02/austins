@@ -8,7 +8,7 @@ import { Product } from '../../models/Product.models';
 import { HttpHeaders } from '@angular/common/http';
 
 @Injectable({
-  providedIn: ADMINServicesModule
+  providedIn: 'root'
 })
 export class ProductService {
 
@@ -16,7 +16,7 @@ export class ProductService {
 
   getAll():Observable<Product[]>
   {
-    debugger
+    // debugger
     return this.http.get<IproductResponse[]>(`${environment.api}/product`)
     .pipe(
       map(
@@ -59,9 +59,10 @@ updateProduct(product: Product): Observable<Product> {
 deleteProduct(id: string): Observable<{ id: string }> {
   return this.http.delete<{ id: string }>(`${environment.api}/product/${id}`);
 }
-uploadImage(formData: FormData, productId: string): Observable<string> {
-  return this.http.put<string>(
-    `${environment.api}/product/upload-image/${productId}/`,
+
+uploadImage(formData: FormData, productId: string): Observable<string[]> {
+  return this.http.put<string[]>(
+    `${environment.api}/product/upload-image/${productId}`,
     formData
   ).pipe(
     catchError((error: any) => {
@@ -79,7 +80,7 @@ uploadImage(formData: FormData, productId: string): Observable<string> {
 
       throw error;
     }),
-    tap((response: string) => {
+    tap((response: string[]) => {
       console.log('Upload successful:', response);
       // Puedes manejar la respuesta exitosa según tus necesidades
     })

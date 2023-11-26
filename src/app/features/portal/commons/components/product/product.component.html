@@ -1,5 +1,6 @@
 <div *ngIf="hasSearchResults; else noResults">
-  <div *ngFor="let product of products | filter : filterPost" class="product-card">
+  <!-- <div *ngFor="let product of products | filter : filterPost" class="product-card"> -->
+  <div class="product-card">
     <mat-card>
       <mat-card-header>
         <div mat-card-avatar class="example-header-image"></div>
@@ -9,7 +10,7 @@
         </mat-card-subtitle>
       </mat-card-header>
       <div class="content-img" (click)="goToDetail('detail')">
-        <img mat-card-image src="/assets/64de7c_5c0ba351459045d582cf3f4215ee9229~mv2.webp">
+        <img mat-card-image [src]="getImages(product.images[0])" >
       </div>
       <mat-card-content>
         <p>{{ product.description }}</p>

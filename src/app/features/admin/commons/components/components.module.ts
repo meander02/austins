@@ -11,7 +11,7 @@ import { MatBadgeModule} from '@angular/material/badge';
 import { AdminHeaderComponent } from './admin-header/admin-header.component';
 import { AdminMenuComponent } from './admin-menu/admin-menu.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-const COMPONENTS = [AdminHeaderComponent,AdminMenuComponent]; // Agrega los componentes
+// Agrega los componentes
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -27,19 +27,15 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { OpenDeleteConfirmationComponent } from './open-delete-confirmation/open-delete-confirmation.component';
 import { EditProductComponentComponent } from './edit-product-component/edit-product-component.component';
-
+import { CreateProductComponentComponent } from './create-product-component/create-product-component.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+const COMPONENTS = [AdminHeaderComponent,AdminMenuComponent,OpenDeleteConfirmationComponent, EditProductComponentComponent, CreateProductComponentComponent];
 
 @NgModule({
-  declarations: [...COMPONENTS, OpenDeleteConfirmationComponent, EditProductComponentComponent],
+  declarations: [...COMPONENTS, ],
   exports: [...COMPONENTS],
   imports: [
     CommonModule,
-    // MatToolbarModule,
-    // MatButtonModule,
-    // MatIconModule,
-    // MatMenuModule,
-    // RouterModule,
-    // MatBadgeModule,
     MatSidenavModule,
     MatListModule,
     FormsModule,
@@ -55,7 +51,7 @@ import { EditProductComponentComponent } from './edit-product-component/edit-pro
     ReactiveFormsModule,
     MatFormFieldModule,
     FormsModule,
-
+    MatSnackBarModule
   ],
   providers: [
     ProductService, // Agrega ProductService como proveedor aquí

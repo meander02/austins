@@ -1,48 +1,27 @@
-import { Component ,HostListener} from '@angular/core';
+import { Component ,HostListener, OnInit} from '@angular/core';
 import { Router } from '@angular/router';
-
+import { ProductService } from 'src/app/features/admin/commons/services/product.service';
+import { Product } from 'src/app/features/admin/models/Product.models';
 @Component({
   selector: 'app-home',
   templateUrl: './home.views.html',
   styleUrls: ['./home.views.scss']
 })
-export class HomeViews {
+export class HomeViews implements OnInit {
 
-  constructor(private router: Router) {}
-  products = [
-    {
-      name: "Tarta de Chocolate",
-      description: "Deliciosa tarta de chocolate",
-      quantity: "10",
-      price: 15.99,
-      images: ["image1.jpg", "image2.jpg"],
-      // Otras propiedades del producto
-    },
-    {
-      name: "Galletas de Avena y Pasas",
-      description: "Galletas saludables con avena y pasas",
-      quantity: "20",
-      price: 9.99,
-      images: ["galleta1.jpg", "galleta2.jpg"],
-      // Otras propiedades del producto
-    },
-    {
-      name: "Pastel de Fresa",
-      description: "Pastel fresco de fresa con crema batida",
-      quantity: "8",
-      price: 24.99,
-      images: ["pastel1.jpg", "pastel2.jpg"],
-      // Otras propiedades del producto
-    },
-    {
-      name: "Brownie de Chocolate",
-      description: "Delicioso brownie de chocolate negro",
-      quantity: "15",
-      price: 6.99,
-      images: ["brownie1.jpg", "brownie2.jpg"],
-      // Otras propiedades del producto
-    }
-  ];
+  
+  products: Product[] = [];
+  producto:Product;
+
+  constructor(private router: Router,private productService: ProductService) {
+    this.producto = new Product();
+    this.producto._id = "600b727a1a4be3a70c51e15c";
+    this.producto.sku = "P003";
+    this.producto.name = "Alcohol Medicinal 96°";
+    this.producto.description = "Alcohol medicinal de 1 litro al 96% de pureza, ideal para desinfectar manos y ambientes.";
+    this.producto.price = 12;
+    this.producto.images = ["uploads/prevencion/600b727a1a4be3a70c51e15c/alcohol.png"];
+  }
   @HostListener('mousemove', ['$event'])
   onMouseMove(event: MouseEvent): void {
     const cursor = document.querySelector('.cursor') as HTMLElement;
@@ -55,11 +34,20 @@ export class HomeViews {
     this.router.navigateByUrl('/portal/' + route);
   }
 
-
-
-
   ngOnInit(): void {
-    // console.log('Producto en el presentador', this.product);
+    // console.log('primero', this.productService.getAll());
+    this.productService.getAll()
+    .subscribe(
+      response => {
+        this.products = response;
+        console.log('products', this.products);
+      },
+      error =>{
+        console.log(error);
+        if (error.status === 404) { console.log('error 404')}
+      }
+    );
+    console.log('segundo');
   }
 
   goToDetail(): void {

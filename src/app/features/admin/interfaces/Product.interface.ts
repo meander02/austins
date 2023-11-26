@@ -13,7 +13,7 @@ export interface IproductResponse
   category: string;
   maker: string;
   images: string[];
-  status: string;
+  status: string; 
   weight: number;
   ingredients: string[];
   allergens: string[];

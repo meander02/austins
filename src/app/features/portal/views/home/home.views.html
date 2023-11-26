@@ -23,9 +23,14 @@
 
 </div>
 
-<ng-container class="prod" >
+<!-- <ng-container class="prod" >
   <div class="product">
     <app-product ></app-product>
   </div>
-</ng-container>
+</ng-container> -->
 
+<ng-container  class="prod"  *ngFor="let item of products">
+  <div class="product">
+    <app-product [product]="item"></app-product>
+  </div>
+</ng-container>

@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { AdminRoutingModule } from './admin-routing.module';
 import { ProductListView } from './views/product-list/product-list.view';
-import { ProductCreateView } from './views/product-create/product-create.view';
+// import { ProductCreateView } from './views/product-create/product-create.view';
 import { AdminComponent } from './admin.component';
 import { AdminCommonsModule } from './commons/commons.module';
 import { AdminComponentModule } from './commons/components/components.module';

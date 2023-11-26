@@ -8,7 +8,7 @@ import { environment } from 'src/environments/environment';
 import { OpenDeleteConfirmationComponent } from '../../commons/components/open-delete-confirmation/open-delete-confirmation.component';
 import { MatDialog } from '@angular/material/dialog';
 import { EditProductComponentComponent } from '../../commons/components/edit-product-component/edit-product-component.component';
-// import { EditProductComponentComponent } from '../../commons/components/edit-product-component/edit-product-component.component';
+import { CreateProductComponentComponent } from '../../commons/components/create-product-component/create-product-component.component';
 
 @Component({
   selector: 'app-product-list',
@@ -152,5 +152,22 @@ export class ProductListView implements OnInit {
         console.error('Error al actualizar el producto', error);
       }
     );
+  }
+
+
+
+  openCreateModal(){
+    const dialogRef = this.dialog.open(CreateProductComponentComponent, {
+      width: '800px', // Ancho del diálogo
+      height: '400px', // Altura del diálogo
+      // data: { product }, // Pasa el producto al modal
+    });
+
+    // dialogRef.afterClosed().subscribe((result) => {
+    //   if (result) {
+    //     // Lógica para manejar la actualización del producto aquí
+    //     this.updateProduct(result); // Llama a la función de actualización con los datos editados
+    //   }
+    // });
   }
 }

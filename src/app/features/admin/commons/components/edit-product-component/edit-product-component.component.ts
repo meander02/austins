@@ -158,7 +158,7 @@ export class EditProductComponentComponent {
 
         this.productService
           .uploadImage(formData,productId)
-          .subscribe((imageURL: string) => {
+          .subscribe((imageURL: any) => {
             editedProduct.images.push(imageURL); // Agrega la nueva URL de la imagen al producto
             this.updateProduct(editedProduct); // Llama a la función para actualizar el producto
             // this.uploadImagesAndAddToForm();
@@ -262,24 +262,30 @@ export class EditProductComponentComponent {
     }
   }
 
-
-
   onImagesSelected(event: Event): void {
     const input = event.target as HTMLInputElement;
     if (input.files && input.files.length > 0) {
-      this.selectedImages = Array.from(input.files);
-
-      // Muestra las imágenes seleccionadas en la vista previa
-      this.productImages = this.selectedImages.map((image: File) => ({
+      this.productImages = Array.from(input.files).map((image: File) => ({
         name: image.name,
         url: URL.createObjectURL(image),
       }));
+
+      // Limpiar la propiedad 'images' antes de agregar las nuevas imágenes
+      const imagesControl = this.editForm.get('image') as FormArray;
+      imagesControl.clear();
+
+      // Agregar las nuevas imágenes al FormArray
+      this.productImages.forEach((image) => {
+        imagesControl.push(this.fb.control(image.url));
+      });
     }
   }
   uploadImagesAndAddToForm(product: Product): void {
     const uploadObservables = this.selectedImages.map((image: File) => {
       const formData = new FormData();
-      formData.append('file', image, image.name);
+      // formData.append('file', image, image.name);
+      formData.append('file', this.editForm.get('image')?.value);
+
 
       // Display the selected image before uploading
       this.productImages.push({ name: image.name, url: URL.createObjectURL(image) });
@@ -292,7 +298,7 @@ export class EditProductComponentComponent {
     });
 
     forkJoin(uploadObservables).subscribe(
-      (imageURLs: string[]) => {
+      (imageURLs: any) => {
         // Concatenate the new image URLs to the existing ones
         product.images = product.images.concat(imageURLs);
 
@@ -327,7 +333,7 @@ export class EditProductComponentComponent {
       });
 
       forkJoin(uploadObservables).subscribe(
-        (imageURLs: string[]) => {
+        (imageURLs: any) => {
           this.loading = false;
           this.editForm.get('images')?.setValue(imageURLs);
           this.updateProduct(this.editForm.value);

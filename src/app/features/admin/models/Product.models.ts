@@ -2,6 +2,7 @@ import { environment } from 'src/environments/environment';
 import { IproductResponse } from '../interfaces/Product.interface';
 
 export class Product {
+  // [x: string]: any;
   _id: string;
   sku: string;
   name: string;

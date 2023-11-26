@@ -1,5 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar'; // Import MatSnackBar
+
 
 @Component({
   selector: 'app-open-delete-confirmation',
@@ -9,10 +11,15 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 export class OpenDeleteConfirmationComponent {
   constructor(
     public dialogRef: MatDialogRef<OpenDeleteConfirmationComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    private snackBar: MatSnackBar // Inject MatSnackBar
+
   ) {}
 
   confirmDelete(): void {
+    this.snackBar.open('Producto eliminado con éxito', 'Cerrar', {
+      duration: 3000, // Set the duration for which the snackbar is displayed
+    });
     this.dialogRef.close('confirm');
   }
 
