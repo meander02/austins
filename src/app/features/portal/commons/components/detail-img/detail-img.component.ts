@@ -32,7 +32,7 @@ export class DetailImgComponent implements OnInit, OnChanges {
     '/assets/64de7c_bfb1d846083f48f499a9d834fe7beea6~mv2.webp',
     '/assets/64de7c_cffc88ce04d2467fa3d72c0a2e856f75~mv2_d_2048_1365_s_2.webp',
     '/assets/64de7c_2df6898e14054b4bb18136013287c3e6~mv2.webp',
-    '/assets/64de7c_2df6898e14054b4bb18136013287c3e6~mv2.webp',
+    '/assets/01.png',
   ];
   constructor() {}
 
