@@ -35,8 +35,6 @@ export class ProductListView implements OnInit {
   @Input()
   images!: string[];
   srcMain!: string;
-  // formGroup: FormGroup;  // Declaración de la propiedad formGroup
-
   constructor(
     private productService: ProductService,
     private fb: FormBuilder,
@@ -121,6 +119,21 @@ export class ProductListView implements OnInit {
       }
     });
   }
+  // // Función para actualizar un producto
+  updateProduct(product: Product): void {
+    this.productService.updateProduct(product).subscribe(
+      (updatedProduct: Product) => {
+        // Manejar la respuesta actualizada, por ejemplo, mostrar un mensaje de éxito.
+        console.log('Producto actualizado con éxito', updatedProduct);
+        // Actualiza la lista de productos después de la edición
+        this.loadProducts();
+      },
+      (error) => {
+        // Manejar errores, por ejemplo, mostrar un mensaje de error.
+        console.error('Error al actualizar el producto', error);
+      }
+    );
+  }
   // Nueva función para abrir el modal de edición
   openEditModal(product: Product): void {
     const dialogRef = this.dialog.open(EditProductComponentComponent, {
@@ -133,41 +146,23 @@ export class ProductListView implements OnInit {
       if (result) {
         // Lógica para manejar la actualización del producto aquí
         this.updateProduct(result); // Llama a la función de actualización con los datos editados
+        console.log(result)
       }
     });
   }
 
-  // Función para actualizar un producto
-  updateProduct(product: Product): void {
-    this.productService.updateProduct(product).subscribe(
-      (updatedProduct: Product) => {
-        // Manejar la respuesta actualizada, por ejemplo, mostrar un mensaje de éxito.
-        console.log('Producto actualizado con éxito', updatedProduct);
-
-        // Actualiza la lista de productos después de la edición
-        this.loadProducts();
-      },
-      (error) => {
-        // Manejar errores, por ejemplo, mostrar un mensaje de error.
-        console.error('Error al actualizar el producto', error);
-      }
-    );
-  }
-
-
-
-  openCreateModal(){
+  openCreateModal() {
     const dialogRef = this.dialog.open(CreateProductComponentComponent, {
       width: '800px', // Ancho del diálogo
       height: '400px', // Altura del diálogo
       // data: { product }, // Pasa el producto al modal
     });
 
-    // dialogRef.afterClosed().subscribe((result) => {
-    //   if (result) {
-    //     // Lógica para manejar la actualización del producto aquí
-    //     this.updateProduct(result); // Llama a la función de actualización con los datos editados
-    //   }
-    // });
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        // Lógica para manejar la actualización del producto aquí
+        // this.updateProduct(result); // Llama a la función de actualización con los datos editados
+      }
+    });
   }
 }

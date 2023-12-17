@@ -29,6 +29,7 @@ import { OpenDeleteConfirmationComponent } from './open-delete-confirmation/open
 import { EditProductComponentComponent } from './edit-product-component/edit-product-component.component';
 import { CreateProductComponentComponent } from './create-product-component/create-product-component.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { DefaultImgModule } from 'src/app/shared/pipes/default-img/default-img.module';
 const COMPONENTS = [AdminHeaderComponent,AdminMenuComponent,OpenDeleteConfirmationComponent, EditProductComponentComponent, CreateProductComponentComponent];
 
 @NgModule({
@@ -51,7 +52,7 @@ const COMPONENTS = [AdminHeaderComponent,AdminMenuComponent,OpenDeleteConfirmati
     ReactiveFormsModule,
     MatFormFieldModule,
     FormsModule,
-    MatSnackBarModule
+    MatSnackBarModule,DefaultImgModule
   ],
   providers: [
     ProductService, // Agrega ProductService como proveedor aquí

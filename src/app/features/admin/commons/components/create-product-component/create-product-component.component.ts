@@ -25,7 +25,7 @@ import { Categoria } from '../../../models/Category.models';
 export class CreateProductComponentComponent implements OnInit {
   createForm: FormGroup;
   loading = false;
-  // categories: any[] = []; // Asegúrate de tener la definición correcta para 'categories'
+
   separatorKeysCodes: number[] = []; // Asegúrate de tener la definición correcta para 'separatorKeysCodes'
   product: any = {}; // Asegúrate de tener la definición correcta para 'product'
   selectedImages: any[] = []; // Asegúrate de tener la definición correcta para 'selectedImages'
@@ -155,8 +155,6 @@ export class CreateProductComponentComponent implements OnInit {
 
   onImagesSelected(event: Event): void {
     const input = event.target as HTMLInputElement;
-
-    // Verifica si el usuario ha cancelado la selección
     if (!input.files || input.files.length === 0) {
       return;
     }
@@ -169,10 +167,14 @@ export class CreateProductComponentComponent implements OnInit {
       this.selectedImages = imageFiles;
 
       // Muestra las imágenes seleccionadas en la vista previa
-      this.productImages = this.selectedImages.map((image: File) => ({
-        name: image.name,
-        url: URL.createObjectURL(image),
-      }));
+      if (this.productImages) {
+        this.productImages = this.selectedImages.map((image: File) => ({
+          name: image.name,
+          url: URL.createObjectURL(image),
+        }));
+      } else {
+        this.productImages = [];
+      }
 
       console.log(this.productImages);
     } else {
@@ -184,8 +186,12 @@ export class CreateProductComponentComponent implements OnInit {
   uploadImagesAndAddToForm(product: Product): void {
     const uploadObservables = this.selectedImages.map((image: File) => {
       const formData = new FormData();
+      formData.append('file', image);
+      console.log('FormData:', formData);  // Agrega este registro de depuración
+
+
       // formData.append('file', image, image.name);
-      formData.append('file', this.createForm.get('image')?.value);
+      // formData.append('file', this.createForm.get('image')?.value);
       // formData.append('file', this.uploadForm.get('profile').value);
 
 
@@ -193,10 +199,13 @@ export class CreateProductComponentComponent implements OnInit {
       this.productImages.push({ name: image.name, url: URL.createObjectURL(image) });
 
       // Ensure that productId is correctly passed
+      // const productId = this.product._id;
       const productId = this.product._id;
+      console.log('Product ID:', productId);  // Agrega este registro de depuración
+
 
       // Pass the form data to the uploadImage function
-      return this.productService.uploadImage(formData, productId);
+      // return this.productService.uploadImage(formData, productId);
     });
 
     forkJoin(uploadObservables).subscribe(
@@ -206,7 +215,7 @@ export class CreateProductComponentComponent implements OnInit {
 
         // Update the control of images in the form with the updated URLs
         this.createForm.get('image')?.setValue(product.images);
-
+        console.log( product.images )
         // Clear the selected images after uploading
         this.selectedImages = [];
       },

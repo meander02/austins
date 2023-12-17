@@ -2,6 +2,7 @@ import { Component ,HostListener, OnInit} from '@angular/core';
 import { Router } from '@angular/router';
 import { ProductService } from 'src/app/features/admin/commons/services/product.service';
 import { Product } from 'src/app/features/admin/models/Product.models';
+import { SearchService } from 'src/app/shared/services/search-service.service';
 @Component({
   selector: 'app-home',
   templateUrl: './home.views.html',
@@ -9,11 +10,13 @@ import { Product } from 'src/app/features/admin/models/Product.models';
 })
 export class HomeViews implements OnInit {
 
-  
+
   products: Product[] = [];
   producto:Product;
-
-  constructor(private router: Router,private productService: ProductService) {
+  hasSearchResults = true;
+  filterPost = '';
+  items: number=0;
+  constructor(private router: Router,private productService: ProductService, private searchService: SearchService) {
     this.producto = new Product();
     this.producto._id = "600b727a1a4be3a70c51e15c";
     this.producto.sku = "P003";
@@ -35,6 +38,13 @@ export class HomeViews implements OnInit {
   }
 
   ngOnInit(): void {
+    this.searchService.searchQuery$.subscribe((query) => {
+      // Filtra los productos en función de la consulta de búsqueda (query).
+      this.filterPost = query;
+      // Verifica si se han encontrado resultados.
+      this.hasSearchResults = this.producto.name.toLowerCase().includes(query.toLowerCase());
+    });
+    // console.log('Producto en el presentador', this.product);
     // console.log('primero', this.productService.getAll());
     this.productService.getAll()
     .subscribe(

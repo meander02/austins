@@ -1,37 +1,28 @@
-<div *ngIf="hasSearchResults; else noResults">
-  <!-- <div *ngFor="let product of products | filter : filterPost" class="product-card"> -->
-  <div class="product-card">
-    <mat-card>
-      <mat-card-header>
-        <div mat-card-avatar class="example-header-image"></div>
-        <mat-card-title>{{ product.name }}</mat-card-title>
-        <mat-card-subtitle>
-          <p>{{ product.quantity }} <span>Precio: ${{ product.price }}</span></p>
-        </mat-card-subtitle>
-      </mat-card-header>
-      <div class="content-img" (click)="goToDetail('detail')">
-        <img mat-card-image [src]="getImages(product.images[0])" >
-      </div>
-      <mat-card-content>
-        <p>{{ product.description }}</p>
-      </mat-card-content>
-      <mat-card-actions>
-        <button mat-button (click)="decrement()">-</button>
-        <button class="grow" mat-button (click)="add()">Agregar</button>
-        <button mat-button (click)="increment()">+</button>
-      </mat-card-actions>
-    </mat-card>
+<mat-card class="product-card">
+  <mat-card-header>
+    <div mat-card-avatar class="example-header-image"></div>
+    <mat-card-title>{{product.name}}</mat-card-title>
+    <mat-card-subtitle>
+      <p>{{product.sku}} <span>Precio: {{product.price | currency}}</span></p>
+    </mat-card-subtitle>
+  </mat-card-header>
+  <div class="content-img" (click)="goToDetail('detail')">
+    <img mat-card-image [src]="getImages(product.images[0])" >
   </div>
+  <mat-card-content>
+    <!-- <p>
+      {{ longTextContent | slice:0:100 }}{{ longTextContent.length > 100 ? '...' : '' }}
+    </p> -->
+    <p>
+      {{ product.description | slice:0:50 }}{{ product.description.length > 3 ? '...' : '' }}
+      <!-- {{product.description }} -->
+    </p>
 
-</div>
-
-<ng-template #noResults>
-  <!-- Cuando no hay resultados de búsqueda -->
-  <div class="no-results-message">
-    <p>No hay publicaciones que coincidan con tu búsqueda.</p>
-    <p>Revisa la ortografía de la palabra.</p>
-    <p>Utiliza palabras más genéricas o menos palabras.</p>
-    <p>Navega por las categorías para encontrar un producto similar.</p>
-  </div>
-</ng-template>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-button (click)="decrement()">-</button>
+    <button class="grow" mat-button (click)="add()">Agregar</button>
+    <button mat-button (click)="increment()">+</button>
+  </mat-card-actions>
+</mat-card>
 

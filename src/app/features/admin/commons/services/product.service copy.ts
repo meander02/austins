@@ -60,15 +60,45 @@ deleteProduct(id: string): Observable<{ id: string }> {
   return this.http.delete<{ id: string }>(`${environment.api}/product/${id}`);
 }
 
-updateProductImage(category: string, productId: string, position: number, file: File): Observable<any> {
-  const formData: FormData = new FormData();
-  formData.append('position', position.toString());
-  formData.append('image', file, file.name);
+uploadImage(formData: FormData, productId: string): Observable<string[]> {
+  console.log(productId)
+  console.log(productId)
+  return this.http.put<string[]>(
+    `${environment.api}/product/upload-image/${productId}`,
+     formData
+  ).pipe(
+    catchError((error: any) => {
+      console.error('Error uploading image:', error);
 
-  const url = `${environment.api}/product/${category}/${productId}/image`;
+      if (error.error instanceof ErrorEvent) {
+        console.error('Error Event:', error.error.message);
+      } else if (error.status === 0) {
+        console.error('Network error:', error);
+        // Puedes manejar errores de red de manera específica aquí
+      } else {
+        console.error('Server Response:', error);
+        // Puedes manejar otros errores de manera específica aquí
+      }
 
-  return this.http.put(url, formData);
+      throw error;
+    }),
+    tap((response: string[]) => {
+      console.log('Upload successful:', response);
+      // Puedes manejar la respuesta exitosa según tus necesidades
+    })
+  );
 }
+
+
+
+updateProductImage(productId: string, image: File): Observable<string> {
+  const formData = new FormData();
+  formData.append('image', image);
+
+  return this.http.put<string>(`${environment.api}/product/${productId}/image`, formData);
+}
+
+
 
 
 
@@ -78,8 +108,5 @@ updateProductStatus(id: string, status: string): Observable<Product> {
 
   return this.http.put<Product>(url, body);
 }
-deleteProductImage(productId: string, imageName: string): Observable<any> {
-  const url = `${environment.api}/product/${productId}/${imageName}`;
-  return this.http.delete(url);
-}
+
 }

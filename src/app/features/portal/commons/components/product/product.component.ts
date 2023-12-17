@@ -12,7 +12,7 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./product.component.scss']
 })
 export class ProductComponent  implements OnInit {
-  
+
   @Input()product!: Product;
   hasSearchResults = true;
   filterPost = '';
@@ -31,14 +31,13 @@ export class ProductComponent  implements OnInit {
 
   ngOnInit(): void {
 
-    this.searchService.searchQuery$.subscribe((query) => {
-      // Filtra los productos en función de la consulta de búsqueda (query).
-      this.filterPost = query;
-
-      // Verifica si se han encontrado resultados.
-      this.hasSearchResults = this.product.name.toLowerCase().includes(query.toLowerCase());
-    });
-    console.log('Producto en el presentador', this.product);
+    // this.searchService.searchQuery$.subscribe((query) => {
+    //   // Filtra los productos en función de la consulta de búsqueda (query).
+    //   this.filterPost = query;
+    //   // Verifica si se han encontrado resultados.
+    //   this.hasSearchResults = this.product.name.toLowerCase().includes(query.toLowerCase());
+    // });
+    // console.log('Producto en el presentador', this.product);
 
   }
   setCartItem(): CartItem {

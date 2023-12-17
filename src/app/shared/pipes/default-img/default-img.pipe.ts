@@ -7,7 +7,7 @@ import { environment } from 'src/environments/environment';
 export class DefaultImgPipe implements PipeTransform {
 
   transform(value: string ): string {
-    return value?`${environment.api}/${value}`:'assets/img/descarga.png';
+    return value?`${environment.api}/${value}`:'assets/img/default.jpg';
   }
 
 }

@@ -183,13 +183,7 @@
 
   <!-- Image Section -->
   <div class="form-group" >
-    <input
-    name="image"
-      type="file"
-      (change)="onImagesSelected($event)"
-      accept="image/*"
-      multiple
-    />
+
 
     <!-- Display Existing Images -->
     <!-- Display Existing Images -->
@@ -211,11 +205,9 @@
       </div>
     </div>
 
-    <!-- Display Selected Images Preview -->
-    <!-- Display Selected Images Preview -->
-
-    <!-- Display Selected Images Preview -->
-    <div class="image-preview" *ngIf="selectedImages.length > 0">
+    <input type="file" (change)="onFileChange($event)" />
+    <!-- <button (click)="uploadImage()">Subir Imagen</button> -->
+    <!-- <div class="image-preview" *ngIf="selectedImages.length > 0">
       <div *ngFor="let image of productImages">
         <img
           [src]="image.url"
@@ -228,22 +220,15 @@
           <mat-icon>cancel</mat-icon>
         </button>
       </div>
-    </div>
+    </div> -->
 
     <!-- Help Message -->
-    <div *ngIf="selectedImages.length === 0 && !loading">
+    <!-- <div *ngIf="selectedImages.length === 0 && !loading">
       Seleccione una o más imágenes.
-    </div>
+    </div> -->
 
     <!-- Upload Button -->
-    <button
-      mat-raised-button
-      color="primary"
-      *ngIf="selectedImages.length > 0 && !loading"
-      (click)="uploadImagesAndAddToForm(editForm.value)"
-    >
-      Cargar Imágenes
-    </button>
+
 
     <!-- Loading Indicator -->
     <mat-spinner diameter="30" *ngIf="loading"></mat-spinner>

@@ -29,8 +29,21 @@
   </div>
 </ng-container> -->
 
+<div *ngIf="hasSearchResults; else noResults">
+
+
 <ng-container  class="prod"  *ngFor="let item of products">
   <div class="product">
     <app-product [product]="item"></app-product>
   </div>
 </ng-container>
+
+</div>
+<ng-template #noResults>
+  <div class="no-results-message">
+    <p>No hay publicaciones que coincidan con tu búsqueda.</p>
+    <p>Revisa la ortografía de la palabra.</p>
+    <p>Utiliza palabras más genéricas o menos palabras.</p>
+    <p>Navega por las categorías para encontrar un producto similar.</p>
+  </div>
+</ng-template>
