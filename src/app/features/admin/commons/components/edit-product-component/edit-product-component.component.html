@@ -182,57 +182,60 @@
   <!-- Image Section -->
 
   <!-- Image Section -->
-  <div class="form-group" >
 
+    <!-- Sección de Imágenes -->
+    <div class="form-group">
+      <input
+        type="file"
+        name="image"
+        (change)="onImagesSelected($event)"
+        accept="image/*"
+        multiple
+      />
 
-    <!-- Display Existing Images -->
-    <!-- Display Existing Images -->
-    <div
-      class="image-gallery"
-      *ngIf="product.images && product.images.length > 0"
-    >
-      <div *ngFor="let image of product.images; let i = index">
-        <img
-          [src]="getImages(image)"
-          alt="Imagen del producto"
-          width="50"
-          height="50"
-          class="product-image"
-        />
-        <button mat-icon-button (click)="removeImage(i)">
-          <mat-icon>cancel</mat-icon>
-        </button>
+      <!-- Mostrar Imágenes Existentes -->
+      <div
+        class="image-gallery"
+        *ngIf="product.images && product.images.length > 0"
+      >
+        <div *ngFor="let image of product.images; let i = index">
+          <img
+            [src]="getImages(image)"
+            alt="Imagen del producto"
+            width="50"
+            height="50"
+            class="product-image"
+          />
+          <button mat-icon-button (click)="removeImage(i)">
+            <mat-icon>cancel</mat-icon>
+          </button>
+        </div>
       </div>
+
+      <!-- Mostrar Vista Previa de Imágenes Seleccionadas -->
+      <div class="image-preview" *ngIf="selectedImages.length > 0">
+        <div *ngFor="let image of productImages">
+          <img
+            [src]="image.url"
+            alt="Imagen del producto"
+            width="50"
+            height="50"
+            class="product-image"
+          />
+          <button mat-icon-button (click)="removeSelectedImage(image)">
+            <mat-icon>cancel</mat-icon>
+          </button>
+        </div>
+      </div>
+
+      <!-- Mensaje de Ayuda -->
+      <div *ngIf="selectedImages.length === 0 && !loading">
+        Seleccione una o más imágenes.
+      </div>
+
+      <!-- Indicador de Carga -->
+      <mat-spinner diameter="30" *ngIf="loading"></mat-spinner>
     </div>
-
-    <input type="file" (change)="onFileChange($event)" />
-    <!-- <button (click)="uploadImage()">Subir Imagen</button> -->
-    <!-- <div class="image-preview" *ngIf="selectedImages.length > 0">
-      <div *ngFor="let image of productImages">
-        <img
-          [src]="image.url"
-          alt="Imagen del producto"
-          width="50"
-          height="50"
-          class="product-image"
-        />
-        <button mat-icon-button (click)="removeSelectedImage(image)">
-          <mat-icon>cancel</mat-icon>
-        </button>
-      </div>
-    </div> -->
-
-    <!-- Help Message -->
-    <!-- <div *ngIf="selectedImages.length === 0 && !loading">
-      Seleccione una o más imágenes.
-    </div> -->
-
-    <!-- Upload Button -->
-
-
-    <!-- Loading Indicator -->
-    <mat-spinner diameter="30" *ngIf="loading"></mat-spinner>
-  </div>
 
   <div class="form-actions">
     <button mat-raised-button color="primary" type="submit">

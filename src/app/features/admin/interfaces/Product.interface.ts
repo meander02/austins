@@ -8,12 +8,12 @@ export interface IproductResponse
   unit: string;
   expiration: string;
   model: string;
-  quantity: string;
+  quantity: number;
   price: number;
   category: string;
   maker: string;
   images: string[];
-  status: string; 
+  status: string;
   weight: number;
   ingredients: string[];
   allergens: string[];

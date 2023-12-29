@@ -10,7 +10,7 @@ export class Product {
   unit: string;
   expiration: string;
   model: string;
-  quantity: string;
+  quantity: number;
   price: number;
   category: string;
   maker: string;
@@ -32,7 +32,7 @@ export class Product {
     this.unit = data?.unit ? data.unit : '';
     this.expiration = data?.expiration ? data.expiration : '';
     this.model = data?.model ? data.model : '';
-    this.quantity = data?.quantity ? data.quantity : '';
+    this.quantity = data?.quantity ? data.quantity : 0;
     this.price = data?.price ? data.price : 0;
     this.category = data?.category ? data.category : '';
     this.maker = data?.maker ? data.maker : '';
@@ -46,8 +46,8 @@ export class Product {
     this.isVegetarian = data?.isVegetarian ? data.isVegetarian : false;
     this.isGlutenFree = data?.isGlutenFree ? data.isGlutenFree : false;
   }
-  getNameUpperCase(name: string): string {
-    return name.toUpperCase();
-  }
+  // getNameUpperCase(name: string): string {
+  //   return name.toUpperCase();
+  // }
 }
 

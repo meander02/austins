@@ -136,9 +136,16 @@ export class ProductListView implements OnInit {
   }
   // Nueva función para abrir el modal de edición
   openEditModal(product: Product): void {
+    const isMobile = window.innerWidth < 480;
     const dialogRef = this.dialog.open(EditProductComponentComponent, {
-      width: '800px', // Ancho del diálogo
-      height: '400px', // Altura del diálogo
+      width: isMobile ? '100vw' : '800px',
+      height: isMobile ? 'auto' : '600px',
+      maxWidth: isMobile ? 'auto' : 'auto',
+      maxHeight: isMobile ? 'auto' : '100vh',
+      panelClass: isMobile
+        ? ['mat-dialog', 'no-padding', 'mobile-dialog']
+        : ['mat-dialog', 'no-padding', 'web-dialog'],
+      // data: {},
       data: { product }, // Pasa el producto al modal
     });
 
@@ -152,17 +159,28 @@ export class ProductListView implements OnInit {
   }
 
   openCreateModal() {
+        const isMobile = window.innerWidth < 480;
+
     const dialogRef = this.dialog.open(CreateProductComponentComponent, {
-      width: '800px', // Ancho del diálogo
-      height: '400px', // Altura del diálogo
-      // data: { product }, // Pasa el producto al modal
+      width: isMobile ? '100vw' : '800px',
+      height: isMobile ? 'auto' : '600px',
+      maxWidth: isMobile ? 'auto' : 'auto',
+      maxHeight: isMobile ? 'auto' : '100vh',
+      panelClass: isMobile
+        ? ['mat-dialog', 'no-padding', 'mobile-dialog']
+        : ['mat-dialog', 'no-padding', 'web-dialog'],
+      data: {},
     });
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        // Lógica para manejar la actualización del producto aquí
-        // this.updateProduct(result); // Llama a la función de actualización con los datos editados
+        this.loadProducts(); // Asegúrate de que loadProducts realiza la lógica adecuada para cargar la lista de productos
+        console.log('Producto creado con éxito', result);
       }
     });
+
   }
+
+
+
 }

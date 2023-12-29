@@ -18,7 +18,7 @@ import { CartService } from '../../services/cart.service';
   ],
 })
 export class HeaderComponent  implements OnInit {
-  
+
   isHeaderScrolled = false;
   searchQuery: string = ''; // Variable para almacenar la consulta de búsqueda
   badge: number = 0;
@@ -115,6 +115,7 @@ export class HeaderComponent  implements OnInit {
   isRUTA_DISTINTE_ahome(): boolean {
     return this.currentRoute === '/portal/home'; // Cambia '/portal/detail' con la ruta deseada
   }
+  
   openSignInModal(): MatDialogRef<SignInView> {
     const isMobile = window.innerWidth < 480;
 

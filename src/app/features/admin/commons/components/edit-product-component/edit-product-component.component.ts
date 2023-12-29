@@ -27,21 +27,18 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ['./edit-product-component.component.scss'],
 })
 export class EditProductComponentComponent {
-  // file: File | null = null;
   editForm: FormGroup;
   product: Product;
   file: File | null = null;
-
   productImage: File | null = null;
   separatorKeysCodes = [ENTER, COMMA] as const;
-
   chips: any[] = [];
   productImages: any[] = [];
   selectedImages: File[] = [];
-  // imagenPrevia: any;
   files: any = [];
   loading: boolean | undefined;
   categories: Categoria[] = [];
+
   constructor(
     private dialogRef: MatDialogRef<EditProductComponentComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -86,34 +83,79 @@ export class EditProductComponentComponent {
     this.editForm.addControl('allergensInput', this.fb.control(''));
   }
 
-  onFileChange(event: any): void {
-    this.file = event.target.files[0];
-  }
-
   uploadImageAndUpdateProduct(product: Product): void {
-    if (this.file) {
+    this.showSuccessSnackBar('Producto actualizado ');
+
+    if (this.selectedImages) {
       const category = this.editForm.value.category;
       const productId = this.product._id;
       const position = this.product.images.length;
 
-      this.productService
-        .updateProductImage(category, productId, position, this.file)
-        .subscribe(
-          (response) => {
-            this.showSuccessSnackBar('Imagen subida exitosamente');
-            // console.log('Imagen suçbida exitosamente:', response.image);
-            // console.log('Imagen subida exitosamente:', product);
-          },
-          (error) => {
-            console.error('Error al subir la imagen:', error);
-          }
-        );
+      const uploadObservables = this.selectedImages.map((image: File) => {
+        return this.productService.updateProductImage(category, productId, position, image);
+      });
+
+      forkJoin(uploadObservables).subscribe(
+        (imageURLs: any) => {
+          product.images = product.images.concat(imageURLs);
+          // No necesitas suscribirte directamente aquí, ya que forkJoin se encargará de eso.
+          // La lógica de manejo de imágenes se realiza dentro de forkJoin.
+          this.loading = false;
+          this.snackBar.open('Producto editado con éxito', 'Cerrar', {
+            duration: 3000,
+          });
+        },
+        (error) => {
+          console.error('Error uploading images:', error);
+          this.loading = false;
+        }
+      );
     }
   }
 
+  // uploadImageAndUpdateProduct(product: Product): void {
+  //   this.showSuccessSnackBar('Producto actualizado ');
+  //   if (this.selectedImages) {
+  //     const category = this.editForm.value.category;
+  //     const productId = this.product._id;
+  //     const position = this.product.images.length;
+
+  //     const uploadObservables = this.selectedImages.map((image: File) => {
+  //       // const position = product.images.length; // Ajustar la posición según tu lógica
+  //       // console.log('creando.. ', category, productId, position, image);
+  //       return this.productService
+  //         .updateProductImage(category, productId, position, image)
+  //         .subscribe(
+  //           (response) => {
+  //             this.showSuccessSnackBar('Imagen subida exitosamente');
+  //           },
+  //           (error) => {
+  //             console.error('Error al subir la imagen:', error);
+  //           }
+  //         );
+  //     });
+
+  //     forkJoin(uploadObservables).subscribe(
+  //       (imageURLs: any) => {
+  //         product.images = product.images.concat(imageURLs);
+  //         // this.editForm.get('images')?.setValue(product.images);
+  //         this.loading = false;
+  //       },
+  //       (error) => {
+  //         console.error('Error uploading images:', error);
+  //         this.loading = false;
+  //       }
+  //     );
+
+  //     this.snackBar.open('Producto editado con éxito', 'Cerrar', {
+  //       duration: 3000,
+  //     });
+  //   }
+  // }
+
   saveChanges(): void {
     console.log('Save Changes button clicked'); // Add this line
-    console.log('Product Image:', this.file);
+    console.log('Product Image:', this.selectedImages);
 
     if (this.editForm.valid) {
       const editedProduct: Product = {
@@ -137,16 +179,13 @@ export class EditProductComponentComponent {
         isVegetarian: this.editForm.value.isVegetarian,
         isGlutenFree: this.editForm.value.isGlutenFree,
       };
-
-        this.updateProduct(editedProduct);
-
+      this.updateProduct(editedProduct);
     }
   }
 
   updateProduct(product: Product): void {
     this.productService.updateProduct(product).subscribe(
       (updatedProduct: Product) => {
-        this.showSuccessSnackBar('Producto actualizado ');
         this.uploadImageAndUpdateProduct(updatedProduct);
         this.dialogRef.close(updatedProduct);
       },
@@ -155,48 +194,31 @@ export class EditProductComponentComponent {
       }
     );
   }
+
   removeImage(index: number): void {
     const fullImagePath = this.product.images[index];
     const imageNameToRemove = fullImagePath.split('/').pop(); // Extracts the file name from the full path
-
     if (!imageNameToRemove) {
       console.error('Error: Image name is undefined');
       return;
     }
-
     this.product.images.splice(index, 1); // Remove the image from the product's array of images
 
     // Call the productService's deleteImage method to delete the image on the server
-    this.productService.deleteProductImage(this.product._id, imageNameToRemove).subscribe(
-      (response) => {
-        console.log('Image deleted successfully:', response);
-        this.showSuccessSnackBar('Image deleted successfully');
-        // You can perform other actions after deletion if necessary
-        this.updateProduct(this.product); // Update the product after deleting the image
-      },
-      (error) => {
-        console.error('Error deleting the image:', error);
-      }
-    );
+    this.productService
+      .deleteProductImage(this.product._id, imageNameToRemove)
+      .subscribe(
+        (response) => {
+          console.log('Image deleted successfully:', response);
+          this.showSuccessSnackBar('Image deleted successfully');
+          // You can perform other actions after deletion if necessary
+          this.updateProduct(this.product); // Update the product after deleting the image
+        },
+        (error) => {
+          console.error('Error deleting the image:', error);
+        }
+      );
   }
-
-
-  // removeImage(index: number): void {
-  //   this.product.images.splice(index, 1);
-  //   this.showSuccessSnackBar('imegan eliminado');
-  //   this.updateProduct(this.product);
-  // }
-  // deleteImage(productId: string, imageName: string): void {
-  //   this.productService.deleteProductImage(productId, imageName).subscribe(
-  //     (response) => {
-  //       console.log('Imagen eliminada exitosamente:', response);
-  //       // Puedes realizar otras acciones después de la eliminación si es necesario
-  //     },
-  //     (error) => {
-  //       console.error('Error al eliminar la imagen:', error);
-  //     }
-  //   );
-  // }
   showSuccessSnackBar(message: string): void {
     this.snackBar.open(message, 'Cerrar', {
       duration: 3000, // Duración en milisegundos
@@ -214,6 +236,37 @@ export class EditProductComponentComponent {
         console.error('Error al cargar las categorías:', error);
       }
     );
+  }
+  onImagesSelected(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    if (!input.files || input.files.length === 0) {
+      return;
+    }
+
+    const imageFiles = Array.from(input.files).filter((file) =>
+      file.type.startsWith('image/')
+    );
+
+    if (imageFiles.length > 0) {
+      this.selectedImages = imageFiles;
+      // console.log(this.selectedImages)
+      this.updateImagePreview();
+    } else {
+      console.warn('No se seleccionaron imágenes válidas.');
+    }
+  }
+  removeSelectedImage(selectedImage: File): void {
+    const index = this.selectedImages.indexOf(selectedImage);
+    if (index !== -1) {
+      this.selectedImages.splice(index, 1);
+    }
+  }
+
+  private updateImagePreview(): void {
+    this.productImages = this.selectedImages.map((image: File) => ({
+      name: image.name,
+      url: URL.createObjectURL(image),
+    }));
   }
 
   getImages(url: string): string {
@@ -261,18 +314,6 @@ export class EditProductComponentComponent {
     const formArray = type === 'ingredients' ? 'ingredients' : 'allergens';
     (this.editForm.get(formArray) as FormArray).removeAt(index);
   }
-  // removeImage(index: number): void {
-  //   this.product.images.splice(index, 1);
-  //   this.showSuccessSnackBar('imegan eliminado');
-  //   this.updateProduct(this.product);
-  // }
-  // removeSelectedImage(selectedImage: File): void {
-  //   const index = this.selectedImages.indexOf(selectedImage);
-  //   if (index !== -1) {
-  //     this.selectedImages.splice(index, 1);
-  //   }
-  // }
-
   toggleStatus(): void {
     const statusControl = this.editForm.get('status');
     if (statusControl) {
@@ -300,7 +341,6 @@ export class EditProductComponentComponent {
     const AllergensArray = this.editForm.get('allergens') as FormArray;
     AllergensArray.at(index).setValue(value);
   }
-
   ngAfterViewInit() {
     this.el.nativeElement.focus();
   }

@@ -14,6 +14,8 @@
     justify-content: space-between;
 
     .view-title {
+      text-align: center;
+      // justify-content: ;
       font-size: 24px;
       margin-bottom: 16px;
       color: #333;
@@ -83,45 +85,96 @@
     }
   }
 }
-
+/* Responsividad en Dispositivos Móviles */
 /* Responsividad en Dispositivos Móviles */
 @media (max-width: 600px) {
-  .mat-table {
+  .container{
+
+    margin-left: 5%;
+ // width: 100%; /* Ajusta el ancho de la tabla al 100% del contenedor */
+
+}
+.mat-table {
+  overflow-x: auto;
+  display: block; /* Cambia la visualización a bloque para permitir el desplazamiento horizontal */
+}
+
+
+.mat-table {
+
+  // width: 100%; /* Ajusta el ancho de la tabla al 100% del contenedor */
+    font-size: 6px;
+  }
+
+  .mat-header-cell,
+  .mat-cell {
+    display: flex;
+    align-items: center;
+    padding: 8px; /* Ajusta el espacio interno de las celdas */
+    box-sizing: border-box;
+    flex: 1;
+    word-wrap: break-word; /* Rompe la palabra si es necesario */
+  }
+
+  .mat-column-actions {
+    flex-basis: 80px; /* Ajusta el ancho de la columna de acciones según tus necesidades */
+  }
+
+  .product-image {
+    max-width: 50px;
+    max-height: 50px;
+    margin-right: 8px; /* Ajusta el margen entre la imagen y el texto según tus preferencias */
+  }
+
+  .create-button {
     font-size: 14px;
+    margin-top: 8px; /* Ajusta el margen superior de los botones según tus preferencias */
+    // margin-left: 40px; /* Ajusta el margen superior de los botones según tus preferencias */
+  }
+  .edit-button,
+  .delete-button {
+    font-size: 14px;
+    margin-top: 8px; /* Ajusta el margen superior de los botones según tus preferencias */
+  }
 
-    .product-image {
-      max-width: 30px;
-      max-height: 30px;
-    }
+  .actions-cell {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
 
-    .create-button,
-    .edit-button,
-    .delete-button {
-      font-size: 14px;
-      margin-bottom: 10px;
-    }
-
-    .actions-cell {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-    }
-
-    /* Ocultar columnas en dispositivos móviles */
-    .mat-column-category,
-    .mat-column-weight {
-      display: none;
-    }
+  /* Ocultar columnas en dispositivos móviles */
+  .mat-column-category,
+  .mat-column-weight {
+    display: none;
   }
 }
 
+
 /* Estados y Paginator */
+
 .active {
   color: #00b050;
+  &::before {
+    margin-bottom: 3%;
+    // justify-content: end;
+    content: ' ● ';
+    color: #00b050;
+    font-size: 1.3rem;
+
+  }
 }
 
 .deactive {
   color: rgb(255, 0, 0);
+  &::before {
+
+    margin-bottom: 3%;
+    content: ' ● ';
+
+    color: rgb(255, 0, 0);
+  font-size: 1.3rem;
+  }
 }
 
 .paginator {

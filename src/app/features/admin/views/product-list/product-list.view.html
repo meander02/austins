@@ -1,6 +1,6 @@
 <div class="container">
   <div class="subcontenido">
-    <h1 class="view-title">Vista de Productos</h1>
+    <h1 class="view-title"> Productos</h1>
 
     <div>
       <form [formGroup]="searchForm" class="form">
@@ -30,7 +30,7 @@
           <mat-icon>image</mat-icon> Imagen
         </mat-header-cell>
         <mat-cell *matCellDef="let product">
-          <!-- {{product.image  | defaultImg}} -->
+
           <img
            src="{{product.images[0]  | defaultImg}}"
             alt="Imagen del producto"
@@ -38,13 +38,6 @@
             height="50"
             class="product-image"
           />
-          <!-- <img
-            [src]="getImages(product.images[0]) | defaultImg"
-            alt="Imagen del producto"
-            width="50"
-            height="50"
-            class="product-image"
-          /> -->
         </mat-cell>
       </ng-container>
 
