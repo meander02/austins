@@ -1,7 +1,7 @@
-:host{
-  *{
-        // outline: 1px solid red;
-//
+:host {
+  * {
+    // outline: 1px solid red;
+    //
   }
 }
 .admin-header {
@@ -82,3 +82,32 @@
   margin-right: 10px;
 }
 
+/* Consulta de medios para dispositivos con un ancho máximo de 768px (puedes ajustar este valor según tus necesidades) */
+@media only screen and (max-width: 768px) {
+
+
+  .logo-container {
+    flex: 1;
+    text-align: left; /* Alinea el logo a la izquierda */
+    margin-right: 20px;
+  }
+  .logo-container img {
+    max-width: 60%;
+  }
+  .logo-container {
+    flex: 100%; /* Ocupa todo el ancho disponible en dispositivos pequeños */
+    // margin-bottom: 10px; /* Añade espacio entre el logo y los demás elementos */
+  }
+
+  .button-container-pc {
+    display: none; /* Oculta los botones en dispositivos móviles */
+  }
+
+  .button-container-mobile {
+    display: flex; /* Muestra el contenedor en dispositivos móviles */
+  }
+
+  .menu-btn {
+    margin-right: 0; /* Elimina el margen derecho en dispositivos móviles */
+  }
+}

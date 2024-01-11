@@ -81,7 +81,6 @@ export class ProductListView implements OnInit {
       .subscribe((data: Product[]) => {
         this.products = data;
       });
-    // this.srcMain = this.getImages(this.images[0]);
   }
 
   searchProducts(): void {
@@ -109,7 +108,7 @@ export class ProductListView implements OnInit {
 
   openDeleteConfirmation(product: Product): void {
     const dialogRef = this.dialog.open(OpenDeleteConfirmationComponent, {
-      data: { product }, // Pasa el producto al modal
+      data: { product },
     });
 
     dialogRef.afterClosed().subscribe((result) => {
@@ -138,10 +137,10 @@ export class ProductListView implements OnInit {
   openEditModal(product: Product): void {
     const isMobile = window.innerWidth < 480;
     const dialogRef = this.dialog.open(EditProductComponentComponent, {
-      width: isMobile ? '100vw' : '800px',
-      height: isMobile ? 'auto' : '600px',
+      width: isMobile ? '120vw' : '800px',
+      height: isMobile ? '700px' : '600px',
       maxWidth: isMobile ? 'auto' : 'auto',
-      maxHeight: isMobile ? 'auto' : '100vh',
+      maxHeight: isMobile ? '100vh' : 'auto',
       panelClass: isMobile
         ? ['mat-dialog', 'no-padding', 'mobile-dialog']
         : ['mat-dialog', 'no-padding', 'web-dialog'],
@@ -153,22 +152,44 @@ export class ProductListView implements OnInit {
       if (result) {
         // Lógica para manejar la actualización del producto aquí
         this.updateProduct(result); // Llama a la función de actualización con los datos editados
-        console.log(result)
+        console.log(result);
       }
     });
   }
 
+  // openSignInModal(): MatDialogRef<SignInView> {
+  //   const isMobile = window.innerWidth < 480;
+
+  //   const dialogRef = this.dialog.open(SignInView, {
+  //     width: isMobile ? '120vw' : '460px',
+  //     height: isMobile ? 'auto' : 'auto',
+  //     maxWidth: isMobile ? 'auto' : 'auto',
+  //     maxHeight: isMobile ? 'auto' : '100vh',
+  //     panelClass: isMobile
+  //       ? ['mat-dialog', 'no-padding', 'mobile-dialog']
+  //       : ['mat-dialog', 'no-padding', 'web-dialog'],
+  //     data: {},
+  //   });
+
+  //   dialogRef.afterClosed().subscribe((result) => {
+  //     console.log('Modal cerrado', result);
+  //   });
+
+  //   return dialogRef;
+  // }
+
   openCreateModal() {
-        const isMobile = window.innerWidth < 480;
+    const isMobile = window.innerWidth < 480;
 
     const dialogRef = this.dialog.open(CreateProductComponentComponent, {
-      width: isMobile ? '100vw' : '800px',
-      height: isMobile ? 'auto' : '600px',
+      width: isMobile ? '120vw' : '800px',
+      height: isMobile ? '700px' : '600px',
       maxWidth: isMobile ? 'auto' : 'auto',
-      maxHeight: isMobile ? 'auto' : '100vh',
+      maxHeight: isMobile ? '100vh' : 'auto',
       panelClass: isMobile
         ? ['mat-dialog', 'no-padding', 'mobile-dialog']
         : ['mat-dialog', 'no-padding', 'web-dialog'],
+      // data: {},
       data: {},
     });
 
@@ -178,9 +199,5 @@ export class ProductListView implements OnInit {
         console.log('Producto creado con éxito', result);
       }
     });
-
   }
-
-
-
 }

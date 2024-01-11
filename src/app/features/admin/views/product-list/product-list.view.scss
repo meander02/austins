@@ -5,7 +5,7 @@
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
   padding: 20px;
-  font-family: 'Arial', sans-serif;
+  font-family: "Arial", sans-serif;
   color: #333;
 
   .subcontenido {
@@ -42,7 +42,7 @@
 
 /* Tabla y Celdas */
 .mat-table {
-  width: 100%;
+  // width: 100%;
   overflow-x: auto;
 
   .mat-row {
@@ -85,30 +85,31 @@
     }
   }
 }
-/* Responsividad en Dispositivos Móviles */
+
 /* Responsividad en Dispositivos Móviles */
 @media (max-width: 600px) {
-  .container{
+  .container {
+    margin-left: 10%;
+    // width: 100%; /* Ajusta el ancho de la tabla al 100% del contenedor */
+    .form{
+      font-size: 14px;
+      margin-top: 8px; /* Ajusta el margen superior de los botones según tus preferencias */
+      margin-left: 20px; /* Ajusta el margen superior de los botones según tus preferencias */
+    }
+  }
+  .mat-table {
+    overflow-x: auto;
+    display: block; /* Cambia la visualización a bloque para permitir el desplazamiento horizontal */
+  }
 
-    margin-left: 5%;
- // width: 100%; /* Ajusta el ancho de la tabla al 100% del contenedor */
-
-}
-.mat-table {
-  overflow-x: auto;
-  display: block; /* Cambia la visualización a bloque para permitir el desplazamiento horizontal */
-}
-
-
-.mat-table {
-
-  // width: 100%; /* Ajusta el ancho de la tabla al 100% del contenedor */
-    font-size: 6px;
+  .mat-table {
+    width: 100%; /* Ajusta el ancho de la tabla al 100% del contenedor */
+    // font-size: 3px;
   }
 
   .mat-header-cell,
   .mat-cell {
-    display: flex;
+    // display: flex;
     align-items: center;
     padding: 8px; /* Ajusta el espacio interno de las celdas */
     box-sizing: border-box;
@@ -129,8 +130,10 @@
   .create-button {
     font-size: 14px;
     margin-top: 8px; /* Ajusta el margen superior de los botones según tus preferencias */
-    // margin-left: 40px; /* Ajusta el margen superior de los botones según tus preferencias */
+    margin-left: 20px; /* Ajusta el margen superior de los botones según tus preferencias */
   }
+
+  // .create-button,
   .edit-button,
   .delete-button {
     font-size: 14px;
@@ -150,7 +153,6 @@
   }
 }
 
-
 /* Estados y Paginator */
 
 .active {
@@ -158,22 +160,20 @@
   &::before {
     margin-bottom: 3%;
     // justify-content: end;
-    content: ' ● ';
+    content: " ● ";
     color: #00b050;
     font-size: 1.3rem;
-
   }
 }
 
 .deactive {
   color: rgb(255, 0, 0);
   &::before {
-
     margin-bottom: 3%;
-    content: ' ● ';
+    content: " ● ";
 
     color: rgb(255, 0, 0);
-  font-size: 1.3rem;
+    font-size: 1.3rem;
   }
 }
 
