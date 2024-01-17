@@ -7,6 +7,7 @@ import { AcercaDeView } from './views/acerca-de/acerca-de.view';
 import { DetailViews } from './views/detail/detail.views';
 import { PoliticaCookiesView } from './views/politica-cookies/politica-cookies.view';
 import { TerminosCondicionesView } from './views/terminos-condiciones/terminos-condiciones.view';
+import { NotFondViews } from './views/not-fond/not-fond.views';
 
 const routes: Routes = [
   {
@@ -44,7 +45,17 @@ const routes: Routes = [
         title:"Acerca de |",
         path: 'acercade',
         component: AcercaDeView,
-      }
+      },
+      {
+        title:"404",
+        path: 'not-found',
+        component: NotFondViews,
+      },
+      {
+        title:"404",
+        path: '**',
+        component: NotFondViews,
+      },
     ],
   }
 ];

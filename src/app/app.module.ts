@@ -6,6 +6,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CssStyleClass } from '@fortawesome/fontawesome-svg-core';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { ErrorInterceptor } from './shared/interceptor/error.interceptor';
 
 @NgModule({
   declarations: [
@@ -15,7 +17,10 @@ import { CssStyleClass } from '@fortawesome/fontawesome-svg-core';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    CoreComponentsModule
+    CoreComponentsModule,HttpClientModule
+  ],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
   ],
   bootstrap: [AppComponent]
 })

@@ -1,7 +1,9 @@
+import { ErrorInterceptor } from './../../shared/interceptor/error.interceptor';
 
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+// import { ErrorInterceptor } from 'src/app/shared/interceptor/error.interceptor';
 import { PortalRoutingModule } from './portal-routing.module';
 import { HomeViews } from './views/home/home.views';
 import { NotFondViews } from './views/not-fond/not-fond.views';
@@ -15,13 +17,11 @@ import { PoliticaCookiesView } from './views/politica-cookies/politica-cookies.v
 import { TerminosCondicionesView } from './views/terminos-condiciones/terminos-condiciones.view';
 
 
-// import { ErrorInterceptor } from 'src/app/shared/interceptor/error.interceptor';
-
 @NgModule({
-  declarations: [HomeViews, NotFondViews, DetailViews, AboutViews,PortalComponent, PoliticaPrivView, AcercaDeView, PoliticaCookiesView, TerminosCondicionesView],
-  imports: [CommonModule, PortalRoutingModule,PortalCommonsModule],
-  // providers: [
-  //   { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
-  // ],
+  declarations: [HomeViews, NotFondViews, DetailViews, AboutViews, PortalComponent, PoliticaPrivView, AcercaDeView, PoliticaCookiesView, TerminosCondicionesView],
+  imports: [HttpClientModule,CommonModule, PortalRoutingModule, PortalCommonsModule],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+  ],
 })
 export class PortalModule {}

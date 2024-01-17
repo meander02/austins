@@ -1,0 +1,197 @@
+.not-fond-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-image: url("https://static.wixstatic.com/media/64de7c_bd452d768bdf43498f0e94694ddc7040~mv2.jpg");
+  background-size: cover;
+  background-position: center;
+  text-align: center;
+  animation: backgroundAnimation 5s infinite alternate;
+  overflow: hidden;
+}
+
+.not-fond-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-image: inherit;
+  background-size: inherit;
+  background-position: inherit;
+  filter: blur(5px);
+}
+
+@keyframes backgroundAnimation {
+  0%, 30% {
+    background-image: url("https://static.wixstatic.com/media/64de7c_bd452d768bdf43498f0e94694ddc7040~mv2.jpg");
+  }
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 90%;
+  padding: 20px;
+  border-radius: 10px;
+  position: relative;
+  background: rgba(0, 0, 0, 0.7);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  margin-top: 20px;
+  animation: bounceAnimation 2s infinite alternate;
+}
+
+@keyframes bounceAnimation {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.text-content {
+  text-align: center;
+  max-width: 70%;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+h1.bienve {
+  font-size: 2.5rem;
+  font-family: "cursive";
+  margin: 0;
+  padding: 0;
+  color: #fff;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+p {
+  font-size: 1.25rem;
+  margin: 20px 0;
+  color: #fff;
+}
+
+.owner {
+  text-align: center;
+  margin-top: 20px;
+}
+
+h2 {
+  font-size: 1.5rem;
+  color: #fff;
+}
+
+.contact-owner {
+  background-color: #ff5733;
+  border: none;
+  color: #fff;
+  font-size: 1.25rem;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+  margin-top: 20px;
+  animation: colorChangeAnimation 3s infinite alternate;
+}
+
+@keyframes colorChangeAnimation {
+  0%, 100% {
+    background-color: #ff5733;
+  }
+  50% {
+    background-color: #ff3d15;
+  }
+}
+
+.contact-owner:hover {
+  background-color: #ff3d15;
+  transform: scale(1.05);
+}
+
+.cursor {
+  position: fixed;
+  width: 0px;
+  height: 0px;
+  box-shadow: 0px 9px 30px 8px #c0c369;
+  border-radius: 100%;
+  pointer-events: none;
+  transition: transform 20s ease;
+  z-index: 9999;
+}
+
+/* Estilos para dispositivos móviles (por ejemplo, pantalla de ancho menor a 600px) */
+/* Estilos para dispositivos móviles (por ejemplo, pantalla de ancho menor a 600px) */
+@media (max-width: 600px) {
+  .bienve {
+    font-size: 2rem; /* Cambiado de h1 a .bienve para ser más específico */
+  }
+
+  p {
+    font-size: 1rem;
+  }
+
+  .contact-owner {
+    font-size: 1rem;
+    padding: 8px 16px;
+  }
+}
+
+/* Estilos para los números 4, 0, 4 */
+.error-numbers {
+  display: flex;
+  justify-content: space-around;
+  margin: 40px;
+}
+
+.error-number {
+  display: inline-block;
+  font-size: 6rem;
+  color: #ff5733;
+  opacity: 0;
+  animation: fadeIn 2s forwards;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+.error-number:nth-child(2) {
+  animation-delay: 0.5s;
+}
+
+.error-number:nth-child(3) {
+  animation-delay: 1s;
+}
+
+/* Ajustes para dispositivos móviles */
+@media (max-width: 600px) {
+  .error-numbers {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .error-number {
+    font-size: 6rem;
+    margin-bottom: 10px;
+  }
+
+  h1.bienve {
+    font-size: 1.5rem;
+  }
+
+  p {
+    font-size: 1rem;
+  }
+
+  .contact-owner {
+    font-size: 1rem;
+    padding: 8px 16px;
+  }
+}

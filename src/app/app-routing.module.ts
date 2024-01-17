@@ -16,7 +16,6 @@ const routes: Routes = [
   },
   {
     path: 'admin',
-    // canActivate:[isAdminGuard],
     canActivate: [isAdminGuard, isAuthenticatedGuard],
     loadChildren: () =>
       import('./features/admin/admin.module').then((m) => m.AdminModule),
@@ -28,9 +27,14 @@ const routes: Routes = [
   },
   {
     path: 'payment',
-    // canActivate:[isAuthenticatedGuard],
+    canActivate:[isAuthenticatedGuard],
     loadChildren: () =>
       import('./features/payment/payment.module').then((m) => m.PaymentModule),
+  },
+  {
+    title:"home",
+    path: '**',
+    redirectTo: 'portal',
   },
 ];
 
