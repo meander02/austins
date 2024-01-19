@@ -100,6 +100,11 @@
   backdrop-filter: blur(10px); /* Aplica el efecto de desenfoque al fondo */
   background-color: #171614; /* Cambia el color de fondo a lo que necesites */
 }
+.is-detail-route.filter-section {
+  display: none; /* Oculta la sección de filtros en las v
+  backdrop-filter: blur(10px); /* Aplica el efecto de desenfoque al fondo */
+  background-color: #171614; /* Cambia el color de fondo a lo que necesites */
+}
 
 /* Agrega estilos específicos para dispositivos web */
 @media (min-width: 481px) {

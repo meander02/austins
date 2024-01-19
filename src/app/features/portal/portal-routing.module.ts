@@ -8,6 +8,7 @@ import { DetailViews } from './views/detail/detail.views';
 import { PoliticaCookiesView } from './views/politica-cookies/politica-cookies.view';
 import { TerminosCondicionesView } from './views/terminos-condiciones/terminos-condiciones.view';
 import { NotFondViews } from './views/not-fond/not-fond.views';
+import { UnknownView } from './views/unknown/unknown.view';
 
 const routes: Routes = [
   {
@@ -50,6 +51,11 @@ const routes: Routes = [
         title:"404",
         path: 'not-found',
         component: NotFondViews,
+      },
+      {
+        title:"500",
+        path: 'unknown',
+        component: UnknownView ,
       },
       {
         title:"404",

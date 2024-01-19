@@ -1,34 +1,31 @@
-import { Component ,HostListener, OnInit} from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ProductService } from 'src/app/features/admin/commons/services/product.service';
 import { Product } from 'src/app/features/admin/models/Product.models';
 import { SearchService } from 'src/app/shared/services/search-service.service';
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.views.html',
   styleUrls: ['./home.views.scss']
 })
 export class HomeViews implements OnInit {
-
-
+  originalProducts: Product[] = []; // Mantén una copia original de todos los productos
   products: Product[] = [];
-  producto:Product;
   hasSearchResults = true;
   filterPost = '';
-  items: number=0;
-  constructor(private router: Router,private productService: ProductService, private searchService: SearchService) {
-    this.producto = new Product();
-    this.producto._id = "600b727a1a4be3a70c51e15c";
-    this.producto.sku = "P003";
-    this.producto.name = "Alcohol Medicinal 96°";
-    this.producto.description = "Alcohol medicinal de 1 litro al 96% de pureza, ideal para desinfectar manos y ambientes.";
-    this.producto.price = 12;
-    this.producto.images = ["uploads/prevencion/600b727a1a4be3a70c51e15c/alcohol.png"];
-  }
+  items: number = 0;
+
+  constructor(
+    private router: Router,
+    private productService: ProductService,
+    private searchService: SearchService
+  ) {}
+
   @HostListener('mousemove', ['$event'])
   onMouseMove(event: MouseEvent): void {
     const cursor = document.querySelector('.cursor') as HTMLElement;
-    cursor.style.left = (event.clientX - 10) + 'px'; // Ajusta el offset según el tamaño de tu cursor
+    cursor.style.left = (event.clientX - 10) + 'px';
     cursor.style.top = (event.clientY - 10) + 'px';
   }
 
@@ -39,39 +36,33 @@ export class HomeViews implements OnInit {
 
   ngOnInit(): void {
     this.searchService.searchQuery$.subscribe((query) => {
-      // Filtra los productos en función de la consulta de búsqueda (query).
+      // Almacena la consulta de búsqueda.
       this.filterPost = query;
+
+      // Actualiza los productos basados en la consulta de búsqueda o muestra todos los productos.
+      if (query.trim() !== '') {
+        this.products = this.originalProducts.filter((product) =>
+          product.name.toLowerCase().includes(query.toLowerCase())
+        );
+      } else {
+        this.products = [...this.originalProducts]; // Si la búsqueda está vacía, muestra todos los productos originales.
+      }
+
       // Verifica si se han encontrado resultados.
-      this.hasSearchResults = this.producto.name.toLowerCase().includes(query.toLowerCase());
+      this.hasSearchResults = this.products.length > 0;
+
+      // console.log('products', query);
+      // console.log('products', this.products);
     });
-    // console.log('Producto en el presentador', this.product);
-    // console.log('primero', this.productService.getAll());
-    this.productService.getAll()
-    .subscribe(
-      response => {
-        this.products = response;
-        console.log('products', this.products);
+
+    this.productService.getAll().subscribe(
+      (response) => {
+        this.originalProducts = response; // Almacena todos los productos originales.
+        this.products = [...this.originalProducts]; // Muestra todos los productos al inicio.
       },
-      error =>{
-        console.log(error);
-        if (error.status === 404) { console.log('error 404')}
+      (error) => {
+        console.log('Error al cargar productos', error);
       }
     );
-    console.log('segundo');
-  }
-
-  goToDetail(): void {
-    // this.router.navigateByUrl(`portal/detail/${this.product._id}`);
-  }
-  add(): void {
-    // this.cartService.add(this.cartItem);
-  }
-
-  increment(): void {
-    // this.cartService.add(this.cartItem);
-  }
-
-  decrement(): void {
-    // this.cartService.remove(this.cartItem);
   }
 }

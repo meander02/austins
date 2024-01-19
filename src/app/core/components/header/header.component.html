@@ -88,7 +88,10 @@
     >
   </div>
 
-  <div class="filter-section">
+  <div
+    class="filter-section"
+    [class.is-detail-route]="!isRUTA_DISTINTE_ahome()"
+  >
     <label for="categoryFilter">Categoría:</label>
     <button>
       filtrar

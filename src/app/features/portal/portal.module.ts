@@ -15,10 +15,11 @@ import { PoliticaPrivView } from './views/politica-priv/politica-priv.view';
 import { AcercaDeView } from './views/acerca-de/acerca-de.view';
 import { PoliticaCookiesView } from './views/politica-cookies/politica-cookies.view';
 import { TerminosCondicionesView } from './views/terminos-condiciones/terminos-condiciones.view';
+import { UnknownView } from './views/unknown/unknown.view';
 
 
 @NgModule({
-  declarations: [HomeViews, NotFondViews, DetailViews, AboutViews, PortalComponent, PoliticaPrivView, AcercaDeView, PoliticaCookiesView, TerminosCondicionesView],
+  declarations: [HomeViews, NotFondViews, DetailViews, AboutViews, PortalComponent, PoliticaPrivView, AcercaDeView, PoliticaCookiesView, TerminosCondicionesView, UnknownView],
   imports: [HttpClientModule,CommonModule, PortalRoutingModule, PortalCommonsModule],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
