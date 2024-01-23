@@ -1,7 +1,6 @@
 /* Estilos base sin Media Queries */
 
 .log {
-  // background-color:#0056b3;
   text-align: center;
   margin-top: 2%;
 }
@@ -11,7 +10,6 @@
   height: auto;
   border-radius: 8px;
 }
-
 
 p {
   font-size: 14px;
@@ -27,21 +25,19 @@ a {
 }
 
 a:hover {
-  // color: #000;
   text-decoration: underline;
 }
 
 .signup-container {
-  margin-top: 0;
+  margin-top: 2%;
   background-color: #f5f5f5;
   border-radius: 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   text-align: center;
-  padding: 1%;
+  padding: 2%;
   max-width: 500px;
   margin: 0 auto;
   height: 500px;
-
 }
 
 .signup-container img {
@@ -55,30 +51,30 @@ form {
 }
 
 mat-form-field {
+  border-radius: 30%;
   width: 100%;
-  margin: 0;
+  margin: 0px 0; /* Ajuste del margen */
 }
 
 .next-button,
 .prev-button {
   display: inline-block;
-  padding: 10px 20px;
-  background-color: #007bff;
+  padding: 12px 15px; /* Ajuste del padding */
+  background-color: #a54c2c;
   color: #fff;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 12px; /* Ajuste del tamaño de la fuente */
   transition: background-color 0.3s;
-  margin-right: 10px;
+  margin: 10px 5px; /* Ajuste del margen */
 }
 
 .next-button:hover,
 .prev-button:hover {
-  background-color: #0056b3;
+  background-color: #f7d567;
 }
 
-/* Estiliza los botones sociales */
 .social-button {
   display: flex;
   align-items: center;
@@ -92,6 +88,7 @@ mat-form-field {
   font-size: 14px;
   color: #333;
 }
+
 .social-button img {
   width: 30px;
   height: 30px;
@@ -109,74 +106,59 @@ mat-form-field {
 }
 
 .social-login {
-  margin-bottom: 30%;
+  // margin-bottom: 30%;
   height: auto;
-//  background-color: #0056b3;
   display: flex;
   justify-content: center;
-  margin-top: 10px;
+  margin-top: 8px;
 }
 
 .form-group {
-  margin-bottom: 0;
+  margin-bottom: 2px; /* Ajuste del margen */
   position: relative;
 }
 
-/* Estilos para los iconos en los campos de entrada */
-.form-group .mat-icon {
-  position: absolute;
-  top: 50%;
-  margin: 0;
-  transform: translateY(-50%);
-  left: 90%; /* Ajusta la distancia desde el borde izquierdo */
-  color: #aaa;
-}
-
-
-
 .form-group .animated input {
-  margin: 0;
-  height: 40px; /* Aumentado el tamaño de los campos */
+  height: 20px; /* Ajuste de la altura */
   color: #333;
   outline: none;
   transition: all 0.3s;
   width: 100%;
-  // border: 1px solid #ccc; /* Añadido un borde ligero */
   border-radius: 5px;
   padding: 5px;
 }
+
 .form-group .animated label {
   position: absolute;
   top: 2px;
   left: 2px;
-  font-size: 16px;
-  color: #000000;
+  font-size: 12px; /* Ajuste del tamaño de la fuente */
+  color: #8e8686;
   transition: all 0.3s;
 }
 
 .form-group .animated input:focus {
-  border-color: #007bff;
+  border-color: #ba3b0d;
 }
 
 .form-group .animated input:focus + label {
   top: -5px;
-  font-size: 14px;
-  color: #007bff;
+  font-size: 12px; /* Ajuste del tamaño de la fuente */
+  color: #ba3b0d;
 }
 
-/* Estiliza los campos de entrada con animación */
 .form-group.mat-form-field .animated {
   display: flex;
   flex-direction: column-reverse;
   align-items: flex-start;
-  padding: 10px;
+  padding: 8px;
   background-color: #f2f2f2;
   border-radius: 5px;
   transition: background-color 0.3s;
 }
 
 .form-group.mat-form-field .animated input {
-  margin: 5px 0;
+  margin: 2px 0;
   color: #333;
   outline: none;
   border: none;
@@ -188,7 +170,7 @@ mat-form-field {
   position: relative;
   top: auto;
   left: auto;
-  font-size: 16px;
+  font-size: 7px; /* Ajuste del tamaño de la fuente */
   color: #777;
   transition: all 0.3s;
 }
@@ -199,8 +181,8 @@ mat-form-field {
 
 .form-group.mat-form-field .animated input:focus + label {
   top: -24px;
-  font-size: 14px;
-  color: #007bff;
+  font-size: 6px; /* Ajuste del tamaño de la fuente */
+  color: #a54c2c;
 }
 
 /* Estiliza la barra de progreso */
@@ -219,7 +201,7 @@ mat-form-field {
 }
 
 .progress-step.active {
-  color: #007bff;
+  color: #ff4400;
 }
 
 h1,
@@ -238,6 +220,18 @@ p.section-title {
   margin: 15px 0;
 }
 
+/* Estilos para el campo de fecha */
+.date {
+  width: 100%;
+  margin: 0;
+}
+
+.date {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 5px;
+}
+
 /* Media Queries para hacerlo responsive */
 
 @media (max-width: 768px) {
@@ -253,7 +247,6 @@ p.section-title {
     font-size: 18px;
   }
   .social-button {
-    // font-size: 14px;
     border-radius: 40px;
     padding: 10px;
     margin: 0 2px;
@@ -285,22 +278,7 @@ p.section-title {
   justify-content: center;
   align-items: center;
 }
-
-
-.home-button {
-  justify-content: center;
-  display: inline-block;
-  padding: 5px 30px;
-  background-color: #007bff;
-  color: #fff;
+mat-error{
   margin-bottom: 0%;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-  margin-right: 10px;
-}
-
-.home-button:hover {
-  background-color: #0056b3;
+  color: #d8966d;
 }

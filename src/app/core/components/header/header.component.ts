@@ -112,10 +112,21 @@ export class HeaderComponent  implements OnInit {
     this.router.navigateByUrl('/payment/cart');
   }
 
+  // isRUTA_DISTINTE_ahome(): boolean {
+  //   return this.currentRoute === '/portal/home'; // Cambia '/portal/detail' con la ruta deseada
+  // }
+
   isRUTA_DISTINTE_ahome(): boolean {
-    return this.currentRoute === '/portal/home'; // Cambia '/portal/detail' con la ruta deseada
+    // Utiliza el evento de cambio de ruta para actualizar 'currentRoute'
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        this.currentRoute = event.url;
+      }
+    });
+
+    // Ahora verifica si la ruta actual es '/portal/home'
+    return this.currentRoute === '/portal/home';
   }
-  
   openSignInModal(): MatDialogRef<SignInView> {
     const isMobile = window.innerWidth < 480;
 

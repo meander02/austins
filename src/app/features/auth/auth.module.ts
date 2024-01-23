@@ -8,6 +8,8 @@ import { SignUpView } from './views/sign-up/sign-up.view';
 import { AuthCommonsModule } from './commons/commons.module';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ErrorInterceptor } from 'src/app/shared/interceptor/error.interceptor';
+import { MaterialModule } from './commons/material/material.module';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 
 @NgModule({
@@ -17,8 +19,10 @@ import { ErrorInterceptor } from 'src/app/shared/interceptor/error.interceptor';
     SignUpView
   ],
   imports: [
+    MatSnackBarModule,
     CommonModule,
     AuthRoutingModule,
+    MaterialModule,
     AuthCommonsModule
   ],
   providers: [

@@ -12,6 +12,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 
 @NgModule({
@@ -35,7 +36,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     RouterModule,
     MatDialogModule,
     MatBadgeModule
-
+,MatSnackBarModule
   ],
 })
 export class AuthComponentsModule { }

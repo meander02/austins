@@ -5,3 +5,35 @@
   <router-outlet></router-outlet>
 </div>
 <app-footer></app-footer>
+<ngx-ui-loader
+  [bgsOpacity]="0.1"
+  [bgsColor]="'rgba(255,160,91,0.4)'"
+  [bgsPosition]="'bottom-right'"
+  [bgsSize]="20"
+  [bgsType]="'ball-spin'"
+  blur=5
+  delay="0"
+
+  [fgsColor]="'#ffa436'"
+  [fgsPosition]="'center-center'"
+  [fgsSize]="50"
+  [fgsType]="'ball-spin-clockwise'"
+  [gap]="24"
+  [logoPosition]="'center-center'"
+  [logoSize]="120"
+  [logoUrl]="'https://static.wixstatic.com/media/64de7c_4d76bd81efd44bb4a32757eadf78d898~mv2_d_1765_2028_s_2.png'"
+  masterLoaderId="master'"
+  [overlayBorderRadius]="'0'"
+  [overlayColor]="'rgba(110,106,106,0.8)'"
+  [pbColor]="'#ffc63a'"
+  [pbDirection]="'ltr'"
+  [pbThickness]="3"
+  [hasProgressBar]="true"
+  [text]="'Espere un Momento ..'"
+  [textColor]="'#FFFFFF'"
+  [textPosition]="'center-center'"
+  maxTime="-1"
+  minTime="300"
+>
+</ngx-ui-loader>
+

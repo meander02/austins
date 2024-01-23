@@ -22,11 +22,14 @@
           />
           <label>email</label>
           <mat-icon> email</mat-icon>
+
         </mat-form-field>
+        <mat-error *ngIf="emailFormControl.hasError('required')">
+
+          {{ emailFormControl.errors}}
+        </mat-error>
       </div>
-      <mat-error *ngIf="emailFormControl.hasError('required')">
-        Email is <strong>required</strong>
-      </mat-error>
+
 
       <div class="form-group password-input">
         <mat-form-field class="animated">
@@ -55,12 +58,15 @@
           </button>
         </mat-form-field>
       </div>
+
       <mat-error *ngIf="passwordFormControl.hasError('required')">
         Passsword is <strong>required</strong>
       </mat-error>
+
       <mat-error *ngIf="passwordFormControl.hasError('formatError')">
         {{ passwordFormControl.errors?.['formatError'] }}
       </mat-error>
+
     </div>
   </fieldset>
   <p>

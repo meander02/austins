@@ -10,11 +10,13 @@ import { FormsModule } from '@angular/forms'; // Importa FormsModule
 
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material/core';
+import { MatSelectModule } from '@angular/material/select';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
-  imports: [], // Agrega FormsModule a los imports
+  imports: [MatSnackBarModule], // Agrega FormsModule a los imports
 
-  exports: [ FormsModule,MatCardModule,MatFormFieldModule,MatButtonModule,MatInputModule, MatDatepickerModule, MatNativeDateModule],
+  exports: [MatSnackBarModule, FormsModule,MatCardModule,MatFormFieldModule,MatButtonModule,MatInputModule, MatDatepickerModule, MatNativeDateModule,MatSelectModule],
 
 })
 export class MaterialModule { }

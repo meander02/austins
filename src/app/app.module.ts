@@ -8,12 +8,16 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CssStyleClass } from '@fortawesome/fontawesome-svg-core';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { ErrorInterceptor } from './shared/interceptor/error.interceptor';
+import { NgxUiLoaderModule, NgxUiLoaderService } from 'ngx-ui-loader';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
     AppComponent,
   ],
   imports: [
+    MatSnackBarModule,
+    NgxUiLoaderModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
@@ -24,4 +28,8 @@ import { ErrorInterceptor } from './shared/interceptor/error.interceptor';
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+
+
+
+ }

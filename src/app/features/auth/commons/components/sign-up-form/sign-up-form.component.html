@@ -5,215 +5,208 @@
     alt="Pastelería"
   />
   <h1>Crear Cuenta</h1>
-
   <!-- Enlace para iniciar sesión -->
   <p class="login-link">¿Ya tienes cuenta? <a href="#">Iniciar sesión</a></p>
 </div>
 
 <div class="signup-container">
-  <!-- Barra de progreso -->
   <div class="progress-bar" id="progress-bar">
     <div class="progress-step personal">Datos Personales</div>
     <div class="progress-step contact">Datos de Contacto</div>
-    <div class="progress-step address">Datos de Dirección</div>
     <div class="progress-step credentials">Usuario y Contraseña</div>
   </div>
 
-  <form (ngSubmit)="onSubmit()">
-    <div [ngSwitch]="step">
-      <!-- Datos Personales -->
-      <div *ngSwitchCase="'personal'">
-        <p class="section-title">Datos Personales</p>
-        <div class="form-group">
-          <mat-form-field class="animated">
-            <input
-              matInput
-              type="text"
-              id="firstName"
-              placeholder="Juan"
-              [(ngModel)]="firstName"
-              name="firstName"
-              required
-            />
-            <label for="firstName">Nombre</label>
-          </mat-form-field>
-        </div>
-        <div class="form-group">
-          <mat-form-field class="animated">
-            <input
-              matInput
-              type="text"
-              id="lastName"
-              placeholder="Perez"
-              [(ngModel)]="lastName"
-              name="lastName"
-              required
-            />
-            <label for="lastName">Apellido</label>
-          </mat-form-field>
-        </div>
-        <div class="form-group">
-          <mat-form-field class="animated">
-            <label for="birthdate">Fecha de Nacimiento</label>
-            <!-- <mat-label>Choose a </mat-label> -->
-            <input
-              matInput
-              [matDatepicker]="picker"
-              placeholder="Fecha de Nacimiento"
-              [(ngModel)]="birthdate"
-              name="birthdate"
-              required
-            />
-            <mat-hint>MM/DD/YYYY</mat-hint>
-            <mat-datepicker-toggle
-              matIconSuffix
-              [for]="picker"
-            ></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
-          </mat-form-field>
-        </div>
-        <!-- <a class=" home-button" href="/">
-          <mat-icon>home</mat-icon>
-        </a>
+  <form (ngSubmit)="onSubmit()" [formGroup]="group">
+    <!-- Datos Personales -->
+    <div class="form-group" *ngIf="step === 'personal'">
+      <mat-form-field class="animated">
+        <input
+          matInput
+          type="text"
+          id="firstName"
+          placeholder="Juan"
+          formControlName="name"
+          required
+        />
+        <label for="firstName">Nombre</label>
+      </mat-form-field>
+      <mat-error *ngIf="group.get('name')?.hasError('required')">El nombre es requerido.</mat-error>
+      <mat-error *ngIf="nameFormControl.hasError('invalidName')">
+        {{ nameFormControl.errors?.['invalidName'] }}
+      </mat-error>
+      <mat-form-field class="animated">
+        <input
+          matInput
+          type="text"
+          id="paternalLastname"
+          placeholder="Perez"
+          formControlName="maternalLastname"
+          required
+        />
+        <label for="maternalLastname">Apellido Materno</label>
+      </mat-form-field>
+      <mat-error *ngIf="group.get('maternalLastname')?.hasError('required')">El apellido materno es requerido.</mat-error>
+      <mat-error *ngIf="a1.hasError('invalidLastName')">
+        {{ a1.errors?.['invalidLastName'] }}
+      </mat-error>
 
+      <mat-form-field class="animated">
+        <input
+          matInput
+          type="text"
+          id="paternalLastname"
+          placeholder="Gomez"
+          formControlName="paternalLastname"
+          required
+        />
+        <label for="paternalLastname">Apellido Paterno</label>
+      </mat-form-field>
+
+      <mat-error *ngIf="group.get('paternalLastname')?.hasError('required')">El apellido materno es requerido.</mat-error>
+      <mat-error *ngIf="a2.hasError('invalidLastName')">
+        {{ a2.errors?.['invalidLastName'] }}
+      </mat-error>
+      <label>Fecha de Nacimiento</label>
+      <input class="date" type="date" formControlName="birthdate" required />
+      <mat-error *ngIf="group.get('birthdate')?.hasError('required')">La fecha de nacimiento es requerida.</mat-error>
+      <mat-error *ngIf="group.get('birthdate')?.hasError('invalidDate')">La fecha de nacimiento no puede ser en el futuro.</mat-error>
+
+      <div class="button-container">
         <button class="next-button" (click)="nextStep('contact')">
-          Siguiente
-        </button> -->
-
-        <div class="button-container">
-          <a class="home-button" href="/">
-            <mat-icon>home</mat-icon>
-          </a>
-          <button class="next-button" (click)="nextStep('contact')">
-            Siguiente
-          </button>
-        </div>
-      </div>
-
-      <!-- Datos de Contacto -->
-      <div *ngSwitchCase="'contact'">
-        <p class="section-title">Datos de Contacto</p>
-        <div class="form-group">
-          <mat-form-field class="animated">
-            <input
-              matInput
-              type="email"
-              id="email"
-              placeholder="juanperez@gmail.com"
-              [(ngModel)]="email"
-              name="email"
-              required
-            />
-            <label for="email">Correo Electrónico</label>
-            <mat-icon>email</mat-icon>
-          </mat-form-field>
-        </div>
-        <button class="prev-button" (click)="prevStep()">Anterior</button>
-
-        <button class="next-button" (click)="nextStep('address')">
           Siguiente
         </button>
       </div>
+      <div class="social-login">
+        <button class="social-button google-button">
+          <img src="assets/icons/icons8-google-30.svg" alt="Google" />
+          Registrarse con Google
+        </button>
+        <button class="social-button facebook-button">
+          <img src="assets/icons/facebook_4494475.png" alt="Facebook" />
+          Registrarse con Facebook
+        </button>
+      </div>
+    </div>
 
-      <!-- Datos de Dirección -->
-      <div *ngSwitchCase="'address'">
-        <p class="section-title">Datos de Dirección</p>
-        <div class="form-group">
-          <mat-form-field class="animated">
-            <input
-              matInput
-              type="text"
-              id="street"
-              placeholder="Calle Principal"
-              [(ngModel)]="street"
-              name="street"
-              required
-            />
-            <label for="street">Calle</label>
-            <mat-icon>location_on</mat-icon>
-          </mat-form-field>
-        </div>
-        <div class="form-group">
-          <mat-form-field class="animated">
-            <input
-              matInput
-              type="text"
-              id="city"
-              placeholder="Ciudad"
-              [(ngModel)]="city"
-              name="city"
-              required
-            />
-            <label for="city">Ciudad</label>
-            <mat-icon>location_city</mat-icon>
-          </mat-form-field>
-        </div>
+    <!-- Datos de Contacto -->
+    <div class="form-group" *ngIf="step === 'contact'">
+      <!-- En tu plantilla -->
+      <mat-form-field class="animated">
+        <mat-label>Pregunta de Seguridad</mat-label>
+        <mat-select formControlName="securityQuestion" required>
+          <mat-option
+            *ngFor="let pregunta of preguntasSecretas"
+            [value]="pregunta"
+          >
+            {{ pregunta }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field class="animated">
+        <input
+          matInput
+          type="text"
+          placeholder="Respuesta"
+          formControlName="securityAnswer"
+          required
+        />
+        <label>Respuesta de Seguridad</label>
+      </mat-form-field>
+
+      <mat-form-field class="animated">
+        <input
+          autocomplete="false"
+          type="number"
+          matInput
+          pattern="[0-9]*"
+          maxlength="10"
+          placeholder="123-456-7890"
+          formControlName="phone"
+          (input)="onPhoneInput($event)"
+          required
+        />
+        <label>Teléfono</label>
+      </mat-form-field>
+      <mat-error *ngIf="phoneFormControl.hasError('maxlength')">
+        El teléfono debe tener exactamente 10 dígitos.
+      </mat-error>
+      <mat-error *ngIf="phoneFormControl.hasError('formatError')">
+        {{ phoneFormControl.errors?.['formatError'] }}
+      </mat-error>
+  
+      <mat-error *ngIf="phoneFormControl.hasError('required')"
+        >El teléfono es obligatorio.</mat-error
+      >
+
+      <div class="button-container">
         <button class="prev-button" (click)="prevStep()">Anterior</button>
         <button class="next-button" (click)="nextStep('credentials')">
           Siguiente
         </button>
       </div>
+    </div>
 
-      <!-- Usuario y Contraseña -->
-      <div *ngSwitchCase="'credentials'">
-        <p class="section-title">Usuario y Contraseña</p>
-        <div class="form-group">
-          <mat-form-field class="animated">
-            <input
-              matInput
-              type="text"
-              id="username"
-              placeholder="Nombre de Usuario"
-              [(ngModel)]="username"
-              name="username"
-              required
-            />
-            <label for="username">Nombre de Usuario</label>
-          </mat-form-field>
-        </div>
-        <div class="form-group">
-          <mat-form-field class="animated">
-            <input
-              matInput
-              type="password"
-              id="password"
-              placeholder="Contraseña"
-              [(ngModel)]="password"
-              name="password"
-              required
-            />
-            <label for="password">Contraseña</label>
-          </mat-form-field>
-        </div>
-        <div class="form-group">
-          <mat-form-field class="animated">
-            <input
-              matInput
-              type="password"
-              id="confirmPassword"
-              placeholder="Confirmar Contraseña"
-              [(ngModel)]="confirmPassword"
-              name="confirmPassword"
-              required
-            />
-            <label for="confirmPassword">Confirmar Contraseña</label>
-          </mat-form-field>
-        </div>
+    <!-- Usuario y Contraseña -->
+    <div class="form-group" *ngIf="step === 'credentials'">
+      <mat-form-field class="animated">
+        <input
+          type="email"
+          matInput
+          formControlName="email"
+          placeholder="EJ:juanPerez@gmail.com"
+          required
+        />
+        <label>Email</label>
+        <mat-icon>email</mat-icon>
+        <mat-error *ngIf="emailFormControl.hasError('required')"
+          >Email es <strong>requerido</strong></mat-error
+        >
+      </mat-form-field>
+
+      <mat-form-field class="animated">
+        <input
+          matInput
+          type="password"
+          placeholder="********"
+          formControlName="password"
+          required
+        />
+        <label>Contraseña</label>
+        <mat-error *ngIf="passwordFormControl.hasError('required')"
+          >Contraseña es <strong>requerida</strong></mat-error
+        >
+        <mat-error
+          *ngIf="passwordFormControl.hasError('formatError')"
+          >{{ passwordFormControl.errors?.['formatError'] }}</mat-error
+        >
+      </mat-form-field>
+
+      <mat-form-field class="animated">
+        <input
+          matInput
+          type="password"
+          placeholder="********"
+          formControlName="confirmPassword"
+          (input)="onConfirmPasswordInput($event)"
+          required
+        />
+        <label>Confirmar Contraseña</label>
+        <mat-error *ngIf="confirmPasswordFormControl.hasError('passwordMatch')"
+          >Las contraseñas no coinciden</mat-error
+        >
+        <mat-error
+          *ngIf="confirmPasswordFormControl.hasError('formatError')"
+          >{{ confirmPasswordFormControl.errors?.['formatError'] }}</mat-error
+        >
+        <mat-error *ngIf="confirmPasswordFormControl.hasError('required')"
+          >Confirmar Contraseña es <strong>requerida</strong></mat-error
+        >
+      </mat-form-field>
+      <div class="button-container">
         <button class="prev-button" (click)="prevStep()">Anterior</button>
         <button class="next-button" (click)="onSubmit()">Registrarse</button>
       </div>
     </div>
   </form>
-
-  <!-- Botones de registro social -->
-  <div class="social-login">
-    <button class="social-button google-button">
-      <img src="assets/icons/icons8-google-30.svg" alt="Google" />
-      Registrarse con Google
-    </button>
-    <button class="social-button facebook-button">
-      <img src="assets/icons/facebook_4494475.png" alt="Facebook" />
-      Registrarse con Facebook
-    </button>
-  </div>
 </div>
