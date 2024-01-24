@@ -10,13 +10,15 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ErrorInterceptor } from 'src/app/shared/interceptor/error.interceptor';
 import { MaterialModule } from './commons/material/material.module';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { SuccessView } from './views/success/success.view';
 
 
 @NgModule({
   declarations: [
     AuthComponent,
     SignInView,
-    SignUpView
+    SignUpView,
+    SuccessView
   ],
   imports: [
     MatSnackBarModule,

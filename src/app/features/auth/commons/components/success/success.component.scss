@@ -1,0 +1,33 @@
+/* success.component.scss */
+
+.success-container {
+  text-align: center;
+  padding: 40px;
+  border-radius: 10px;
+  background-color: #ffffff;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  max-width: 400px;
+  margin: 0 auto;
+  color: #333; /* Color de texto */
+}
+
+.success-icon {
+  width: 80px;
+  height: auto;
+}
+
+.custom-button {
+  background-color: #a54c2c;
+  color: #fff;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+  margin-top: 20px;
+}
+
+.custom-button:hover {
+  background-color: #8e3c16;
+}

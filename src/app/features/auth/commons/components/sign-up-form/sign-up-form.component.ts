@@ -2,6 +2,9 @@ import { Component, ElementRef, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { SignInValidator } from 'src/app/shared/validators/sign-in-validator';
 import { SignUpValidator } from 'src/app/shared/validators/sign-up-validator';
+import { AuthStateService } from '../../services/auth-state.service';
+import { AuthService } from '../../services/auth.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-sign-up-form',
@@ -17,10 +20,14 @@ preguntasSecretas: string[] = [
   // Agrega más preguntas según sea necesario
 ];
 
+
+isSubmitting = false;
   group: FormGroup;
   step: 'personal' | 'contact' | 'credentials' = 'personal';
 
   constructor(
+    private snackBar: MatSnackBar,
+    private authService: AuthService, // Inyecta tu servicio AuthService,
     private el: ElementRef,
     private formBuilder: FormBuilder,
   ) {
@@ -184,13 +191,37 @@ onPhoneInput(event: Event) {
     phoneControl.setValue(trimmedValue);
   }
 }
+onSubmit() {
+  // Evitar múltiples envíos al agregar un bloqueo
+  if (!this.isSubmitting) {
+    this.isSubmitting = true;
 
+    this.authService.signUpAndVerifyEmail(this.group.value).subscribe(
+      (response) => {
+        console.log('Respuesta del backend:', response.message);
 
-  // Maneja la acción de enviar el formulario
-  onSubmit() {
-    if (this.group.valid) {
-      // Aquí puedes implementar la lógica de envío al backend
-      console.log('Datos enviados:', this.group.value);
-    }
+        this.snackBar.open(response.message, 'Cerrar', {
+          duration: 3000,
+        });
+        // Manejar la respuesta del backend según sea necesario
+      },
+      (error) => {
+        // console.error('Error del backend:', error);
+
+        // Verificar si el error tiene un mensaje personalizado desde el servidor
+        const errorMessage = error.error.message || 'Error en el servidor';
+
+        this.snackBar.open(errorMessage, 'Cerrar', {
+          duration: 3000,
+        });
+        // Manejar los errores del backend según sea necesario
+      }
+    ).add(() => {
+      // Restaurar el estado del bloqueo después de la respuesta o error del backend
+      this.isSubmitting = false;
+    });
   }
+}
+
+
 }

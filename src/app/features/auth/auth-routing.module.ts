@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthComponent } from './auth.component';
 import { SignInView } from './views/sign-in/sign-in.view';
 import { SignUpView } from './views/sign-up/sign-up.view';
+import { SuccessView } from './views/success/success.view';
 
 const routes: Routes = [
   {
@@ -19,6 +20,10 @@ const routes: Routes = [
       {
         path: 'sign-up',
         component: SignUpView,
+      },
+      {
+        path: 'success',
+        component: SuccessView,
       },
     ],
   },

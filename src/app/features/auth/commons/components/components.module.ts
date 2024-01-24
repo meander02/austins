@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MaterialModule } from '../material/material.module';
 import { ReactiveFormsModule } from '@angular/forms';
-import {MatInputModule} from '@angular/material/input';
+import { MatInputModule } from '@angular/material/input';
 import { SignInFormComponent } from './sign-in-form/sign-in-form.component';
 import { SignUpFormComponent } from './sign-up-form/sign-up-form.component';
 import { MatBadgeModule } from '@angular/material/badge';
@@ -13,17 +13,11 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-
+import { SuccessComponent } from './success/success.component';
 
 @NgModule({
-  declarations: [
-    SignInFormComponent,
-    SignUpFormComponent
-  ],
-  exports:[
-    SignUpFormComponent,
-    SignInFormComponent
-  ],
+  declarations: [SignInFormComponent, SignUpFormComponent, SuccessComponent],
+  exports: [SignUpFormComponent, SignInFormComponent,SuccessComponent],
   imports: [
     CommonModule,
     MaterialModule,
@@ -35,8 +29,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     MatMenuModule,
     RouterModule,
     MatDialogModule,
-    MatBadgeModule
-,MatSnackBarModule
+    MatBadgeModule,
+    MatSnackBarModule,
   ],
 })
-export class AuthComponentsModule { }
+export class AuthComponentsModule {}

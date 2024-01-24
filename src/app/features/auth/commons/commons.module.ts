@@ -5,7 +5,9 @@ import { MaterialModule } from './material/material.module';
 import { AuthServicesModule } from './services/services.module';
 
 @NgModule({
-  declarations: [],
+  declarations: [
+
+  ],
   exports:[
     AuthComponentsModule,
     AuthServicesModule,

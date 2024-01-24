@@ -19,7 +19,7 @@ export class ErrorInterceptor implements HttpInterceptor {
   constructor(private ngxService: NgxUiLoaderService, private router: Router) {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    console.log(request);
+    // console.log(request);
     if (this.activeRequests === 0) {
       this.ngxService.start(); // Inicia el spinner solo si no hay solicitudes activas
     }
@@ -36,6 +36,10 @@ export class ErrorInterceptor implements HttpInterceptor {
       console.log('Error 404 interceptado!!');
       // this.router.navigateByUrl('portal/not-found');
     } else if (error.status === 403) {
+      // Agregar lógica para el código de estado 403 si es necesario
+    }
+    else if (error.status === 409) {
+      console.log("error ",error )
       // Agregar lógica para el código de estado 403 si es necesario
     }
     return throwError(error);
