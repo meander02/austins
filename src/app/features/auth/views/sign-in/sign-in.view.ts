@@ -28,28 +28,6 @@ export class SignInView implements OnInit {
 
   ngOnInit(): void {}
 
-
-
-  // signIn(data: ISingInRequest): void {
-  //   this.signInService.signIn(data)
-  //     .pipe(
-  //       catchError((error: HttpErrorResponse) => {
-  //         if (error.status === 409) {
-  //           this.errorMessage = error.error.message; // Asigna el mensaje de error del servidor a errorMessage
-  //           console.error(this.errorMessage);
-  //         } else {
-  //         }
-  //         return throwError('Error en la solicitud');
-  //       })
-  //     )
-  //     .subscribe((Response) => {
-  //       if (Response) {
-  //         this.storageService.setToken(Response.token);
-  //         this.dialogRef.close(); // Cierra el modal
-  //         this.router.navigateByUrl('/admin');
-  //       }
-  //     });
-  // }
   signIn(data: ISingInRequest): void {
     const config: MatSnackBarConfig = {
       duration: 5000, // Duración en milisegundos
@@ -63,7 +41,7 @@ export class SignInView implements OnInit {
             // console.error(this.errorMessage);
 
             // Muestra un Snackbar con el mensaje de error
-           
+
 
             this.snackBar.open(this.errorMessage, 'Cerrar', config);
           } else {

@@ -30,21 +30,6 @@
         />
         <label for="firstName">Nombre</label>
       </mat-form-field>
-      <div
-        class="error-container"
-        *ngIf="
-          group.get('name')?.hasError('required') ||
-          nameFormControl.hasError('invalidName')
-        "
-      >
-        <mat-error *ngIf="group.get('name')?.hasError('required')"
-          >El nombre es requerido.</mat-error
-        >
-        <mat-error
-          *ngIf="nameFormControl.hasError('invalidName')"
-          >{{ nameFormControl.errors?.['invalidName'] }}</mat-error
-        >
-      </div>
 
       <mat-form-field class="animated">
         <input
@@ -58,18 +43,6 @@
         <label for="maternalLastname">Apellido Materno</label>
       </mat-form-field>
 
-      <div
-        class="error-container2"
-        *ngIf="
-          group.get('maternalLastname')?.hasError('required') ||
-          a1.hasError('invalidLastName')
-        "
-      >
-        <mat-error>El apellido materno es requerido.</mat-error>
-        <mat-error>
-          {{ a1.errors?.['invalidLastName'] }}
-        </mat-error>
-      </div>
       <mat-form-field class="animated">
         <input
           matInput
@@ -81,26 +54,11 @@
         />
         <label for="paternalLastname">Apellido Paterno</label>
       </mat-form-field>
-      <div
-        class="error-container3"
-        *ngIf="
-          group.get('paternalLastname')?.hasError('required') ||
-          a2.hasError('invalidLastName')
-        "
-      >
-        <mat-error>El apellido paterno es requerido.</mat-error>
-        <mat-error>
-          {{ a2.errors?.['invalidLastName'] }}
-        </mat-error>
-      </div>
+
+
       <label>Fecha de Nacimiento</label>
       <input class="date" type="date" formControlName="birthdate" required />
-      <mat-error *ngIf="group.get('birthdate')?.hasError('required')"
-        >La fecha de nacimiento es requerida.</mat-error
-      >
-      <mat-error *ngIf="group.get('birthdate')?.hasError('invalidDate')"
-        >La fecha de nacimiento no puede ser en el futuro.</mat-error
-      >
+
 
       <div class="button-container">
         <button class="next-button" (click)="nextStep('contact')">
@@ -160,19 +118,7 @@
         <label>Teléfono</label>
       </mat-form-field>
 
-      <div
-        class="error-container3"
-        *ngIf="
-          phoneFormControl.hasError('maxlength') ||
-          phoneFormControl.hasError('formatError')
-        "
-      >
-        <mat-error>
-          {{ phoneFormControl.errors?.['formatError'] }}
-        </mat-error>
 
-        <mat-error>El teléfono es obligatorio.</mat-error>
-      </div>
       <div class="button-container">
         <button class="prev-button" (click)="prevStep()">Anterior</button>
         <button class="next-button" (click)="nextStep('credentials')">
@@ -193,9 +139,7 @@
         />
         <label>Email</label>
         <mat-icon>email</mat-icon>
-        <mat-error *ngIf="emailFormControl.hasError('required')"
-          >Email es <strong>requerido</strong></mat-error
-        >
+
       </mat-form-field>
 
       <mat-form-field class="animated">
@@ -207,13 +151,7 @@
           required
         />
         <label>Contraseña</label>
-        <mat-error *ngIf="passwordFormControl.hasError('required')"
-          >Contraseña es <strong>requerida</strong></mat-error
-        >
-        <mat-error
-          *ngIf="passwordFormControl.hasError('formatError')"
-          >{{ passwordFormControl.errors?.['formatError'] }}</mat-error
-        >
+
       </mat-form-field>
 
       <mat-form-field class="animated">
@@ -226,27 +164,73 @@
           required
         />
         <label>Confirmar Contraseña</label>
-        <mat-error *ngIf="confirmPasswordFormControl.hasError('passwordMatch')"
-          >Las contraseñas no coinciden</mat-error
-        >
-        <mat-error
-          *ngIf="confirmPasswordFormControl.hasError('formatError')"
-          >{{ confirmPasswordFormControl.errors?.['formatError'] }}</mat-error
-        >
-        <mat-error *ngIf="confirmPasswordFormControl.hasError('required')"
-          >Confirmar Contraseña es <strong>requerida</strong></mat-error
-        >
+
       </mat-form-field>
       <div class="button-container">
         <button class="prev-button" (click)="prevStep()">Anterior</button>
-        <button
-          class="next-button"
-          (click)="onSubmit()"
-          [disabled]="isSubmitting"
-        >
-          Registrarse
-        </button>
+        <button class="next-button" (click)="onSubmit()" [disabled]="isSubmitting">Registrarse</button>
+
       </div>
     </div>
   </form>
+
+  <div class="error-container">
+    <mat-error *ngIf="group.get('name')?.hasError('required')"
+    >El nombre es requerido.</mat-error
+  >
+  <mat-error *ngIf="nameFormControl.hasError('invalidName')">
+    {{ nameFormControl.errors?.['invalidName'] }}
+  </mat-error>
+    <mat-error *ngIf="group.get('maternalLastname')?.hasError('required')"
+      >El apellido materno es requerido.</mat-error
+    >
+    <mat-error *ngIf="a1.hasError('invalidLastName')">
+      {{ a1.errors?.['invalidLastName'] }}
+    </mat-error>
+
+    <mat-error *ngIf="group.get('paternalLastname')?.hasError('required')"
+      >El apellido materno es requerido.</mat-error
+    >
+    <mat-error *ngIf="a2.hasError('invalidLastName')">
+      {{ a2.errors?.['invalidLastName'] }}
+    </mat-error>
+    <mat-error *ngIf="group.get('birthdate')?.hasError('required')"
+      >La fecha de nacimiento es requerida.</mat-error
+    >
+    <mat-error *ngIf="group.get('birthdate')?.hasError('invalidDate')"
+      >La fecha de nacimiento no puede ser en el futuro.</mat-error
+    >
+    <mat-error *ngIf="phoneFormControl.hasError('maxlength')">
+      El teléfono debe tener exactamente 10 dígitos.
+    </mat-error>
+    <mat-error *ngIf="phoneFormControl.hasError('formatError')">
+      {{ phoneFormControl.errors?.['formatError'] }}
+    </mat-error>
+
+    <mat-error *ngIf="phoneFormControl.hasError('required')"
+      >El teléfono es obligatorio.</mat-error
+    >
+    <mat-error *ngIf="emailFormControl.hasError('required')"
+      >Email es <strong>requerido</strong></mat-error
+    >
+    <mat-error *ngIf="passwordFormControl.hasError('required')"
+    >Contraseña es <strong>requerida</strong></mat-error
+  >
+  <mat-error
+    *ngIf="passwordFormControl.hasError('formatError')"
+    >{{ passwordFormControl.errors?.['formatError'] }}</mat-error
+  >  <mat-error *ngIf="confirmPasswordFormControl.hasError('passwordMatch')"
+  >Las contraseñas no coinciden</mat-error
+  >
+  <mat-error
+  *ngIf="confirmPasswordFormControl.hasError('formatError')"
+  >{{ confirmPasswordFormControl.errors?.['formatError'] }}</mat-error
+  >
+  <mat-error *ngIf="confirmPasswordFormControl.hasError('required')"
+  >Confirmar Contraseña es <strong>requerida</strong></mat-error
+  >
+
+  </div>
+
+
 </div>
