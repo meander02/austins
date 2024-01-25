@@ -48,13 +48,6 @@
     transform: translateX(20%);
     font-size: 8px; /* Ajusta el tamaño de la fuente para dispositivos móviles */
     padding: 0px; /* Ajusta el padding para dispositivos móviles */
-    // z-index: 1;
-    // right: 50%;
-    // height: 0px;
-    // display: block;
-    // transform: translateX(50%);
-    // font-size: 8px; /* Ajusta el tamaño de la fuente para dispositivos móviles */
-    // padding: 0px; /* Ajusta el padding para dispositivos móviles */
   }
 }
 
@@ -75,25 +68,12 @@
     transform: translateY(-50%);
   }
 
-  // @media (max-width: 600px) {
-
-  //   right: 50%;
-  //   transform: translateX(50%);
-  // }
   @media (max-width: 600px) {
     // right: 50%;
     // transform: translateX(50%);
     &::before {
       left: -5%; /* Ajusta la posición del pseudo-elemento en dispositivos móviles */
     }
-    // .error-container-base {
-    //   display: none;
-    // }
-
-    // z-index: 1;
-    // right: 50%;
-    // height: 0px;
-    // display: block;
     transform: translateX(20%);
     font-size: 8px; /* Ajusta el tamaño de la fuente para dispositivos móviles */
     padding: 0px; /* Ajusta el padding para dispositivos móviles */
@@ -119,13 +99,6 @@
   }
 
   @media (max-width: 600px) {
-    // right: 50%;
-    // transform: translateX(0%);
-    // margin-top: 8;
-    // z-index: 1;
-    // right: 50%;
-    // height: 0px;
-    // display: block;
     transform: translateX(20%);
     font-size: 8px; /* Ajusta el tamaño de la fuente para dispositivos móviles */
     padding: 0px; /* Ajusta el padding para dispositivos móviles */
@@ -138,4 +111,25 @@
 /* Estilos para el mensaje de error individual */
 .error-message {
   margin-bottom: 0;
+}
+
+
+// Otros estilos para el botón
+.next-button {
+  // Estilos para el botón activado
+  background-color: #a54c2c; // Color verde (cámbialo según tus preferencias)
+  color: #fff; // Texto en color blanco
+  // Otros estilos...
+
+  &:hover {
+    background-color: #a54c2c; // Color verde oscuro en el hover
+    // Otros estilos para el hover...
+  }
+
+  &:disabled {
+    background-color: #ddd; // Color gris cuando está desactivado
+    color: #666; // Texto en color gris oscuro
+    cursor: not-allowed; // Cambia el cursor a "no permitido"
+    // Otros estilos para el estado desactivado...
+  }
 }

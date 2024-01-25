@@ -102,11 +102,17 @@
         >La fecha de nacimiento no puede ser en el futuro.</mat-error
       >
 
-      <div class="button-container">
+      <!-- <div class="button-container">
         <button class="next-button" (click)="nextStep('contact')">
           Siguiente
         </button>
+      </div> -->
+      <div class="button-container">
+        <button class="next-button" (click)="nextStep('contact')" [disabled]="!arePersonalFieldsFilled()">
+          Siguiente
+        </button>
       </div>
+
       <div class="social-login">
         <button class="social-button google-button">
           <img src="assets/icons/icons8-google-30.svg" alt="Google" />
@@ -173,9 +179,16 @@
 
         <mat-error>El teléfono es obligatorio.</mat-error>
       </div>
-      <div class="button-container">
+
+      <!-- <div class="button-container">
         <button class="prev-button" (click)="prevStep()">Anterior</button>
         <button class="next-button" (click)="nextStep('credentials')">
+          Siguiente
+        </button>
+      </div> -->
+      <div class="button-container">
+        <button class="prev-button" (click)="prevStep()">Anterior</button>
+        <button class="next-button" (click)="nextStep('credentials')" [disabled]="!areContactFieldsFilled()">
           Siguiente
         </button>
       </div>
@@ -237,13 +250,11 @@
           >Confirmar Contraseña es <strong>requerida</strong></mat-error
         >
       </mat-form-field>
+
+
       <div class="button-container">
         <button class="prev-button" (click)="prevStep()">Anterior</button>
-        <button
-          class="next-button"
-          (click)="onSubmit()"
-          [disabled]="isSubmitting"
-        >
+        <button class="next-button" (click)="onSubmit()" [disabled]="!areCredentialFieldsFilled() || isSubmitting">
           Registrarse
         </button>
       </div>
