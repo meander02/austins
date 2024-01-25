@@ -116,17 +116,47 @@ export class HeaderComponent  implements OnInit {
   //   return this.currentRoute === '/portal/home'; // Cambia '/portal/detail' con la ruta deseada
   // }
 
+  // isRUTA_DISTINTE_ahome(): boolean {
+  //   // Utiliza el evento de cambio de ruta para actualizar 'currentRoute'
+  //   this.router.events.subscribe((event) => {
+  //     if (event instanceof NavigationEnd) {
+  //       this.currentRoute = event.url;
+  //     }
+  //   });
+
+  //   // Ahora verifica si la ruta actual es '/portal/home'
+  //   return this.currentRoute === '/portal/home';
+  // }
   isRUTA_DISTINTE_ahome(): boolean {
     // Utiliza el evento de cambio de ruta para actualizar 'currentRoute'
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         this.currentRoute = event.url;
+        // Llamamos a la función que manejará la visibilidad de la sección de filtros
+        this.handleFilterSectionVisibility();
       }
     });
 
     // Ahora verifica si la ruta actual es '/portal/home'
     return this.currentRoute === '/portal/home';
   }
+
+  // Nueva función para manejar la visibilidad de la sección de filtros
+  private handleFilterSectionVisibility(): void {
+    // Obtenemos la referencia del elemento de la sección de filtros
+    const filterSection = document.querySelector('.filter-section');
+
+    // Verificamos si existe el elemento y si la ruta actual es diferente de '/portal/home'
+    if (filterSection && this.currentRoute !== '/portal/home') {
+      // Añadimos la clase is-detail-route si la ruta no es '/portal/home'
+      filterSection.classList.add('is-detail-route');
+    } else {
+      // Quitamos la clase is-detail-route si la ruta es '/portal/home'
+      filterSection?.classList.remove('is-detail-route');
+    }
+  }
+
+
   openSignInModal(): MatDialogRef<SignInView> {
     const isMobile = window.innerWidth < 480;
 
