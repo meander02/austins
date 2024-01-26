@@ -3,12 +3,12 @@ import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 
-import {MatToolbarModule} from '@angular/material/toolbar';
+import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
-import {  MatIconModule } from '@angular/material/icon';
+import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { RouterModule } from '@angular/router';
-import { MatBadgeModule} from '@angular/material/badge';
+import { MatBadgeModule } from '@angular/material/badge';
 import { PoliticaComponent } from './politica/politica.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { FormsModule } from '@angular/forms';
@@ -16,20 +16,26 @@ import { SignInService } from 'src/app/features/auth/commons/services/sign-in.se
 import { HttpClientModule } from '@angular/common/http';
 import { CookiesComponent } from './cookies/cookies.component';
 import { BtnFloatComponent } from './btn-float/btn-float.component';
+import { ChatComponent } from './chat/chat.component';
 // import {  } from './components.component';
-
 
 @NgModule({
   declarations: [
+    ChatComponent,
     HeaderComponent,
     FooterComponent,
-    PoliticaComponent,CookiesComponent, BtnFloatComponent,
+    PoliticaComponent,
+    CookiesComponent,
+    BtnFloatComponent,
   ],
   exports: [
     // PoliticaComponent,
+    ChatComponent,
     BtnFloatComponent,
     HeaderComponent,
-    FooterComponent,PoliticaComponent,CookiesComponent
+    FooterComponent,
+    PoliticaComponent,
+    CookiesComponent,
   ],
   imports: [
     // BrowserModule,
@@ -42,10 +48,8 @@ import { BtnFloatComponent } from './btn-float/btn-float.component';
     RouterModule,
     MatDialogModule,
     MatBadgeModule,
-    HttpClientModule
-
+    HttpClientModule,
   ],
   providers: [SignInService], // Asegúrate de incluir SignInService en la lista de providers.
-
 })
-export class CoreComponentsModule { }
+export class CoreComponentsModule {}

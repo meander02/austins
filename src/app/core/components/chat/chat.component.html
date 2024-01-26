@@ -1,0 +1,17 @@
+<!-- chat.component.html -->
+<div class="floating-button" (click)="toggleChat()">
+  <mat-icon>{{ chatOpen ? 'close' : 'chat_bubble' }}</mat-icon>
+</div>
+
+<div class="chat-container" [ngClass]="{'visible': chatOpen}">
+  <div class="message-container" *ngFor="let message of chatHistory">
+    <div [ngClass]="{'user-message': message.role === 'user', 'assistant-message': message.role === 'assistant'}">
+      {{ message.content }}
+    </div>
+  </div>
+
+  <div class="input-container">
+    <input class="input-message" [(ngModel)]="userMessage" placeholder="Escribe tu mensaje..." />
+    <button class="send-button" (click)="sendMessage()">Enviar</button>
+  </div>
+</div>

@@ -112,21 +112,6 @@ export class HeaderComponent  implements OnInit {
     this.router.navigateByUrl('/payment/cart');
   }
 
-  // isRUTA_DISTINTE_ahome(): boolean {
-  //   return this.currentRoute === '/portal/home'; // Cambia '/portal/detail' con la ruta deseada
-  // }
-
-  // isRUTA_DISTINTE_ahome(): boolean {
-  //   // Utiliza el evento de cambio de ruta para actualizar 'currentRoute'
-  //   this.router.events.subscribe((event) => {
-  //     if (event instanceof NavigationEnd) {
-  //       this.currentRoute = event.url;
-  //     }
-  //   });
-
-  //   // Ahora verifica si la ruta actual es '/portal/home'
-  //   return this.currentRoute === '/portal/home';
-  // }
   isRUTA_DISTINTE_ahome(): boolean {
     // Utiliza el evento de cambio de ruta para actualizar 'currentRoute'
     this.router.events.subscribe((event) => {
@@ -138,7 +123,8 @@ export class HeaderComponent  implements OnInit {
     });
 
     // Ahora verifica si la ruta actual es '/portal/home'
-    return this.currentRoute === '/portal/home';
+    return this.currentRoute === '/portal/home' || this.currentRoute === '/auth/sign-up';
+
   }
 
   // Nueva función para manejar la visibilidad de la sección de filtros

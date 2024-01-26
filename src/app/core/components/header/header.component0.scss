@@ -7,10 +7,7 @@
   }
 }
 
-.is-detail-route.policy-header {
-  // backdrop-filter: blur(10px); /* Aplica el efecto de desenfoque al fondo */
-  // background-color: #171614; /* Cambia el color de fondo a lo que necesites */
-}
+
 
 
 @media (min-width: 481px) {
@@ -166,9 +163,6 @@
     padding-top: 10px; /* Espaciado superior adicional para acomodar el botón móvil */
     padding-bottom: 10px; /* Espaciado inferior adicional para acomodar el botón móvil */
   }
-  // .is-detail-route .policy-header {
-  //   background-color: #ff0000; /* Cambia el color de fondo a rojo */
-  // }
 
   .mobile-menu-btn {
     background-color: transparent;

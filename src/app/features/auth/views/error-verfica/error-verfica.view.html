@@ -1,0 +1,26 @@
+<!-- error-verification.component.html -->
+
+<div class="not-fond-container">
+  <div class="cursor"></div>
+  <div class="content">
+
+    <div class="text-content">
+      <h1 class="bienve" [@textAnimation]="textAnimationState">
+        ¡Ups! Parece que el token de verificación
+      </h1>
+      <h1 class="bienve" [@textAnimation]="textAnimationState">
+         no es válido.
+      </h1>
+      <p>
+        Por favor, verifica tu correo electrónico y asegúrate de utilizar el
+        enlace correcto.
+      </p>
+    </div>
+    <div class="owner">
+      <h2>¿Necesitas ayuda?</h2>
+      <!-- <button class="contact-owner" (click)="navigateToInicio()">Ir a la página de inicio</button> -->
+      <a  class="contact-owner" href="#">Ir a la página de inicio</a>
+      <!-- <button class="contact-owner" (click)="navigateToInicio()">Ir a la página de inicio</button> -->
+    </div>
+  </div>
+</div>

@@ -58,7 +58,6 @@ a{
     transform: translateY(-10px);
   }
 }
-
 .text-content {
   text-align: center;
   max-width: 70%;
@@ -78,6 +77,16 @@ a{
     font-size: 1.25rem;
     margin: 20px 0;
     color: #fff;
+  }
+
+  .user-email {
+    text-decoration: dashed;
+    // background-color: #ff5733; /* Fondo de color */
+    color: #fff;
+    font-weight: bold; /* Texto en negrita */
+    padding: 5px 10px; /* Espaciado interno */
+    border-radius: 5px; /* Bordes redondeados */
+    text-shadow: 1px 1px 2px rgba(202, 111, 111, 0.799); /* Sombreado de texto */
   }
 }
 

@@ -1,3 +1,5 @@
+/* error-verification.component.scss */
+
 .not-fond-container {
   position: relative;
   display: flex;
@@ -10,19 +12,27 @@
   text-align: center;
   animation: backgroundAnimation 5s infinite alternate;
   overflow: hidden;
-}
 
-.not-fond-container::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  background-image: inherit;
-  background-size: inherit;
-  background-position: inherit;
-  filter: blur(5px);
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-image: inherit;
+    background-size: inherit;
+    background-position: inherit;
+    filter: blur(5px);
+  }
+
+  @media (max-width: 768px) {
+    background-size: auto 100%;
+  }
+
+  @media (max-width: 600px) {
+    background-size: cover;
+  }
 }
 
 @keyframes backgroundAnimation {
@@ -36,13 +46,17 @@
   flex-direction: column;
   align-items: center;
   max-width: 90%;
-  padding: 10px;
+  padding: 20px;
   border-radius: 10px;
   position: relative;
-  background: rgba(0, 0, 0, 0.7);
+  background: rgba(73, 16, 16, 0.7);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-  margin-top: 80px;
+  margin-top: 40px;
   animation: bounceAnimation 2s infinite alternate;
+
+  @media (max-width: 600px) {
+    max-width: 100%;
+  }
 }
 
 @keyframes bounceAnimation {
@@ -56,24 +70,46 @@
 
 .text-content {
   text-align: center;
-  max-width: 70%;
+  max-width: 80%;
   margin: 0 auto;
   padding: 20px;
+
+  @media (max-width: 768px) {
+    max-width: 90%;
+  }
+
+  @media (max-width: 600px) {
+    max-width: 100%;
+  }
 }
 
 h1.bienve {
-  font-size: 2.5rem;
+  font-size: 1.8rem;
   font-family: "cursive";
   margin: 0;
   padding: 0;
   color: #fff;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  text-shadow: 2px 2px 4px rgba(179, 55, 55, 0.5);
+  white-space: nowrap;
+  overflow: hidden;
+
+  @media (max-width: 768px) {
+    font-size: 1.5rem;
+  }
+
+  @media (max-width: 600px) {
+    font-size: 1.2rem;
+  }
 }
 
 p {
-  font-size: 1.25rem;
+  font-size: 1rem;
   margin: 20px 0;
   color: #fff;
+
+  @media (max-width: 600px) {
+    font-size: 0.9rem;
+  }
 }
 
 .owner {
@@ -90,13 +126,18 @@ h2 {
   background-color: #ff5733;
   border: none;
   color: #fff;
-  font-size: 1.25rem;
+  font-size: 1rem;
   padding: 10px 20px;
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s, transform 0.3s;
   margin-top: 20px;
   animation: colorChangeAnimation 3s infinite alternate;
+
+  @media (max-width: 600px) {
+    font-size: 0.9rem;
+    padding: 8px 16px;
+  }
 }
 
 @keyframes colorChangeAnimation {
@@ -112,6 +153,11 @@ h2 {
   background-color: #ff3d15;
   transform: scale(1.05);
 }
+a{
+  text-decoration: none;
+  // color: #a54c2c;
+  font-weight: bold;
+}
 
 .cursor {
   position: fixed;
@@ -124,74 +170,18 @@ h2 {
   z-index: 9999;
 }
 
-/* Estilos para dispositivos móviles (por ejemplo, pantalla de ancho menor a 600px) */
-/* Estilos para dispositivos móviles (por ejemplo, pantalla de ancho menor a 600px) */
+/* Estilos para dispositivos móviles */
 @media (max-width: 600px) {
-  .bienve {
-    font-size: 2rem; /* Cambiado de h1 a .bienve para ser más específico */
-  }
-
-  p {
-    font-size: 1rem;
-  }
-
-  .contact-owner {
-    font-size: 1rem;
-    padding: 8px 16px;
-  }
-}
-
-/* Estilos para los números 4, 0, 4 */
-.error-numbers {
-  display: flex;
-  justify-content: space-around;
-  margin: 40px;
-}
-
-.error-number {
-  display: inline-block;
-  font-size: 6rem;
-  color: #ff5733;
-  opacity: 0;
-  animation: fadeIn 2s forwards;
-}
-
-@keyframes fadeIn {
-  to {
-    opacity: 1;
-  }
-}
-
-.error-number:nth-child(2) {
-  animation-delay: 0.5s;
-}
-
-.error-number:nth-child(3) {
-  animation-delay: 1s;
-}
-
-/* Ajustes para dispositivos móviles */
-@media (max-width: 600px) {
-  .error-numbers {
-    flex-direction: row;
-    align-items: center;
-  }
-
-  .error-number {
-    font-size: 6rem;
-    margin-bottom: 10px;
-  }
-
   h1.bienve {
     font-size: 1.5rem;
   }
 
   p {
-    font-size: 1rem;
+    font-size: 0.9rem;
   }
 
   .contact-owner {
-    font-size: 1rem;
+    font-size: 0.9rem;
     padding: 8px 16px;
   }
 }

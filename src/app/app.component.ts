@@ -27,9 +27,16 @@ export class AppComponent implements OnInit{
     });
   }
   ngOnInit(): void {
+    
       if(!this.storageService.getCarrito){
         this.storageService.setCarrito([])
       }
+  }
+
+  isChatOpen = false;
+
+  toggleChat(isOpen: boolean) {
+    this.isChatOpen = isOpen;
   }
 
 }

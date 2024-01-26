@@ -11,6 +11,7 @@ import { ErrorInterceptor } from 'src/app/shared/interceptor/error.interceptor';
 import { MaterialModule } from './commons/material/material.module';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { SuccessView } from './views/success/success.view';
+import { CoreComponentsModule } from 'src/app/core/components/components.module';
 
 
 @NgModule({
@@ -21,6 +22,7 @@ import { SuccessView } from './views/success/success.view';
     SuccessView
   ],
   imports: [
+    CoreComponentsModule,
     MatSnackBarModule,
     CommonModule,
     AuthRoutingModule,

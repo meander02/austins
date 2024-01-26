@@ -26,7 +26,7 @@
           id="firstName"
           placeholder="Juan"
           formControlName="name"
-          required
+
         />
         <label for="firstName">Nombre</label>
       </mat-form-field>
@@ -53,7 +53,7 @@
           id="paternalLastname"
           placeholder="Perez"
           formControlName="maternalLastname"
-          required
+
         />
         <label for="maternalLastname">Apellido Materno</label>
       </mat-form-field>
@@ -77,7 +77,7 @@
           id="paternalLastname"
           placeholder="Gomez"
           formControlName="paternalLastname"
-          required
+
         />
         <label for="paternalLastname">Apellido Paterno</label>
       </mat-form-field>
@@ -94,7 +94,7 @@
         </mat-error>
       </div>
       <label>Fecha de Nacimiento</label>
-      <input class="date" type="date" formControlName="birthdate" required />
+      <input class="date" type="date" formControlName="birthdate"  />
       <mat-error *ngIf="group.get('birthdate')?.hasError('required')"
         >La fecha de nacimiento es requerida.</mat-error
       >
@@ -102,11 +102,6 @@
         >La fecha de nacimiento no puede ser en el futuro.</mat-error
       >
 
-      <!-- <div class="button-container">
-        <button class="next-button" (click)="nextStep('contact')">
-          Siguiente
-        </button>
-      </div> -->
       <div class="button-container">
         <button class="next-button" (click)="nextStep('contact')" [disabled]="!arePersonalFieldsFilled()">
           Siguiente
@@ -146,7 +141,7 @@
           type="text"
           placeholder="Respuesta"
           formControlName="securityAnswer"
-          required
+
         />
         <label>Respuesta de Seguridad</label>
       </mat-form-field>
@@ -161,7 +156,7 @@
           placeholder="123-456-7890"
           formControlName="phone"
           (input)="onPhoneInput($event)"
-          required
+
         />
         <label>Teléfono</label>
       </mat-form-field>
@@ -202,7 +197,7 @@
           matInput
           formControlName="email"
           placeholder="EJ:juanPerez@gmail.com"
-          required
+
         />
         <label>Email</label>
         <mat-icon>email</mat-icon>
@@ -217,7 +212,7 @@
           type="password"
           placeholder="********"
           formControlName="password"
-          required
+
         />
         <label>Contraseña</label>
         <mat-error *ngIf="passwordFormControl.hasError('required')"
@@ -236,7 +231,7 @@
           placeholder="********"
           formControlName="confirmPassword"
           (input)="onConfirmPasswordInput($event)"
-          required
+
         />
         <label>Confirmar Contraseña</label>
         <mat-error *ngIf="confirmPasswordFormControl.hasError('passwordMatch')"
@@ -257,6 +252,12 @@
         <button class="next-button" (click)="onSubmit()" [disabled]="!areCredentialFieldsFilled() || isSubmitting">
           Registrarse
         </button>
+
+        <!-- <button class="next-button" (click)="onSubmit()" [disabled]="!this.group.valid || isSubmitting">
+          Registrarse
+        </button> -->
+
+
       </div>
     </div>
   </form>
