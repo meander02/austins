@@ -16,10 +16,11 @@ import { AcercaDeView } from './views/acerca-de/acerca-de.view';
 import { PoliticaCookiesView } from './views/politica-cookies/politica-cookies.view';
 import { TerminosCondicionesView } from './views/terminos-condiciones/terminos-condiciones.view';
 import { UnknownView } from './views/unknown/unknown.view';
+import { PreguntasFreqView } from './views/preguntas-freq/preguntas-freq.view';
 
 
 @NgModule({
-  declarations: [HomeViews, NotFondViews, DetailViews, AboutViews, PortalComponent, PoliticaPrivView, AcercaDeView, PoliticaCookiesView, TerminosCondicionesView, UnknownView],
+  declarations: [HomeViews, NotFondViews, DetailViews, AboutViews, PortalComponent, PoliticaPrivView, AcercaDeView, PoliticaCookiesView, TerminosCondicionesView, UnknownView,PreguntasFreqView],
   imports: [HttpClientModule,CommonModule, PortalRoutingModule, PortalCommonsModule],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },

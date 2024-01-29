@@ -9,9 +9,9 @@
 // } from '@angular/forms';
 // import { SignInValidator } from 'src/app/shared/validators/sign-in-validator';
 // import { SignUpValidator } from 'src/app/shared/validators/sign-up-validator';
-// import { AuthStateService } from '../../services/auth-state.service';
 // import { AuthService } from '../../services/auth.service';
 // import { MatSnackBar } from '@angular/material/snack-bar';
+// import { Router } from '@angular/router';
 
 // @Component({
 //   selector: 'app-sign-up-form',
@@ -19,7 +19,7 @@
 //   styleUrls: ['./sign-up-form.component.scss', './materror.component.scss'],
 // })
 // export class SignUpFormComponent implements OnInit {
-//   // En tu componente
+//   userTouchedForm = false;
 //   preguntasSecretas: string[] = [
 //     '¿Cuál es tu color favorito?',
 //     '¿Cuál es el nombre de tu mascota?',
@@ -30,65 +30,35 @@
 //   isSubmitting = false;
 //   group: FormGroup;
 //   step: 'personal' | 'contact' | 'credentials' = 'personal';
-//   private userTouchedForm: boolean = false;
 
 //   constructor(
 //     private snackBar: MatSnackBar,
-//     private authService: AuthService, // Inyecta tu servicio AuthService,
+//     private authService: AuthService,
+//     private formBuilder: FormBuilder,
+//     private router: Router,
 //     private el: ElementRef,
-//     private formBuilder: FormBuilder
 //   ) {
-//     // Instancia de validadores personalizados
-//     let signInValidator = new SignInValidator();
-//     let signUpValidator = new SignUpValidator();
+//     const signInValidator = new SignInValidator();
+//     const signUpValidator = new SignUpValidator();
 
-//     // Expresión regular para validar el campo de correo electrónico
 //     const emailRegex =
 //       /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
 
-//     // Inicialización del formulario con sus campos y validadores
 //     this.group = this.formBuilder.group({
-//       name: [''],
-//       maternalLastname: [
-//         '',
-//         [Validators.required, SignUpValidator.isValidLastName],
-//       ],
-//       paternalLastname: [
-//         '',
-//         [Validators.required, SignUpValidator.isValidLastName],
-//       ],
+//       name: ['', [Validators.required, SignUpValidator.isValidName]],
+//       maternalLastname: ['', [Validators.required, SignUpValidator.isValidLastName]],
+//       paternalLastname: ['', [Validators.required, SignUpValidator.isValidLastName]],
 //       birthdate: ['', [Validators.required, SignUpValidator.isValidDate]],
 //       email: ['', [Validators.required, Validators.pattern(emailRegex)]],
 //       securityQuestion: ['', Validators.required],
 //       securityAnswer: ['', Validators.required],
 //       phone: ['', [Validators.required, signUpValidator.formatPhone]],
-//       username: ['', Validators.required],
 //       password: ['', [Validators.required, signInValidator.formatPassword]],
-//       confirmPassword: [''],
+//       confirmPassword: ['', [Validators.required, this.passwordMatchValidator.bind(this)]],
 //     });
-//     this.group
-//       .get('confirmPassword')
-//       ?.setValidators([
-//         Validators.required,
-//         this.passwordMatchValidator.bind(this.group),
-//       ]);
 //   }
 
 //   ngOnInit() {
-//     // ... Código existente
-//   // Escucha de cambios en el formulario para marcar que el usuario ha interactuado
-//   this.group.valueChanges.subscribe(() => {
-//     this.userTouchedForm = true;
-//   });
-//   // Modifica la suscripción a cambios en el campo 'name'
-//   this.nameFormControl.valueChanges.subscribe(() => {
-//     if (this.userTouchedForm) {
-//       this.applyValidatorsAfterInteraction(this.nameFormControl, [Validators.required, SignUpValidator.isValidName]);
-//     }
-//   });
-//     // Repite este bloque para otros campos según sea necesario
-
-//     // Función para actualizar la barra de progreso
 //     const progressBar = this.el.nativeElement.querySelector('#progress-bar');
 //     const progressSteps = progressBar.querySelectorAll('.progress-step');
 
@@ -102,33 +72,57 @@
 //       });
 //     }
 
-//     // Escucha del cambio de paso en el formulario
 //     document.addEventListener('formStepChange', (event: any) => {
 //       const step = event.detail.step;
 //       updateProgressBar(step);
 //     });
+
+//     this.group.valueChanges.subscribe(() => {
+//       this.userTouchedForm = true;
+//       if (this.userTouchedForm) {
+//         this.applyValidatorsAfterInteraction();
+//       }
+//     });
+
 //     this.securityQuestionFormControl.valueChanges.subscribe(() => {
 //       this.onSecurityQuestionChange();
 //     });
 //   }
 
-//  // Añade este método para aplicar validadores después de la interacción con el campo
-//  private applyValidatorsAfterInteraction(control: FormControl, validators: any[]) {
-//   control.setValidators(validators);
-//   control.updateValueAndValidity();
-// }
-//   // Función de validación personalizada para comparar contraseñas
-//   passwordMatchValidator(control: AbstractControl): ValidationErrors | null {
+//   private applyValidatorsForField(fieldName: string) {
+//     const control = this.group.get(fieldName);
+
+//     if (control && control.dirty && control.touched) { // Check if the control is both dirty and touched
+//       switch (fieldName) {
+//         case 'name':
+//         case 'maternalLastname':
+//         case 'paternalLastname':
+//           control.setValidators([Validators.required, SignUpValidator.isValidLastName]);
+//           break;
+//         case 'birthdate':
+//           control.setValidators([Validators.required, SignUpValidator.isValidDate]);
+//           break;
+//         // Add cases for other fields as needed
+//       }
+//       control.updateValueAndValidity({ onlySelf: true, emitEvent: false });
+//     }
+//   }
+
+//   private applyValidatorsAfterInteraction() {
+//     const fieldsToValidate = ['name', 'maternalLastname', 'paternalLastname', 'birthdate', /* Add other fields as needed */];
+//     fieldsToValidate.forEach((fieldName) => {
+//       this.applyValidatorsForField(fieldName);
+//     });
+//   }
+
+
+//   passwordMatchValidator(control: FormControl): ValidationErrors | null {
 //     const password = control.get('password')?.value;
 //     const confirmPassword = control.get('confirmPassword')?.value;
 
-//     if (password === confirmPassword) {
-//       return null; // Contraseñas coinciden
-//     } else {
-//       return { passwordMatch: true }; // Contraseñas no coinciden
-//     }
+//     return password === confirmPassword ? null : { passwordMatch: true };
 //   }
-//   // Agrega este método a tu componente
+
 //   onConfirmPasswordInput(event: Event) {
 //     const confirmInput = event.target as HTMLInputElement;
 //     const confirmPasswordControl = this.group.get('confirmPassword');
@@ -138,14 +132,13 @@
 //       const confirmPassword = confirmInput.value;
 
 //       if (password === confirmPassword) {
-//         confirmPasswordControl.setErrors(null); // Contraseñas coinciden
+//         confirmPasswordControl.setErrors(null);
 //       } else {
-//         confirmPasswordControl.setErrors({ passwordMatch: true }); // Contraseñas no coinciden
+//         confirmPasswordControl.setErrors({ passwordMatch: true });
 //       }
 //     }
 //   }
 
-//   // Avanza al siguiente paso del formulario
 //   nextStep(targetStep: 'personal' | 'contact' | 'credentials') {
 //     this.step = targetStep;
 //     const event = new CustomEvent('formStepChange', {
@@ -155,7 +148,6 @@
 //     document.dispatchEvent(event);
 //   }
 
-//   // Retrocede al paso anterior del formulario
 //   prevStep() {
 //     if (this.step === 'contact') {
 //       this.step = 'personal';
@@ -169,29 +161,30 @@
 //     document.dispatchEvent(event);
 //   }
 
-//   // Accesor para obtener el control del email
 //   get nameFormControl(): FormControl {
 //     return this.group.get('name') as FormControl;
 //   }
+
 //   get a1(): FormControl {
 //     return this.group.get('maternalLastname') as FormControl;
 //   }
+
 //   get a2(): FormControl {
 //     return this.group.get('paternalLastname') as FormControl;
 //   }
+
 //   get emailFormControl(): FormControl {
 //     return this.group.get('email') as FormControl;
 //   }
 
-//   // Accesor para obtener el control de la contraseña
 //   get passwordFormControl(): FormControl {
 //     return this.group.get('password') as FormControl;
 //   }
 
-//   // Accesor para obtener el control de la confirmación de contraseña
 //   get confirmPasswordFormControl(): FormControl {
 //     return this.group.get('confirmPassword') as FormControl;
 //   }
+
 //   get phoneFormControl(): FormControl {
 //     return this.group.get('phone') as FormControl;
 //   }
@@ -200,15 +193,14 @@
 //     return this.group.get('securityQuestion') as FormControl;
 //   }
 
-//   // Obtén el control de la respuesta secreta
 //   get securityAnswerFormControl(): FormControl {
 //     return this.group.get('securityAnswer') as FormControl;
 //   }
 
-//   // Añade la lógica para reiniciar la respuesta cuando cambie la pregunta
 //   onSecurityQuestionChange() {
 //     this.securityAnswerFormControl.reset('');
 //   }
+
 //   onPhoneInput(event: Event) {
 //     const inputElement = event.target as HTMLInputElement;
 //     const phoneControl = this.group.get('phone');
@@ -221,42 +213,45 @@
 //       phoneControl.setValue(trimmedValue);
 //     }
 //   }
-
 //   onSubmit() {
-//     // Evitar múltiples envíos al agregar un bloqueo
-//     if (!this.isSubmitting) {
+//     this.group.markAllAsTouched();
+//     Object.keys(this.group.controls).forEach(key => {
+//       const controlErrors = this.group.get(key)?.errors;
+//       if (controlErrors != null) {
+//         console.log(`Error en el campo ${key}:`, controlErrors);
+//       }
+//     });
+
+//     if (this.group.valid && !this.isSubmitting) {
+//       // Verificar errores en cada control
+
 //       this.isSubmitting = true;
 
 //       this.authService
 //         .signUpAndVerifyEmail(this.group.value)
 //         .subscribe(
 //           (response) => {
-//             console.log('Respuesta del backend:', response.message);
 //             this.snackBar.open(response.message, 'Cerrar', {
 //               duration: 3000,
 //             });
-//             // Manejar la respuesta del backend según sea necesario
+
+//             this.router.navigate(['/auth/user-create', { userEmail: this.group.value.email }]);
 //           },
 //           (error) => {
-//             // console.error('Error del backend:', error);
-
-//             // Verificar si el error tiene un mensaje personalizado desde el servidor
 //             const errorMessage = error.error.message || 'Error en el servidor';
-
 //             this.snackBar.open(errorMessage, 'Cerrar', {
 //               duration: 3000,
 //             });
-//             // Manejar los errores del backend según sea necesario
 //           }
 //         )
 //         .add(() => {
-//           // Restaurar el estado del bloqueo después de la respuesta o error del backend
 //           this.isSubmitting = false;
 //         });
 //     }
 //   }
 
-//   //////adiciional
+
+
 //   arePersonalFieldsFilled(): boolean {
 //     return (
 //       this.group.get('name')?.value &&
@@ -273,20 +268,12 @@
 //       this.group.get('phone')?.value
 //     );
 //   }
+
 //   areCredentialFieldsFilled(): boolean {
-//     console.log('Formulario válido:', this.group.valid);
 //     return (
 //       this.group.get('email')?.value &&
 //       this.group.get('password')?.value &&
 //       this.group.get('confirmPassword')?.value
 //     );
 //   }
-
-//   // areCredentialFieldsFilled(): boolean {
-//   //   return (
-//   //     this.group.get('email')?.value &&
-//   //     this.group.get('password')?.value &&
-//   //     this.group.get('confirmPassword')?.value
-//   //   );
-//   // }
 // }

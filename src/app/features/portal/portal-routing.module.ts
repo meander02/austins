@@ -9,6 +9,7 @@ import { PoliticaCookiesView } from './views/politica-cookies/politica-cookies.v
 import { TerminosCondicionesView } from './views/terminos-condiciones/terminos-condiciones.view';
 import { NotFondViews } from './views/not-fond/not-fond.views';
 import { UnknownView } from './views/unknown/unknown.view';
+import { PreguntasFreqView } from './views/preguntas-freq/preguntas-freq.view';
 
 const routes: Routes = [
   {
@@ -41,6 +42,11 @@ const routes: Routes = [
         title:"Terminos |Condiciones",
         path: 'Terminos',
         component: TerminosCondicionesView,
+      },
+      {
+        title:"preguntas |frecuentes",
+        path: 'faq',
+        component: PreguntasFreqView,
       },
       {
         title:"Acerca de |",

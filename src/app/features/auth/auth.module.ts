@@ -12,6 +12,7 @@ import { MaterialModule } from './commons/material/material.module';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { SuccessView } from './views/success/success.view';
 import { CoreComponentsModule } from 'src/app/core/components/components.module';
+import { RequestPasswordRecoveryView } from './views/request-password-recovery/request-password-recovery.view';
 
 
 @NgModule({
@@ -19,7 +20,7 @@ import { CoreComponentsModule } from 'src/app/core/components/components.module'
     AuthComponent,
     SignInView,
     SignUpView,
-    SuccessView
+    SuccessView,RequestPasswordRecoveryView
   ],
   imports: [
     CoreComponentsModule,

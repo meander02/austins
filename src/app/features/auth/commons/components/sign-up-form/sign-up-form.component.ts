@@ -45,10 +45,10 @@ export class SignUpFormComponent implements OnInit {
       /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
 
     this.group = this.formBuilder.group({
-      name: ['', [Validators.required, SignUpValidator.isValidName]],
-      maternalLastname: ['', [Validators.required, SignUpValidator.isValidLastName]],
-      paternalLastname: ['', [Validators.required, SignUpValidator.isValidLastName]],
-      birthdate: ['', [Validators.required, SignUpValidator.isValidDate]],
+      name: ['', ],
+      maternalLastname: ['',  ],
+      paternalLastname: ['', ],
+      birthdate: ['', ],
       email: ['', [Validators.required, Validators.pattern(emailRegex)]],
       securityQuestion: ['', Validators.required],
       securityAnswer: ['', Validators.required],
@@ -91,10 +91,13 @@ export class SignUpFormComponent implements OnInit {
 
   private applyValidatorsForField(fieldName: string) {
     const control = this.group.get(fieldName);
-  
+
     if (control && control.dirty && control.touched) { // Check if the control is both dirty and touched
       switch (fieldName) {
         case 'name':
+          case 'paternalLastname':
+            control.setValidators([Validators.required, SignUpValidator.isValidName]);
+            break;
         case 'maternalLastname':
         case 'paternalLastname':
           control.setValidators([Validators.required, SignUpValidator.isValidLastName]);
@@ -107,14 +110,14 @@ export class SignUpFormComponent implements OnInit {
       control.updateValueAndValidity({ onlySelf: true, emitEvent: false });
     }
   }
-  
+
   private applyValidatorsAfterInteraction() {
     const fieldsToValidate = ['name', 'maternalLastname', 'paternalLastname', 'birthdate', /* Add other fields as needed */];
     fieldsToValidate.forEach((fieldName) => {
       this.applyValidatorsForField(fieldName);
     });
   }
-  
+
 
   passwordMatchValidator(control: FormControl): ValidationErrors | null {
     const password = control.get('password')?.value;
@@ -224,9 +227,9 @@ export class SignUpFormComponent implements OnInit {
 
     if (this.group.valid && !this.isSubmitting) {
       // Verificar errores en cada control
-   
+
       this.isSubmitting = true;
-  
+
       this.authService
         .signUpAndVerifyEmail(this.group.value)
         .subscribe(
@@ -234,7 +237,7 @@ export class SignUpFormComponent implements OnInit {
             this.snackBar.open(response.message, 'Cerrar', {
               duration: 3000,
             });
-  
+
             this.router.navigate(['/auth/user-create', { userEmail: this.group.value.email }]);
           },
           (error) => {
@@ -249,8 +252,8 @@ export class SignUpFormComponent implements OnInit {
         });
     }
   }
-  
-  
+
+
 
   arePersonalFieldsFilled(): boolean {
     return (

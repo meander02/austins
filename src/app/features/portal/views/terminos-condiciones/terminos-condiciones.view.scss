@@ -5,7 +5,26 @@
   margin: 0 auto;
   margin-top: 130px;
 
-  padding: 20px;
+  padding: 40px;
+
+
+
+    // max-width: 800px; /* Máximo ancho para evitar que sea demasiado ancho en pantallas grandes */
+    margin: 0 auto; /* Centrar el contenedor horizontalmente */
+    padding: 30px;
+    background-color: #f5f5f5;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    font-family: 'Open Sans', sans-serif;
+    color: #333;
+    line-height: 1.6;
+    // margin-top: 130px;
+    z-index: 0;
+    max-width: 800px;
+    margin: 0 auto;
+    margin-top: 130px;
+
+    padding: 40px;
 }
 
 .privacy-cookies-container {
@@ -99,3 +118,42 @@
 }
 
 /* ... (continuación del CSS) */
+/* Ajustes para el enlace "Ver Más" */
+a {
+  display: block; /* Convertir el enlace en un bloque para ocupar todo el ancho */
+  text-align: center; /* Centrar el texto del enlace */
+  // font-weight: bold;
+
+  font-size: 16px; /* Tamaño de letra más grande para el enlace */
+  color: #ff8e24; /* Color personalizado para el enlace */
+  text-decoration: underline; /* Subrayar el enlace */
+  cursor: pointer;
+}
+
+/* Ajustes para las secciones */
+section {
+  margin-bottom: 30px;
+  text-align: left; /* Alinear el texto a la izquierda */
+}
+/* Ajustes para el título */
+h1 {
+  font-size: 24px; /* Tamaño de letra más grande */
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #333;
+  text-align: center; /* Centrar el texto */
+}
+/* Ajustes para los subtítulos (h2) */
+h2 {
+  font-size: 18px; /* Tamaño de letra más grande */
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #000;
+}
+
+/* Ajustes para los iconos */
+i {
+  margin-right: 10px;
+  font-size: 16px; /* Tamaño de letra para los íconos */
+  color: #007bff; /* Color personalizado para los íconos */
+}

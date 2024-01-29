@@ -2,15 +2,20 @@
   // width: 90%; /* Ancho del contenedor */
   // max-width: 800px; /* Máximo ancho para evitar que sea demasiado ancho en pantallas grandes */
   margin: 0 auto; /* Centrar el contenedor horizontalmente */
-  padding: 20px;
+  padding: 30px;
   background-color: #f5f5f5;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
   font-family: 'Open Sans', sans-serif;
   color: #333;
   line-height: 1.6;
-  margin-top: 130px;
+  // margin-top: 130px;
   z-index: 0;
+  max-width: 800px;
+  margin: 0 auto;
+  margin-top: 130px;
+
+  padding: 40px;
 }
 
 /* Ajustes para el título */
@@ -56,7 +61,7 @@ a {
   // font-weight: bold;
 
   font-size: 16px; /* Tamaño de letra más grande para el enlace */
-  color: #007bff; /* Color personalizado para el enlace */
+  color: #ff7b00; /* Color personalizado para el enlace */
   text-decoration: underline; /* Subrayar el enlace */
   cursor: pointer;
 }

@@ -14,10 +14,11 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { SuccessComponent } from './success/success.component';
+import { RequestPasswordRecoveryfrmComponent } from './request-password-recoveryfrm/request-password-recoveryfrm.component';
 
 @NgModule({
-  declarations: [SignInFormComponent, SignUpFormComponent, SuccessComponent],
-  exports: [SignUpFormComponent, SignInFormComponent,SuccessComponent],
+  declarations: [SignInFormComponent, SignUpFormComponent, SuccessComponent,RequestPasswordRecoveryfrmComponent],
+  exports: [SignUpFormComponent, SignInFormComponent,SuccessComponent,RequestPasswordRecoveryfrmComponent],
   imports: [
     CommonModule,
     MaterialModule,

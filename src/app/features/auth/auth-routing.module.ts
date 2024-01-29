@@ -6,6 +6,7 @@ import { SignUpView } from './views/sign-up/sign-up.view';
 import { SuccessView } from './views/success/success.view';
 import { ErrorVerficaView } from './views/error-verfica/error-verfica.view';
 import { UserCreateView } from './views/user-create/user-create.view';
+import { RequestPasswordRecoveryView } from './views/request-password-recovery/request-password-recovery.view';
 
 const routes: Routes = [
   {
@@ -36,6 +37,10 @@ const routes: Routes = [
       {
         path: 'user-create',
         component: UserCreateView,
+      },
+      {
+        path: 'Recupera',
+        component: RequestPasswordRecoveryView,
       },
     ],
   },
