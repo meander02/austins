@@ -22,7 +22,10 @@ import { MenuItem, MessageService } from 'primeng/api';
 @Component({
   selector: 'app-sign-up-form',
   templateUrl: './sign-up-form.component.html',
-  styleUrls: ['./sign-up-form.component.scss', './materror.component.scss'],
+  styleUrls: ['./sign-up-form.component.scss',
+   './materror.component.scss',
+   './form-up.component.scss',
+  ],
   providers: [MessageService],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
