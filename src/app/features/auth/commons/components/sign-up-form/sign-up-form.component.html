@@ -1,13 +1,6 @@
+<p-breadcrumb [model]="breadcrumbItems"></p-breadcrumb>
 
-
-<div class="breadcrumbs">
-  <span><a href="#"> <mat-icon>home</mat-icon></a></span>
-  <span>&gt;</span>
-  <span><a href="#">Inicio</a></span>
-  <span>&gt;</span>
-  <span>sign-up</span>
-</div>
-
+<p-toast></p-toast>
 
 <div class="log">
   <img
@@ -21,11 +14,7 @@
 </div>
 
 <div class="signup-container">
-  <div class="progress-bar" id="progress-bar">
-    <div class="progress-step personal">Datos Personales</div>
-    <div class="progress-step contact">Datos de Contacto</div>
-    <div class="progress-step credentials">Usuario y Contraseña</div>
-  </div>
+  <p-steps [model]="items" [(activeIndex)]="activeIndex"></p-steps>
 
   <form (ngSubmit)="onSubmit()" [formGroup]="group">
     <!-- Datos Personales -->
@@ -37,8 +26,8 @@
           id="firstName"
           placeholder="Juan"
           formControlName="name"
-
         />
+
         <label for="firstName">Nombre</label>
       </mat-form-field>
       <div
@@ -64,7 +53,6 @@
           id="paternalLastname"
           placeholder="Perez"
           formControlName="maternalLastname"
-
         />
         <label for="maternalLastname">Apellido Materno</label>
       </mat-form-field>
@@ -88,7 +76,6 @@
           id="paternalLastname"
           placeholder="Gomez"
           formControlName="paternalLastname"
-
         />
         <label for="paternalLastname">Apellido Paterno</label>
       </mat-form-field>
@@ -105,7 +92,7 @@
         </mat-error>
       </div>
       <label>Fecha de Nacimiento</label>
-      <input class="date" type="date" formControlName="birthdate"  />
+      <input class="date" type="date" formControlName="birthdate" />
       <mat-error *ngIf="group.get('birthdate')?.hasError('required')"
         >La fecha de nacimiento es requerida.</mat-error
       >
@@ -114,7 +101,11 @@
       >
 
       <div class="button-container">
-        <button class="next-button" (click)="nextStep('contact')" [disabled]="!arePersonalFieldsFilled()">
+        <button
+          class="next-button"
+          (click)="nextStep('contact')"
+          [disabled]="!arePersonalFieldsFilled()"
+        >
           Siguiente
         </button>
       </div>
@@ -152,7 +143,6 @@
           type="text"
           placeholder="Respuesta"
           formControlName="securityAnswer"
-
         />
         <label>Respuesta de Seguridad</label>
       </mat-form-field>
@@ -167,7 +157,6 @@
           placeholder="123-456-7890"
           formControlName="phone"
           (input)="onPhoneInput($event)"
-
         />
         <label>Teléfono</label>
       </mat-form-field>
@@ -186,15 +175,13 @@
         <mat-error>El teléfono es obligatorio.</mat-error>
       </div>
 
-      <!-- <div class="button-container">
-        <button class="prev-button" (click)="prevStep()">Anterior</button>
-        <button class="next-button" (click)="nextStep('credentials')">
-          Siguiente
-        </button>
-      </div> -->
       <div class="button-container">
         <button class="prev-button" (click)="prevStep()">Anterior</button>
-        <button class="next-button" (click)="nextStep('credentials')" [disabled]="!areContactFieldsFilled()">
+        <button
+          class="next-button"
+          (click)="nextStep('credentials')"
+          [disabled]="!areContactFieldsFilled()"
+        >
           Siguiente
         </button>
       </div>
@@ -202,13 +189,12 @@
 
     <!-- Usuario y Contraseña -->
     <div class="form-group" *ngIf="step === 'credentials'">
-      <mat-form-field class="animated">
+      <mat-form-field class="animated email-input">
         <input
           type="email"
           matInput
           formControlName="email"
           placeholder="EJ:juanPerez@gmail.com"
-
         />
         <label>Email</label>
         <mat-icon>email</mat-icon>
@@ -223,7 +209,6 @@
           type="password"
           placeholder="********"
           formControlName="password"
-
         />
         <label>Contraseña</label>
         <mat-error *ngIf="passwordFormControl.hasError('required')"
@@ -242,7 +227,6 @@
           placeholder="********"
           formControlName="confirmPassword"
           (input)="onConfirmPasswordInput($event)"
-
         />
         <label>Confirmar Contraseña</label>
         <mat-error *ngIf="confirmPasswordFormControl.hasError('passwordMatch')"
@@ -256,19 +240,28 @@
           >Confirmar Contraseña es <strong>requerida</strong></mat-error
         >
       </mat-form-field>
-
-
+   
+      <ngx-recaptcha2
+        #captchaElem
+        [siteKey]="siteKey"
+        matInput
+        formControlName="recaptcha"
+        (success)="handleSuccess($event)"
+      >
+      </ngx-recaptcha2>
+      
+      <mat-error *ngIf="recaptchaFormControl.hasError('required')"
+        >captcha<strong>requerida</strong></mat-error
+      >
       <div class="button-container">
         <button class="prev-button" (click)="prevStep()">Anterior</button>
-        <button class="next-button" (click)="onSubmit()" [disabled]="!areCredentialFieldsFilled() || isSubmitting">
+        <button
+          class="next-button"
+          (click)="onSubmit()"
+          [disabled]="!this.group.valid || isSubmitting"
+        >
           Registrarse
         </button>
-
-        <!-- <button class="next-button" (click)="onSubmit()" [disabled]="!this.group.valid || isSubmitting">
-          Registrarse
-        </button> -->
-
-
       </div>
     </div>
   </form>

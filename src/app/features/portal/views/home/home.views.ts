@@ -3,7 +3,8 @@ import { Router } from '@angular/router';
 import { ProductService } from 'src/app/features/admin/commons/services/product.service';
 import { Product } from 'src/app/features/admin/models/Product.models';
 import { SearchService } from 'src/app/shared/services/search-service.service';
-
+// import 'aos/dist/aos.css';
+// import * as AOS from 'aos';
 @Component({
   selector: 'app-home',
   templateUrl: './home.views.html',
@@ -35,6 +36,11 @@ export class HomeViews implements OnInit {
   }
 
   ngOnInit(): void {
+
+    // AOS.init();
+    // below listed default settings
+
+
     this.searchService.searchQuery$.subscribe((query) => {
       // Almacena la consulta de búsqueda.
       this.filterPost = query;

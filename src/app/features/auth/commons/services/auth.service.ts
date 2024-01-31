@@ -8,8 +8,6 @@ import { environment } from 'src/environments/environment';
 })
 export class AuthService {
 
-  // private apiUrl = 'http://tu-api.com'; // Reemplaza con la URL de tu API
-
   constructor(private http: HttpClient) { }
 
   signUpAndVerifyEmail(data: any): Observable<any> {
@@ -25,5 +23,20 @@ export class AuthService {
   verifyEmail(token: string): Observable<any> {
     const url = `${environment.api}/auth/verify/${token}`;
     return this.http.get(url);
+  }
+
+  
+  requestPasswordRecovery(data: any): Observable<any> {
+    const url = `${environment.api}/auth/request-password-recovery`;
+    return this.http.post(url, data);
+  }
+
+  verifyCodeAndResetPassword(data: any): Observable<any> {
+    const url = `${environment.api}/auth/verify-code-and-reset-password`;
+    return this.http.post(url, data);
+  }
+  verifyVerificationCode(data: { email: string; verificationCode: string }): Observable<any> {
+    const url = `${environment.api}/auth/verify-verification-code`; // Reemplaza con la ruta adecuada de tu backend
+    return this.http.post(url, data);
   }
 }

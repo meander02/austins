@@ -1,8 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
+/* styles.css */
+
+@import 'primeng/resources/themes/saga-blue/theme.css';
+@import 'primeng/resources/primeng.min.css';
+/* styles.css */
+@import 'aos/dist/aos.css';
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
-/* styles.css */
+
+
 
 /* Agrega estilos específicos para dispositivos web */
 @media (min-width: 481px) {

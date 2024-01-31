@@ -18,6 +18,10 @@ import { CookiesComponent } from './cookies/cookies.component';
 import { BtnFloatComponent } from './btn-float/btn-float.component';
 import { ChatComponent } from './chat/chat.component';
 // import {  } from './components.component';
+import { StepsModule } from 'primeng/steps';
+import { StepsComponent } from './steps/steps.component';
+import { ProgressBarComponent } from './progress-bar/progress-bar.component';
+
 
 @NgModule({
   declarations: [
@@ -27,6 +31,8 @@ import { ChatComponent } from './chat/chat.component';
     PoliticaComponent,
     CookiesComponent,
     BtnFloatComponent,
+    StepsComponent,
+    ProgressBarComponent
   ],
   exports: [
     // PoliticaComponent,
@@ -36,10 +42,12 @@ import { ChatComponent } from './chat/chat.component';
     FooterComponent,
     PoliticaComponent,
     CookiesComponent,
+    StepsComponent,ProgressBarComponent
   ],
   imports: [
     // BrowserModule,
     FormsModule,
+    StepsModule,
     CommonModule,
     MatToolbarModule,
     MatButtonModule,

@@ -111,34 +111,38 @@ h2 {
   }
 }
 
-/* Estilos para dispositivos móviles (por ejemplo, pantalla de ancho menor a 600px) */
-@media (max-width: 600px) {
-  .home-container {
-    padding: 10px;
-  }
+// /* Estilos para dispositivos móviles (por ejemplo, pantalla de ancho menor a 600px) */
+// @media (max-width: 600px) {
+//   // .home-container {
+//   //   padding: 2vh;
+//   // }
 
-  .content {
-    flex-direction: column; /* Cambia la dirección de flex a columna en dispositivos móviles */
-    align-items: center;
-    text-align: center;
-  }
+//   .content {
+//     margin-top: 10vh;
+//     padding: auto;
+//     width: 100;
+//     // flex-direction: column; /* Cambia la dirección de flex a columna en dispositivos móviles */
+//     // align-items: center;
+//     // text-align: center;
+//   }
 
-  .text-content {
-    text-align: center; /* Alinea el texto al centro en dispositivos móviles */
-  }
+//   .text-content {
 
-  h1 {
-    font-size: 6vw;
-  }
+//     // text-align: center; /* Alinea el texto al centro en dispositivos móviles */
+//   }
 
-  p {
-    font-size: 3vw;
-  }
+//   h1 {
+//     font-size: 6vw;
+//   }
 
-  .btn-inicio {
-    font-size: 4vw;
-  }
-}
+//   p {
+//     font-size: 3vw;
+//   }
+
+//   .btn-inicio {
+//     font-size: 4vw;
+//   }
+// }
 
   // .product {
   //   display: inline-block;
@@ -203,25 +207,29 @@ h2 {
 /* Estilos para dispositivos móviles (por ejemplo, pantalla de ancho menor a 600px) */
 @media (max-width: 600px) {
   .home-container {
-    padding: 10px;
+    // padding: 0px;
     margin-top: 0; /* Elimina el margen superior para quitar el espacio en blanco */
   }
 
   .content {
+    width: 100%;
     flex-direction: column; /* Cambia la dirección de flex a columna en dispositivos móviles */
     align-items: center;
     text-align: center;
-    // margin-top: 0; /* Elimina el margen superior para quitar el espacio en blanco */
-
+    margin-top: 4vh; /* Elimina el margen superior para quitar el espacio en blanco */
   }
 
   .text-content {
-    text-align: center; /* Alinea el texto al centro en dispositivos móviles */
+    // text-align: center; /* Alinea el texto al centro en dispositivos móviles */
   }
 
   h1 {
     font-size: 2rem; /* Ajusta el tamaño de fuente del título en dispositivos móviles */
     line-height: 1.2;
+  }
+  h2 {
+    font-size: 1rem; /* Ajusta el tamaño de fuente del título en dispositivos móviles */
+    // line-height: 1.2;
   }
 
   p {

@@ -2,6 +2,14 @@
 /* styles.scss */
 
 // @import '~@angular/material/icon/typings/icon-registry';
+/* Estilos base para el contenedor de errores */
+
+/* En tu archivo .css o .scss del componente */
+.p-toast {
+  background-color: #ff000028; /* Cambia el color de fondo según tus preferencias */
+  color: #ffffff; /* Cambia el color del texto según tus preferencias */
+  border-radius: 5px; /* Añade bordes redondeados según tus preferencias */
+}
 
 
 .breadcrumbs {
@@ -49,9 +57,6 @@
     color: #ffd700;
   }
 
-  mat-icon {
-    margin-right: 5px;
-  }
 
   // Animación para las migas de pan
   @keyframes fadeIn {
@@ -69,7 +74,7 @@
 // -------------------------------------------
 .log {
   text-align: center;
-  margin-top: 2%;
+  margin-top: 1%;
 }
 
 .logo {
@@ -97,14 +102,16 @@ a:hover {
 
 .signup-container {
   margin-top: 2%;
-  background-color: #f5f5f5;
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  // background-color: #f5f5f5;
+  border-radius: 30px;
+  border: 2px;
+  // box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px  4px 6px  rgba(199, 196, 196, 0.023),0px  0px 4px ;
   text-align: center;
   padding: 2%;
   max-width: 500px;
   margin: 0 auto;
-  height: 500px;
+  height: 300px;
 }
 
 .signup-container img {
@@ -113,6 +120,7 @@ a:hover {
 }
 
 form {
+  margin-top: 3%;
   display: flex;
   flex-direction: column;
 }
@@ -120,7 +128,8 @@ form {
 mat-form-field {
   border-radius: 30%;
   width: 100%;
-  margin: 0px 0; /* Ajuste del margen */
+  height: 2% ;
+  // margin: 0px 0; /* Ajuste del margen */
 }
 
 .next-button,
@@ -142,42 +151,13 @@ mat-form-field {
   background-color: #ff4400;
 }
 
-.social-button {
-  display: flex;
-  align-items: center;
-  background-color: #fff;
-  border: 1px solid #ccc;
-  border-radius: 40px;
-  padding: 10px;
-  margin: 0 10px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-  font-size: 14px;
-  color: #333;
-}
-
-.social-button img {
-  width: 30px;
-  height: 30px;
-  margin-right: 10px;
-}
-
-.social-button:hover {
-  color: #333;
-  background-color: #f2f2f2;
-}
-
-.social-button.google-button,
-.social-button.facebook-button {
-  color: #615f5f;
-}
 
 .social-login {
   // margin-bottom: 30%;
   height: auto;
   display: flex;
   justify-content: center;
-  margin-top: 8px;
+  margin-top:  -5px;
 }
 
 .form-group {
@@ -251,6 +231,27 @@ mat-form-field {
   font-size: 6px; /* Ajuste del tamaño de la fuente */
   color: #a54c2c;
 }
+.form-group .password-input button {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  font-size: 20px;
+}
+.form-group .password-input mat-icon {
+  color: #aaa;
+}
+
+.form-group .email-input mat-icon {
+  color: #aaa;
+  position: absolute;
+  top: 50%;
+  left: 90%;
+  transform: translateY(-50%);
+}
 
 /* Estiliza la barra de progreso */
 .progress-bar {
@@ -304,7 +305,7 @@ p.section-title {
 @media (max-width: 768px) {
   .signup-container {
     padding: 1%;
-    width: 75%;
+    width: 45% auto;
   }
   .logo {
     max-width: 80px;
@@ -327,6 +328,7 @@ p.section-title {
 @media (max-width: 480px) {
   .signup-container {
     padding: 2rem;
+    width: 90%;
   }
   .logo {
     max-width: 60px;
@@ -344,4 +346,8 @@ p.section-title {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.disabled-tabs {
+  pointer-events: none;
+  opacity: 0.7; // Optional: Adjust the opacity to visually indicate that the tabs are disabled
 }

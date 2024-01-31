@@ -15,11 +15,14 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { SuccessComponent } from './success/success.component';
 import { RequestPasswordRecoveryfrmComponent } from './request-password-recoveryfrm/request-password-recoveryfrm.component';
+import { CoreComponentsModule } from 'src/app/core/components/components.module';
+import { NgxCaptchaModule } from 'ngx-captcha';
 
 @NgModule({
   declarations: [SignInFormComponent, SignUpFormComponent, SuccessComponent,RequestPasswordRecoveryfrmComponent],
   exports: [SignUpFormComponent, SignInFormComponent,SuccessComponent,RequestPasswordRecoveryfrmComponent],
-  imports: [
+  imports: [NgxCaptchaModule,
+    CoreComponentsModule,
     CommonModule,
     MaterialModule,
     ReactiveFormsModule,

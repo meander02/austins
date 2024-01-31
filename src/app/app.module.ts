@@ -10,12 +10,13 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { ErrorInterceptor } from './shared/interceptor/error.interceptor';
 import { NgxUiLoaderModule, NgxUiLoaderService } from 'ngx-ui-loader';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { NgxCaptchaModule } from 'ngx-captcha';
 
 @NgModule({
   declarations: [
     AppComponent,
   ],
-  imports: [
+  imports: [NgxCaptchaModule,
     MatSnackBarModule,
     NgxUiLoaderModule,
     BrowserModule,

@@ -10,21 +10,21 @@ import { RequestPasswordRecoveryView } from './views/request-password-recovery/r
 
 const routes: Routes = [
   {
-    path:'',redirectTo:'sign-in' ,pathMatch:'full'
+    path:'',redirectTo:'sign-up' ,pathMatch:'full'
   },
   {
     path: '',
     component: AuthComponent,
     children: [
-      {
-        path: 'sign-in',
-        component: SignInView,
-      },
+ 
       {
         path: 'sign-up',
         component: SignUpView,
       }
-      ,
+      ,     {
+        path: 'sign-in',
+        component: SignInView,
+      },
       {
         path: 'success',
         component: SuccessView,

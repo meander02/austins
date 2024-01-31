@@ -2,6 +2,14 @@
 /* styles.scss */
 
 // @import '~@angular/material/icon/typings/icon-registry';
+/* Estilos base para el contenedor de errores */
+
+/* En tu archivo .css o .scss del componente */
+.p-toast {
+  background-color: #ff000028; /* Cambia el color de fondo según tus preferencias */
+  color: #ffffff; /* Cambia el color del texto según tus preferencias */
+  border-radius: 5px; /* Añade bordes redondeados según tus preferencias */
+}
 
 
 .breadcrumbs {
@@ -49,9 +57,9 @@
     color: #ffd700;
   }
 
-  mat-icon {
-    margin-right: 5px;
-  }
+  // mat-icon {
+  //   margin-right: 2px;
+  // }
 
   // Animación para las migas de pan
   @keyframes fadeIn {
@@ -69,7 +77,7 @@
 // -------------------------------------------
 .log {
   text-align: center;
-  margin-top: 2%;
+  margin-top: 1%;
 }
 
 .logo {
@@ -97,9 +105,11 @@ a:hover {
 
 .signup-container {
   margin-top: 2%;
-  background-color: #f5f5f5;
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  // background-color: #f5f5f5;
+  border-radius: 30px;
+  border: 2px;
+  // box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px  4px 6px  rgba(199, 196, 196, 0.023),0px  0px 4px ;
   text-align: center;
   padding: 2%;
   max-width: 500px;
@@ -113,6 +123,7 @@ a:hover {
 }
 
 form {
+  margin-top: 3%;
   display: flex;
   flex-direction: column;
 }
@@ -120,7 +131,8 @@ form {
 mat-form-field {
   border-radius: 30%;
   width: 100%;
-  margin: 0px 0; /* Ajuste del margen */
+  height: 2% ;
+  // margin: 0px 0; /* Ajuste del margen */
 }
 
 .next-button,
@@ -177,7 +189,7 @@ mat-form-field {
   height: auto;
   display: flex;
   justify-content: center;
-  margin-top: 8px;
+  margin-top:  -5px;
 }
 
 .form-group {
@@ -213,6 +225,25 @@ mat-form-field {
   font-size: 12px; /* Ajuste del tamaño de la fuente */
   color: #ba3b0d;
 }
+
+
+.form-group .password-input mat-icon {
+  color: #aaa;
+}
+
+.form-group .email-input mat-icon {
+  color: #aaa;
+  position: absolute;
+  top: 50%;
+  left: 90%;
+  transform: translateY(-50%);
+}
+
+.form-group .password-input button:hover + mat-icon {
+  color: #333;
+}
+
+
 
 .form-group.mat-form-field .animated {
   display: flex;
@@ -326,7 +357,8 @@ p.section-title {
 
 @media (max-width: 480px) {
   .signup-container {
-    padding: 2rem;
+    width: 90%;
+    padding: 2vh;
   }
   .logo {
     max-width: 60px;

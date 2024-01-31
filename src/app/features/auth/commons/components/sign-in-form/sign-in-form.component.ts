@@ -37,7 +37,7 @@ export class SignInFormComponent implements OnInit {
   ngOnInit(): void {}
 
   get emailFormControl(): FormControl {
-    console.log('email');
+    // console.log('email');
     return this.group.get('email') as FormControl;
   }
   get passwordFormControl(): FormControl {
@@ -48,6 +48,11 @@ export class SignInFormComponent implements OnInit {
   goToSigUP(): void {
     this.dialogRef.close(); // Cierra el modal
     this.router.navigateByUrl('/auth/sign-up'); // Navega a la vista de registro
+  }
+
+  goToRecupera(): void {
+    this.dialogRef.close(); // Cierra el modal
+    this.router.navigateByUrl('/auth/Recupera'); // Navega a la vista de registro
   }
 
   togglePasswordVisibility() {

@@ -6,19 +6,12 @@
 }
 
 /* Estilos del contenedor del chat */
-/* chat.component.scss */
-
-/* Estilos del contenedor del chat */
-/* chat.component.scss */
-
-/* Estilos del contenedor del chat */
 .chat-container {
-  // background-color: #fff;
   backdrop-filter: blur(10px); /* Aplica el efecto de desenfoque al fondo */
   z-index: 1000;
   position: fixed;
   bottom: 20px;
-  right: 20px;
+  right: 3px;
   max-width: 400px;
   border: 1px solid #ccc;
   border-radius: 10px;
@@ -32,17 +25,14 @@
   }
 }
 
-/* Resto de los estilos permanecen igual */
-
-/* Resto de los estilos permanecen igual */
-
-/* Estilos del historial del chat */
+/* Estilos del historial de mensajes */
 .message-container {
   max-height: 200px;
   overflow-y: auto;
   padding: 10px;
 }
 
+/* Estilos de los mensajes de usuario y asistente */
 .user-message {
   background-color: #e0f7fa;
   padding: 10px;
@@ -75,46 +65,82 @@
 
 .send-button {
   margin-left: 10px;
-  padding: 8px 16px;
-  background-color: #2196F3;
+  padding: 8px;
+  // padding: auto;
+  background-color: #ff5733;
   color: #fff;
   border: none;
-  border-radius: 5px;
+    width: 40px;
+  height: 40px;
+  border-radius: 50%;
   cursor: pointer;
 }
 
 .send-button:hover {
-  background-color: #0b7dda;
+  background-color: #ff5b20;
 }
 
-/* chat.component.scss */
 
-// .floating-button {
-//   z-index: 1000;
-//   position: fixed;
-//   bottom: 20px;
-//   right: 20px;
-//   background-color: #ff5733; /* Color de fondo del botón */
-//   color: #fff; /* Color del texto del botón */
-//   border: none;
-//   border-radius: 50%; /* Bordes redondeados para crear la apariencia de burbuja */
-//   width: 60px;
-//   height: 60px;
-//   display: flex;
-//   align-items: center;
-//   justify-content: center;
-//   cursor: pointer;
-//   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sutil sombra */
-//   transition: background-color 0.3s ease, transform 0.3s ease, width 0.5s ease, height 0.5s ease;
-// }
+/* Añadimos esquinas redondeadas al contenedor del chat */
+.chat-container {
+  border-radius: 10px;
+}
 
-// .floating-button:hover {
-//   background-color: #ea8169; /* Cambia el color de fondo al pasar el mouse */
-//   transform: scale(1.1); /* Efecto de escala al pasar el mouse */
-// }
+/* Ajustamos el color de fondo del área de entrada de mensajes */
+.input-container {
+  background-color: #f5f5f5;
+  display: flex;
+  padding: 10px;
+  border-top: 1px solid #ccc;
+}
 
-/* Estilos generales del botón flotante */
+.welcome-message {
+  background-color: #f5f5f5;
+  padding: 10px;
+  border-radius: 5px;
+  margin: 5px;
+  text-align: center; /* Alinea el texto al centro */
+
+
+  opacity: 0; /* Inicialmente establece la opacidad en 0 */
+  transform: scale(0.5); /* Inicialmente establece la escala en 0.5 */
+  transition: opacity 0.5s ease, transform 0.5s ease; /* Agrega transiciones */
+
+}
+
+.austins-logo {
+  margin-right: 2vh;
+  display: inline-block; /* Hace que la imagen sea un bloque en línea */
+  max-width: 20%; /* Asegura que la imagen no se desborde */
+  height: auto;
+}
+
+.imge {
+  text-align: center; /* Centra la imagen dentro de su contenedor */
+}
+/* Ajustes en el botón de cerrar y flotante */
+.close-button {
+  font-size: 28px;
+  background-color: #ffffff;
+  margin-right: 20vh;
+  margin-top: 1vh;
+  margin-bottom: 2vh;
+  margin-left: 1vh;
+  position: static; /* Cambiado a posición absoluta */
+  color: #ff5a35;
+  border: none;
+  border-radius: 50%;
+  font-weight: 100;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
 .floating-button {
+  margin: auto;
   z-index: 1000;
   position: fixed;
   bottom: 20px;
@@ -133,11 +159,90 @@
   transition: background-color 0.3s ease, transform 0.3s ease, width 0.5s ease, height 0.5s ease;
 
   &.chat-opened {
-    bottom: 120px; /* Ajusta la posición cuando el chat está abierto */
+    bottom: 130px;
+    display: none;
   }
 }
 
-.floating-button:hover {
-  background-color: #ea8169;
-  transform: scale(1.1);
+
+
+/* Configuración de la animación */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+}
+
+/* Aplica las animaciones al mensaje de bienvenida */
+.welcome-message {
+  animation: fadeIn 0.5s ease forwards; /* Durante la entrada */
+}
+
+.welcome-message.leave {
+  animation: fadeOut 0.5s ease forwards; /* Durante la salida */
+}
+/* chat.component.scss */
+
+/* Resto de tus estilos existentes */
+
+/* Añadido el efecto de escala y sacudida al botón flotante */
+/* Añadido el efecto de escala y sacudida al botón flotante */
+// .floating-button {
+//   // ... (resto de estilos)
+//   transition: background-color 0.3s ease, transform 0.3s ease, width 0.5s ease, height 0.5s ease;
+
+//   &.chat-opened {
+//     bottom: 130px;
+//   }
+
+//   &:hover {
+//     background-color: #ff5a35;
+//     transform: scale(1.1) rotate(2deg);
+//   }
+
+//   &:active {
+//     transform: scale(0.9);
+//   }
+// }
+
+/* Añadido el efecto de atención al botón flotante */
+@keyframes attention {
+  0% {
+    // transform: translateY(0);
+
+  }
+  100% {
+
+    border:  5px solid #dba89d;
+    // box-shadow: 0 2px 12px rgb(255, 242, 0);
+    box-shadow: 0px 9px 50px 2px  rgb(255, 242, 0);
+    transform: translateY(-10px);
+  }
+}
+
+/* Establece los estilos para el estado attention */
+.floating-button {
+  animation: attention 1.2s infinite alternate;
+}
+
+/* 
+// /* Establece los estilos para el estado attention */
+// .floating-button[[@floatingButtonAttention='attention']] {
+//   animation: attention 1s infinite alternate;
+// }

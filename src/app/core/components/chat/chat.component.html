@@ -1,17 +1,50 @@
 <!-- chat.component.html -->
-<div class="floating-button" (click)="toggleChat()">
-  <mat-icon>{{ chatOpen ? 'close' : 'chat_bubble' }}</mat-icon>
+<div
+  class="floating-button"
+  (click)="toggleChat()"
+  [ngClass]="{ 'chat-opened': chatOpen }"
+  [@floatingButtonAttention]="floatingButtonState"
+
+>
+  <mat-icon>{{ chatOpen ? "close" : "chat_bubble" }}</mat-icon>
 </div>
 
-<div class="chat-container" [ngClass]="{'visible': chatOpen}">
+<div class="chat-container" [ngClass]="{ visible: chatOpen }">
+  <div class="close-button" (click)="toggleChat()">
+    <mat-icon>{{ chatOpen ? "close" : "cancel" }}</mat-icon>
+  </div>
+
   <div class="message-container" *ngFor="let message of chatHistory">
-    <div [ngClass]="{'user-message': message.role === 'user', 'assistant-message': message.role === 'assistant'}">
+    <div
+      [ngClass]="{
+        'user-message': message.role === 'user',
+        'assistant-message': message.role === 'assistant'
+      }"
+    >
       {{ message.content }}
     </div>
   </div>
 
+  <!-- Mensaje de bienvenida personalizado con el logo de Austins -->
+  <div  [@dialogFadeInOut]  class="welcome-message" *ngIf="!chatHistory.length">
+    <div class="imge">
+      <img
+        src="https://static.wixstatic.com/media/64de7c_4d76bd81efd44bb4a32757eadf78d898~mv2_d_1765_2028_s_2.png"
+        alt="Austins Logo"
+        class="austins-logo"
+      />
+    </div>
+    ¡Bienvenido a Austins Repostería! ¿En qué puedo ayudarte hoy?
+  </div>
+
   <div class="input-container">
-    <input class="input-message" [(ngModel)]="userMessage" placeholder="Escribe tu mensaje..." />
-    <button class="send-button" (click)="sendMessage()">Enviar</button>
+    <input
+      class="input-message"
+      [(ngModel)]="userMessage"
+      placeholder="Escribe tu mensaje..."
+    />
+    <button class="send-button" (click)="sendMessage()">
+      <mat-icon>send</mat-icon>
+    </button>
   </div>
 </div>

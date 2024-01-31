@@ -12,11 +12,14 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-
+import { ToastModule } from 'primeng/toast';
+import { StepsModule } from 'primeng/steps';
+import { BreadcrumbModule } from 'primeng/breadcrumb';
+import {MatTabsModule} from '@angular/material/tabs';
 @NgModule({
-  imports: [MatSnackBarModule], // Agrega FormsModule a los imports
+  imports: [MatSnackBarModule,ToastModule,StepsModule,BreadcrumbModule,MatTabsModule], // Agrega FormsModule a los imports
 
-  exports: [MatSnackBarModule, FormsModule,MatCardModule,MatFormFieldModule,MatButtonModule,MatInputModule, MatDatepickerModule, MatNativeDateModule,MatSelectModule],
+  exports: [MatSnackBarModule,ToastModule,StepsModule,BreadcrumbModule, FormsModule,MatCardModule,MatFormFieldModule,MatButtonModule,MatInputModule, MatDatepickerModule, MatNativeDateModule,MatSelectModule,MatTabsModule],
 
 })
 export class MaterialModule { }

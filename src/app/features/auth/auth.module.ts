@@ -14,6 +14,7 @@ import { SuccessView } from './views/success/success.view';
 import { CoreComponentsModule } from 'src/app/core/components/components.module';
 import { RequestPasswordRecoveryView } from './views/request-password-recovery/request-password-recovery.view';
 
+import { NgxCaptchaModule } from 'ngx-captcha';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,7 @@ import { RequestPasswordRecoveryView } from './views/request-password-recovery/r
     SignUpView,
     SuccessView,RequestPasswordRecoveryView
   ],
-  imports: [
+  imports: [NgxCaptchaModule,
     CoreComponentsModule,
     MatSnackBarModule,
     CommonModule,
