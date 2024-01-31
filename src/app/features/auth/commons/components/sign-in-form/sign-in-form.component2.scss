@@ -1,8 +1,5 @@
 
 
-/* Importa el archivo de estilos global */
-@import '/src/styles';
-
 .log {
   text-align: center;
 // background-color: #242424;
@@ -31,11 +28,10 @@ mat-form-field {
   text-align: center;
   padding: 1%;
   max-width: 430px;
-  // max-width: 100%; /* Ajusta según tus necesidades */
+  
   padding: 20px;
   box-sizing: border-box;
-  // max-width: 90%; /* Ajuste para dispositivos móviles */
-
+ 
   margin: 0 auto;
 }
 
@@ -76,36 +72,4 @@ mat-form-field {
 
 .login-button:not(:disabled):hover {
   background-color: #a54c2c;
-}
-
-p {
-
-  font-size: 14px;
-  color: #333;
-  margin: 10px 0;
-}
-
-a {
-  cursor: pointer;
-  text-decoration: none;
-  color: #a54c2c;
-  font-weight: bold;
-}
-
-a:hover {
-  // color: #000;
-  text-decoration: underline;
-}
-.social-button {
-  display: flex;
-  align-items: center;
-  background-color: #fff;
-  border: 1px solid #ccc;
-  border-radius: 40px;
-  padding: 10px;
-  margin: 0 10px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-  font-size: 11px;
-  color: #333;
 }

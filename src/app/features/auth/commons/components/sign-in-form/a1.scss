@@ -1,4 +1,36 @@
 
+p {
+
+  font-size: 14px;
+  color: #333;
+  margin: 10px 0;
+}
+
+a {
+  cursor: pointer;
+  text-decoration: none;
+  color: #a54c2c;
+  font-weight: bold;
+}
+
+a:hover {
+  // color: #000;
+  text-decoration: underline;
+}
+.social-button {
+  display: flex;
+  align-items: center;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 40px;
+  padding: 10px;
+  margin: 0 10px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  font-size: 11px;
+  color: #333;
+}
+
 .social-button img {
   width: 30px;
   height: 30px;
