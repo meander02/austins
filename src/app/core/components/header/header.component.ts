@@ -14,7 +14,9 @@ import { CartService } from '../../services/cart.service';
   styleUrls: [
     './header.component.scss',
     './header.component0.scss',
-    './header.component02.scss',
+    './head02.scss',
+    './head03.scss',
+    './header.component02.scss'
   ],
 })
 export class HeaderComponent  implements OnInit {

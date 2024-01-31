@@ -1,0 +1,118 @@
+
+
+/* Estilos para el botón de búsqueda */
+.search-container {
+  display: flex;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.5); /* Fondo semi-transparente */
+  border-radius: 20px;
+  padding: 0px 10px;
+  width: 360px; /* Ancho del contenedor de búsqueda */
+  transition: background-color 0.3s ease;
+
+  input {
+    border: none; /* Quita el borde del input */
+    background: transparent; /* Fondo transparente del input */
+    color: #333; /* Color del texto */
+    font-size: 16px; /* Tamaño de fuente */
+    width: 100%; /* Ancho del input del 100% del contenedor */
+    outline: none; /* Quita el contorno al hacer clic en el input */
+  }
+
+  button {
+    background-color: transparent; /* Color de fondo del botón */
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
+  }
+}
+
+/* Estilo al pasar el mouse sobre el contenedor de búsqueda */
+.search-container:hover {
+  background-color: rgba(255, 255, 255, 0.7); /* Cambio de color al pasar el mouse */
+}
+
+/* Agrega este bloque para cambiar el color del fondo y del texto al hacer scroll hacia abajo */
+.scroll-header {
+  background-color: #1d1b1b; /* Cambia el color de fondo al hacer scroll hacia abajo */
+  .menu-btn,
+  .mobile-menu-btn,
+  .material-icons.primary,
+  .mobile-menu-item_b1 {
+    color: #fff; /* Cambia el color del texto al hacer scroll hacia abajo */
+  }
+}
+
+.material-icons.primary {
+  color: #ffa500; /* Cambia el color del icono */
+  font-size: 24px; /* Ajusta el tamaño del icono según tus preferencias */
+  margin: 0; /* Ajusta el margen según tus preferencias */
+  padding: 0; /* Ajusta el espaciado según tus preferencias */
+  cursor: pointer;
+  /* Agrega sombra al icono */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.mat-icon {
+  cursor: pointer;
+}
+
+/* Agrega este bloque para cambiar el color del fondo y del texto al hacer scroll hacia abajo */
+.scroll-header {
+  // backdrop-filter: blur(10px);
+  background-color: #333;
+
+  .menu-btn {
+    // color: #ffa500 !important; /* Cambia el color del texto al hacer scroll hacia abajo */
+    color: #ffffff;
+  }
+  .mobile-menu-btn {
+    color: #ffffff;
+  }
+
+  .mobile-menu-item_b1 {
+    color: #ffffff;
+  }
+}
+/* Estilos para el input de búsqueda */
+.search-container input {
+  padding: 10px; /* Espaciado interno para una apariencia más agradable */
+  border: none; /* Quita el borde del input */
+  border-radius: 20px; /* Agrega bordes redondeados */
+  background-color: rgba(255, 255, 255, 0.5); /* Fondo semitransparente */
+  color: #333; /* Color del texto */
+  font-size: 16px; /* Tamaño de fuente */
+  width: 320px; /* Ancho del input */
+  transition:
+    background-color 0.3s ease,
+    transform 0.3s ease;
+}
+
+/* Estilos para el botón de búsqueda */
+.search-container {
+  display: flex;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.5); /* Fondo semi-transparente */
+  border-radius: 20px;
+  padding: 0px 10px;
+  width: 360px; /* Ancho del contenedor de búsqueda */
+  transition: background-color 0.3s ease;
+
+  input {
+    border: none; /* Quita el borde del input */
+    background: transparent; /* Fondo transparente del input */
+    color: #333; /* Color del texto */
+    font-size: 16px; /* Tamaño de fuente */
+    width: 100%; /* Ancho del input del 100% del contenedor */
+    outline: none; /* Quita el contorno al hacer clic en el input */
+  }
+
+  button {
+    background-color: transparent; /* Color de fondo del botón */
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
+  }
+}

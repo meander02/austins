@@ -14,7 +14,10 @@ import { OpenAiService } from 'src/app/shared/services/open-ai.service';
 @Component({
   selector: 'app-chat',
   templateUrl: './chat.component.html',
-  styleUrls: ['./chat.component.scss'],  
+  styleUrls: [
+    './chat.component.scss',
+    './floating.scss'
+  ],  
   animations: [
     trigger('dialogFadeInOut', [
       state('void',
