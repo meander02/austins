@@ -1,40 +1,35 @@
 /* Estilos generales para el componente */
 .policy-header {
-  height:12vh; /* Establece la altura del contenedor .policy-header a 80 píxeles */
-  position: fixed; /* Fija el header en la parte superior de la página */
+  height: 12vh;
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
-  // height: min-content;
-  transition:
-    background-color 0.5s ease,
-    /* Transiciones suaves para el cambio de color de fondo */ color 0.5s ease; /* y de texto */
-  z-index: 1000; /* Asegura que el header esté sobre otros elementos */
+  transition: background-color 0.5s ease, color 0.5s ease;
+  z-index: 1000;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 20px;
-  background-color: rgba(31, 29, 29, 0.49); /* Color de fondo semi-transparente */
-  backdrop-filter: blur(10px); /* Aplica el efecto de desenfoque al fondo */
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sutil sombra */
+  background-color: rgba(31, 29, 29, 0.49);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .logo-container {
   flex: 1;
   text-align: center;
   margin-right: 20px;
-}
 
-.logo-container img {
-  max-width: 60%;
-  // min-width: 10%;
+  img {
+    max-width: 60%;
+  }
 }
-
 
 /* Estilos para la sección de menú móvil */
 .button-container-mobile {
-  display: none; /* Oculta el menú móvil por defecto en pantallas de PC */
-  position: relative; /* Agrega posición relativa al contenedor */
+  display: none;
+  position: relative;
 }
 
 .mobile-menu-btn {
@@ -43,30 +38,28 @@
   border: none;
   font-size: 24px;
   cursor: pointer;
-  padding: 0;
-  margin: 0;
-  margin: 0 auto; /* Centra horizontalmente */
-  display: block; /* Asegura que el icono sea un bloque para centrarlo verticalmente */
+  padding: 10px;
+  margin: 0 auto;
+  display: block;
 }
 
 .mobile-menu-btn:focus {
-  outline: none; /* Quita el contorno al hacer clic en el botón */
+  outline: none;
 }
 
 .mobile-menu {
-  display: none;
+  display: flex;
   position: absolute;
   top: 100%;
-  right: 5; /* Alinea el menú a la derecha */
+  right: 5;
   background-color: #fff;
-  backdrop-filter: blur(10px); /* Aplica el efecto de desenfoque al fondo */
+  backdrop-filter: blur(10px);
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   border-radius: 5px;
   min-width: 150px;
 }
 
 .mobile-menu-item {
-  // padding: 10px 20px;
   text-align: center;
   color: #333;
   text-decoration: none;
@@ -74,31 +67,28 @@
   font-weight: bold;
   transition: background-color 0.3s ease;
   cursor: pointer;
-}
 
-.mobile-menu-item:hover {
-  background-color: #f3b5b2; /* Color de fondo al pasar el mouse */
+  &:hover {
+    background-color: #f3b5b2;
+  }
 }
 
 /* Estilos para dispositivos móviles (pantallas de hasta 768px de ancho) */
 @media (max-width: 768px) {
   .logo-container {
     flex: 1;
-
     text-align: center;
-    margin-right: 0; /* Elimina el margen derecho para ajustar al centro */
+    margin-right: 0;
   }
 
   .logo-container img {
-    max-width: 100%; /* Asegura que el logotipo se ajuste al ancho de la pantalla */
-    display: none; /* Asegura que el logotipo ocupe el ancho completo disponible */
+    max-width: 100%;
+    display: none;
   }
+
   .policy-header {
     padding: auto;
     height: 10vh;
-    // min-height: 60px; /* Fija la altura mínima del encabezado en dispositivos móviles */
-    // padding-top: 100px; /* Espaciado superior adicional para acomodar el botón móvil */
-    // padding-bottom: 10px; /* Espaciado inferior adicional para acomodar el botón móvil */
   }
 
   .mobile-menu-btn {
@@ -108,41 +98,37 @@
     font-size: 24px;
     cursor: pointer;
     padding: 10px;
-    margin: 0 auto; /* Centra horizontalmente */
-    display: block; /* Asegura que el icono sea un bloque para centrarlo verticalmente */
-  }
-  .button-container-mobile {
-    display: flex; /* Muestra el menú móvil solo en dispositivos móviles */
-    align-items: center;
-    position: relative;
+    margin: 0 auto;
+    display: block;
   }
 
-  .button-container-mobile:hover .mobile-menu {
-    display: block; /* Muestra el menú al pasar el mouse sobre el botón */
+  .button-container-mobile {
+    display: flex;
+    align-items: center;
+    position: relative;
+
+    &:hover .mobile-menu {
+      display: flex;
+    }
   }
 
   .button-container-pc {
-    display: none; /* Oculta el contenedor de PC en dispositivos móviles */
+    display: none;
   }
-
-  // .policy-header {
-  //   min-height: 30px; /* Fija la altura mínima del encabezado en dispositivos móviles */
-  // }
 }
 
 .mat-menu {
-  top: 0px;
-  left: 0px;
-  // height: min-content;
-  margin: 0px;
-  backdrop-filter: blur(10px); /* Aplica el efecto de desenfoque al fondo */
+  top: 0;
+  left: 0;
+  margin: 0;
+  backdrop-filter: blur(10px);
   background-color: transparent;
 }
+
 .mobile-menu-item_b1 {
   padding: 10px 20px;
   background-color: transparent;
   text-align: center;
-  // color: #333;
   text-decoration: none;
   display: block;
   font-weight: bold;
@@ -150,36 +136,35 @@
   cursor: pointer;
   background: #333333;
   color: #ffa500;
-  backdrop-filter: blur(10px); /* Aplica el efecto de desenfoque al fondo */
+  backdrop-filter: blur(10px);
+
+  &:hover {
+    background-color: #f3b5b2;
+  }
 }
 
-/* Agrega este bloque para cambiar el color del fondo y del texto al hacer scroll hacia abajo */
+/* Cambia el color del fondo y del texto al hacer scroll hacia abajo */
 .scroll-header {
-  // backdrop-filter: blur(10px);
   background-color: #333;
 
   .menu-btn {
-    // color: #ffa500 !important; /* Cambia el color del texto al hacer scroll hacia abajo */
-    color: #ffffff;
-  }
-  .mobile-menu-btn {
     color: #ffffff;
   }
 
+  .mobile-menu-btn,
   .mobile-menu-item_b1 {
     color: #ffffff;
   }
 }
+
 /* Estilos para el input de búsqueda */
 .search-container input {
-  padding: 10px; /* Espaciado interno para una apariencia más agradable */
-  border: none; /* Quita el borde del input */
-  border-radius: 20px; /* Agrega bordes redondeados */
-  background-color: rgba(255, 255, 255, 0.5); /* Fondo semitransparente */
-  color: #333; /* Color del texto */
-  font-size: 16px; /* Tamaño de fuente */
-  width: 320px; /* Ancho del input */
-  transition:
-    background-color 0.3s ease,
-    transform 0.3s ease;
+  padding: 10px;
+  border: none;
+  border-radius: 20px;
+  background-color: rgba(255, 255, 255, 0.5);
+  color: #333;
+  font-size: 16px;
+  width: 320px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
 }
