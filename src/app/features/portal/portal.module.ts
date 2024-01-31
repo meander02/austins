@@ -18,10 +18,10 @@ import { TerminosCondicionesView } from './views/terminos-condiciones/terminos-c
 import { UnknownView } from './views/unknown/unknown.view';
 import { PreguntasFreqView } from './views/preguntas-freq/preguntas-freq.view';
 
-
+import { FieldsetModule } from 'primeng/fieldset';
 @NgModule({
   declarations: [HomeViews, NotFondViews, DetailViews, AboutViews, PortalComponent, PoliticaPrivView, AcercaDeView, PoliticaCookiesView, TerminosCondicionesView, UnknownView,PreguntasFreqView],
-  imports: [HttpClientModule,CommonModule, PortalRoutingModule, PortalCommonsModule],
+  imports: [HttpClientModule,CommonModule, PortalRoutingModule, PortalCommonsModule,FieldsetModule],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
   ],

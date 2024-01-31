@@ -16,7 +16,10 @@ import { MessageService } from 'primeng/api';
 @Component({
   selector: 'app-request-password-recoveryfrm',
   templateUrl: './request-password-recoveryfrm.component.html',
-  styleUrls: ['./request-password-recoveryfrm.component.scss', './so.scss'],
+  styleUrls: ['./request-password-recoveryfrm.component.scss', 
+  './so.scss',
+  './form.scss',
+],
   providers: [MessageService],
 })
 export class RequestPasswordRecoveryfrmComponent {

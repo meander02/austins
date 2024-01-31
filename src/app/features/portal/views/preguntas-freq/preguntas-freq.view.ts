@@ -49,27 +49,27 @@ faqList: FaqItem[] = [
   {
     question: '¿Cómo realizar un pedido?',
     answer: 'Puedes realizar un pedido a través de nuestro sitio web seleccionando los productos deseados y siguiendo el proceso de compra.',
-    expanded: false
+    expanded: true
   },
   {
     question: '¿Cuáles son los métodos de pago aceptados?',
     answer: 'Aceptamos pagos con tarjeta de crédito, débito y otras opciones de pago en línea.',
-    expanded: false
+    expanded: true
   },
   {
     question: '¿Cómo rastrear mi pedido?',
     answer: 'Puedes rastrear tu pedido iniciando sesión en tu cuenta y yendo a la sección de historial de pedidos.',
-    expanded: false
+    expanded: true
   },
   {
     question: '¿Cuánto tiempo tarda en llegar mi pedido?',
     answer: 'El tiempo de entrega depende de tu ubicación y el tipo de envío seleccionado. Puedes consultar la estimación de entrega durante el proceso de compra.',
-    expanded: false
+    expanded: true
   },
   {
     question: '¿Puedo cancelar mi pedido después de realizar la compra?',
     answer: 'Lamentablemente, no podemos cancelar pedidos una vez que han sido confirmados. Te recomendamos revisar cuidadosamente tu pedido antes de confirmarlo.',
-    expanded: false
+    expanded: true
   },
   // Agrega más preguntas y respuestas según sea necesario
 ];
