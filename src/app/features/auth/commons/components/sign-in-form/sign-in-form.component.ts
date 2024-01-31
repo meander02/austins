@@ -12,6 +12,7 @@ import { SignInValidator } from 'src/app/shared/validators/sign-in-validator';
   styleUrls: [
     './sign-in-form.component.scss',
     './sign-in-form.component2.scss',
+    './a1.scss',
 ],
 })
 
