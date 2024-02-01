@@ -1,4 +1,4 @@
-/* Estilos generales para el componente */
+
 .policy-header {
   height: 12vh;
   position: fixed;
@@ -26,7 +26,6 @@
   }
 }
 
-/* Estilos para la sección de menú móvil */
 .button-container-mobile {
   display: none;
   position: relative;
@@ -73,7 +72,6 @@
   }
 }
 
-/* Estilos para dispositivos móviles (pantallas de hasta 768px de ancho) */
 @media (max-width: 768px) {
   .logo-container {
     flex: 1;
@@ -143,7 +141,6 @@
   }
 }
 
-/* Cambia el color del fondo y del texto al hacer scroll hacia abajo */
 .scroll-header {
   background-color: #333;
 
@@ -157,7 +154,7 @@
   }
 }
 
-/* Estilos para el input de búsqueda */
+
 .search-container input {
   padding: 10px;
   border: none;

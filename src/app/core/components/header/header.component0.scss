@@ -1,50 +1,24 @@
-/* Agrega estilos específicos para dispositivos web */
-
 @media (max-width: 768px) {
   .material-icons.primary {
-    font-size: 24px; /* Tamaño más pequeño para dispositivos móviles */
+    font-size: 24px; 
     margin-left: 3%;
   }
 }
 
 @media (min-width: 481px) {
   .web-dialog {
-    max-height: 80vh; /* Ajusta según tus necesidades */
-    overflow-y: hidden; /* Agrega una barra de desplazamiento vertical si es necesario */
+    max-height: 80vh; 
+    overflow-y: hidden; 
     background-color: #ffa500;
   }
-
-  // /* Estilos generales para el componente */
-  // .policy-header {
-  //   position: fixed; /* Fija el header en la parte superior de la página */
-  //   top: 0;
-  //   left: 0;
-  //   right: 0;
-  //   transition:
-  //     background-color 0.5s ease,
-  //     /* Transiciones suaves para el cambio de color de fondo */ color 0.5s ease; /* y de texto */
-  //   z-index: 1000; /* Asegura que el header esté sobre otros elementos */
-  //   display: flex;
-  //   justify-content: space-between;
-  //   align-items: center;
-  //   height: 10vh;
-  //   background-color: rgba(134, 131, 131, 0.49); /* Color de fondo semi-transparente */
-  //   backdrop-filter: blur(10px); /* Aplica el efecto de desenfoque al fondo */
-  //   padding: 20px;
-  //   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sutil sombra */
-  // }
-
   .logo-container {
     flex: 1;
     text-align: center;
     margin-right: 20px;
   }
-
   .logo-container img {
     max-width: 60%;
   }
-
-  /* Estilos para el botón de menú en pantallas de PC */
   .menu-btn {
     background-color: transparent; /* Color de fondo del botón */
     color: #ffa500; /* Color del texto */
@@ -61,15 +35,12 @@
     transition:
       background-color 1.5s ease,
       transform 0.9s ease;
-
-    /* Estilo al pasar el mouse sobre el botón */
     &:hover {
       border-radius: 2px;
       border-bottom: 1.5px solid #e9ba81;
       box-shadow: -4px 192px 300px -94px rgba(0, 0, 0, 1);
 
-      transform: scale(1.1); /* Efecto de escala al pasar el mouse */
-      // border-collapse: separate;
+      transform: scale(1.1);
     }
 
     /* Estilo al hacer clic en el botón */
@@ -90,9 +61,8 @@
   cursor: pointer;
 }
 
-/* Estilos para la sección de menú móvil */
 .button-container-mobile {
-  display: none; /* Oculta el menú móvil por defecto en pantallas de PC */
+  display: none;
   position: relative; /* Agrega posición relativa al contenedor */
 }
 
@@ -104,14 +74,13 @@
   cursor: pointer;
   padding: 0;
   margin: 0;
-  margin: 0 auto; /* Centra horizontalmente */
-  display: block; /* Asegura que el icono sea un bloque para centrarlo verticalmente */
+  margin: 0 auto;
+  display: block; 
 }
 
 .mobile-menu-btn:focus {
-  outline: none; /* Quita el contorno al hacer clic en el botón */
+  outline: none; 
 }
-
 .mobile-menu {
   display: none;
   position: absolute;
@@ -136,5 +105,5 @@
 }
 
 .mobile-menu-item:hover {
-  background-color: #f3dcb2; /* Color de fondo al pasar el mouse */
+  background-color: #f3dcb2;
 }

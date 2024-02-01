@@ -2,10 +2,8 @@
 
 /* Estilo al pasar el mouse sobre el contenedor de búsqueda */
 .search-container:hover {
-  background-color: rgba(255, 255, 255, 0.7); /* Cambio de color al pasar el mouse */
+  background-color: rgba(255, 255, 255, 0.7); 
 }
-
-/* Agrega este bloque para cambiar el color del fondo y del texto al hacer scroll hacia abajo */
 .scroll-header {
   background-color: #1d1b1b; /* Cambia el color de fondo al hacer scroll hacia abajo */
   .menu-btn,
@@ -43,12 +41,10 @@
   background-color: #171614; /* Cambia el color de fondo a lo que necesites */
 }
 .is-detail-route.filter-section {
-  // display: none; /* Oculta la sección de filtros en las v
-  backdrop-filter: blur(10px); /* Aplica el efecto de desenfoque al fondo */
-  background-color: #171614; /* Cambia el color de fondo a lo que necesites */
+  backdrop-filter: blur(10px); 
+  background-color: #171614; 
 }
 
-/* Agrega estilos específicos para dispositivos web */
 @media (min-width: 481px) {
   .web-dialog {
     max-height: 80vh; /* Ajusta según tus necesidades */
@@ -110,20 +106,16 @@
   background-color: #555; /* Cambio de color al pasar el mouse */
 }
 
-/* Agrega estos estilos si deseas que la sección de filtrado tenga bordes redondeados */
 .filter-section {
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
 }
 
-/* Estilos adicionales para dispositivos móviles (pantallas de hasta 768px de ancho) */
 @media (max-width: 768px) {
   .filter-section {
     top: 85px; /* Ajusta según la altura del encabezado */
     z-index: 1;
     border-radius: 10px;
-    // margin-top: 85px;
-    // height: 0%;
     flex-direction: row; /* Apila los elementos en dispositivos móviles */
     text-align: center;
   }
