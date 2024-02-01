@@ -1,5 +1,5 @@
-
 .form-group {
+  padding: auto;
   margin-bottom: 2px; /* Ajuste del margen */
   position: relative;
 }
@@ -11,7 +11,7 @@
   transition: all 0.3s;
   width: 100%;
   border-radius: 5px;
-  padding: 5px;
+  padding: 2px;
 }
 
 .form-group .animated label {
@@ -33,7 +33,6 @@
   color: #ba3b0d;
 }
 
-
 .form-group .password-input mat-icon {
   color: #aaa;
 }
@@ -49,8 +48,6 @@
 .form-group .password-input button:hover + mat-icon {
   color: #333;
 }
-
-
 
 .form-group.mat-form-field .animated {
   display: flex;
@@ -88,4 +85,13 @@
   top: -24px;
   font-size: 6px; /* Ajuste del tamaño de la fuente */
   color: #a54c2c;
+}
+
+@media (max-width: 480px) {
+
+  .form-group {
+    padding: 3%;
+    margin-bottom: 2px; /* Ajuste del margen */
+    position: relative;
+  }
 }

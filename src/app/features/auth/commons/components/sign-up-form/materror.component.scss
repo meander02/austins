@@ -88,3 +88,36 @@
     padding: 0px; /* Ajusta el padding para dispositivos móviles */
   }
 }
+
+/* Estilos para el contenedor de errores adicional */
+.error-container3 {
+  @extend .error-container-base;
+  transform: translateX(100%);
+  margin-top: 150px;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: -10px;
+    width: 10px;
+    margin-top: 8;
+    height: 2px;
+    background-color: #ff5555;
+    transform: translateY(-50%);
+  }
+
+  @media (max-width: 600px) {
+    transform: translateX(20%);
+    font-size: 8px; /* Ajusta el tamaño de la fuente para dispositivos móviles */
+    padding: 0px; /* Ajusta el padding para dispositivos móviles */
+  }
+  .error-container-base {
+    display: none;
+  }
+}
+
+/* Estilos para el mensaje de error individual */
+.error-message {
+  margin-bottom: 0;
+}
