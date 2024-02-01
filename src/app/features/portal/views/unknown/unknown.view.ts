@@ -4,7 +4,10 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-unknown',
   templateUrl: './unknown.view.html',
-  styleUrls: ['./unknown.view.scss']
+  styleUrls: [
+    './unknown.view.scss',
+    './unk.scss',
+  ]
 })
 export class UnknownView {
 

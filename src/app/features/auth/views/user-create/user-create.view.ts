@@ -4,7 +4,11 @@ import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-user-create',
   templateUrl: './user-create.view.html',
-  styleUrl: './user-create.view.scss'
+  styleUrls: [
+    './user-create.view.scss',
+    './creat.scss'
+  ]
+  // styleUrl: './user-create.view.scss'
 })
 export class UserCreateView implements OnInit {
   userEmail: string = ''; // Asigna un valor por defecto

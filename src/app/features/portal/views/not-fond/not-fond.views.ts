@@ -4,7 +4,10 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-not-fond',
   templateUrl: './not-fond.views.html',
-  styleUrls: ['./not-fond.views.scss']
+  styleUrls: [
+    './not-fond.views.scss',
+    './not.scss'
+  ]
 })
 export class NotFondViews implements OnInit {
 

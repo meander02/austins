@@ -8,7 +8,10 @@ import { SearchService } from 'src/app/shared/services/search-service.service';
 @Component({
   selector: 'app-home',
   templateUrl: './home.views.html',
-  styleUrls: ['./home.views.scss']
+  styleUrls: [
+    './home.views.scss',
+    './hom.scss'
+  ]
 })
 export class HomeViews implements OnInit {
   originalProducts: Product[] = []; // Mantén una copia original de todos los productos

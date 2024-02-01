@@ -1,0 +1,97 @@
+
+@keyframes colorChangeAnimation {
+  0%, 100% {
+    background-color: #ff5733;
+  }
+  50% {
+    background-color: #ff3d15;
+  }
+}
+
+.contact-owner:hover {
+  background-color: #ff3d15;
+  transform: scale(1.05);
+}
+
+.cursor {
+  position: fixed;
+  width: 0px;
+  height: 0px;
+  box-shadow: 0px 9px 30px 8px #c0c369;
+  border-radius: 100%;
+  pointer-events: none;
+  transition: transform 20s ease;
+  z-index: 9999;
+}
+
+/* Estilos para dispositivos móviles (por ejemplo, pantalla de ancho menor a 600px) */
+/* Estilos para dispositivos móviles (por ejemplo, pantalla de ancho menor a 600px) */
+@media (max-width: 600px) {
+  .bienve {
+    font-size: 2rem; /* Cambiado de h1 a .bienve para ser más específico */
+  }
+
+  p {
+    font-size: 1rem;
+  }
+
+  .contact-owner {
+    font-size: 1rem;
+    padding: 8px 16px;
+  }
+}
+
+/* Estilos para los números 4, 0, 4 */
+.error-numbers {
+  display: flex;
+  justify-content: space-around;
+  margin: 40px;
+}
+
+.error-number {
+  display: inline-block;
+  font-size: 6rem;
+  color: #ff5733;
+  opacity: 0;
+  animation: fadeIn 2s forwards;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+.error-number:nth-child(2) {
+  animation-delay: 0.5s;
+}
+
+.error-number:nth-child(3) {
+  animation-delay: 1s;
+}
+
+/* Ajustes para dispositivos móviles */
+@media (max-width: 600px) {
+  .error-numbers {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .error-number {
+    font-size: 6rem;
+    margin-bottom: 10px;
+  }
+
+  h1.bienve {
+    font-size: 1.5rem;
+  }
+
+  p {
+    font-size: 1rem;
+  }
+
+  .contact-owner {
+    font-size: 1rem;
+    padding: 8px 16px;
+  }
+}
