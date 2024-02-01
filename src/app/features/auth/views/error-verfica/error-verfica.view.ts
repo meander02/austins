@@ -6,7 +6,10 @@ import { Router } from '@angular/router';
   selector: 'app-error-verfica',
 
   templateUrl: './error-verfica.view.html',
-  styleUrls: ['./error-verfica.view.scss']
+  styleUrls: [
+    './error-verfica.view.scss',
+    './err.scss'
+  ]
 })
 export class ErrorVerficaView {
   textAnimationState: string = 'visible'; // Inicializa la propiedad

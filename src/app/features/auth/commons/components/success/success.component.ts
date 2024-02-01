@@ -6,7 +6,10 @@ import { SignInView } from '../../../views/sign-in/sign-in.view';
 @Component({
   selector: 'app-success-form',
   templateUrl: './success.component.html',
-  styleUrls: ['./success.component.scss']
+  styleUrls: [
+    './success.component.scss',
+    './scce.scss'
+  ]
 })
 export class SuccessComponent {
 

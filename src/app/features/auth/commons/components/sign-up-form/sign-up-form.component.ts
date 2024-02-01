@@ -25,6 +25,8 @@ import { MenuItem, MessageService } from 'primeng/api';
   styleUrls: ['./sign-up-form.component.scss',
    './materror.component.scss',
    './form-up.component.scss',
+   './up.scss',
+   './up02.scss'
   ],
   providers: [MessageService],
   changeDetection: ChangeDetectionStrategy.OnPush,
