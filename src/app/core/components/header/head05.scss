@@ -1,0 +1,72 @@
+
+
+.filter-section {
+
+  position: fixed;
+  top: 80px; /* Ajusta según la altura del encabezado */
+  left: 0;
+  right: 0;
+  height:1vh;
+  border-radius: 10px;
+  z-index: 1000;
+  transition: background-color 0.5s ease, color 0.5s ease;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgba(31, 29, 29, 0.667);
+  backdrop-filter: blur(10px);
+  padding: 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+.filter-section label,
+.filter-section select {
+  color: #fff; /* Color del texto */
+}
+
+.filter-section select {
+
+  padding: 8px;
+  border: 1px solid #fff; /* Borde blanco */
+  border-radius: 5px;
+  background-color: transparent; /* Fondo transparente */
+  color: #fff; /* Color del texto */
+  cursor: pointer;
+}
+
+.filter-section button {
+  margin-right:  30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px; /* Ajusta el relleno según tus necesidades */
+  border: 1px solid #fff;
+  border-radius: 5px;
+  background-color: transparent;
+  color: #fff;
+  cursor: pointer;
+  text-align: center;
+}
+
+/* Estilo al pasar el mouse sobre las opciones del filtro */
+.filter-section select:hover {
+  background-color: #555; /* Cambio de color al pasar el mouse */
+}
+
+.filter-section {
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+@media (max-width: 768px) {
+  .filter-section {
+    top: 85px; /* Ajusta según la altura del encabezado */
+    z-index: 1;
+    border-radius: 10px;
+    flex-direction: row; /* Apila los elementos en dispositivos móviles */
+    text-align: center;
+  }
+
+  .filter-section select {
+    margin-top: 5px; /* Espaciado superior para las opciones del filtro en móviles */
+  }
+}

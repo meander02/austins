@@ -26,7 +26,8 @@ import { MenuItem, MessageService } from 'primeng/api';
    './materror.component.scss',
    './form-up.component.scss',
    './up.scss',
-   './up02.scss'
+   './up02.scss',
+   './up03.scss'
   ],
   providers: [MessageService],
   changeDetection: ChangeDetectionStrategy.OnPush,

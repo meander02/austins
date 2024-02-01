@@ -12,11 +12,13 @@ import { CartService } from '../../services/cart.service';
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: [
-    // './header.component.scss',
-    // './header.component0.scss',
+    './header.component.scss',
+    './header.component0.scss',
     './head02.scss',
     './head03.scss',
-    // './header.component02.scss'
+    './head04.scss',
+    './head05.scss',
+    './header.component02.scss'
   ],
 })
 export class HeaderComponent  implements OnInit {

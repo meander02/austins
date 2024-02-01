@@ -18,7 +18,10 @@ import { MessageService } from 'primeng/api';
   templateUrl: './request-password-recoveryfrm.component.html',
   styleUrls: ['./request-password-recoveryfrm.component.scss', 
   './so.scss',
-  './form.scss',
+  './so01.scss',
+  './so02.scss',
+  './so03.scss',
+  './form.scss'
 ],
   providers: [MessageService],
 })

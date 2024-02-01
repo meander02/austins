@@ -1,0 +1,94 @@
+
+@media (max-width: 768px) {
+  .logo-container {
+    flex: 1;
+    text-align: center;
+    margin-right: 0;
+  }
+
+  .logo-container img {
+    max-width: 100%;
+    display: none;
+  }
+
+  .policy-header {
+    padding: auto;
+    height: 10vh;
+  }
+
+  .mobile-menu-btn {
+    background-color: transparent;
+    color: #ffa500;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    padding: 10px;
+    margin: 0 auto;
+    display: block;
+  }
+
+  .button-container-mobile {
+    display: flex;
+    align-items: center;
+    position: relative;
+
+    &:hover .mobile-menu {
+      display: flex;
+    }
+  }
+
+  .button-container-pc {
+    display: none;
+  }
+}
+
+.mat-menu {
+  top: 0;
+  left: 0;
+  margin: 0;
+  backdrop-filter: blur(10px);
+  background-color: transparent;
+}
+
+.mobile-menu-item_b1 {
+  padding: 10px 20px;
+  background-color: transparent;
+  text-align: center;
+  text-decoration: none;
+  display: block;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+  background: #333333;
+  color: #ffa500;
+  backdrop-filter: blur(10px);
+
+  &:hover {
+    background-color: #f3b5b2;
+  }
+}
+
+.scroll-header {
+  background-color: #333;
+
+  .menu-btn {
+    color: #ffffff;
+  }
+
+  .mobile-menu-btn,
+  .mobile-menu-item_b1 {
+    color: #ffffff;
+  }
+}
+
+
+.search-container input {
+  padding: 10px;
+  border: none;
+  border-radius: 20px;
+  background-color: rgba(255, 255, 255, 0.5);
+  color: #333;
+  font-size: 16px;
+  width: 320px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
