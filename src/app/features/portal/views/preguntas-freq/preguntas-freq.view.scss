@@ -5,7 +5,7 @@
 .faq-container {
   max-width: 800px;
   margin: 0 auto;
-  margin-top: 14%;
+  margin-top: 12%;
 }
 
 .faq-item {
@@ -55,5 +55,12 @@ h2 {
 @media (max-width: 768px) {
   .faq-container {
     padding: 1rem;
+    // margin-top: 12%;
+  }
+}
+@media (max-width:480px) {
+  .faq-container {
+    padding: 1rem;
+    margin-top: 16vh;
   }
 }
