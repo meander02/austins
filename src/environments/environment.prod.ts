@@ -2,5 +2,5 @@ export const environment = {
   production: true
   // ,api:'http://localhost:3000'
   ,api:'https://austin-b.onrender.com'
-  , apikey: "sk-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"
+  , apikey: "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"
 };
