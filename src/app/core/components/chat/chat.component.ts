@@ -22,14 +22,7 @@ import { environment } from 'src/environments/environment';
 import OpenAI from 'openai';
 
 
-// process.env.MONGO_ATLAS_PW
-// const openai = new OpenAI({
-  // apiKey: environment.apikey,
-//   dangerouslyAllowBrowser: true,
-// });
-// const apiKey = process.env.APIKEY
-
-const apiKey = environment.apikey;
+const apiKey = environment.apikey ||'';
 
 
 
