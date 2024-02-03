@@ -22,7 +22,7 @@ import { environment } from 'src/environments/environment';
 import OpenAI from 'openai';
 
 
-const apiKey = environment.apikey ||'';
+const apiKey = environment.apikey ;
 
 
 
