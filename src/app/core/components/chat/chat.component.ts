@@ -14,9 +14,9 @@ import { environment } from 'src/environments/environment';
 import OpenAI from 'openai';
 
 // const openai = new OpenAI();
-let API='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'
+// apikey: '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'
 const openai = new OpenAI({
-  apiKey: API,
+  apiKey: environment.apikey,
   dangerouslyAllowBrowser: true,
 });
 
