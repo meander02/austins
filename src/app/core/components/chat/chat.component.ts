@@ -1,3 +1,10 @@
+// import * as dotenv from 'dotenv';
+// dotenv.config();
+
+
+// import dotenv from 'dotenv';
+// dotenv.config();
+
 import {
   trigger,
   state,
@@ -13,8 +20,21 @@ import { Component, EventEmitter, Output } from '@angular/core';
 import { environment } from 'src/environments/environment';
 
 import OpenAI from 'openai';
+
+
+// process.env.MONGO_ATLAS_PW
+// const openai = new OpenAI({
+  // apiKey: environment.apikey,
+//   dangerouslyAllowBrowser: true,
+// });
+// const apiKey = process.env.APIKEY
+
+const apiKey = environment.apikey;
+
+
+
 const openai = new OpenAI({
-  apiKey: environment.apikey,
+  apiKey,
   dangerouslyAllowBrowser: true,
 });
 
@@ -70,7 +90,7 @@ export class ChatComponent {
     if (this.userMessage.trim() === '') {
       return; // Evitar enviar mensajes vacíos
     }
-  console.log(environment.apikey,)
+  // console.log(environment.apikey,)
     const userMessage = { role: 'user', content: this.userMessage.trim() };
     this.chatHistory.push(userMessage);
   

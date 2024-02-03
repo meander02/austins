@@ -24,6 +24,7 @@
     "@fortawesome/fontawesome-svg-core": "^6.5.1",
     "@material/snackbar": "^14.0.0",
     "aos": "^2.3.4",
+    "dotenv": "^16.4.1",
     "ngx-captcha": "^13.0.0",
     "ngx-ui-loader": "^13.0.0",
     "openai": "^4.26.0",
