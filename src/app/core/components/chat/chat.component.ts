@@ -1,9 +1,4 @@
-// import * as dotenv from 'dotenv';
-// dotenv.config();
 
-
-// import dotenv from 'dotenv';
-// dotenv.config();
 
 import {
   trigger,
@@ -22,12 +17,31 @@ import { environment } from 'src/environments/environment';
 import OpenAI from 'openai';
 
 
-const apiKey = environment.apikey ;
+// const apiKey = environment.apikey ;
 
+let claveExtraida=""
+function extraerClave(cadena:string) {
+  // Busca la cadena "clave==" seguido de la clave entre corchetes
+  const regex = /clave==\[([^\]]+)\]/;
+  
+  // Busca el resultado de la expresión regular en la cadena
+  const resultado = cadena.match(regex);
 
+  // Si se encuentra un resultado, imprime la clave
+  if (resultado && resultado[1]) {
+    claveExtraida = resultado[1];
+    // console.log("Clave extraída:", claveExtraida);
+  } else {
+    console.log("No se encontró ninguna clave en la cadena.");
+  }
+}
+
+// Ejemplo de uso:
+const cadenaEjemplo = "clave==[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]";
+extraerClave(cadenaEjemplo);
 
 const openai = new OpenAI({
-  apiKey,
+  apiKey:claveExtraida ,
   dangerouslyAllowBrowser: true,
 });
 
