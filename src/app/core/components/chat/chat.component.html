@@ -4,7 +4,6 @@
   (click)="toggleChat()"
   [ngClass]="{ 'chat-opened': chatOpen }"
   [@floatingButtonAttention]="floatingButtonState"
-
 >
   <mat-icon>{{ chatOpen ? "close" : "chat_bubble" }}</mat-icon>
 </div>
@@ -34,7 +33,8 @@
         class="austins-logo"
       />
     </div>
-    ¡Bienvenido a Austins Repostería! ¿En qué puedo ayudarte hoy?
+    {{ chatHistory.length ? '' : '¡Bienvenido a Austins Repostería! ' }}
+
   </div>
 
   <div class="input-container">

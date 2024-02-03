@@ -141,6 +141,7 @@ export class SignUpFormComponent implements OnInit {
       this.onSecurityQuestionChange();
     });
   }
+  
   handleSuccess(event: any): void {
     this.group.markAllAsTouched();
 

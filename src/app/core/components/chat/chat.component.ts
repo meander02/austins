@@ -6,31 +6,33 @@ import {
   transition,
   // ...
 } from '@angular/animations';
+import { HttpHeaders } from '@angular/common/http';
 
 import { Component, EventEmitter, Output } from '@angular/core';
-import { OpenAiService } from 'src/app/shared/services/open-ai.service';
-// import { OpenAiService } from '../tu-ruta/open-ai.service'; // Asegúrate de proporcionar la ruta correcta
+
+import { environment } from 'src/environments/environment';
+import OpenAI from 'openai';
+
+// const openai = new OpenAI();
+const openai = new OpenAI({
+  apiKey: environment.apikey,
+  dangerouslyAllowBrowser: true,
+});
 
 @Component({
   selector: 'app-chat',
   templateUrl: './chat.component.html',
-  styleUrls: [
-    './chat.component.scss',
-    './floating.scss'
-  ],  
+  styleUrls: ['./chat.component.scss', './floating.scss'],
   animations: [
     trigger('dialogFadeInOut', [
-      state('void',
-      style({ transform: 'scale(0)', opacity: 0 }
-      )
-      ),
+      state('void', style({ transform: 'scale(0)', opacity: 0 })),
       transition(':enter', [
         animate(
           '1000ms ease-in',
           style({
             transform: 'scale(1)',
             opacity: 1,
-            scroll :-10,
+            scroll: -10,
           })
         ),
       ]),
@@ -40,49 +42,73 @@ import { OpenAiService } from 'src/app/shared/services/open-ai.service';
           style({ transform: 'scale(0.5)', opacity: 0 })
         ),
       ]),
-    ]),  
+    ]),
     trigger('floatingButtonAttention', [
       state('normal', style({})),
-      state('attention', style({
-        animation: '2s infinite alternate attention',
-      })),
+      state(
+        'attention',
+        style({
+          animation: '2s infinite alternate attention',
+        })
+      ),
     ]),
   ],
-
 })
 export class ChatComponent {
   userMessage: string = '';
   chatHistory: any[] = [];
-  // Agrega una variable para controlar el estado del botón flotante
   floatingButtonState = 'normal';
-  constructor(private openAiService: OpenAiService) {}
 
-  sendMessage() {
+  message!: string;
+  constructor() {
+
+  }
+
+  async sendMessage() {
     if (this.userMessage.trim() === '') {
       return; // Evitar enviar mensajes vacíos
     }
+  
+    const userMessage = { role: 'user', content: this.userMessage.trim() };
+    this.chatHistory.push(userMessage);
+  
 
-    this.chatHistory.push({ role: 'user', content: this.userMessage });
-
-    this.openAiService.sendMessage(this.userMessage).subscribe(response => {
-      const assistantReply = response.choices[0]?.message?.content || 'Lo siento, no entendí.';
-      this.chatHistory.push({ role: 'assistant', content: assistantReply });
-    });
-
-    this.userMessage = ''; // Limpiar el campo de entrada después de enviar el mensaje
+    const prompt = `[
+      { "role": "system", "content": "Eres un asistente de Austins. Sé amable, contexta amablemente y  da la bienvenida. " },
+      { "role": "system", "content": "Austins Repostería es una pastelería artesanal dedicada a deleitar los paladares con exquisitos postres y pasteles. Nuestra pasión por la repostería se refleja en cada creación, desde su concepción hasta su presentación en tu mesa." },
+      { "role": "system", "content": "La dirección de Austins Repostería es Avenida Profr. Toribio Reyes 5, Huejutla, Hidalgo, México." },
+      { "role": "system", "content": "Horario de atención: Abierto de lunes a domingo de 8 am a 8:30 pm." },
+      { "role": "system", "content": "Teléfono: 01 789 896 4530." },
+      { "role": "system", "content": "Correo electrónico: info@austins.com.mx." },
+      { "role": "system", "content": "Para hacer un pedido en nuestro sitio web, sigue estos pasos:\\n1. Visita nuestro sitio web en austins.vercel.app.\\n2. Explora nuestro menú y selecciona los productos que deseas agregar al carrito.\\n3. Ve al carrito y revisa tu selección.\\n4. Procede al pago y sigue las instrucciones para completar tu pedido." },
+      { "role": "user", "content": "${this.userMessage}" }
+    ]`;
+  
+    try {
+      const response = await openai.chat.completions.create({
+        // messages: conversation,
+        messages: JSON.parse(prompt),
+        model: 'gpt-3.5-turbo',
+      });
+  
+      // console.log(response);
+  
+      if (response?.choices?.length > 0) {
+        const assistantResponse = response.choices[0].message.content;
+        this.chatHistory.push({ role: 'assistant', content: assistantResponse });
+      } else {
+        console.error('Unexpected OpenAI response:', response);
+      }
+    } catch (error) {
+      console.error('Error sending message to OpenAI:', error);
+    }
+  
+    this.userMessage = ''; // Limpia el mensaje del usuario después de enviar
   }
+  
   @Output() chatOpened = new EventEmitter<boolean>();
 
-  // ... Resto del código del componente
-
-
   chatOpen = false; // Set to false by default
-
-  // toggleChat() {
-  //   this.chatOpen = !this.chatOpen;
-  //   this.chatOpened.emit(this.chatOpen);
-  // }
-
 
   toggleChat() {
     this.chatOpen = !this.chatOpen;
@@ -96,5 +122,4 @@ export class ChatComponent {
       }, 3000); // Cambia a 'normal' después de 3 segundos
     }
   }
-
 }

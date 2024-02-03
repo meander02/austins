@@ -12,14 +12,10 @@ export class AdminHeaderComponent implements OnInit {
   constructor(private sessionService: SessionService) {}
 
   ngOnInit() {
-    // Ejemplo de uso: obtener el nombre del usuario
-    // const userName = this.sessionService.getUserData()?.name;
     const userData = this.sessionService.getUserData();
     if (userData) {
-      this.userName = userData.name; // Asignar el nombre del usuario a la variable
+      this.userName = userData.name; 
     }
     const isAuthenticated = this.sessionService.isAutenticated();
-
-    // Otros usos posibles del servicio...
   }
 }

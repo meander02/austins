@@ -21,6 +21,7 @@ export class SessionService {
 
   getRol(): string {
     const userData = this.getUserData();
+    console.log(userData)
     return userData ? userData.rol : 'invitado';
   }
 

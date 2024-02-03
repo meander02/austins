@@ -18,15 +18,12 @@
             matInput
             formControlName="email"
             placeholder="EJ:juanPerez@gmail.com"
-            required
+
           />
           <label>email</label>
           <mat-icon> email</mat-icon>
 
         </mat-form-field>
-        <!-- <mat-error *ngIf="emailFormControl.hasError('required')">
-          {{ emailFormControl.errors}}
-        </mat-error> -->
         <mat-error *ngIf="emailFormControl.hasError('required')"
         >Email es <strong>requerido</strong></mat-error
       >
@@ -42,7 +39,7 @@
             formControlName="password"
             placeholder="********"
             [type]="passwordFieldType"
-            required
+
           />
 
           <label>password</label>

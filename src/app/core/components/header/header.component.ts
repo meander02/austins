@@ -7,6 +7,7 @@ import { ActivatedRoute } from '@angular/router';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { SignInView } from 'src/app/features/auth/views/sign-in/sign-in.view';
 import { CartService } from '../../services/cart.service';
+import { SessionService } from '../../services/session.service';
 
 @Component({
   selector: 'app-header',
@@ -22,9 +23,9 @@ import { CartService } from '../../services/cart.service';
   ],
 })
 export class HeaderComponent  implements OnInit {
-
+ userName: string | undefined;
   isHeaderScrolled = false;
-  searchQuery: string = ''; // Variable para almacenar la consulta de búsqueda
+  searchQuery: string = '';
   badge: number = 0;
   currentRoute!: string;
   isMobileMenuOpen: boolean = false;
@@ -36,6 +37,7 @@ export class HeaderComponent  implements OnInit {
     private router: Router,
     private userStateService: UserStateService,
     private AuthStateService: AuthStateService,
+    private sessionService: SessionService,
     private route: ActivatedRoute
   ) {
     router.events.subscribe((event) => {
@@ -44,15 +46,23 @@ export class HeaderComponent  implements OnInit {
         this.currentRoute = event.url;
       }
     });
-    // this.cartService.itemsInCart.subscribe((value) => {
-    //   this.badge = value;
-    // });
+    this.cartService.itemsInCart.subscribe((value) => {
+      this.badge = value;
+    });
   }
+
+
+
   ngOnInit(): void {
-    // this.badge=this.cartService.itemsInCart
+    const userData = this.sessionService.getUserData();
+    if (userData) {
+      this.userName = userData.name;
+    }
     this.cartService.itemsInCart.subscribe(value =>{
       this.badge=value
     })
+    const isAuthenticated = this.sessionService.isAutenticated();
+
   }
 
   onSearchChange(query: string) {
@@ -167,4 +177,11 @@ export class HeaderComponent  implements OnInit {
 
     return dialogRef;
   }
+
+
+
+
+
+
+
 }

@@ -34,7 +34,8 @@
 
 /* Estilos de los mensajes de usuario y asistente */
 .user-message {
-  background-color: #e0f7fa;
+  background-color: #aed581; /* Cambia el color de fondo del mensaje del usuario */
+  color: #000; /* Cambia el color del texto */
   padding: 10px;
   margin: 5px;
   border-radius: 5px;
@@ -42,7 +43,8 @@
 }
 
 .assistant-message {
-  background-color: #bbdefb;
+  background-color: #81d4fa; /* Cambia el color de fondo del mensaje del asistente */
+  color: #000; /* Cambia el color del texto */
   padding: 10px;
   margin: 5px;
   border-radius: 5px;
