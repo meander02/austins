@@ -11,10 +11,8 @@ import { HttpHeaders } from '@angular/common/http';
 import { Component, EventEmitter, Output } from '@angular/core';
 
 import { environment } from 'src/environments/environment';
-import OpenAI from 'openai';
 
-// const openai = new OpenAI();
-// apikey: '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'
+import OpenAI from 'openai';
 const openai = new OpenAI({
   apiKey: environment.apikey,
   dangerouslyAllowBrowser: true,
