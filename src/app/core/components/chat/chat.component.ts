@@ -18,6 +18,9 @@ const openai = new OpenAI({
   dangerouslyAllowBrowser: true,
 });
 
+
+
+
 @Component({
   selector: 'app-chat',
   templateUrl: './chat.component.html',
@@ -67,7 +70,7 @@ export class ChatComponent {
     if (this.userMessage.trim() === '') {
       return; // Evitar enviar mensajes vacíos
     }
-  
+  console.log(environment.apikey,)
     const userMessage = { role: 'user', content: this.userMessage.trim() };
     this.chatHistory.push(userMessage);
   
