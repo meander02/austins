@@ -22,7 +22,11 @@ import { environment } from 'src/environments/environment';
 import OpenAI from 'openai';
 
 
-const apiKey = environment.apikey ;
+// const apiKey = environment.apikey ;
+import * as dotenv from 'dotenv';
+dotenv.config();
+
+const apiKey = process.env.OPENAI_API_KEY;
 
 
 
