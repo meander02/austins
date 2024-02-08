@@ -6,11 +6,9 @@ import {
   transition,
   // ...
 } from '@angular/animations';
-import { HttpHeaders } from '@angular/common/http';
 
 import { Component, EventEmitter, Output } from '@angular/core';
 
-import { environment } from 'src/environments/environment';
 
 import OpenAI from 'openai';
 import { TokenService } from 'src/app/shared/services/token.service';
@@ -87,7 +85,7 @@ export class ChatComponent {
     this.chatHistory.push(userMessage);
 
     const prompt = `[
-        { "role": "system", "content": "Eres un asistente de Austins. Sé amable, contexta amablemente y  da la bienvenida. " },
+        { "role": "system", "content": "Eres un asistente de Austins. Sé amable, contexta amablemente y  da la bienvenida. no respondas preguntas que no tenga relacion con austins  , no respondas preguntas que no tenga relacion con austins   se amable " },
         { "role": "system", "content": "Austins Repostería es una pastelería artesanal dedicada a deleitar los paladares con exquisitos postres y pasteles. Nuestra pasión por la repostería se refleja en cada creación, desde su concepción hasta su presentación en tu mesa." },
         { "role": "system", "content": "La dirección de Austins Repostería es Avenida Profr. Toribio Reyes 5, Huejutla, Hidalgo, México." },
         { "role": "system", "content": "Horario de atención: Abierto de lunes a domingo de 8 am a 8:30 pm." },
@@ -96,6 +94,7 @@ export class ChatComponent {
         { "role": "system", "content": "Para hacer un pedido en nuestro sitio web, sigue estos pasos:\\n1. Visita nuestro sitio web en austins.vercel.app.\\n2. Explora nuestro menú y selecciona los productos que deseas agregar al carrito.\\n3. Ve al carrito y revisa tu selección.\\n4. Procede al pago y sigue las instrucciones para completar tu pedido." },
         { "role": "user", "content": "${this.userMessage}" }
       ]`;
+
 
       try {
         const response = await this.openaiInstance?.chat.completions.create({

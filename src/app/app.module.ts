@@ -24,9 +24,9 @@ import { NgxCaptchaModule } from 'ngx-captcha';
     BrowserAnimationsModule,
     CoreComponentsModule,HttpClientModule
   ],
-  providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
-  ],
+  // providers: [
+  //   { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+  // ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

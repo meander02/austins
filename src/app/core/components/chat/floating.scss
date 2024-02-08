@@ -33,14 +33,14 @@
     transform: scale(0.5);
   }
   to {
-    opacity: 1;
+    opacity: 5;
     transform: scale(1);
   }
 }
 
 @keyframes fadeOut {
   from {
-    opacity: 1;
+    opacity: 5;
     transform: scale(1);
   }
   to {
@@ -65,10 +65,10 @@
 
   }
   100% {
-
-    border:  5px solid #dba89d;
+    // border-style: double;
+    border:  10px  double #ef0707;
     // box-shadow: 0 2px 12px rgb(255, 242, 0);
-    box-shadow: 0px 9px 50px 2px  rgb(255, 242, 0);
+    box-shadow: 0px 9px 50px 2px  rgb(255, 136, 0);
     transform: translateY(-10px);
   }
 }

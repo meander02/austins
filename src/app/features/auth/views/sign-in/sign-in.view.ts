@@ -38,11 +38,6 @@ export class SignInView implements OnInit {
         catchError((error: HttpErrorResponse) => {
           if (error.status === 409) {
             this.errorMessage = error.error.message;
-            // console.error(this.errorMessage);
-
-            // Muestra un Snackbar con el mensaje de error
-
-
             this.snackBar.open(this.errorMessage, 'Cerrar', config);
           } else {
             // Manejo de otros errores si es necesario

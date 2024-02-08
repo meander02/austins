@@ -18,14 +18,17 @@
             matInput
             formControlName="email"
             placeholder="EJ:juanPerez@gmail.com"
+
           />
           <label>email</label>
           <mat-icon> email</mat-icon>
+
         </mat-form-field>
         <mat-error *ngIf="emailFormControl.hasError('required')"
-          >Email es <strong>requerido</strong></mat-error
-        >
+        >Email es <strong>requerido</strong></mat-error
+      >
       </div>
+
 
       <div class="form-group password-input">
         <mat-form-field class="animated">
@@ -36,6 +39,7 @@
             formControlName="password"
             placeholder="********"
             [type]="passwordFieldType"
+
           />
 
           <label>password</label>
@@ -61,28 +65,16 @@
       <mat-error *ngIf="passwordFormControl.hasError('formatError')">
         {{ passwordFormControl.errors?.['formatError'] }}
       </mat-error>
+
     </div>
   </fieldset>
   <p>
-    <a class="forgot-password-link" (click)="goToRecupera()"
-      >¿Olvidaste tu contraseña?</a
-    >
+    <a class="forgot-password-link" (click)="goToRecupera()">¿Olvidaste tu contraseña?</a>
   </p>
-  <ngx-recaptcha2 class="social-login" *ngIf="recaptchaSHOW"
-  #captchaElem
-  [siteKey]="siteKey"
-  matInput
-  formControlName="recaptcha"
-  (success)="handleRecaptchaValidation($event)"
-></ngx-recaptcha2>
+  <button type="submit" class="login-button" [disabled]="group.invalid">
+    Ingresar
+  </button>
 
-  <div *ngIf="recaptchaValid">
-    <button type="submit" class="login-button" [disabled]="group.invalid">
-      Ingresar
-    </button>
-  
-    <!-- <button type="submit" class="login-button">Ingresar</button> -->
-  </div>
   <div class="social-login">
     <button class="social-button google-button">
       <img src="assets/icons/icons8-google-30.svg" alt="Google" />

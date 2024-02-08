@@ -68,6 +68,8 @@ export class SignUpFormComponent implements OnInit {
     const signInValidator = new SignInValidator();
     const signUpValidator = new SignUpValidator();
     // this.siteKey = '6Lc3YmEpAAAAAO6t_Qmv-NeqUApr2AJFPbnIhSeU'; localhost
+
+    // this.siteKey = '6LcUCGIpAAAAANGNeryg6jvmWdcJagZ7-34PY5IY'; produccion
     this.siteKey = '6LcUCGIpAAAAANGNeryg6jvmWdcJagZ7-34PY5IY';
     const emailRegex =
       /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
@@ -141,7 +143,7 @@ export class SignUpFormComponent implements OnInit {
       this.onSecurityQuestionChange();
     });
   }
-  
+
   handleSuccess(event: any): void {
     this.group.markAllAsTouched();
 

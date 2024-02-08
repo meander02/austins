@@ -20,6 +20,7 @@
 //   group: FormGroup;
 //   passwordVisible = false;
 //   passwordFieldType = 'password';
+//   userTouchedForm = false;
 //   @Output() formData: EventEmitter<ISingInRequest> =
 //   new EventEmitter<ISingInRequest>();
 
@@ -31,23 +32,58 @@
 //     private dialogRef: MatDialogRef<SignInFormComponent> // Inyecta MatDialogRef
 
 //   ) {
-//     let validatorCustom= new SignInValidator()
+
 //     this.group = this.formBuilder.group({
-//       email: ['',[Validators.required,Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]],
-//       password: ['',[Validators.required,validatorCustom.formatPassword]],
+//       email: [''],
+//       password: [''],
 //     });
 //   }
 
-//   ngOnInit(): void {}
+//   private applyValidatorsAfterInteraction() {
+//     const fieldsToValidate = [
+//       'email',
+//       'password',
+//     ];
+//     fieldsToValidate.forEach((fieldName) => {
+//       this.applyValidatorsForField(fieldName);
+//     });
+//   }
+//   ngOnInit() {
+//     this.group.valueChanges.subscribe(() => {
+//       this.userTouchedForm = true;
+//       if (this.userTouchedForm) {
+//         // console.log("click")
+//         this.applyValidatorsAfterInteraction();
+//       }
+//     });
 
+//   }
 //   get emailFormControl(): FormControl {
-//     // console.log('email');
 //     return this.group.get('email') as FormControl;
 //   }
 //   get passwordFormControl(): FormControl {
 //     return this.group.get('password') as FormControl;
 //   }
-
+//   private applyValidatorsForField(fieldName: string) {
+//     let validatorCustom= new SignInValidator()
+//     const control = this.group.get(fieldName);
+//     if (control && control.dirty && control.touched) {
+//       // Check if the control is both dirty and touched
+//       switch (fieldName) {
+//         case 'email':
+//           control.setValidators([
+//             Validators.required,Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")
+//           ]);
+//           break;
+//         case 'password':
+//           control.setValidators([
+//             Validators.required,validatorCustom.formatPassword
+//           ]);
+//           break;
+//       }
+//       control.updateValueAndValidity({ onlySelf: true, emitEvent: false });
+//     }
+//   }
 
 //   goToSigUP(): void {
 //     this.dialogRef.close(); // Cierra el modal
@@ -70,8 +106,9 @@
 //       this.formData.emit(this.group.value);
 //     }
 //   }
-//   // this.dialogRef.close(formData);
+
 //   redirectTo(route: string): void {
+//     this.dialogRef.close(); // Cierra el modal
 //     console.log('redirect');
 //     this.router.navigateByUrl('/portal/' + route);
 //   }

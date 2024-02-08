@@ -15,10 +15,12 @@ import { SearchService } from 'src/app/shared/services/search-service.service';
 })
 export class HomeViews implements OnInit {
   originalProducts: Product[] = []; // Mantén una copia original de todos los productos
-  products: Product[] = [];
+  filteredProducts: Product[] = []; // Almacena los productos filtrados para la búsqueda
   hasSearchResults = true;
   filterPost = '';
   items: number = 0;
+  productsLoaded: boolean = false; // Variable para indicar si los productos se han cargado o no
+  loadingProducts = true; // Variable para indicar si los productos se están cargando
 
   constructor(
     private router: Router,
@@ -37,41 +39,38 @@ export class HomeViews implements OnInit {
     console.log('redirect');
     this.router.navigateByUrl('/portal/' + route);
   }
-
   ngOnInit(): void {
-
-    // AOS.init();
-    // below listed default settings
-
-
     this.searchService.searchQuery$.subscribe((query) => {
-      // Almacena la consulta de búsqueda.
       this.filterPost = query;
-
-      // Actualiza los productos basados en la consulta de búsqueda o muestra todos los productos.
-      if (query.trim() !== '') {
-        this.products = this.originalProducts.filter((product) =>
-          product.name.toLowerCase().includes(query.toLowerCase())
-        );
-      } else {
-        this.products = [...this.originalProducts]; // Si la búsqueda está vacía, muestra todos los productos originales.
-      }
-
-      // Verifica si se han encontrado resultados.
-      this.hasSearchResults = this.products.length > 0;
-
-      // console.log('products', query);
-      // console.log('products', this.products);
+      this.filterProducts(query);
     });
 
     this.productService.getAll().subscribe(
       (response) => {
-        this.originalProducts = response; // Almacena todos los productos originales.
-        this.products = [...this.originalProducts]; // Muestra todos los productos al inicio.
+        this.originalProducts = response;
+        this.loadingProducts = false; // Establece loadingProducts en false una vez que los productos se han cargado
+        this.filterProducts(this.filterPost); // Filtra los productos basados en la búsqueda actual
       },
       (error) => {
         console.log('Error al cargar productos', error);
+        this.loadingProducts = false; // Si hay un error al cargar los productos, establece loadingProducts en false
       }
     );
   }
+  filterProducts(query: string): void {
+    if (query.trim() !== '') {
+      this.filteredProducts = this.originalProducts.filter((product) =>
+        product.name.toLowerCase().includes(query.toLowerCase())
+      );
+    } else {
+      this.filteredProducts = [...this.originalProducts];
+    }
+    this.hasSearchResults = this.filteredProducts.length > 0;
+  }
+
+    // Método para generar items de esqueleto
+    get skeletonItems(): any[] {
+      const skeletonItemCount = 4; // Definir la cantidad de items de esqueleto que deseas mostrar
+      return Array(skeletonItemCount).fill(null);
+    }
 }

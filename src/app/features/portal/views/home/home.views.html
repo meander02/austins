@@ -23,24 +23,42 @@
   </div>
 
 </div>
-
-
-<div *ngIf="hasSearchResults; else noResults">
-<ng-container  class="prod"  *ngFor="let item of products">
-  <div class="product">
-    <app-product [product]="item"></app-product>
-  </div>
-</ng-container>
-
+<div *ngIf="loadingProducts">
+  <ng-container class="prod"  *ngFor="let item of skeletonItems" >
+    <div class="product" item>
+      <div class="flex mb-10">
+        <p-skeleton shape="circle" size="4rem" styleClass="mr-2"></p-skeleton>
+        <div>
+          <!-- <!-- <p-skeleton width="10rem" styleClass="mb-2"></p-skeleton> -->
+          <p-skeleton width="5rem" styleClass="mb-2"></p-skeleton>
+          <p-skeleton height=".5rem"></p-skeleton>
+        </div>
+      </div>
+      <p-skeleton width="300px" height="160px"></p-skeleton>
+      <div class="flex justify-content-between mt-3">
+        <p-skeleton width="4rem" height="2rem"></p-skeleton>
+        <p-skeleton width="4rem" height="2rem"></p-skeleton>
+      </div>
+    </div>
+  </ng-container>
 </div>
-<ng-template #noResults>
-  <div class="no-results-message">
-    <p>No hay publicaciones que coincidan con tu búsqueda.</p>
-    <p>Revisa la ortografía de la palabra.</p>
-    <p>Utiliza palabras más genéricas o menos palabras.</p>
-    <p>Navega por las categorías para encontrar un producto similar.</p>
+
+<!-- Condición para mostrar los productos una vez que se han cargado -->
+<div *ngIf="!loadingProducts">
+  <div *ngIf="hasSearchResults; else noResults">
+    <ng-container class="prod" *ngFor="let item of filteredProducts">
+      <div class="product">
+        <app-product [product]="item"></app-product>
+      </div>
+    </ng-container>
   </div>
+</div>
+
+
+<ng-template #noResults>
+  <!-- Tu mensaje de no resultados aquí -->
 </ng-template>
+
 <script>
   AOS.init();
 </script>
