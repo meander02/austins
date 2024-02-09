@@ -57,6 +57,8 @@ export class HeaderComponent  implements OnInit {
     const userData = this.sessionService.getUserData();
     if (userData) {
       this.userName = userData.name;
+      // console.log( this.userName)
+      // console.log( userData)
     }
     this.cartService.itemsInCart.subscribe(value =>{
       this.badge=value
@@ -64,7 +66,17 @@ export class HeaderComponent  implements OnInit {
     const isAuthenticated = this.sessionService.isAutenticated();
 
   }
+  logout(): void {
+    // Elimina el token de autenticación del almacenamiento local
+    // this.sessionService.removeToken(); // Si ya tienes un método removeToken en tu servicio, úsalo
+    localStorage.removeItem('token'); // O elimina directamente el token del almacenamiento local aquí
 
+    // Navega a la ruta principal ('/')
+    this.router.navigate(['/']).then(() => {
+      // Recarga la página después de navegar a la ruta principal
+      window.location.reload();
+    });
+  }
   onSearchChange(query: string) {
     // Llama al servicio para establecer la consulta de búsqueda en tiempo real.
     this.searchService.setSearchQuery(query);

@@ -34,6 +34,11 @@ import { MenuItem, MessageService } from 'primeng/api';
 })
 export class SignUpFormComponent implements OnInit {
   siteKey: string;
+  passwordVisible1: boolean = false;
+  passwordVisible2: boolean = false;
+  passwordFieldType1: string = 'password';
+  passwordFieldType2: string = 'password';
+
   items: MenuItem[] = [
     { label: 'personal' },
     { label: 'contact' },
@@ -68,6 +73,7 @@ export class SignUpFormComponent implements OnInit {
     const signInValidator = new SignInValidator();
     const signUpValidator = new SignUpValidator();
     // this.siteKey = '6Lc3YmEpAAAAAO6t_Qmv-NeqUApr2AJFPbnIhSeU'; localhost
+    // this.siteKey = '6Lc3YmEpAAAAAO6t_Qmv-NeqUApr2AJFPbnIhSeU';
 
     // this.siteKey = '6LcUCGIpAAAAANGNeryg6jvmWdcJagZ7-34PY5IY'; produccion
     this.siteKey = '6LcUCGIpAAAAANGNeryg6jvmWdcJagZ7-34PY5IY';
@@ -179,6 +185,15 @@ export class SignUpFormComponent implements OnInit {
     });
   }
 
+  togglePasswordVisibility1() {
+    this.passwordVisible1 = !this.passwordVisible1;
+    this.passwordFieldType1 = this.passwordVisible1 ? 'text' : 'password';
+  }
+
+  togglePasswordVisibility2() {
+    this.passwordVisible2 = !this.passwordVisible2;
+    this.passwordFieldType2 = this.passwordVisible2 ? 'text' : 'password';
+  }
   private applyValidatorsForField(fieldName: string) {
     const control = this.group.get(fieldName);
 

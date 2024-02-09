@@ -202,24 +202,38 @@
           >Email es <strong>requerido</strong></mat-error
         >
       </mat-form-field>
-
-      <mat-form-field class="animated">
-        <input
-          matInput
-          type="password"
-          placeholder="********"
-          formControlName="password"
-        />
-        <label>Contraseña</label>
-        <mat-error *ngIf="passwordFormControl.hasError('required')"
-          >Contraseña es <strong>requerida</strong></mat-error
-        >
-        <mat-error
-          *ngIf="passwordFormControl.hasError('formatError')"
-          >{{ passwordFormControl.errors?.['formatError'] }}</mat-error
-        >
-      </mat-form-field>
-
+      <div class="form-group password-input">
+        <mat-form-field class="animated">
+          <input
+            matInput
+            type="password"
+            placeholder="********"
+            formControlName="password"
+            [type]="passwordFieldType1"
+          />
+          <label>Contraseña</label>
+          <button
+            mat-icon-button
+            type="button"
+            (click)="togglePasswordVisibility1()"
+            [attr.aria-label]="
+              passwordVisible1 ? 'Ocultar contraseña' : 'Mostrar contraseña'
+            "
+          >
+            <mat-icon>{{
+              passwordVisible1 ? "visibility_off" : "visibility"
+            }}</mat-icon>
+          </button>
+          <mat-error *ngIf="passwordFormControl.hasError('required')"
+            >Contraseña es <strong>requerida</strong></mat-error
+          >
+          <mat-error
+            *ngIf="passwordFormControl.hasError('formatError')"
+            >{{ passwordFormControl.errors?.['formatError'] }}</mat-error
+          >
+        </mat-form-field>
+      </div>
+      <div class="form-group password-input">
       <mat-form-field class="animated">
         <input
           matInput
@@ -227,8 +241,21 @@
           placeholder="********"
           formControlName="confirmPassword"
           (input)="onConfirmPasswordInput($event)"
+          [type]="passwordFieldType2"
         />
         <label>Confirmar Contraseña</label>
+        <button
+          mat-icon-button
+          type="button"
+          (click)="togglePasswordVisibility2()"
+          [attr.aria-label]="
+            passwordVisible2 ? 'Ocultar contraseña' : 'Mostrar contraseña'
+          "
+        >
+          <mat-icon>{{
+            passwordVisible2 ? "visibility_off" : "visibility"
+          }}</mat-icon>
+        </button>
         <mat-error *ngIf="confirmPasswordFormControl.hasError('passwordMatch')"
           >Las contraseñas no coinciden</mat-error
         >
@@ -240,8 +267,9 @@
           >Confirmar Contraseña es <strong>requerida</strong></mat-error
         >
       </mat-form-field>
-   
+    </div>
       <ngx-recaptcha2
+        class="social-login"
         #captchaElem
         [siteKey]="siteKey"
         matInput
@@ -249,7 +277,7 @@
         (success)="handleSuccess($event)"
       >
       </ngx-recaptcha2>
-      
+
       <mat-error *ngIf="recaptchaFormControl.hasError('required')"
         >captcha<strong>requerida</strong></mat-error
       >

@@ -8,41 +8,51 @@ import { catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
 import { MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
+import { SessionService } from 'src/app/core/services/session.service';
+import { ERol } from 'src/app/shared/constants/rol.enum';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-sign-in',
   templateUrl: './sign-in.view.html',
-  styleUrls: ['./sign-in.view.scss']
+  styleUrls: ['./sign-in.view.scss'],
+  providers: [MessageService],
 })
 export class SignInView implements OnInit {
   errorMessage!: string; // Define la variable para almacenar el mensaje de error
+  userROL!: string;
+  loginAttempts: number = 0; // Variable para almacenar el número de intentos de inicio de sesión fallidos
 
   constructor(
     private snackBar: MatSnackBar, // Inyecta MatSnackBar
     private signInService: SignInService,
     private storageService: StorageService,
     private router: Router,
+    private sessionService: SessionService,
+    private messageService: MessageService,
     private dialogRef: MatDialogRef<SignInView> // Inyecta MatDialogRef
 
   ) {}
 
   ngOnInit(): void {}
-
   signIn(data: ISingInRequest): void {
     const config: MatSnackBarConfig = {
-      duration: 5000, // Duración en milisegundos
-      panelClass: 'error-snackbar' // Puedes agregar estilos personalizados en tu archivo de estilos
+      duration: 5000,
+      panelClass: 'error-snackbar'
     };
+
     this.signInService.signIn(data)
       .pipe(
         catchError((error: HttpErrorResponse) => {
-          if (error.status === 409) {
-            this.errorMessage = error.error.message;
-            this.snackBar.open(this.errorMessage, 'Cerrar', config);
-          } else {
-            // Manejo de otros errores si es necesario
-          }
-          this.snackBar.open(this.errorMessage, 'Cerrar', config);
+          this.errorMessage = error.error.message;
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Error',
+            detail: this.errorMessage
+          });
+
+          this.loginAttempts++; // Incrementa el contador de intentos de inicio de sesión fallidos
+
           return throwError('Error en la solicitud');
         })
       )
@@ -50,9 +60,23 @@ export class SignInView implements OnInit {
         if (response) {
           this.storageService.setToken(response.token);
           this.dialogRef.close();
-          this.router.navigateByUrl('/admin');
+          const userData = this.sessionService.getUserData();
+          if (userData) {
+            this.userROL = userData.rol;
+            console.log(this.userROL)
+            if (this.userROL === ERol.ADMIN) {
+              this.router.navigateByUrl('/admin');
+            }
+            if (this.userROL === ERol.CLIENT) {
+              this.router.navigate(['/']).then(() => {
+                window.location.reload();
+              });
+              console.log(this.userROL)
+            }
+          }
         }
       });
   }
+
 
 }

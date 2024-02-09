@@ -32,4 +32,9 @@ export class SessionService {
   isTokenExpired(): boolean{
     return this.helper.isTokenExpired(this.token)
   }
+
+  // Método para eliminar el token de autenticación del almacenamiento local
+  removeToken(): void {
+    localStorage.removeItem('token');
+  }
 }

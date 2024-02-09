@@ -44,6 +44,7 @@ export class SignInFormComponent implements OnInit {
     private dialogRef: MatDialogRef<SignInFormComponent> // Inyecta MatDialogRef
   ) {
     // this.siteKey = '6Lc3YmEpAAAAAO6t_Qmv-NeqUApr2AJFPbnIhSeU'; localhost
+    // this.siteKey = '6Lc3YmEpAAAAAO6t_Qmv-NeqUApr2AJFPbnIhSeU';
 
     // this.siteKey = '6LcUCGIpAAAAANGNeryg6jvmWdcJagZ7-34PY5IY'; produccion
     this.siteKey = '6LcUCGIpAAAAANGNeryg6jvmWdcJagZ7-34PY5IY';
@@ -77,7 +78,7 @@ export class SignInFormComponent implements OnInit {
   // handleRecaptchaValidation(event: any) {
 
   handleRecaptchaValidation(event: any): void {
-    console.log('Evento de validacion captcha:', event);
+    // console.log('Evento de validacion captcha:', event);
 
     this.recaptchaValid = event ? true : false;
     if(event){

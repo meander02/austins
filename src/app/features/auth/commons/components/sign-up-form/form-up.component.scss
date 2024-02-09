@@ -49,6 +49,17 @@
   color: #333;
 }
 
+.form-group .password-input button {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  font-size: 20px;
+}
+
 .form-group.mat-form-field .animated {
   display: flex;
   flex-direction: column-reverse;

@@ -39,6 +39,7 @@
   .menu-btn,
   .mobile-menu-btn,
   .material-icons.primary,
+  .material-icons2.primary2,
   .mobile-menu-item_b1 {
     color: #fff; /* Cambia el color del texto al hacer scroll hacia abajo */
   }
@@ -52,6 +53,19 @@
   cursor: pointer;
   /* Agrega sombra al icono */
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+.mobile-menu-item_b1.icone {
+  // display: inline-block;
+  // float: right;
+
+  margin-bottom: 0;
+  color: #ffa500; /* Cambia el color del icono */
+  // font-size: 24px; /* Ajusta el tamaño del icono según tus preferencias */
+  // margin: 0; /* Ajusta el margen según tus preferencias */
+  // padding: 0; /* Ajusta el espaciado según tus preferencias */
+  // cursor: pointer;
+  // /* Agrega sombra al icono */
+  // text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .mat-icon {

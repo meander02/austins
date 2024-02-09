@@ -20,7 +20,7 @@ export class isAdminGuard implements CanActivate {
       if (this.sessionService.getRol() === ERol.ADMIN) {
         return true;
       }
-        this.router.navigateByUrl('/portal'); 
+        this.router.navigateByUrl('/portal');
         return false;
 
     }

@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
-import { NavigationEnd, Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { SignInView } from '../../../views/sign-in/sign-in.view';
+import { AuthService } from '../../services/auth.service';
+import { StorageService } from 'src/app/core/services/storage.service';
 
 @Component({
   selector: 'app-success-form',
@@ -13,45 +15,50 @@ import { SignInView } from '../../../views/sign-in/sign-in.view';
 })
 export class SuccessComponent {
 
+  // constructor(private route: ActivatedRoute) {}
+  authToken!: string;
 
   constructor(
     public dialog: MatDialog,
     private router: Router,
+    private route: ActivatedRoute,
+    private storageService: StorageService,
+    private authService: AuthService // Inyecta tu servicio de autenticación
+
   ) {
     router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         console.log('Ruta actual:', event.url);
-        // this.currentRoute = event.url;
+
       }
     });
-    // this.cartService.itemsInCart.subscribe((value) => {
-    //   this.badge = value;
-    // });
+
   }
   ngOnInit(): void {
-    // this.badge=this.cartService.itemsInCart
-
+    // Obtener el token de autenticación de los parámetros de la URL
+    this.route.queryParams.subscribe(params => {
+      this.authToken = params['token'];
+      if (this.authToken) {
+        // Almacenar el token en el almacenamiento local
+        this.storageService.setToken(this.authToken);
+      } else {
+        console.error('No se ha obtenido el token de autenticación');
+        // Manejar la situación si el token no está presente
+      }
+    });
   }
 
-  openSignInModal(): MatDialogRef<SignInView> {
-    const isMobile = window.innerWidth < 480;
-
-    const dialogRef = this.dialog.open(SignInView, {
-      width: isMobile ? '120vw' : '460px',
-      height: isMobile ? 'auto' : 'auto',
-      maxWidth: isMobile ? 'auto' : 'auto',
-      maxHeight: isMobile ? 'auto' : '100vh',
-      panelClass: isMobile
-        ? ['mat-dialog', 'no-padding', 'mobile-dialog']
-        : ['mat-dialog', 'no-padding', 'web-dialog'],
-      data: {},
-    });
-
-    dialogRef.afterClosed().subscribe((result) => {
-      console.log('Modal cerrado', result);
-    });
-
-    return dialogRef;
+  loginWithToken(): void {
+    // Verificar si se ha obtenido el token de autenticación
+    if (this.authToken) {
+      // Almacenar el token en el almacenamiento local
+      this.storageService.setToken(this.authToken);
+      // Redirigir al usuario al home manteniendo el encabezado y el footer
+      this.router.navigate(['/#'], { replaceUrl: true });
+    } else {
+      console.error('No se ha obtenido el token de autenticación');
+      // Manejar la situación si el token no está presente
+    }
   }
 
 }
