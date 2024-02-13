@@ -46,6 +46,19 @@
   cursor: pointer;
   text-align: center;
 }
+.filter-section p-button {
+  margin-right:  30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px; /* Ajusta el relleno según tus necesidades */
+  border: 1px solid #fff;
+  border-radius: 5px;
+  background-color: transparent;
+  color: #fff;
+  cursor: pointer;
+  text-align: center;
+}
 
 /* Estilo al pasar el mouse sobre las opciones del filtro */
 .filter-section select:hover {

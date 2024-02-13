@@ -1,13 +1,14 @@
 import { UserStateService } from '../../../features/admin/commons/services/user-state.service'; //
 import { AuthStateService } from './../../../features/auth/commons/services/auth-state.service';
 import { NavigationEnd, Router } from '@angular/router';
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit, ViewChild } from '@angular/core';
 import { SearchService } from 'src/app/shared/services/search-service.service';
 import { ActivatedRoute } from '@angular/router';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { SignInView } from 'src/app/features/auth/views/sign-in/sign-in.view';
 import { CartService } from '../../services/cart.service';
 import { SessionService } from '../../services/session.service';
+import { Sidebar } from 'primeng/sidebar';
 
 @Component({
   selector: 'app-header',
@@ -29,7 +30,14 @@ export class HeaderComponent  implements OnInit {
   badge: number = 0;
   currentRoute!: string;
   isMobileMenuOpen: boolean = false;
+  // sidebarVisible: boolean = false;
+  @ViewChild('sidebarRef') sidebarRef!: Sidebar;
 
+  closeCallback(e: Event): void {
+      this.sidebarRef.close(e);
+  }
+
+  sidebarVisible: boolean = false;
   constructor(
     public dialog: MatDialog,
     private searchService: SearchService,
@@ -96,13 +104,17 @@ export class HeaderComponent  implements OnInit {
   }
 
   redirectTo(route: string): void {
+    
+  this.sidebarVisible = false;
     this.router.navigate(['/portal', route]); // Utiliza la navegación de Angular
   }
 
   redirectTo_adm(route: string): void {
+    // this.sidebarVisible = false;
     this.router.navigate(['/admin', route]); // Utiliza la navegación de Angular
   }
   redirectTo_Auth(route: string): void {
+    // this.sidebarVisible = false;
     this.router.navigate(['/auth', route]); // Utiliza la navegación de Angular
   }
 
@@ -119,6 +131,9 @@ export class HeaderComponent  implements OnInit {
     }
     console.log(this.isMobileMenuOpen);
   }
+  // sidebarVisible() :void {
+
+  // }
 
   @HostListener('window:scroll', ['$event'])
   onWindowScroll() {
@@ -170,6 +185,7 @@ export class HeaderComponent  implements OnInit {
 
 
   openSignInModal(): MatDialogRef<SignInView> {
+    this.sidebarVisible = false;
     const isMobile = window.innerWidth < 480;
 
     const dialogRef = this.dialog.open(SignInView, {

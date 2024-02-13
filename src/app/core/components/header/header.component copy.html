@@ -2,18 +2,20 @@
   src="https://kit.fontawesome.com/a076d05399.js"
   crossorigin="anonymous"
 ></script>
-<!-- HTML -->
-<p-sidebar [(visible)]="sidebarVisible" class="mobile-sidebar">
-  <div class="sidebar-header">
-    <span class="pi pi-user"></span>
-    <span class="user-name">{{ userName }}</span>
-  </div>
-  <hr class="sidebar-divider" />
+
+<p-sidebar [(visible)]="sidebarVisible">
+  <!-- <div class="mt-auto"> -->
+
+
+      <span class="pi pi-user"></span>
+
+    {{ userName }}
+    <hr class="mb-3 mx-3 border-top-1 border-none surface-border" />
+  <!-- </div> -->
   <div class="mobile-menu-item" (click)="redirectTo('home')">Home</div>
   <div class="mobile-menu-item" (click)="redirectTo('acercade')">Acerca De</div>
-  <div class="mobile-menu-item" (click)="openSignInModal()">Sign In</div>
+  <div class="mobile-menu-item" (click)="openSignInModal()">sign-in</div>
 </p-sidebar>
-
 <div *ngIf="shouldShowHeader">
   <div
     class="policy-header"

@@ -12,6 +12,7 @@
   align-items: center;
   padding: 20px;
   background-color: rgba(31, 29, 29, 0.49);
+  // background-color: rgba(8, 8, 8, 0.646);
   backdrop-filter: blur(10px);
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
@@ -32,7 +33,8 @@
 }
 
 .mobile-menu-btn {
-  background-color: transparent;
+  // background-color: transparent;
+  background-color: #fff;
   color: #333;
   border: none;
   font-size: 24px;
@@ -46,21 +48,9 @@
   outline: none;
 }
 
-.mobile-menu {
-  display: flex;
-  position: absolute;
-  top: 100%;
-  right: 5;
-  background-color: #fff;
-  backdrop-filter: blur(10px);
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  border-radius: 5px;
-  min-width: 150px;
-}
-
 .mobile-menu-item {
   text-align: center;
-  color: #333;
+  color: #ff9494;
   text-decoration: none;
   display: block;
   font-weight: bold;

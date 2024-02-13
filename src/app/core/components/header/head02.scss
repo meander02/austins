@@ -1,5 +1,4 @@
 
-
 /* Estilos para el botón de búsqueda */
 .search-container {
   display: flex;
@@ -26,6 +25,8 @@
     padding: 0;
     margin: 0;
   }
+
+
 }
 
 /* Estilo al pasar el mouse sobre el contenedor de búsqueda */
@@ -36,7 +37,6 @@
 /* Agrega este bloque para cambiar el color del fondo y del texto al hacer scroll hacia abajo */
 .scroll-header {
   background-color: #1d1b1b; /* Cambia el color de fondo al hacer scroll hacia abajo */
-  .menu-btn,
   .mobile-menu-btn,
   .material-icons.primary,
   .material-icons2.primary2,
@@ -55,17 +55,10 @@
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 }
 .mobile-menu-item_b1.icone {
-  // display: inline-block;
-  // float: right;
 
   margin-bottom: 0;
   color: #ffa500; /* Cambia el color del icono */
-  // font-size: 24px; /* Ajusta el tamaño del icono según tus preferencias */
-  // margin: 0; /* Ajusta el margen según tus preferencias */
-  // padding: 0; /* Ajusta el espaciado según tus preferencias */
-  // cursor: pointer;
-  // /* Agrega sombra al icono */
-  // text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+
 }
 
 .mat-icon {
@@ -75,7 +68,7 @@
 /* Agrega este bloque para cambiar el color del fondo y del texto al hacer scroll hacia abajo */
 .scroll-header {
   // backdrop-filter: blur(10px);
-  background-color: #333;
+  background-color: #0f0e0e;
 
   .menu-btn {
     // color: #ffa500 !important; /* Cambia el color del texto al hacer scroll hacia abajo */
@@ -129,4 +122,6 @@
     padding: 0;
     margin: 0;
   }
+
+
 }

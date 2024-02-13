@@ -1,15 +1,15 @@
 
 @media (max-width: 768px) {
-  .logo-container {
-    flex: 1;
-    text-align: center;
-    margin-right: 0;
-  }
+  // .logo-container {
+  //   flex: 1;
+  //   text-align: center;
+  //   margin-right: 0;
+  // }
 
-  .logo-container img {
-    max-width: 100%;
-    display: none;
-  }
+  // .logo-container img {
+  //   max-width: 100%;
+  //   display: none;
+  // }
 
   .policy-header {
     padding: auto;
@@ -17,6 +17,7 @@
   }
 
   .mobile-menu-btn {
+    // background-color: transparent;
     background-color: transparent;
     color: #ffa500;
     border: none;
@@ -40,6 +41,21 @@
   .button-container-pc {
     display: none;
   }
+
+p-button {
+  background-color: transparent; /* Color de fondo del botón */
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  margin: 0;
+}
+}
+p-button {
+  background-color: transparent; /* Color de fondo del botón */
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  margin: 0;
 }
 
 .mat-menu {
@@ -52,7 +68,8 @@
 
 .mobile-menu-item_b1 {
   padding: 10px 20px;
-  background-color: transparent;
+  // background-color: transparent;
+  background-color: #ffffff;
   text-align: center;
   text-decoration: none;
   display: block;
@@ -69,7 +86,7 @@
 }
 
 .scroll-header {
-  background-color: #333;
+  // background-color: #333;
 
   .menu-btn {
     color: #ffffff;
@@ -80,15 +97,3 @@
     color: #ffffff;
   }
 }
-
-
-// .search-container input {
-//   padding: 10px;
-//   border: none;
-//   border-radius: 20px;
-//   background-color: rgba(255, 255, 255, 0.5);
-//   color: #333;
-//   font-size: 16px;
-//   width: 320px;
-//   transition: background-color 0.3s ease, transform 0.3s ease;
-// }

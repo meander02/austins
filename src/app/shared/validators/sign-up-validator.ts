@@ -31,7 +31,7 @@ export class SignUpValidator {
     const name = control.value;
 
     // Verificar si el nombre contiene solo letras y espacios
-    if (!/^[a-zA-Z\s]+$/.test(name)) {
+  if (!/^[a-zA-ZáéíóúÁÉÍÓÚÜüñÑ\s]+$/.test(name)) {
       return { invalidName: 'El nombre debe contener solo letras y espacios.' };
     }
 
@@ -47,7 +47,7 @@ export class SignUpValidator {
     const lastName = control.value;
 
     // Verificar si el apellido contiene solo letras y espacios
-    if (!/^[a-zA-Z\s]+$/.test(lastName)) {
+    if (!/^[a-zA-ZáéíóúÁÉÍÓÚÜüñÑ\s]+$/.test(lastName)) {
       return { invalidLastName: 'El apellido debe contener solo letras y espacios.' };
     }
 

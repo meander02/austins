@@ -1,24 +1,35 @@
 @media (max-width: 768px) {
   .material-icons.primary {
-    font-size: 24px; 
+    font-size: 24px;
     margin-left: 3%;
+  }
+
+
+  .logo-container {
+    flex: 1;
+    text-align: center;
+    margin-right: 20px;
+
+    img {
+      max-width: 90%;
+    }
   }
 }
 
 @media (min-width: 481px) {
   .web-dialog {
-    max-height: 80vh; 
-    overflow-y: hidden; 
+    max-height: 80vh;
+    overflow-y: hidden;
     background-color: #ffa500;
   }
-  .logo-container {
-    flex: 1;
-    text-align: center;
-    margin-right: 20px;
-  }
-  .logo-container img {
-    max-width: 60%;
-  }
+  // .logo-container {
+  //   flex: 1;
+  //   text-align: center;
+  //   margin-right: 20px;
+  // }
+  // .logo-container img {
+  //   max-width: 60%;
+  // }
   .menu-btn {
     background-color: transparent; /* Color de fondo del botón */
     color: #ffa500; /* Color del texto */
@@ -63,32 +74,10 @@
   position: relative; /* Agrega posición relativa al contenedor */
 }
 
-.mobile-menu-btn {
-  background-color: transparent;
-  color: #333;
-  border: none;
-  font-size: 24px;
-  cursor: pointer;
-  padding: 0;
-  margin: 0;
-  margin: 0 auto;
-  display: block; 
+.mobile-menu-btn:focus {
+  outline: none;
 }
 
-.mobile-menu-btn:focus {
-  outline: none; 
-}
-.mobile-menu {
-  display: none;
-  position: absolute;
-  top: 100%;
-  right: 5; /* Alinea el menú a la derecha */
-  background-color: #fff;
-  backdrop-filter: blur(10px); /* Aplica el efecto de desenfoque al fondo */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  border-radius: 5px;
-  min-width: 150px;
-}
 
 .mobile-menu-item {
   padding: 10px 20px;

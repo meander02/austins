@@ -21,8 +21,11 @@ import { ChatComponent } from './chat/chat.component';
 import { StepsModule } from 'primeng/steps';
 import { StepsComponent } from './steps/steps.component';
 import { ProgressBarComponent } from './progress-bar/progress-bar.component';
-
-
+import { SidebarModule } from 'primeng/sidebar';
+import { ToggleButtonModule } from 'primeng/togglebutton';
+import {ButtonModule} from 'primeng/button';
+import { AvatarModule } from 'primeng/avatar';
+import { AvatarGroupModule } from 'primeng/avatargroup';
 @NgModule({
   declarations: [
     ChatComponent,
@@ -46,6 +49,8 @@ import { ProgressBarComponent } from './progress-bar/progress-bar.component';
   ],
   imports: [
     // BrowserModule,
+    AvatarGroupModule,
+    AvatarModule,
     FormsModule,
     StepsModule,
     CommonModule,
@@ -57,6 +62,8 @@ import { ProgressBarComponent } from './progress-bar/progress-bar.component';
     MatDialogModule,
     MatBadgeModule,
     HttpClientModule,
+    SidebarModule,
+    ToggleButtonModule,ButtonModule
   ],
   providers: [SignInService], // Asegúrate de incluir SignInService en la lista de providers.
 })

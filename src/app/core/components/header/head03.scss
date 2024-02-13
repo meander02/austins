@@ -1,26 +1,7 @@
 @media (max-width: 768px) {
-  .logo-container {
-    flex: 1;
 
-    text-align: center;
-    margin-right: 0; 
-  }
 
-  .logo-container img {
-    max-width: 100%; 
-    display: none; 
-  }
 
-  .mobile-menu-btn {
-    background-color: transparent;
-    color: #ffa500;
-    border: none;
-    font-size: 24px;
-    cursor: pointer;
-    padding: 10px;
-    margin: 0 auto; /* Centra horizontalmente */
-    display: block; 
-  }
   .button-container-mobile {
     display: flex; /* Muestra el menú móvil solo en dispositivos móviles */
     align-items: center;
@@ -34,15 +15,17 @@
   .button-container-pc {
     display: none; /* Oculta el contenedor de PC en dispositivos móviles */
   }
+
+p-button {
+  background-color: transparent; /* Color de fondo del botón */
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  margin: 0;
+}
 }
 
-.mat-menu {
-  top: 0px;
-  left: 0px;
-  margin: 0px;
-  backdrop-filter: blur(10px);
-  background-color: transparent;
-}
+
 .mobile-menu-item_b1 {
   padding: 10px 20px;
   background-color: transparent;
@@ -57,3 +40,64 @@
   color: #ffa500;
   backdrop-filter: blur(10px);
 }
+
+
+/////nuevo  13 02  24
+/// /* CSS */
+// .mobile-sidebar {
+//   background-color: #fff; /* Color de fondo */
+//   width: 100%;
+//   height: 100%;
+//   overflow-y: auto; /* Permite desplazarse verticalmente si el contenido es más largo que la altura */
+//   padding: 20px; /* Espaciado interno */
+//   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra */
+// }
+
+// .sidebar-header {
+//   display: flex;
+//   align-items: center;
+//   margin-bottom: 20px;
+// }
+
+// .pi-user {
+//   font-size: 24px;
+//   margin-right: 10px;
+// }
+
+// .user-name {
+//   font-size: 18px;
+// }
+
+// .sidebar-divider {
+//   margin: 20px 0;
+//   border-top: 1px solid #ccc; /* Línea divisoria */
+// }
+
+// .mobile-menu-item {
+//   padding: 10px 0;
+//   font-size: 16px;
+//   cursor: pointer;
+// }
+
+// /* Media query para dispositivos móviles */
+// @media screen and (max-width: 767px) {
+//   .mobile-sidebar {
+//     position: fixed; /* Barra lateral fija en dispositivos móviles */
+//     top: 0;
+//     left: 0;
+//     z-index: 1000; /* Asegura que esté sobre otros elementos */
+//     background-color: #fff;
+//     transition: transform 0.3s ease; /* Animación al abrir y cerrar */
+//     transform: translateX(-100%);
+//   }
+
+//   .mobile-sidebar.active {
+//     transform: translateX(0); /* Muestra la barra lateral */
+//   }
+
+//   .mobile-menu-item {
+//     padding: 15px 0;
+//     font-size: 18px;
+//   }
+// }
+

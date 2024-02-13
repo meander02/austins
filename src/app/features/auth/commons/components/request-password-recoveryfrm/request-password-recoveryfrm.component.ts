@@ -16,13 +16,14 @@ import { MessageService } from 'primeng/api';
 @Component({
   selector: 'app-request-password-recoveryfrm',
   templateUrl: './request-password-recoveryfrm.component.html',
-  styleUrls: ['./request-password-recoveryfrm.component.scss', 
-  './so.scss',
-  './so01.scss',
-  './so02.scss',
-  './so03.scss',
-  './form.scss'
-],
+  styleUrls: [
+    './request-password-recoveryfrm.component.scss',
+    './so.scss',
+    './so01.scss',
+    './so02.scss',
+    './so03.scss',
+    './form.scss',
+  ],
   providers: [MessageService],
 })
 export class RequestPasswordRecoveryfrmComponent {
@@ -34,10 +35,10 @@ export class RequestPasswordRecoveryfrmComponent {
   items = [{ label: 'Paso 1' }, { label: 'Paso 2' }, { label: 'Paso 3' }];
   step: 'paso1' | 'paso2' | 'paso3' = 'paso1';
   // Add this property to your component class
-// stepCompleted: boolean[] = [false, false, false];
-step1Disabled = false;
-step2Disabled = true;
-step3Disabled = true;
+  // stepCompleted: boolean[] = [false, false, false];
+  step1Disabled = false;
+  step2Disabled = true;
+  step3Disabled = true;
 
   passwordVisible = false;
   passwordFieldType = 'password';
@@ -54,6 +55,7 @@ step3Disabled = true;
     private authService: AuthService,
     private formBuilder: FormBuilder,
     private router: Router,
+    private messageService: MessageService,
     private el: ElementRef
   ) {
     const signInValidator = new SignInValidator();
@@ -70,13 +72,12 @@ step3Disabled = true;
     });
     this.group3 = this.formBuilder.group({
       newPassword: ['', [Validators.required, signInValidator.formatPassword]],
-      confirmPassword:[
+      confirmPassword: [
         '',
         [Validators.required, this.passwordMatchValidator.bind(this)],
       ],
     });
   }
-
 
   onSubmitStep1() {
     if (this.group.valid) {
@@ -84,9 +85,18 @@ step3Disabled = true;
       this.authService.requestPasswordRecovery({ email }).subscribe(
         (response) => {
           // Manejar la respuesta exitosa, por ejemplo, cambiar al siguiente paso
+          this.messageService.add({
+            severity: 'info',
+            summary: 'Info',
+            detail: response.message,
+          });
+          // console.log(response)
+          // this.stepCompleted[0] = true;
+          // this.stepCompleted[0] = true;
 
-          // this.stepCompleted[0] = true;
-          // this.stepCompleted[0] = true;
+          // this.messageService.add({ severity: 'info', summary: 'Info', detail: 'Message Content' });
+
+          // this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Message Content' });
 
           // Enable Step 2
           this.step1Disabled = true;
@@ -94,6 +104,7 @@ step3Disabled = true;
           this.activeIndex = 1;
         },
         (error) => {
+          // console.log(error)
           // Manejar errores, por ejemplo, mostrar un mensaje de error
           this.snackBar.open(error.error.message, 'Cerrar', {
             duration: 3000,
@@ -106,51 +117,87 @@ step3Disabled = true;
     if (this.group2.valid) {
       const email = this.group.value.email;
       const verificationCode = this.group2.value.verificationCode;
-  
-      this.authService.verifyVerificationCode({ email, verificationCode }).subscribe(
-        (response) => {
-          // Manejar la respuesta exitosa, por ejemplo, cambiar al siguiente paso
-          // this.stepCompleted[1] = true;
-          this.step2Disabled = true;
-          this.step3Disabled = false;
-            
-          this.activeIndex = 2;
-        },
-        (error) => {
-          // Manejar errores, por ejemplo, mostrar un mensaje de error
-          this.snackBar.open(error.error.message, 'Cerrar', {
-            duration: 3000,
-          });
-        }
-      );
+
+      this.authService
+        .verifyVerificationCode({ email, verificationCode })
+        .subscribe(
+          (response) => {
+            // Manejar la respuesta exitosa, por ejemplo, cambiar al siguiente paso
+            // this.stepCompleted[1] = true;
+
+            this.messageService.add({
+              severity: 'info',
+              summary: 'Info',
+              detail: response.message,
+            });
+
+            // this.messageService.add({ severity: 'info', summary: 'Info', detail: 'Message Content' });
+
+            this.step2Disabled = true;
+            this.step3Disabled = false;
+            console.log(response);
+            this.activeIndex = 2;
+          },
+          (error) => {
+            // Manejar errores, por ejemplo, mostrar un mensaje de error
+            this.snackBar.open(error.error.message, 'Cerrar', {
+              duration: 3000,
+            });
+          }
+        );
     }
   }
-  
 
   onSubmitStep3() {
     if (this.group3.valid) {
       const email = this.group.value.email;
       const verificationCode = this.group2.value.verificationCode;
       const newPassword = this.group3.value.newPassword;
-      console.log(email,verificationCode,newPassword)
+      console.log(email, verificationCode, newPassword);
       // this.stepCompleted[1] = true;
-      this.authService.verifyCodeAndResetPassword({ email, verificationCode, newPassword }).subscribe(
-        (response) => {
-          // Manejar la respuesta exitosa, por ejemplo, redirigir a la página de inicio de sesión
-          this.router.navigate(['/login']);
-          // this.stepCompleted[2] = true;
+      this.authService
+        .verifyCodeAndResetPassword({ email, verificationCode, newPassword })
+        .subscribe(
+          (response) => {
+            // Manejar la respuesta exitosa, por ejemplo, redirigir a la página de inicio de sesión
 
-        },
-        (error) => {
-          // Manejar errores, por ejemplo, mostrar un mensaje de error
-          console.log(error)
-          this.snackBar.open(error.error.message, 'Cerrar', {
-            duration: 5000,
-          });
-        }
-      );
+            // this.messageService.add({
+            //   severity: 'success',
+            //   summary: 'Success',
+            //   detail: response.message
+            // });
+            // this.router.navigate(['/']).then(() => {
+            //   window.location.reload();
+            // });
+            // console.log(response)
+
+            if (response) {
+              // Manejar la respuesta exitosa, por ejemplo, redirigir a la página de inicio de sesión
+
+              this.snackBar.open( response.message, 'Cerrar', {
+                duration: 5000,
+              });
+              this.router.navigate(['/']).then(() => {
+                window.location.reload();
+              });
+
+            }
+            this.messageService.add({
+              severity: 'success',
+              summary: 'Success',
+              detail: response.message,
+            });
+            // console.log(response.message);
+          },
+          (error) => {
+            // Manejar errores, por ejemplo, mostrar un mensaje de error
+            console.log(error);
+            this.snackBar.open(error.error.message, 'Cerrar', {
+              duration: 5000,
+            });
+          }
+        );
       // this.tabsInteractive = false;
-
     }
   }
 
@@ -195,8 +242,6 @@ step3Disabled = true;
   get confirmPasswordFormControl(): FormControl {
     return this.group3.get('confirmPassword') as FormControl;
   }
-
-
 
   onSubmit() {
     if (this.group.valid && !this.isSubmitting) {
