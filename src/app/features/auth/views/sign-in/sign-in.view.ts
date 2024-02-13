@@ -1,4 +1,4 @@
-import { Component , OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ISingInRequest } from '../../interfaces/sign-in-request.interface';
 import { SignInService } from '../../commons/services/sign-in.service';
 import { StorageService } from 'src/app/core/services/storage.service';
@@ -31,65 +31,69 @@ export class SignInView implements OnInit {
     private router: Router,
     private sessionService: SessionService,
     private messageService: MessageService,
-    private dialogRef: DynamicDialogRef,
-    // private dialogRef: MatDialogRef<SignInView> // Inyecta MatDialogRef
+    private dialogRef: DynamicDialogRef
+  ) // private dialogRef: MatDialogRef<SignInView> // Inyecta MatDialogRef
 
-  ) {}
+  {}
 
   ngOnInit(): void {}
   signIn(data: ISingInRequest): void {
     const config: MatSnackBarConfig = {
       duration: 5000,
-      panelClass: 'error-snackbar'
+      panelClass: 'error-snackbar',
     };
+    console.log(data)
+    if (data != null) {
+      this.signInService
+        .signIn(data)
+        .pipe(
+          catchError((error: HttpErrorResponse) => {
+            this.errorMessage = error.error.message;
+            this.messageService.add({
+              severity: 'error',
+              summary: 'Error',
+              detail: this.errorMessage,
+            });
+            this.loginAttempts++; // Incrementa el contador de intentos de inicio de sesión fallidos
 
-    this.signInService.signIn(data)
-      .pipe(
-        catchError((error: HttpErrorResponse) => {
-          this.errorMessage = error.error.message;
-          this.messageService.add({
-            severity: 'error',
-            summary: 'Error',
-            detail: this.errorMessage
-          });
-
-          this.loginAttempts++; // Incrementa el contador de intentos de inicio de sesión fallidos
-
-          return throwError('Error en la solicitud');
-        })
-      )
-      .subscribe((response) => {
-
-        if (response) {
-          this.storageService.setToken(response.token);
-          // this.ref.close();
-          const userData = this.sessionService.getUserData();
-          if (userData) {
-            this.userROL = userData.rol;
-            console.log(this.userROL)
-            if (this.userROL === ERol.ADMIN) {
-              this.router.navigateByUrl('/admin');
-            }
-            if (this.userROL === ERol.CLIENT) {
-              
-              this.router.navigate(['/']).then(() => {
-                window.location.reload();
-              });
-              console.log(this.userROL)
+            return throwError('Error en la solicitud');
+          })
+        )
+        .subscribe((response) => {
+          if (response) {
+            this.storageService.setToken(response.token);
+            // this.ref.close();
+            const userData = this.sessionService.getUserData();
+            if (userData) {
+              this.userROL = userData.rol;
+              console.log(this.userROL);
+              if (this.userROL === ERol.ADMIN) {
+                this.router.navigateByUrl('/admin');
+              }
+              if (this.userROL === ERol.CLIENT) {
+                this.router.navigate(['/']).then(() => {
+                  window.location.reload();
+                });
+                console.log(this.userROL);
+              }
+              // if (this.ref) {
+              //   this.ref.close(); // Cierra el diálogo
+              // }
+              this.dialogRef.close(); // Cierra el modal
             }
             // if (this.ref) {
             //   this.ref.close(); // Cierra el diálogo
             // }
-            this.dialogRef.close(); // Cierra el modal
-
+            // this.ref.close(); // Cierra el diálogo
           }
-          // if (this.ref) {
-          //   this.ref.close(); // Cierra el diálogo
-          // }
-          // this.ref.close(); // Cierra el diálogo
-        }
+        });
+    }
+    if (data == null) {
+      this.messageService.add({
+        severity: 'error',
+        summary: 'Error',
+        detail:'datos requeridos',
       });
+    }
   }
-
-
 }

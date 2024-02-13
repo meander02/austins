@@ -16,6 +16,7 @@ import { Router } from '@angular/router';
 import { ISingInRequest } from '../../../interfaces/sign-in-request.interface';
 import { SignInValidator } from 'src/app/shared/validators/sign-in-validator';
 import { DynamicDialogRef } from 'primeng/dynamicdialog';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-sign-in-form',
@@ -24,7 +25,7 @@ import { DynamicDialogRef } from 'primeng/dynamicdialog';
     './sign-in-form.component.scss',
     './sign-in-form.component2.scss',
     './a1.scss',
-  ],
+  ],  providers: [MessageService],
 })
 export class SignInFormComponent implements OnInit {
   group: FormGroup;
@@ -32,7 +33,7 @@ export class SignInFormComponent implements OnInit {
   passwordFieldType = 'password';
   userTouchedForm = false;
   recaptchaValid = false; // Flag to track recaptcha validation
-  recaptchaSHOW= true; // Flag to track recaptcha validation
+  recaptchaSHOW = true; // Flag to track recaptcha validation
   siteKey: string;
   ref: DynamicDialogRef | undefined;
   @Output() formData: EventEmitter<ISingInRequest> =
@@ -42,16 +43,19 @@ export class SignInFormComponent implements OnInit {
     private dialogRef: DynamicDialogRef,
     private router: Router,
     private formBuilder: FormBuilder,
-    private el: ElementRef,
-    // private dialogRef: MatDialogRef<SignInFormComponent> // Inyecta MatDialogRef
-  ) {
+    private el: ElementRef, private messageService: MessageService,
+  ) // private dialogRef: MatDialogRef<SignInFormComponent> // Inyecta MatDialogRef
+  {
     // this.siteKey = '6Lc3YmEpAAAAAO6t_Qmv-NeqUApr2AJFPbnIhSeU'; localhost
     // this.siteKey = '6Lc3YmEpAAAAAO6t_Qmv-NeqUApr2AJFPbnIhSeU';
 
     // this.siteKey = '6LcUCGIpAAAAANGNeryg6jvmWdcJagZ7-34PY5IY'; produccion
     this.siteKey = '6LcUCGIpAAAAANGNeryg6jvmWdcJagZ7-34PY5IY';
     this.group = this.formBuilder.group({
-      email: ['', Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')],
+      email: [
+        '',
+        Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$'),
+      ],
       password: [''],
       recaptcha: [''],
     });
@@ -81,22 +85,33 @@ export class SignInFormComponent implements OnInit {
 
   handleRecaptchaValidation(event: any): void {
     // console.log('Evento de validacion captcha:', event);
-
+    const formData = this.group.value;
     this.recaptchaValid = event ? true : false;
-    if(event){
-      this.recaptchaSHOW= false;
-      if (this.isFormValid()) {
-        // this.formData.emit(formData);
-      } 
+    this.recaptchaSHOW = false;
+    if(formData.password==''&&formData.password==''){
+
+      console.log("ds")
+      this.messageService.add({
+        severity: 'error',
+        summary: 'Error',
+        detail: 'los campos son requeridos ',
+      });
+      this.applyValidatorsAfterInteraction();
     }
+      this.userTouchedForm = true;
+  
+
+    
   }
 
 
-  // Method to check if the form is valid
   isFormValid() {
-    return this.group.valid && this.recaptchaValid;
-
+    return (
+      this.group.valid &&
+      this.recaptchaValid 
+    );
   }
+
   get emailFormControl(): FormControl {
     return this.group.get('email') as FormControl;
   }
@@ -154,10 +169,22 @@ export class SignInFormComponent implements OnInit {
   }
   send(): void {
     const formData = this.group.value;
-    if (this.isFormValid()) {
+    if(formData.password!=''&&formData.password!=''){
       this.formData.emit(formData);
+     
     }
+    console.log(formData);
+    const fieldsToValidate = [
+      'email',
+      'password',
+    ];
+    fieldsToValidate.forEach((fieldName) => {
+      this.applyValidatorsForField(fieldName);
+    });
+
+    // }
   }
+
   redirectTo(route: string): void {
     // this.dialogRef.close(); // Cierra el modal
     console.log('redirect');
