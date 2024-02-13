@@ -7,7 +7,12 @@
 <!-- HTML -->
 <!-- HTML -->
 <p-sidebar [(visible)]="sidebarVisible" class="mobile-sidebar">
-  <div pAnimateOnScroll enterClass="scalein" leaveClass="fadeout" class="sidebar-header animation-duration-1000 animation-ease-in-out">
+  <div
+    pAnimateOnScroll
+    enterClass="scalein"
+    leaveClass="fadeout"
+    class="sidebar-header animation-duration-1000 animation-ease-in-out"
+  >
     <span class="pi pi-user"></span>
     <span class="user-name">{{ userName }}</span>
   </div>
@@ -21,27 +26,56 @@
   <div class="mobile-menu-item" (click)="redirectTo('perfil')" *ngIf="userName">
     <span class="pi pi-user"></span> Perfil
   </div>
-  <div class="mobile-menu-item" (click)="redirectTo('miscompras')" *ngIf="userName">
+  <div
+    class="mobile-menu-item"
+    (click)="redirectTo('miscompras')"
+    *ngIf="userName"
+  >
     <span class="pi pi-shopping-cart"></span> Mis Compras
   </div>
-  <div class="mobile-menu-item" (click)="redirectTo('configuracion')" *ngIf="userName">
+  <div
+    class="mobile-menu-item"
+    (click)="redirectTo('configuracion')"
+    *ngIf="userName"
+  >
     <span class="pi pi-cog"></span> Configuración
   </div>
-  <div class="mobile-menu-item" (click)="redirectTo('notificaciones')" *ngIf="userName">
-    <span class="pi pi-bell text-3xl" pBadge value="2" severity="warning"></span> Notificaciones
+  <div
+    class="mobile-menu-item"
+    (click)="redirectTo('notificaciones')"
+    *ngIf="userName"
+  >
+    <span
+      class="pi pi-bell text-3xl"
+      pBadge
+      value="2"
+      severity="warning"
+    ></span>
+    Notificaciones
     <!-- <i class="pi pi-bell text-3xl" pBadge value="2"></i> -->
-
   </div>
-  <div class="mobile-menu-item" (click)="redirectTo('historial')" *ngIf="userName">
+  <div
+    class="mobile-menu-item"
+    (click)="redirectTo('historial')"
+    *ngIf="userName"
+  >
     <span class="pi pi-clock"></span> Historial
   </div>
   <div class="mobile-menu-item" (click)="redirectTo('ayuda')" *ngIf="userName">
     <span class="pi pi-question-circle"></span> Ayuda/Soporte
   </div>
-  <div class="mobile-menu-item" (click)="redirectTo('favoritos')" *ngIf="userName">
+  <div
+    class="mobile-menu-item"
+    (click)="redirectTo('favoritos')"
+    *ngIf="userName"
+  >
     <span class="pi pi-star"></span> Favoritos
   </div>
-  <div class="mobile-menu-item" (click)="redirectTo('ajustes-cuenta')" *ngIf="userName">
+  <div
+    class="mobile-menu-item"
+    (click)="redirectTo('ajustes-cuenta')"
+    *ngIf="userName"
+  >
     <span class="pi pi-pencil"></span> Ajustes de Cuenta
   </div>
   <hr class="sidebar-divider" />
@@ -52,7 +86,6 @@
     <span class="pi pi-sign-out"></span> Logout
   </div>
 </p-sidebar>
-
 
 <div *ngIf="shouldShowHeader">
   <div
@@ -117,9 +150,27 @@
           acerca de
         </div>
       </mat-menu>
+      <!-- <button *ngIf="!userName" class="menu-btn" (click)="openSignInModal()">
+        <mat-icon class="material-icons2 primary">account_circle</mat-icon>
+      </button> -->
+      <!-- 
+      <button *ngIf="!userName" class="menu-btn" (click)="showDialog()">
+        <mat-icon class="material-icons2 primary">account_circle</mat-icon>
+      </button> -->
       <button *ngIf="!userName" class="menu-btn" (click)="openSignInModal()">
         <mat-icon class="material-icons2 primary">account_circle</mat-icon>
       </button>
+<!-- 
+      <div class="card flex justify-content-center">
+        <p-dialog
+          header="Header"
+          [(visible)]="visible"
+          [style]="{ width: '50vw' }"
+        >
+
+        </p-dialog>
+      </div> -->
+
       <!-- <span *ngIf="userName" class="menu-btn">{{ userName }}</span> -->
       <button
         *ngIf="userName"
@@ -154,9 +205,6 @@
       >shopping_cart</mat-icon
     >
   </div>
-
-
-
 
   <div
     class="filter-section"

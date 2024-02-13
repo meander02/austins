@@ -6,11 +6,12 @@ import { Router } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
-import { MatDialogRef } from '@angular/material/dialog';
+// import { MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
 import { SessionService } from 'src/app/core/services/session.service';
 import { ERol } from 'src/app/shared/constants/rol.enum';
 import { MessageService } from 'primeng/api';
+import { DynamicDialogRef } from 'primeng/dynamicdialog';
 
 @Component({
   selector: 'app-sign-in',
@@ -22,7 +23,7 @@ export class SignInView implements OnInit {
   errorMessage!: string; // Define la variable para almacenar el mensaje de error
   userROL!: string;
   loginAttempts: number = 0; // Variable para almacenar el número de intentos de inicio de sesión fallidos
-
+  ref: DynamicDialogRef | undefined;
   constructor(
     private snackBar: MatSnackBar, // Inyecta MatSnackBar
     private signInService: SignInService,
@@ -30,7 +31,7 @@ export class SignInView implements OnInit {
     private router: Router,
     private sessionService: SessionService,
     private messageService: MessageService,
-    private dialogRef: MatDialogRef<SignInView> // Inyecta MatDialogRef
+    // private dialogRef: MatDialogRef<SignInView> // Inyecta MatDialogRef
 
   ) {}
 
@@ -57,9 +58,12 @@ export class SignInView implements OnInit {
         })
       )
       .subscribe((response) => {
+        if (this.ref) {
+          this.ref.close(); // Cierra el diálogo
+        }
         if (response) {
           this.storageService.setToken(response.token);
-          this.dialogRef.close();
+          // this.ref.close();
           const userData = this.sessionService.getUserData();
           if (userData) {
             this.userROL = userData.rol;

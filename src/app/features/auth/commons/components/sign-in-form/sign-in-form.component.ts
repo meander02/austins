@@ -15,6 +15,7 @@ import { MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { ISingInRequest } from '../../../interfaces/sign-in-request.interface';
 import { SignInValidator } from 'src/app/shared/validators/sign-in-validator';
+import { DynamicDialogRef } from 'primeng/dynamicdialog';
 
 @Component({
   selector: 'app-sign-in-form',
@@ -33,15 +34,16 @@ export class SignInFormComponent implements OnInit {
   recaptchaValid = false; // Flag to track recaptcha validation
   recaptchaSHOW= true; // Flag to track recaptcha validation
   siteKey: string;
-
+  ref: DynamicDialogRef | undefined;
   @Output() formData: EventEmitter<ISingInRequest> =
     new EventEmitter<ISingInRequest>();
 
   constructor(
+    private dialogRef: DynamicDialogRef,
     private router: Router,
     private formBuilder: FormBuilder,
     private el: ElementRef,
-    private dialogRef: MatDialogRef<SignInFormComponent> // Inyecta MatDialogRef
+    // private dialogRef: MatDialogRef<SignInFormComponent> // Inyecta MatDialogRef
   ) {
     // this.siteKey = '6Lc3YmEpAAAAAO6t_Qmv-NeqUApr2AJFPbnIhSeU'; localhost
     // this.siteKey = '6Lc3YmEpAAAAAO6t_Qmv-NeqUApr2AJFPbnIhSeU';
@@ -128,12 +130,18 @@ export class SignInFormComponent implements OnInit {
   }
 
   goToSigUP(): void {
+    // this.ref.close();
+    // this.ref?.close();
     this.dialogRef.close(); // Cierra el modal
+
+    // this.ref.close(); // Cierra el modal
     this.router.navigateByUrl('/auth/sign-up'); // Navega a la vista de registro
   }
 
   goToRecupera(): void {
     this.dialogRef.close(); // Cierra el modal
+
+    // this.dialogRef.close(); // Cierra el modal
     this.router.navigateByUrl('/auth/Recupera'); // Navega a la vista de registro
   }
 
@@ -148,8 +156,10 @@ export class SignInFormComponent implements OnInit {
     }
   }
   redirectTo(route: string): void {
-    this.dialogRef.close(); // Cierra el modal
+    // this.dialogRef.close(); // Cierra el modal
     console.log('redirect');
+    this.dialogRef.close(); // Cierra el modal
+
     this.router.navigateByUrl('/portal/' + route);
   }
 }

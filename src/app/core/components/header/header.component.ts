@@ -4,11 +4,13 @@ import { NavigationEnd, Router } from '@angular/router';
 import { Component, HostListener, OnInit, ViewChild } from '@angular/core';
 import { SearchService } from 'src/app/shared/services/search-service.service';
 import { ActivatedRoute } from '@angular/router';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+// import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { SignInView } from 'src/app/features/auth/views/sign-in/sign-in.view';
 import { CartService } from '../../services/cart.service';
 import { SessionService } from '../../services/session.service';
 import { Sidebar } from 'primeng/sidebar';
+import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 
 @Component({
   selector: 'app-header',
@@ -20,57 +22,66 @@ import { Sidebar } from 'primeng/sidebar';
     './head03.scss',
     './head04.scss',
     './head05.scss',
-    './header.component02.scss'
+    './header.component02.scss',
   ],
   styles: [
     `
-        :host {
-            @keyframes slidedown-icon {
-                0% {
-                    transform: translateY(0);
-                }
+      :host {
+        @keyframes slidedown-icon {
+          0% {
+            transform: translateY(0);
+          }
 
-                50% {
-                    transform: translateY(20px);
-                }
+          50% {
+            transform: translateY(20px);
+          }
 
-                100% {
-                    transform: translateY(0);
-                }
-            }
-
-            .slidedown-icon {
-                animation: slidedown-icon;
-                animation-duration: 3s;
-                animation-iteration-count: infinite;
-            }
-
-            .box {
-                background-image: radial-gradient(var(--primary-300), var(--primary-600));
-                border-radius: 50% !important;
-                color: var(--primary-color-text);
-            }
+          100% {
+            transform: translateY(0);
+          }
         }
-    `
-]
+
+        .slidedown-icon {
+          animation: slidedown-icon;
+          animation-duration: 3s;
+          animation-iteration-count: infinite;
+        }
+
+        .box {
+          background-image: radial-gradient(
+            var(--primary-300),
+            var(--primary-600)
+          );
+          border-radius: 50% !important;
+          color: var(--primary-color-text);
+        }
+      }
+    `,
+  ],
+  providers: [DialogService],
 })
-export class HeaderComponent  implements OnInit {
- userName: string | undefined;
+export class HeaderComponent implements OnInit {
+  userName: string | undefined;
   isHeaderScrolled = false;
   searchQuery: string = '';
   badge: number = 0;
   currentRoute!: string;
   isMobileMenuOpen: boolean = false;
+
+  visible: boolean = false;
+
   // sidebarVisible: boolean = false;
   @ViewChild('sidebarRef') sidebarRef!: Sidebar;
 
   closeCallback(e: Event): void {
-      this.sidebarRef.close(e);
+    this.sidebarRef.close(e);
   }
+  ref: DynamicDialogRef | undefined;
 
   sidebarVisible: boolean = false;
   constructor(
     public dialog: MatDialog,
+    private dialogService: DialogService,
     private searchService: SearchService,
     private cartService: CartService,
     private router: Router,
@@ -90,8 +101,6 @@ export class HeaderComponent  implements OnInit {
     });
   }
 
-
-
   ngOnInit(): void {
     const userData = this.sessionService.getUserData();
     if (userData) {
@@ -99,11 +108,10 @@ export class HeaderComponent  implements OnInit {
       // console.log( this.userName)
       // console.log( userData)
     }
-    this.cartService.itemsInCart.subscribe(value =>{
-      this.badge=value
-    })
+    this.cartService.itemsInCart.subscribe((value) => {
+      this.badge = value;
+    });
     const isAuthenticated = this.sessionService.isAutenticated();
-
   }
   logout(): void {
     // Elimina el token de autenticación del almacenamiento local
@@ -135,8 +143,7 @@ export class HeaderComponent  implements OnInit {
   }
 
   redirectTo(route: string): void {
-    
-  this.sidebarVisible = false;
+    this.sidebarVisible = false;
     this.router.navigate(['/portal', route]); // Utiliza la navegación de Angular
   }
 
@@ -195,8 +202,10 @@ export class HeaderComponent  implements OnInit {
     });
 
     // Ahora verifica si la ruta actual es '/portal/home'
-    return this.currentRoute === '/portal/home' || this.currentRoute === '/auth/sign-up';
-
+    return (
+      this.currentRoute === '/portal/home' ||
+      this.currentRoute === '/auth/sign-up'
+    );
   }
 
   // Nueva función para manejar la visibilidad de la sección de filtros
@@ -214,33 +223,54 @@ export class HeaderComponent  implements OnInit {
     }
   }
 
+  //   showDialog() {
+  //     this.visible = true;
+  // }
 
-  openSignInModal(): MatDialogRef<SignInView> {
-    this.sidebarVisible = false;
-    const isMobile = window.innerWidth < 480;
-
-    const dialogRef = this.dialog.open(SignInView, {
-      width: isMobile ? '120vw' : '460px',
-      height: isMobile ? 'auto' : 'auto',
-      maxWidth: isMobile ? 'auto' : 'auto',
-      maxHeight: isMobile ? 'auto' : '100vh',
-      panelClass: isMobile
-        ? ['mat-dialog', 'no-padding', 'mobile-dialog']
-        : ['mat-dialog', 'no-padding', 'web-dialog'],
-      data: {},
-    });
-
-    dialogRef.afterClosed().subscribe((result) => {
-      console.log('Modal cerrado', result);
-    });
-
-    return dialogRef;
+  showDialog() {
+    this.visible = true;
   }
 
+  // openSignInModal(): MatDialogRef<SignInView> {
+  //   this.sidebarVisible = false;
+  //   const isMobile = window.innerWidth < 480;
 
+  //   const dialogRef = this.dialog.open(SignInView, {
+  //     width: isMobile ? '120vw' : '460px',
+  //     height: isMobile ? 'auto' : 'auto',
+  //     maxWidth: isMobile ? 'auto' : 'auto',
+  //     maxHeight: isMobile ? 'auto' : '100vh',
+  //     panelClass: isMobile
+  //       ? ['mat-dialog', 'no-padding', 'mobile-dialog']
+  //       : ['mat-dialog', 'no-padding', 'web-dialog'],
+  //     data: {},
+  //   });
 
+  //   dialogRef.afterClosed().subscribe((result) => {
+  //     console.log('Modal cerrado', result);
+  //   });
 
-
-
-
+  //   return dialogRef;
+  // }
+  openSignInModal(): void {
+    this.sidebarVisible = false;
+    const isMobile = window.innerWidth < 480;
+    
+    this.ref = this.dialogService.open(SignInView, {
+      width: isMobile ? '120vw' : '460px',
+      height: isMobile ? 'auto' : 'auto',
+      style: {
+        'max-Width': isMobile ? 'auto' : 'auto',
+        'max-height': isMobile ? 'none' : '100vh', // Establece la altura máxima del modal
+      },
+      modal: true,
+      breakpoints: {
+        '960px': '75vw',
+        '640px': '90vw'
+      },
+      data: {}
+    });
+  }
+  
+  
 }

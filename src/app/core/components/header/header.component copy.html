@@ -2,20 +2,58 @@
   src="https://kit.fontawesome.com/a076d05399.js"
   crossorigin="anonymous"
 ></script>
+<!-- HTML -->
+<!-- HTML -->
+<!-- HTML -->
+<!-- HTML -->
+<p-sidebar [(visible)]="sidebarVisible" class="mobile-sidebar">
+  <div pAnimateOnScroll enterClass="scalein" leaveClass="fadeout" class="sidebar-header animation-duration-1000 animation-ease-in-out">
+    <span class="pi pi-user"></span>
+    <span class="user-name">{{ userName }}</span>
+  </div>
+  <hr class="sidebar-divider" />
+  <div class="mobile-menu-item" (click)="redirectTo('home')">
+    <span class="pi pi-home"></span> Home
+  </div>
+  <div class="mobile-menu-item" (click)="redirectTo('acercade')">
+    <span class="pi pi-info-circle"></span> Acerca De
+  </div>
+  <div class="mobile-menu-item" (click)="redirectTo('perfil')" *ngIf="userName">
+    <span class="pi pi-user"></span> Perfil
+  </div>
+  <div class="mobile-menu-item" (click)="redirectTo('miscompras')" *ngIf="userName">
+    <span class="pi pi-shopping-cart"></span> Mis Compras
+  </div>
+  <div class="mobile-menu-item" (click)="redirectTo('configuracion')" *ngIf="userName">
+    <span class="pi pi-cog"></span> Configuración
+  </div>
+  <div class="mobile-menu-item" (click)="redirectTo('notificaciones')" *ngIf="userName">
+    <span class="pi pi-bell text-3xl" pBadge value="2" severity="warning"></span> Notificaciones
+    <!-- <i class="pi pi-bell text-3xl" pBadge value="2"></i> -->
 
-<p-sidebar [(visible)]="sidebarVisible">
-  <!-- <div class="mt-auto"> -->
-
-
-      <span class="pi pi-user"></span>
-
-    {{ userName }}
-    <hr class="mb-3 mx-3 border-top-1 border-none surface-border" />
-  <!-- </div> -->
-  <div class="mobile-menu-item" (click)="redirectTo('home')">Home</div>
-  <div class="mobile-menu-item" (click)="redirectTo('acercade')">Acerca De</div>
-  <div class="mobile-menu-item" (click)="openSignInModal()">sign-in</div>
+  </div>
+  <div class="mobile-menu-item" (click)="redirectTo('historial')" *ngIf="userName">
+    <span class="pi pi-clock"></span> Historial
+  </div>
+  <div class="mobile-menu-item" (click)="redirectTo('ayuda')" *ngIf="userName">
+    <span class="pi pi-question-circle"></span> Ayuda/Soporte
+  </div>
+  <div class="mobile-menu-item" (click)="redirectTo('favoritos')" *ngIf="userName">
+    <span class="pi pi-star"></span> Favoritos
+  </div>
+  <div class="mobile-menu-item" (click)="redirectTo('ajustes-cuenta')" *ngIf="userName">
+    <span class="pi pi-pencil"></span> Ajustes de Cuenta
+  </div>
+  <hr class="sidebar-divider" />
+  <div *ngIf="!userName" class="mobile-menu-item" (click)="openSignInModal()">
+    <span class="pi pi-sign-in"></span> Sign In
+  </div>
+  <div *ngIf="userName" class="mobile-menu-item" (click)="logout()">
+    <span class="pi pi-sign-out"></span> Logout
+  </div>
 </p-sidebar>
+
+
 <div *ngIf="shouldShowHeader">
   <div
     class="policy-header"

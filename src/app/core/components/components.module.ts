@@ -28,6 +28,9 @@ import { AvatarModule } from 'primeng/avatar';
 import { AvatarGroupModule } from 'primeng/avatargroup';
 import { AnimateOnScrollModule } from 'primeng/animateonscroll';
 import { BadgeModule } from 'primeng/badge';
+import { DialogModule } from 'primeng/dialog';
+// import { SignInView } from 'src/app/features/auth/views/sign-in/sign-in.view';
+import { DynamicDialogModule } from 'primeng/dynamicdialog';
 @NgModule({
   declarations: [
     ChatComponent,
@@ -41,6 +44,7 @@ import { BadgeModule } from 'primeng/badge';
   ],
   exports: [
     // PoliticaComponent,
+
     ChatComponent,
     BtnFloatComponent,
     HeaderComponent,
@@ -50,7 +54,9 @@ import { BadgeModule } from 'primeng/badge';
     StepsComponent,ProgressBarComponent
   ],
   imports: [
-    // BrowserModule,
+    // BrowserModule,   
+    DynamicDialogModule,
+     DialogModule,
     BadgeModule,
     AnimateOnScrollModule,
     AvatarGroupModule,
