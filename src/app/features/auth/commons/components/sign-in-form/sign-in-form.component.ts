@@ -85,6 +85,9 @@ export class SignInFormComponent implements OnInit {
     this.recaptchaValid = event ? true : false;
     if(event){
       this.recaptchaSHOW= false;
+      if (this.isFormValid()) {
+        // this.formData.emit(formData);
+      } 
     }
   }
 

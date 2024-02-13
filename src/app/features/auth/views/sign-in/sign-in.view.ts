@@ -31,6 +31,7 @@ export class SignInView implements OnInit {
     private router: Router,
     private sessionService: SessionService,
     private messageService: MessageService,
+    private dialogRef: DynamicDialogRef,
     // private dialogRef: MatDialogRef<SignInView> // Inyecta MatDialogRef
 
   ) {}
@@ -58,9 +59,7 @@ export class SignInView implements OnInit {
         })
       )
       .subscribe((response) => {
-        if (this.ref) {
-          this.ref.close(); // Cierra el diálogo
-        }
+
         if (response) {
           this.storageService.setToken(response.token);
           // this.ref.close();
@@ -72,12 +71,22 @@ export class SignInView implements OnInit {
               this.router.navigateByUrl('/admin');
             }
             if (this.userROL === ERol.CLIENT) {
+              
               this.router.navigate(['/']).then(() => {
                 window.location.reload();
               });
               console.log(this.userROL)
             }
+            // if (this.ref) {
+            //   this.ref.close(); // Cierra el diálogo
+            // }
+            this.dialogRef.close(); // Cierra el modal
+
           }
+          // if (this.ref) {
+          //   this.ref.close(); // Cierra el diálogo
+          // }
+          // this.ref.close(); // Cierra el diálogo
         }
       });
   }
