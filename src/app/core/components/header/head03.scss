@@ -42,62 +42,54 @@ p-button {
 }
 
 
-/////nuevo  13 02  24
-/// /* CSS */
-// .mobile-sidebar {
-//   background-color: #fff; /* Color de fondo */
-//   width: 100%;
-//   height: 100%;
-//   overflow-y: auto; /* Permite desplazarse verticalmente si el contenido es más largo que la altura */
-//   padding: 20px; /* Espaciado interno */
-//   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra */
-// }
 
-// .sidebar-header {
-//   display: flex;
-//   align-items: center;
-//   margin-bottom: 20px;
-// }
 
-// .pi-user {
-//   font-size: 24px;
-//   margin-right: 10px;
-// }
 
-// .user-name {
-//   font-size: 18px;
-// }
 
-// .sidebar-divider {
-//   margin: 20px 0;
-//   border-top: 1px solid #ccc; /* Línea divisoria */
-// }
+Copy code
+/* CSS */
+.mobile-sidebar {
+  background-color: #f4f4f4; /* Color de fondo */
+  width: 250px; /* Ancho de la barra lateral */
+  height: 100%;
+  overflow-y: auto; /* Permite desplazarse verticalmente si el contenido es más largo que la altura */
+  padding: 20px; /* Espaciado interno */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra */
+}
 
-// .mobile-menu-item {
-//   padding: 10px 0;
-//   font-size: 16px;
-//   cursor: pointer;
-// }
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
 
-// /* Media query para dispositivos móviles */
-// @media screen and (max-width: 767px) {
-//   .mobile-sidebar {
-//     position: fixed; /* Barra lateral fija en dispositivos móviles */
-//     top: 0;
-//     left: 0;
-//     z-index: 1000; /* Asegura que esté sobre otros elementos */
-//     background-color: #fff;
-//     transition: transform 0.3s ease; /* Animación al abrir y cerrar */
-//     transform: translateX(-100%);
-//   }
+.pi-user {
+  font-size: 24px;
+  margin-right: 10px;
+}
 
-//   .mobile-sidebar.active {
-//     transform: translateX(0); /* Muestra la barra lateral */
-//   }
+.user-name {
+  font-size: 18px;
+}
 
-//   .mobile-menu-item {
-//     padding: 15px 0;
-//     font-size: 18px;
-//   }
-// }
+.sidebar-divider {
+  margin: 20px 0;
+  border-top: 1px solid #ccc; /* Línea divisoria */
+}
 
+.mobile-menu-item {
+  padding: 10px 0;
+  font-size: 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.mobile-menu-item span {
+  margin-right: 10px;
+}
+
+/* Estilos para los iconos */
+.pi {
+  font-size: 20px;
+}

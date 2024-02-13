@@ -26,6 +26,8 @@ import { ToggleButtonModule } from 'primeng/togglebutton';
 import {ButtonModule} from 'primeng/button';
 import { AvatarModule } from 'primeng/avatar';
 import { AvatarGroupModule } from 'primeng/avatargroup';
+import { AnimateOnScrollModule } from 'primeng/animateonscroll';
+import { BadgeModule } from 'primeng/badge';
 @NgModule({
   declarations: [
     ChatComponent,
@@ -49,6 +51,8 @@ import { AvatarGroupModule } from 'primeng/avatargroup';
   ],
   imports: [
     // BrowserModule,
+    BadgeModule,
+    AnimateOnScrollModule,
     AvatarGroupModule,
     AvatarModule,
     FormsModule,
