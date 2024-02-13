@@ -3,14 +3,24 @@
 
 
 
-
+.footer-enlaces-rapidos{
+  // background-color: aqua;
+  font-size: 10px;
+}
 
 
 /* Estilos para dispositivos móviles */
 @media (max-width: 600px) {
-  .login-form {
-    padding: 3%;
+  h1{
+    margin-bottom: 0;
   }
+  .login-form {
+    margin: 0;
+    // width: max-content;
+    padding: 1%;
+    height: 30%;
+  }
+
   .login-button {
     margin-top: 0px;
     border-radius: 20px;
@@ -25,6 +35,7 @@
   }
 
 
+
   /* Estilos para ajustar la posición de los iconos en dispositivos móviles */
   .login-form .password-input button,
   .login-form .email-input mat-icon {
@@ -37,20 +48,27 @@
     left: calc(100% - 45px);
   }
 
+
+  
+.footer-enlaces-rapidos{
+  // background-color: aqua;
+  font-size: 8px;
 }
 
-/* Estilos para tabletas (por ejemplo, iPads) */
-@media (min-width: 601px) and (max-width: 1024px) {
-  .login-form {
-    max-width: 80%;
-  }
 }
 
-/* Agrega estilos específicos para dispositivos web */
-@media (min-width: 481px) {
-  .web-dialog {
-    max-height: 80vh; /* Ajusta según tus necesidades */
-    overflow-y: hidden; /* Agrega una barra de desplazamiento vertical si es necesario */
-    background-color: #ffa500;
-  }
-}
+// /* Estilos para tabletas (por ejemplo, iPads) */
+// @media (min-width: 601px) and (max-width: 1024px) {
+//   .login-form {
+//     max-width: 100%;
+//   }
+// }
+
+// /* Agrega estilos específicos para dispositivos web */
+// @media (min-width: 481px) {
+//   .web-dialog {
+//     max-height: 80vh; /* Ajusta según tus necesidades */
+//     overflow-y: hidden; /* Agrega una barra de desplazamiento vertical si es necesario */
+//     background-color: #ffa500;
+//   }
+// }

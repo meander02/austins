@@ -231,42 +231,40 @@ export class HeaderComponent implements OnInit {
     this.visible = true;
   }
 
-  // openSignInModal(): MatDialogRef<SignInView> {
+  // openSignInModal(): void {
   //   this.sidebarVisible = false;
   //   const isMobile = window.innerWidth < 480;
-
-  //   const dialogRef = this.dialog.open(SignInView, {
-  //     width: isMobile ? '120vw' : '460px',
+    
+  //   this.ref = this.dialogService.open(SignInView, {
+  //     // width: isMobile ? '120vw' : '480px',
   //     height: isMobile ? 'auto' : 'auto',
-  //     maxWidth: isMobile ? 'auto' : 'auto',
-  //     maxHeight: isMobile ? 'auto' : '100vh',
-  //     panelClass: isMobile
-  //       ? ['mat-dialog', 'no-padding', 'mobile-dialog']
-  //       : ['mat-dialog', 'no-padding', 'web-dialog'],
-  //     data: {},
+  //     style: {
+  //       'max-Width': isMobile ? '120vw' : 'auto',
+  //       'max-height': isMobile ? 'auto' : '100vh', // Establece la altura máxima del modal
+  //     },
+  //     modal: true,
+  //     breakpoints: {
+  //       '960px': '75vw',
+  //       '640px': '100vw'
+  //     },
+  //     data: {}
   //   });
-
-  //   dialogRef.afterClosed().subscribe((result) => {
-  //     console.log('Modal cerrado', result);
-  //   });
-
-  //   return dialogRef;
   // }
   openSignInModal(): void {
     this.sidebarVisible = false;
     const isMobile = window.innerWidth < 480;
-    
+  
     this.ref = this.dialogService.open(SignInView, {
-      width: isMobile ? '120vw' : '460px',
       height: isMobile ? 'auto' : 'auto',
       style: {
-        'max-Width': isMobile ? 'auto' : 'auto',
-        'max-height': isMobile ? 'none' : '100vh', // Establece la altura máxima del modal
+        'max-width': isMobile ? '110vw' : 'auto',
+        'max-height': isMobile ? 'auto' : '100vh',
+        'padding': '0', // Aquí estableces el padding a 0
       },
       modal: true,
       breakpoints: {
         '960px': '75vw',
-        '640px': '90vw'
+        '640px': '100vw'
       },
       data: {}
     });
