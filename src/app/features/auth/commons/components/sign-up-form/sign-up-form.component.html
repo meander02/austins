@@ -326,29 +326,30 @@
         >Confirmar Contraseña es <strong>requerida</strong></mat-error
       >
 
-      <ngx-recaptcha2
-        class="capcha"
-        #captchaElem
-        [siteKey]="siteKey"
-        matInput
-        formControlName="recaptcha"
-        (success)="handleSuccess($event)"
-      >
-      </ngx-recaptcha2>
-
-      <mat-error
-        class="error-container3"
-        *ngIf="recaptchaFormControl.hasError('required')"
-        >captcha<strong>requerida</strong></mat-error
-      >
-
       <div
         [style.display]="
-        confirmPasswordFormControl.hasError('passwordMatch')
+          confirmPasswordFormControl.hasError('passwordMatch') ||
+          passwordFormControl.hasError('formatError')
             ? 'none'
             : ''
         "
       >
+        <ngx-recaptcha2
+          class="capcha"
+          #captchaElem
+          [siteKey]="siteKey"
+          matInput
+          formControlName="recaptcha"
+          (success)="handleSuccess($event)"
+        >
+        </ngx-recaptcha2>
+
+        <mat-error
+          class="error-container3"
+          *ngIf="recaptchaFormControl.hasError('required')"
+          >captcha<strong>requerida</strong></mat-error
+        >
+
         <div class="button-container">
           <button class="prev-button" (click)="prevStep()">Anterior</button>
           <button
