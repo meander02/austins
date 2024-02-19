@@ -1,7 +1,33 @@
 import { AbstractControl } from "@angular/forms";
 
 export class SignUpValidator {
-  formatPhone(formControl: AbstractControl): { [s: string]: string | boolean } | null {
+
+  // static formatPhone(formControl: AbstractControl): { [s: string]: string | boolean } | null {
+  //   if (!formControl || !formControl.parent) {
+  //     return null;
+  //   }
+
+  //   const phone: string = formControl.value;
+
+  //   // Verificar si el campo de teléfono tiene solo números
+  //   if (!/^\d+$/.test(phone)) {
+  //     return {
+  //       formatError: 'El teléfono debe contener solo números.'
+  //     };
+  //   }
+
+  //   // Verificar si el teléfono tiene una longitud válida (por ejemplo, 10 dígitos)
+  //   if (phone.length !== 10) {
+  //     return {
+  //       formatError: 'El teléfono debe tener exactamente 10 dígitos.'
+  //     };
+  //   }
+
+  //   // Puedes agregar más validaciones específicas para el formato del teléfono si es necesario
+
+  //   return null;
+  // }
+  static formatPhone(formControl: AbstractControl): { [s: string]: string | boolean } | null {
     if (!formControl || !formControl.parent) {
       return null;
     }

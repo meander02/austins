@@ -16,10 +16,15 @@ import { ToastModule } from 'primeng/toast';
 import { StepsModule } from 'primeng/steps';
 import { BreadcrumbModule } from 'primeng/breadcrumb';
 import {MatTabsModule} from '@angular/material/tabs';
+import { InputTextModule } from 'primeng/inputtext';
+import { CalendarModule } from 'primeng/calendar';
+import { DropdownModule } from 'primeng/dropdown';
+import { InputMaskModule } from 'primeng/inputmask';
+import { PasswordModule } from 'primeng/password';
 @NgModule({
-  imports: [MatSnackBarModule,ToastModule,StepsModule,BreadcrumbModule,MatTabsModule], // Agrega FormsModule a los imports
+  imports: [MatSnackBarModule,ToastModule,StepsModule,BreadcrumbModule,MatTabsModule,InputTextModule,CalendarModule,DropdownModule,InputMaskModule,PasswordModule], // Agrega FormsModule a los imports
 
-  exports: [MatSnackBarModule,ToastModule,StepsModule,BreadcrumbModule, FormsModule,MatCardModule,MatFormFieldModule,MatButtonModule,MatInputModule, MatDatepickerModule, MatNativeDateModule,MatSelectModule,MatTabsModule],
+  exports: [MatSnackBarModule,ToastModule,StepsModule,BreadcrumbModule, FormsModule,MatCardModule,MatFormFieldModule,MatButtonModule,MatInputModule, MatDatepickerModule, MatNativeDateModule,MatSelectModule,MatTabsModule,InputTextModule,CalendarModule,DropdownModule,InputMaskModule,PasswordModule],
 
 })
 export class MaterialModule { }

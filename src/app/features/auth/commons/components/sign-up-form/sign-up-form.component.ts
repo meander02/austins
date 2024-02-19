@@ -18,16 +18,19 @@ import { AuthService } from '../../services/auth.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { MenuItem, MessageService } from 'primeng/api';
-
+interface City {
+  name: string;
+}
 @Component({
   selector: 'app-sign-up-form',
   templateUrl: './sign-up-form.component.html',
-  styleUrls: ['./sign-up-form.component.scss',
-   './materror.component.scss',
-   './form-up.component.scss',
-   './up.scss',
-   './up02.scss',
-   './up03.scss'
+  styleUrls: [
+    './sign-up-form.component.scss',
+    './materror.component.scss',
+    './form-up.component.scss',
+    './up.scss',
+    './up02.scss',
+    './up03.scss',
   ],
   providers: [MessageService],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -51,17 +54,15 @@ export class SignUpFormComponent implements OnInit {
     { label: 'sign-up', url: '/signup' },
   ];
 
+  preguntapregunta: City | undefined;
+  isSubmitting = false;
+  group: FormGroup;
+  step: 'personal' | 'contact' | 'credentials' = 'personal';
   preguntasSecretas: string[] = [
     '¿Cuál es tu color favorito?',
     '¿Cuál es el nombre de tu mascota?',
     '¿En qué ciudad naciste?',
-    // Agrega más preguntas según sea necesario
   ];
-
-  isSubmitting = false;
-  group: FormGroup;
-  step: 'personal' | 'contact' | 'credentials' = 'personal';
-
   constructor(
     private snackBar: MatSnackBar,
     private authService: AuthService,
@@ -80,6 +81,7 @@ export class SignUpFormComponent implements OnInit {
     const emailRegex =
       /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
 
+
     this.group = this.formBuilder.group({
       name: [''],
       maternalLastname: [''],
@@ -88,7 +90,7 @@ export class SignUpFormComponent implements OnInit {
       email: ['', [Validators.required, Validators.pattern(emailRegex)]],
       securityQuestion: ['', Validators.required],
       securityAnswer: ['', Validators.required],
-      phone: ['', [Validators.required, signUpValidator.formatPhone]],
+      phone: [''],
       password: ['', [Validators.required, signInValidator.formatPassword]],
       confirmPassword: [
         '',
@@ -130,7 +132,8 @@ export class SignUpFormComponent implements OnInit {
       'maternalLastname',
       'paternalLastname',
       'birthdate',
-      'recaptcha' /* Add other fields as needed */,
+      'recaptcha',
+      'phone',
     ];
     fieldsToValidate.forEach((fieldName) => {
       this.applyValidatorsForField(fieldName);
@@ -138,6 +141,7 @@ export class SignUpFormComponent implements OnInit {
   }
 
   ngOnInit() {
+
     this.group.valueChanges.subscribe(() => {
       this.userTouchedForm = true;
       if (this.userTouchedForm) {
@@ -167,7 +171,6 @@ export class SignUpFormComponent implements OnInit {
               controlErrors['invalidDate'] ||
               controlErrors['invalidLastName'] ||
               controlErrors['invalidName'],
-
           });
 
           this.snackBar.open(
@@ -226,6 +229,12 @@ export class SignUpFormComponent implements OnInit {
           break;
         case 'recaptcha':
           control.setValidators([Validators.required]);
+          break;
+        case 'phone':
+          control.setValidators([
+            Validators.required,
+            SignUpValidator.formatPhone,
+          ]);
           break;
         // Add cases for other fields as needed
       }
@@ -312,6 +321,7 @@ export class SignUpFormComponent implements OnInit {
       phoneControl.setValue(trimmedValue);
     }
   }
+
   onSubmit() {
     this.group.markAllAsTouched();
     Object.keys(this.group.controls).forEach((key) => {
@@ -345,7 +355,7 @@ export class SignUpFormComponent implements OnInit {
 
     if (this.group.valid && !this.isSubmitting) {
       this.isSubmitting = true;
-
+      console.log(this.group.value);
       this.authService
         .signUpAndVerifyEmail(this.group.value)
         .subscribe(

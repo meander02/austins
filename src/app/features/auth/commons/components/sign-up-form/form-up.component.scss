@@ -37,12 +37,24 @@
   color: #aaa;
 }
 
-.form-group .email-input mat-icon {
-  color: #aaa;
+// .form-group .email-input mat-icon {
+//   color: #aaa;
+//   position: absolute;
+//   right: 4px;
+//   // bottom: 0%;
+//   // top: 20%;
+//   // left: 60%;
+//   transform: translateY(-70%);
+// }
+.form-group .email-input .p-input-icon-right {
   position: absolute;
   top: 50%;
-  left: 90%;
+  right: 10px;
   transform: translateY(-50%);
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  font-size: 20px;
 }
 
 .form-group .password-input button:hover + mat-icon {
@@ -99,7 +111,6 @@
 }
 
 @media (max-width: 480px) {
-
   .form-group {
     padding: 3%;
     margin-bottom: 2px; /* Ajuste del margen */

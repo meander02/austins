@@ -27,7 +27,7 @@ a:hover {
   margin: 0 10px;
   cursor: pointer;
   transition: background-color 0.3s;
-  font-size: 11px;
+  font-size: 8px;
   color: #333;
 }
 
@@ -104,15 +104,15 @@ a:hover {
   color: #aaa;
 }
 
-.login-form .email-input mat-icon {
-  color: #aaa;
-  position: absolute;
-  top: 50%;
-  left: 295px;
-  transform: translateY(-50%);
-}
+
 
 .login-form .password-input button:hover + mat-icon {
   color: #333;
 }
 
+mat-error{
+  display: block;
+  // font: 1em "Roboto", sans-serif;
+  color: brown;
+  font-size: small;
+}

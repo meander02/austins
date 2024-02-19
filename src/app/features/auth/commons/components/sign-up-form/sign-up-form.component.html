@@ -19,17 +19,13 @@
   <form (ngSubmit)="onSubmit()" [formGroup]="group">
     <!-- Datos Personales -->
     <div class="form-group" *ngIf="step === 'personal'">
-      <mat-form-field class="animated">
-        <input
-          matInput
-          type="text"
-          id="firstName"
-          placeholder="Juan"
-          formControlName="name"
-        />
+      <div class="card flex">
+        <span class="p-float-label">
+          <input type="text" pInputText id="firstName" formControlName="name" />
 
-        <label for="firstName">Nombre</label>
-      </mat-form-field>
+          <label for="firstName">Nombre</label>
+        </span>
+      </div>
       <div
         class="error-container"
         *ngIf="
@@ -46,17 +42,18 @@
         >
       </div>
 
-      <mat-form-field class="animated">
-        <input
-          matInput
-          type="text"
-          id="paternalLastname"
-          placeholder="Perez"
-          formControlName="maternalLastname"
-        />
-        <label for="maternalLastname">Apellido Materno</label>
-      </mat-form-field>
+      <div class="card flex">
+        <span class="p-float-label">
+          <input
+            type="text"
+            pInputText
+            id="paternalLastname"
+            formControlName="maternalLastname"
+          />
 
+          <label for="maternalLastname">Apellido Materno</label>
+        </span>
+      </div>
       <div
         class="error-container2"
         *ngIf="
@@ -69,16 +66,19 @@
           {{ a1.errors?.['invalidLastName'] }}
         </mat-error>
       </div>
-      <mat-form-field class="animated">
-        <input
-          matInput
-          type="text"
-          id="paternalLastname"
-          placeholder="Gomez"
-          formControlName="paternalLastname"
-        />
-        <label for="paternalLastname">Apellido Paterno</label>
-      </mat-form-field>
+
+      <div class="card flex">
+        <span class="p-float-label">
+          <input
+            type="text"
+            pInputText
+            id="paternalLastname"
+            formControlName="paternalLastname"
+          />
+
+          <label for="paternalLastname">Apellido Paterno</label>
+        </span>
+      </div>
       <div
         class="error-container3"
         *ngIf="
@@ -91,75 +91,102 @@
           {{ a2.errors?.['invalidLastName'] }}
         </mat-error>
       </div>
-      <label>Fecha de Nacimiento</label>
-      <input class="date" type="date" formControlName="birthdate" />
-      <mat-error *ngIf="group.get('birthdate')?.hasError('required')"
+
+      <div class="card flex">
+        <span class="p-float-label">
+          <p-calendar
+            class="birthdate"
+            [iconDisplay]="'input'"
+            formControlName="birthdate"
+            [showIcon]="true"
+          ></p-calendar>
+
+          <label for="birthdate">fecha de nacimiento</label>
+        </span>
+      </div>
+      <mat-error
+        class="error-container3"
+        *ngIf="group.get('birthdate')?.hasError('required')"
         >La fecha de nacimiento es requerida.</mat-error
       >
-      <mat-error *ngIf="group.get('birthdate')?.hasError('invalidDate')"
+      <mat-error
+        class="error-container3"
+        *ngIf="group.get('birthdate')?.hasError('invalidDate')"
         >La fecha de nacimiento no puede ser en el futuro.</mat-error
       >
 
-      <div class="button-container">
-        <button
-          class="next-button"
-          (click)="nextStep('contact')"
-          [disabled]="!arePersonalFieldsFilled()"
-        >
-          Siguiente
-        </button>
-      </div>
+      <div
+        [style.display]="
+          a2.hasError('invalidLastName') ||
+          a1.hasError('invalidLastName') ||
+          group.get('birthdate')?.hasError('invalidDate')
+            ? 'none'
+            : ''
+        "
+      >
+        <div class="button-container">
+          <button
+            class="next-button"
+            (click)="nextStep('contact')"
+            [disabled]="!arePersonalFieldsFilled()"
+          >
+            Siguiente
+          </button>
+        </div>
 
-      <div class="social-login">
-        <button class="social-button google-button">
-          <img src="assets/icons/icons8-google-30.svg" alt="Google" />
-          Registrarse con Google
-        </button>
-        <button class="social-button facebook-button">
-          <img src="assets/icons/facebook_4494475.png" alt="Facebook" />
-          Registrarse con Facebook
-        </button>
+        <div class="social-login">
+          <button class="social-button google-button">
+            <img src="assets/icons/icons8-google-30.svg" alt="Google" />
+            Registrarse con Google
+          </button>
+          <button class="social-button facebook-button">
+            <img src="assets/icons/facebook_4494475.png" alt="Facebook" />
+            Registrarse con Facebook
+          </button>
+        </div>
       </div>
     </div>
 
     <!-- Datos de Contacto -->
     <div class="form-group" *ngIf="step === 'contact'">
       <!-- En tu plantilla -->
-      <mat-form-field class="animated">
-        <mat-label>Pregunta de Seguridad</mat-label>
-        <mat-select formControlName="securityQuestion" required>
-          <mat-option
-            *ngFor="let pregunta of preguntasSecretas"
-            [value]="pregunta"
-          >
-            {{ pregunta }}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
 
-      <mat-form-field class="animated">
-        <input
-          matInput
-          type="text"
-          placeholder="Respuesta"
-          formControlName="securityAnswer"
-        />
-        <label>Respuesta de Seguridad</label>
-      </mat-form-field>
+      <div class="card flex">
+        <span class="p-float-label">
+          <p-dropdown
+            class="p-dropdown"
+            formControlName="securityQuestion"
+            [options]="preguntasSecretas"
+            [showClear]="true"
+            placeholder="Seleccionar la pregunta secreta"
+          ></p-dropdown>
+          <label for="securityQuestion">Pregunta secreta</label>
+        </span>
+      </div>
 
-      <mat-form-field class="animated">
-        <input
-          autocomplete="false"
-          type="number"
-          matInput
-          pattern="[0-9]*"
-          maxlength="10"
-          placeholder="123-456-7890"
-          formControlName="phone"
-          (input)="onPhoneInput($event)"
-        />
-        <label>Teléfono</label>
-      </mat-form-field>
+      <div class="card flex">
+        <span class="p-float-label">
+          <input type="text" pInputText formControlName="securityAnswer" />
+
+          <label for="securityAnswer">Respuesta de Seguridad</label>
+        </span>
+      </div>
+      <div class="card flex">
+        <span class="p-float-label">
+          <input
+            pInputText
+            autocomplete="false"
+            type="number"
+            pattern="[0-9]*"
+            maxlength="10"
+            placeholder="123-456-7890"
+            formControlName="phone"
+            (input)="onPhoneInput($event)"
+          />
+
+          <label for="phone">Teléfono</label>
+        </span>
+      </div>
 
       <div
         class="error-container3"
@@ -189,29 +216,40 @@
 
     <!-- Usuario y Contraseña -->
     <div class="form-group" *ngIf="step === 'credentials'">
-      <mat-form-field class="animated email-input">
-        <input
-          type="email"
-          matInput
-          formControlName="email"
-          placeholder="EJ:juanPerez@gmail.com"
-        />
-        <label>Email</label>
-        <mat-icon>email</mat-icon>
-        <mat-error *ngIf="emailFormControl.hasError('required')"
-          >Email es <strong>requerido</strong></mat-error
-        >
-      </mat-form-field>
-      <div class="form-group password-input">
-        <mat-form-field class="animated">
+      <div class="card flex email-input">
+        <span class="p-float-label">
           <input
-            matInput
+            pInputText
+            type="email"
+            formControlName="email"
+            placeholder="EJ:juanPerez@gmail.com"
+          />
+
+          <label>Email</label>
+          <span class="p-input-icon-right">
+            <!-- <mat-icon>email</mat-icon> -->
+            <i class="pi pi-envelope"></i>
+          </span>
+        </span>
+      </div>
+      <mat-error
+        class="error-container3"
+        *ngIf="emailFormControl.hasError('required')"
+        >Email es <strong>requerido</strong></mat-error
+      >
+      <div class="card flex password-input">
+        <span class="p-float-label">
+          <!-- <p-password pInputText [toggleMask]="true"></p-password> -->
+
+          <input
+            pInputText
             type="password"
             placeholder="********"
             formControlName="password"
             [type]="passwordFieldType1"
           />
           <label>Contraseña</label>
+          <span class="p-input-icon-right"> </span>
           <button
             mat-icon-button
             type="button"
@@ -220,56 +258,76 @@
               passwordVisible1 ? 'Ocultar contraseña' : 'Mostrar contraseña'
             "
           >
-            <mat-icon>{{
-              passwordVisible1 ? "visibility_off" : "visibility"
-            }}</mat-icon>
+            <i
+              class="pi"
+              [ngClass]="{
+                'pi-eye': !passwordVisible1,
+                'pi-eye-slash': passwordVisible1
+              }"
+            ></i>
           </button>
-          <mat-error *ngIf="passwordFormControl.hasError('required')"
-            >Contraseña es <strong>requerida</strong></mat-error
-          >
-          <mat-error
-            *ngIf="passwordFormControl.hasError('formatError')"
-            >{{ passwordFormControl.errors?.['formatError'] }}</mat-error
-          >
-        </mat-form-field>
+        </span>
       </div>
-      <div class="form-group password-input">
-      <mat-form-field class="animated">
-        <input
-          matInput
-          type="password"
-          placeholder="********"
-          formControlName="confirmPassword"
-          (input)="onConfirmPasswordInput($event)"
-          [type]="passwordFieldType2"
-        />
-        <label>Confirmar Contraseña</label>
-        <button
-          mat-icon-button
-          type="button"
-          (click)="togglePasswordVisibility2()"
-          [attr.aria-label]="
-            passwordVisible2 ? 'Ocultar contraseña' : 'Mostrar contraseña'
-          "
-        >
-          <mat-icon>{{
-            passwordVisible2 ? "visibility_off" : "visibility"
-          }}</mat-icon>
-        </button>
-        <mat-error *ngIf="confirmPasswordFormControl.hasError('passwordMatch')"
-          >Las contraseñas no coinciden</mat-error
-        >
-        <mat-error
-          *ngIf="confirmPasswordFormControl.hasError('formatError')"
-          >{{ confirmPasswordFormControl.errors?.['formatError'] }}</mat-error
-        >
-        <mat-error *ngIf="confirmPasswordFormControl.hasError('required')"
-          >Confirmar Contraseña es <strong>requerida</strong></mat-error
-        >
-      </mat-form-field>
-    </div>
+      <mat-error
+        class="error-container3"
+        *ngIf="passwordFormControl.hasError('required')"
+        >Contraseña es <strong>requerida</strong></mat-error
+      >
+      <mat-error
+        class="error-container3"
+        *ngIf="passwordFormControl.hasError('formatError')"
+        >{{ passwordFormControl.errors?.['formatError'] }}</mat-error
+      >
+      <div class="card flex password-input">
+        <span class="p-float-label">
+          <!-- <p-password pInputText [toggleMask]="true"></p-password> -->
+
+          <input
+            pInputText
+            type="password"
+            placeholder="********"
+            formControlName="confirmPassword"
+            (input)="onConfirmPasswordInput($event)"
+            [type]="passwordFieldType2"
+          />
+          <label>Contraseña</label>
+          <span class="p-input-icon-right"> </span>
+          <button
+            mat-icon-button
+            type="button"
+            (click)="togglePasswordVisibility2()"
+            [attr.aria-label]="
+              passwordVisible2 ? 'Ocultar contraseña' : 'Mostrar contraseña'
+            "
+          >
+            <i
+              class="pi"
+              [ngClass]="{
+                'pi-eye': !passwordVisible2,
+                'pi-eye-slash': passwordVisible2
+              }"
+            ></i>
+          </button>
+        </span>
+      </div>
+      <mat-error
+        class="error-container3"
+        *ngIf="confirmPasswordFormControl.hasError('passwordMatch')"
+        >Las contraseñas no coinciden</mat-error
+      >
+      <mat-error
+        class="error-container3"
+        *ngIf="confirmPasswordFormControl.hasError('formatError')"
+        >{{ confirmPasswordFormControl.errors?.['formatError'] }}</mat-error
+      >
+      <mat-error
+        class="error-container3"
+        *ngIf="confirmPasswordFormControl.hasError('required')"
+        >Confirmar Contraseña es <strong>requerida</strong></mat-error
+      >
+
       <ngx-recaptcha2
-        class="social-login"
+        class="capcha"
         #captchaElem
         [siteKey]="siteKey"
         matInput
@@ -278,18 +336,29 @@
       >
       </ngx-recaptcha2>
 
-      <mat-error *ngIf="recaptchaFormControl.hasError('required')"
+      <mat-error
+        class="error-container3"
+        *ngIf="recaptchaFormControl.hasError('required')"
         >captcha<strong>requerida</strong></mat-error
       >
-      <div class="button-container">
-        <button class="prev-button" (click)="prevStep()">Anterior</button>
-        <button
-          class="next-button"
-          (click)="onSubmit()"
-          [disabled]="!this.group.valid || isSubmitting"
-        >
-          Registrarse
-        </button>
+
+      <div
+        [style.display]="
+        confirmPasswordFormControl.hasError('passwordMatch')
+            ? 'none'
+            : ''
+        "
+      >
+        <div class="button-container">
+          <button class="prev-button" (click)="prevStep()">Anterior</button>
+          <button
+            class="next-button"
+            (click)="onSubmit()"
+            [disabled]="!this.group.valid || isSubmitting"
+          >
+            Registrarse
+          </button>
+        </div>
       </div>
     </div>
   </form>

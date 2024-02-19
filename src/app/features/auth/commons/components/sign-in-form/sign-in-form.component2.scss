@@ -22,10 +22,10 @@ mat-form-field {
 }
 
 .login-form {
-  background-color: #F5F5F5;
+  // background-color: #F5F5F5;
   // background-color: #ef2424;
   border-radius: 20px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  // box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   text-align: center;
   // padding: 1%;
   max-width: 460px;
@@ -33,8 +33,17 @@ mat-form-field {
   margin: 0;
   width: 100%;
   padding: 20px;
+  .card{
+    margin-top: 30px;
+  }
+  input {
+    height: 40%;
+    // border-radius: 8px;
+    width: 100%;
+
+  }
   // box-sizing: border-box;
- 
+
   // margin: 0 ;
 }
 
@@ -45,7 +54,7 @@ mat-form-field {
 // }
 
 .login-form fieldset {
-  border: 4px solid #fffffd;
+  border: 2px solid #facca4;
   border-radius: 8px;
   // padding: 5px;
 }
@@ -58,7 +67,7 @@ mat-form-field {
 .login-form input[type="email"],
 .login-form input[type="password"] {
   margin: 0px 0;
-  border-radius: 100%;
+  // border-radius: 100%;
 }
 
 .login-button {
