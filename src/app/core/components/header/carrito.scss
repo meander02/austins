@@ -1,36 +1,54 @@
-
 /* header.component.scss */
+
+/* Estilos del encabezado */
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem;
+  border-bottom: 1px solid #ccc;
+}
+
 .header-icon {
-  font-size: 2rem;
-  margin-right: 1rem;
+  font-size: 1.2rem;
+  margin-right: 0.5rem;
 }
 
 .header-title {
-  font-size: 1.5rem;
+  font-size: 1rem;
   margin: 0;
 }
 
-.product-details {
+/* Estilos de la tabla de carrito */
+.cart-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.cart-row {
   display: flex;
-  align-items: center;
-  margin-bottom: 1rem;
+  // border-bottom: 1px solid #ccc;
 }
 
-.product-image {
-  width: 60px; /* Ajusta el tamaño de la imagen según sea necesario */
-  height: 60px;
-  margin-right: 1rem;
-  border-radius: 4px;
-}
-
-.product-name {
-  font-size: 1.2rem;
+.cart-header {
   font-weight: bold;
 }
 
+.cart-column {
+  flex: 1;
+  padding: 0.5rem;
+}
+
+.product-image {
+  width: 40px;
+  height: 40px;
+  margin-right: 0.3rem;
+  border-radius: 4px;
+}
+
+.product-name,
+.product-quantity,
 .product-price {
-  font-size: 1rem;
-  margin-left: auto; /* Mueve el precio a la derecha */
+  font-size: 0.9rem;
 }
 
 .product-quantity-controls {
@@ -38,41 +56,89 @@
   align-items: center;
 }
 
+.price-and-delete {
+  display: flex;
+  align-items: baseline;
+}
 .btn-quantity {
-  width: 2rem;
-  height: 2rem;
-  margin: 0 0.5rem;
-  font-size: 1.2rem;
-  border-radius: 50%;
+  color: #000000;
+  border: #000000 1px solid;
+  background-color: transparent;
+  // border: none;
+  cursor: pointer;
+  font-size: small;
+  font-weight: bold;
+  padding: 10px;
+  margin: 0 0.2rem;
+  width: 1rem;
+  height: 1rem;
 }
-
-.product-quantity {
-  margin: 0 1rem;
-  font-size: 1.2rem;
-}
-
-.btn-delete {
+.btn-delete{
   color: #000000;
   background-color: transparent;
   border: none;
   cursor: pointer;
-  margin-left: auto;
+  font-size: small;
+  font-weight: bold;
+  padding: 10px;
+  margin: 0 0.2rem;
+  width: 1rem;
+  height: 1rem;
 }
 
+/* Estilos para el pie de página */
 .total-section {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 1rem;
-  font-size: 1.2rem;
+  padding: 0.5rem;
+  text-align: center;
+  font-size: 0.9rem;
+  color: #000000;
+  font-weight: bold;
+}
+.btn {
+  padding: 0.5rem; /* Reducir el padding */
+  text-align: center;
+  font-size: 0.9rem; /* Reducir el tamaño del texto */
+  font-weight: bold; /* Negrita */
+}
+.btn-finish,
+.btn-continue-shopping {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  margin-top: 0.5rem;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.btn-finish {
+  background-color: #000000;
+  color: #ccc;
+}
+
+.btn-continue-shopping {
+  background-color: transparent;
+  color: #000000;
+}
+
+
+.empty-cart-message {
+  font-style: italic;
+  text-align: center; /* Centra el mensaje */
+  margin: 1rem 0; /* Añade espacio alrededor del mensaje */
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
 .empty-cart-message {
-  font-size: 1.2rem;
-}
-
-.btn-finish,
-.btn-continue-shopping {
-  width: 100%;
-  margin-top: 1rem;
-  font-size: 1.2rem;
+  animation: pulse 1.5s infinite; /* Aplica la animación */
 }

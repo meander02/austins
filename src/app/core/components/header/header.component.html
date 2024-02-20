@@ -17,7 +17,7 @@
     <span class="pi pi-user"></span>
     <span class="user-name">{{ userName }}</span>
   </div>
-  <hr class="sidebar-divider" />
+  <!-- <hr class="sidebar-divider" /> -->
   <div class="mobile-menu-item" (click)="redirectTo('home')">
     <span class="pi pi-home"></span> Home
   </div>
@@ -91,98 +91,67 @@
 <!-- HTML -->
 <!-- HTML -->
 <!-- HTML -->
-
-<p-sidebar [(visible)]="sidebarVisible2" [style]="{ width: '30rem' }">
+<p-sidebar [(visible)]="sidebarVisible2">
   <div class="sidebar-header">
     <span class="header-icon pi pi-shopping-cart"></span>
     <h2 class="header-title">Tu Carrito</h2>
   </div>
   <div class="sidebar-content">
     <div *ngIf="carData.length > 0; else emptyCart">
-      <div *ngFor="let item of carData" class="cart-item">
-        <!-- Agrega la directiva *ngIf en un elemento interno -->
-        <div *ngIf="item.cantidad > 0">
-          <!-- <app-product [product]="product" (click)="removeItem(item)"></app-product> -->
-          <div class="product-details">
-            <img
-              [src]="item.image[0] | defaultImg"
-              alt="Producto"
-              class="product-image"
-            />
+      <div class="cart-table">
+        <div class="cart-row cart-header">
+          <div class="cart-column">Artículo</div>
+          <div class="cart-column">Cantidad</div>
+          <div class="cart-column">Precio</div>
+
+        </div>
+        <div *ngFor="let item of carData" class="cart-row">
+          <div class="cart-column">
+            <img [src]="item.image[0] | defaultImg" alt="Producto" class="product-image" />
             <span class="product-name">{{ item.name }}</span>
-            <span class="product-price">{{ item.precio | currency }}</span>
+          </div>
+          <div class="cart-column">
             <div class="product-quantity-controls">
-              <button
-                pButton
-                type="button"
-                icon="pi pi-plus"
-                class="btn-quantity"
-                (click)="incrementQuantity(item)"
-              ></button>
-              <span class="product-quantity"
-                >Cantidad: {{ item.cantidad }}</span
-              >
-              <button
-                pButton
-                type="button"
-                icon="pi pi-minus"
-                class="btn-quantity"
-                (click)="decrementQuantity(item)"
-                [disabled]="item.cantidad === 1"
-              ></button>
+              <!-- <button pButton type="button" icon="pi pi-plus" class="btn-quantity" (click)="incrementQuantity(item)"></button> -->
+              <button pButton type="button" icon="pi pi-plus" class="btn-quantity" (click)="incrementQuantity(item)"></button>
+              <span class="product-quantity"> {{ item.cantidad }} </span>
+              <button pButton type="button" icon="pi pi-minus" class="btn-quantity" (click)="decrementQuantity(item)" [disabled]="item.cantidad === 1"></button>
             </div>
-            <!-- <button pButton type="button" icon="pi pi-trash" class="btn-delete" (click)="removeItem(item)" ></button> -->
-            <!-- <button
-              pButton
-              type="button"
-              icon="pi pi-trash"
-              class="btn-delete"
-              (click)="removeItem(item)"
-            ></button> -->
+          </div>
+          <div class="cart-column">
+
+          <div class="price-and-delete">
+            <!-- Precio del producto -->
+            <span class="product-price">{{ item.precio | currency }}</span>
+            <!-- Botón eliminar -->
             <p-toast></p-toast>
             <p-confirmPopup></p-confirmPopup>
 
-            <!-- <button
-              pButton
-              type="button"
-              icon="pi pi-trash"
-              class="btn-delete"
-              (click)="removeItem(item)"
-            ></button> -->
-            <!-- <button
-              pButton
-              type="button"
-              icon="pi pi-trash"
-              class="btn-delete"
-              (click)="confirm2($event)"
-            ></button> -->
-            <button
-            pButton
-            type="button"
-            icon="pi pi-trash"
-            class="btn-delete"
-            (click)="confirm2($event, item)"
-          ></button>
-          
+            <button pButton type="button" icon="pi pi-trash" class="btn-delete" (click)="confirm2($event, item)"></button>
+          </div>
           </div>
         </div>
       </div>
+        <hr class="sidebar-divider" />
       <div class="total-section">
         <span class="total-label">Total:</span>
         <span class="total-amount">{{ getTotalAmount() | currency }}</span>
       </div>
-      <button class="btn-finish" (click)="finishPurchase()">
-        Finalizar Compra
-      </button>
+      <div class="btn">
+
+        <button class="btn-finish" (click)="finishPurchase()">Finalizar Compra</button>
+      </div>
+
+
     </div>
     <ng-template #emptyCart>
       <div class="empty-cart-message">Tu carrito está vacío</div>
     </ng-template>
-    <button class="btn-continue-shopping" (click)="closeSidebar()">
-      Cerrar y Continuar Comprando
-    </button>
+    <button pButton class="btn-continue-shopping"   icon="pi pi-angle-left" (click)="closeToCart()">Cerrar y Continuar Comprando</button>
   </div>
 </p-sidebar>
+
+
 
 <div *ngIf="shouldShowHeader">
   <div
@@ -282,6 +251,7 @@
       matBadgeColor="warn"
       class="material-icons primary"
       (click)="goToCart()"
+      
       >shopping_cart</mat-icon
     >
   </div>

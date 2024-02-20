@@ -231,6 +231,19 @@ export class HeaderComponent implements OnInit {
     // debugger
     // this.router.navigateByUrl('/payment/cart');
   }
+  closeToCart(): void {
+    const carDataFromStorage = this.storageService.getCarrito();
+
+    // Asignar los datos del carrito al arreglo carData
+    if (carDataFromStorage) {
+      this.carData = carDataFromStorage;
+    }
+
+    // console.log('Datos del carrito:', this.carData);
+    this.sidebarVisible2 = false;
+    // debugger
+    // this.router.navigateByUrl('/payment/cart');
+  }
 
   isRUTA_DISTINTE_ahome(): boolean {
     // Utiliza el evento de cambio de ruta para actualizar 'currentRoute'
@@ -272,25 +285,7 @@ export class HeaderComponent implements OnInit {
     this.visible = true;
   }
 
-  // openSignInModal(): void {
-  //   this.sidebarVisible = false;
-  //   const isMobile = window.innerWidth < 480;
 
-  //   this.ref = this.dialogService.open(SignInView, {
-  //     // width: isMobile ? '120vw' : '480px',
-  //     height: isMobile ? 'auto' : 'auto',
-  //     style: {
-  //       'max-Width': isMobile ? '120vw' : 'auto',
-  //       'max-height': isMobile ? 'auto' : '100vh', // Establece la altura máxima del modal
-  //     },
-  //     modal: true,
-  //     breakpoints: {
-  //       '960px': '75vw',
-  //       '640px': '100vw'
-  //     },
-  //     data: {}
-  //   });
-  // }
   openSignInModal(): void {
     this.sidebarVisible = false;
     const isMobile = window.innerWidth < 480;
@@ -307,6 +302,7 @@ export class HeaderComponent implements OnInit {
         '960px': '75vw',
         '640px': '100vw',
       },
+ 
       data: {},
     });
   }
@@ -357,8 +353,8 @@ export class HeaderComponent implements OnInit {
       accept: () => {
 
         this.messageService.add({
-          severity: 'success',
-          summary: 'Success',
+          severity: 'error',
+          summary: 'Eliminado',
           detail: `El producto "${item.name}" ha sido eliminado del carrito`,
           life: 3000,
         });
@@ -369,12 +365,12 @@ export class HeaderComponent implements OnInit {
 
       },
       reject: () => {
-        this.messageService.add({
-          severity: 'error',
-          summary: 'Rechazado',
-          detail: 'La eliminación del producto ha sido cancelada',
-          life: 3000,
-        });
+        // this.messageService.add({
+        //   severity: 'error',
+        //   summary: 'Rechazado',
+        //   detail: 'La eliminación del producto ha sido cancelada',
+        //   life: 3000,
+        // });
 
         // this.messageService.add({ severity: 'error', summary: 'Rejected', detail: 'You have rejected', life: 3000 });
       },
