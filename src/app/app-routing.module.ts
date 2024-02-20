@@ -27,7 +27,7 @@ const routes: Routes = [
   },
   {
     path: 'payment',
-    canActivate:[isAuthenticatedGuard],
+    // canActivate:[isAuthenticatedGuard],
     loadChildren: () =>
       import('./features/payment/payment.module').then((m) => m.PaymentModule),
   },

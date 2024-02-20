@@ -41,7 +41,8 @@ export class SignUpFormComponent implements OnInit {
   passwordVisible2: boolean = false;
   passwordFieldType1: string = 'password';
   passwordFieldType2: string = 'password';
-
+  termsAccepted: boolean = false;
+  recaptchaValid = false;
   items: MenuItem[] = [
     { label: 'personal' },
     { label: 'contact' },
@@ -81,22 +82,35 @@ export class SignUpFormComponent implements OnInit {
     const emailRegex =
       /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
 
-
+    // this.group = this.formBuilder.group({
+    //   name: [''],
+    //   maternalLastname: [''],
+    //   paternalLastname: [''],
+    //   birthdate: [''],
+    //   email: ['', [Validators.required, Validators.pattern(emailRegex)]],
+    //   securityQuestion: ['', Validators.required],
+    //   securityAnswer: ['', Validators.required],
+    //   phone: [''],
+    //   password: ['', [Validators.required, signInValidator.formatPassword]],
+    //   confirmPassword: [
+    //     '',
+    //     [Validators.required, this.passwordMatchValidator.bind(this)],
+    //   ],
+    //   recaptcha: ['', Validators.required],
+    // });
     this.group = this.formBuilder.group({
       name: [''],
       maternalLastname: [''],
       paternalLastname: [''],
       birthdate: [''],
-      email: ['', [Validators.required, Validators.pattern(emailRegex)]],
-      securityQuestion: ['', Validators.required],
-      securityAnswer: ['', Validators.required],
+      email: [''],
+      securityQuestion: [''],
+      securityAnswer: [''],
       phone: [''],
-      password: ['', [Validators.required, signInValidator.formatPassword]],
-      confirmPassword: [
-        '',
-        [Validators.required, this.passwordMatchValidator.bind(this)],
-      ],
-      recaptcha: ['', Validators.required],
+      password: [''],
+      confirmPassword: [''],
+      recaptcha: [''],
+      priv: [''],
     });
   }
 
@@ -132,8 +146,14 @@ export class SignUpFormComponent implements OnInit {
       'maternalLastname',
       'paternalLastname',
       'birthdate',
+      'email',
+      'securityQuestion',
+      'securityAnswer',
       'recaptcha',
       'phone',
+      'password',
+      'confirmPassword',
+      'priv',
     ];
     fieldsToValidate.forEach((fieldName) => {
       this.applyValidatorsForField(fieldName);
@@ -141,7 +161,6 @@ export class SignUpFormComponent implements OnInit {
   }
 
   ngOnInit() {
-
     this.group.valueChanges.subscribe(() => {
       this.userTouchedForm = true;
       if (this.userTouchedForm) {
@@ -153,14 +172,37 @@ export class SignUpFormComponent implements OnInit {
       this.onSecurityQuestionChange();
     });
   }
-
+  // handleRecaptchaValidation(event: any): void {
   handleSuccess(event: any): void {
-    this.group.markAllAsTouched();
+    this.recaptchaValid = event ? true : false;
 
+    // if (this.group.valid && !this.isSubmitting) {
+    if (this.recaptchaValid) {
+      this.applyValidatorsAfterInteraction();
+      const control1 = this.group.get("priv");
+      if (control1) {
+        control1.updateValueAndValidity({ onlySelf: true, emitEvent: false });
+      } else {
+        console.error("El control 'priv' no fue encontrado en el FormGroup.");
+      }
+      const control2 = this.group.get("recaptcha");
+      if (control2) {
+        control2.updateValueAndValidity({ onlySelf: true, emitEvent: false });
+      } else {
+        console.error("El control 'priv' no fue encontrado en el FormGroup.");
+      }
+      
+      console.log(this.recaptchaValid);
+      // this.isSubmitting = true;
+    }
+    // this.isSubmitting = true;
     Object.keys(this.group.controls).forEach((key) => {
       const controlErrors = this.group.get(key)?.errors;
       if (controlErrors != null || controlErrors != undefined) {
         // console.log(controlErrors);
+        // this.isSubmitting = true;
+
+        this.group.markAllAsTouched();
         console.log('reCAPTCHA success:', controlErrors);
         if (controlErrors['required'] != true) {
           this.messageService.add({
@@ -199,7 +241,8 @@ export class SignUpFormComponent implements OnInit {
   }
   private applyValidatorsForField(fieldName: string) {
     const control = this.group.get(fieldName);
-
+    const emailRegex =
+      /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
     if (control && control.dirty && control.touched) {
       // Check if the control is both dirty and touched
       switch (fieldName) {
@@ -227,7 +270,34 @@ export class SignUpFormComponent implements OnInit {
             SignUpValidator.isValidDate,
           ]);
           break;
+        case 'email':
+          control.setValidators([
+            Validators.required,
+            Validators.pattern(emailRegex),
+          ]);
+          break;
+        case 'securityQuestion':
+          control.setValidators(Validators.required);
+          break;
+        case 'securityAnswer':
+          control.setValidators(Validators.required);
+          break;
+        case 'password':
+          control.setValidators([
+            Validators.required,
+            SignInValidator.formatPassword,
+          ]);
+          break;
+        case 'confirmPassword':
+          control.setValidators([
+            Validators.required,
+            this.passwordMatchValidator.bind(this),
+          ]);
+          break;
         case 'recaptcha':
+          control.setValidators([Validators.required]);
+          break;
+        case 'priv':
           control.setValidators([Validators.required]);
           break;
         case 'phone':
@@ -304,6 +374,9 @@ export class SignUpFormComponent implements OnInit {
   get recaptchaFormControl(): FormControl {
     return this.group.get('recaptcha') as FormControl;
   }
+  get privFormControl(): FormControl {
+    return this.group.get('priv') as FormControl;
+  }
 
   onSecurityQuestionChange() {
     this.securityAnswerFormControl.reset('');
@@ -322,79 +395,200 @@ export class SignUpFormComponent implements OnInit {
     }
   }
 
+  // onSubmit() {
+  //   this.group.markAllAsTouched();
+  //   Object.keys(this.group.controls).forEach((key) => {
+  //     const controlErrors = this.group.get(key)?.errors;
+  //     if (controlErrors != null) {
+  //       console.log(controlErrors);
+  //       this.messageService.add({
+  //         severity: 'error',
+  //         summary: 'Error',
+  //         detail:
+  //           controlErrors['formatError'] ||
+  //           controlErrors['invalidDate'] ||
+  //           controlErrors['invalidLastName'] ||
+  //           controlErrors['invalidName'],
+  //         // controlErrors['passwordMismatch'],
+  //       });
+
+  //       this.snackBar.open(
+  //         `Error en el campo ${key}:` + controlErrors['formatError'] ||
+  //           controlErrors['invalidDate'] ||
+  //           controlErrors['invalidLastName'] ||
+  //           controlErrors['invalidName'],
+  //         // controlErrors['passwordMismatch'],
+  //         'Cerrar',
+  //         {
+  //           duration: 3000,
+  //         }
+  //       );
+  //     }
+  //   });
+
+  //   if (this.group.valid && !this.isSubmitting) {
+  //     this.isSubmitting = true;
+  //     console.log(this.group.value);
+  //     console.log(this.termsAccepted);
+  //     const control1 = this.group.get("priv");
+  //     if (control1) {
+  //       control1.updateValueAndValidity({ onlySelf: true, emitEvent: false });
+  //     } else {
+  //       console.error("El control 'priv' no fue encontrado en el FormGroup.");
+  //     }
+  //     const control2 = this.group.get("recaptcha");
+  //     if (control2) {
+  //       control2.updateValueAndValidity({ onlySelf: true, emitEvent: false });
+  //     } else {
+  //       console.error("El control 'priv' no fue encontrado en el FormGroup.");
+  //     }
+      
+  //     if (this.termsAccepted && this.recaptchaValid == true) {
+  //       this.authService
+  //         .signUpAndVerifyEmail(this.group.value)
+  //         .subscribe(
+  //           (response) => {
+  //             this.snackBar.open(response.message, 'Cerrar', {
+  //               duration: 3000,
+  //             });
+
+  //             this.messageService.add({
+  //               key: 'bc',
+  //               severity: 'success',
+  //               summary: 'Success',
+  //               detail: response.message,
+  //             });
+  //             this.router.navigate([
+  //               '/auth/user-create',
+  //               { userEmail: this.group.value.email },
+  //             ]);
+  //           },
+  //           (error) => {
+  //             const errorMessage =
+  //               error.error.message || 'Error en el servidor';
+  //             this.snackBar.open(errorMessage, 'Cerrar', {
+  //               duration: 3000,
+  //             });
+  //             this.messageService.add({
+  //               severity: 'error',
+  //               summary: 'Error',
+  //               detail: errorMessage,
+
+  //               // controlErrors['passwordMismatch'],
+  //             });
+  //           }
+  //         )
+  //         .add(() => {
+  //           this.isSubmitting = false;
+  //         });
+  //     } else {
+  //       this.messageService.add({
+  //         severity: 'error',
+  //         summary: 'Error',
+  //         detail:
+  //           'Para continuar, por favor acepta los términos y condiciones.',
+  //       });
+  //       this.group.markAllAsTouched();
+  //       // this.isSubmitting = true;
+  //     }
+  //   }
+  // }
   onSubmit() {
-    this.group.markAllAsTouched();
-    Object.keys(this.group.controls).forEach((key) => {
-      const controlErrors = this.group.get(key)?.errors;
-      if (controlErrors != null) {
-        // console.log(controlErrors);
-        this.messageService.add({
-          severity: 'error',
-          summary: 'Error',
-          detail:
-            controlErrors['formatError'] ||
-            controlErrors['invalidDate'] ||
-            controlErrors['invalidLastName'] ||
-            controlErrors['invalidName'],
-          // controlErrors['passwordMismatch'],
-        });
-
-        this.snackBar.open(
-          `Error en el campo ${key}:` + controlErrors['formatError'] ||
-            controlErrors['invalidDate'] ||
-            controlErrors['invalidLastName'] ||
-            controlErrors['invalidName'],
-          // controlErrors['passwordMismatch'],
-          'Cerrar',
-          {
-            duration: 3000,
-          }
-        );
-      }
-    });
-
+    this.markAllControlsAsTouched();
+    this.displayControlErrors();
+    
     if (this.group.valid && !this.isSubmitting) {
       this.isSubmitting = true;
-      console.log(this.group.value);
-      this.authService
-        .signUpAndVerifyEmail(this.group.value)
-        .subscribe(
-          (response) => {
-            this.snackBar.open(response.message, 'Cerrar', {
-              duration: 3000,
-            });
-
-            this.messageService.add({
-              key: 'bc',
-              severity: 'success',
-              summary: 'Success',
-              detail: response.message,
-            });
-            this.router.navigate([
-              '/auth/user-create',
-              { userEmail: this.group.value.email },
-            ]);
-          },
-          (error) => {
-            const errorMessage = error.error.message || 'Error en el servidor';
-            this.snackBar.open(errorMessage, 'Cerrar', {
-              duration: 3000,
-            });
-            this.messageService.add({
-              severity: 'error',
-              summary: 'Error',
-              detail: errorMessage,
-
-              // controlErrors['passwordMismatch'],
-            });
-          }
-        )
-        .add(() => {
-          this.isSubmitting = false;
-        });
+      
+      if (this.termsAccepted && this.recaptchaValid) {
+        this.registerUser();
+      } else {
+        this.displayControlErrors();
+    
+        // No se cumplen los requisitos para el envío del formulario
+        if (!this.termsAccepted) {
+          this.snackBar.open("Para continuar, por favor acepta los términos y condiciones", 'Cerrar', { duration: 3000 });
+          // this.showError("Para continuar, por favor acepta los términos y condiciones.");
+        }
+        if (!this.recaptchaValid) {
+          this.snackBar.open("Por favor completa el reCAPTCHA", 'Cerrar', { duration: 3000 });
+          // this.showError("Por favor completa el reCAPTCHA.");
+        }
+        this.isSubmitting = false; // Restaurar el estado de envío
+      }
     }
   }
+  
+  
+  markAllControlsAsTouched() {
+    this.group.markAllAsTouched();
+  }
+  
+  displayControlErrors() {
+    Object.keys(this.group.controls).forEach(key => {
+      const controlErrors = this.group.get(key)?.errors;
+      if (controlErrors) {
+        const errorMessage = controlErrors['formatError'] || controlErrors['invalidDate'] ||
+                             controlErrors['invalidLastName'] || controlErrors['invalidName'];
+        console.log(controlErrors);
+        // this.showError(`Error en el campo ${key}: ${errorMessage}`);
+      }
+    });
+  }
+  
+  updateControlValidity(controlName: string) {
+    const control = this.group.get(controlName);
+    if (control) {
+      control.updateValueAndValidity({ onlySelf: true, emitEvent: false });
+    } else {
+      console.error(`El control '${controlName}' no fue encontrado en el FormGroup.`);
+    }
+  }
+  
+  registerUser() {
+    this.authService.signUpAndVerifyEmail(this.group.value).subscribe(
+      response => {
+        this.handleSuccessResponse(response);
+      },
+      error => {
+        this.handleErrorResponse(error);
+      }
+    ).add(() => {
+      this.isSubmitting = false;
+    });
+  }
+  
+  handleSuccessResponse(response: any) {
+    this.snackBar.open(response.message, 'Cerrar', { duration: 3000 });
+    this.messageService.add({
+      key: 'bc',
+      severity: 'success',
+      summary: 'Success',
+      detail: response.message,
+    });
+    this.router.navigate(['/auth/user-create', { userEmail: this.group.value.email }]);
+  }
+  
+  handleErrorResponse(error: any) {
+    const errorMessage = error.error.message || 'Error en el servidor';
+    this.snackBar.open(errorMessage, 'Cerrar', { duration: 3000 });
+    this.showError(errorMessage);
+  }
+  
+  showError(message: string) {
+    this.messageService.add({
+      severity: 'error',
+      summary: 'Error',
+      detail: message,
+    });
+  }
 
+  
+
+
+
+
+  ////
   arePersonalFieldsFilled(): boolean {
     return (
       this.group.get('name')?.value &&
@@ -416,7 +610,10 @@ export class SignUpFormComponent implements OnInit {
     return (
       this.group.get('email')?.value &&
       this.group.get('password')?.value &&
-      this.group.get('confirmPassword')?.value
+      this.group.get('password')?.value &&
+      this.group.get('confirmPassword')?.value &&
+      this.group.get('recaptcha')?.value &&
+      this.group.get('priv')?.value
     );
   }
 }

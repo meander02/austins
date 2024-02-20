@@ -6,6 +6,7 @@
 <!-- HTML -->
 <!-- HTML -->
 <!-- HTML -->
+
 <p-sidebar [(visible)]="sidebarVisible" class="mobile-sidebar">
   <div
     pAnimateOnScroll
@@ -86,6 +87,102 @@
     <span class="pi pi-sign-out"></span> Logout
   </div>
 </p-sidebar>
+<!-- HTML -->
+<!-- HTML -->
+<!-- HTML -->
+<!-- HTML -->
+
+<p-sidebar [(visible)]="sidebarVisible2" [style]="{ width: '30rem' }">
+  <div class="sidebar-header">
+    <span class="header-icon pi pi-shopping-cart"></span>
+    <h2 class="header-title">Tu Carrito</h2>
+  </div>
+  <div class="sidebar-content">
+    <div *ngIf="carData.length > 0; else emptyCart">
+      <div *ngFor="let item of carData" class="cart-item">
+        <!-- Agrega la directiva *ngIf en un elemento interno -->
+        <div *ngIf="item.cantidad > 0">
+          <!-- <app-product [product]="product" (click)="removeItem(item)"></app-product> -->
+          <div class="product-details">
+            <img
+              [src]="item.image[0] | defaultImg"
+              alt="Producto"
+              class="product-image"
+            />
+            <span class="product-name">{{ item.name }}</span>
+            <span class="product-price">{{ item.precio | currency }}</span>
+            <div class="product-quantity-controls">
+              <button
+                pButton
+                type="button"
+                icon="pi pi-plus"
+                class="btn-quantity"
+                (click)="incrementQuantity(item)"
+              ></button>
+              <span class="product-quantity"
+                >Cantidad: {{ item.cantidad }}</span
+              >
+              <button
+                pButton
+                type="button"
+                icon="pi pi-minus"
+                class="btn-quantity"
+                (click)="decrementQuantity(item)"
+                [disabled]="item.cantidad === 1"
+              ></button>
+            </div>
+            <!-- <button pButton type="button" icon="pi pi-trash" class="btn-delete" (click)="removeItem(item)" ></button> -->
+            <!-- <button
+              pButton
+              type="button"
+              icon="pi pi-trash"
+              class="btn-delete"
+              (click)="removeItem(item)"
+            ></button> -->
+            <p-toast></p-toast>
+            <p-confirmPopup></p-confirmPopup>
+
+            <!-- <button
+              pButton
+              type="button"
+              icon="pi pi-trash"
+              class="btn-delete"
+              (click)="removeItem(item)"
+            ></button> -->
+            <!-- <button
+              pButton
+              type="button"
+              icon="pi pi-trash"
+              class="btn-delete"
+              (click)="confirm2($event)"
+            ></button> -->
+            <button
+            pButton
+            type="button"
+            icon="pi pi-trash"
+            class="btn-delete"
+            (click)="confirm2($event, item)"
+          ></button>
+          
+          </div>
+        </div>
+      </div>
+      <div class="total-section">
+        <span class="total-label">Total:</span>
+        <span class="total-amount">{{ getTotalAmount() | currency }}</span>
+      </div>
+      <button class="btn-finish" (click)="finishPurchase()">
+        Finalizar Compra
+      </button>
+    </div>
+    <ng-template #emptyCart>
+      <div class="empty-cart-message">Tu carrito está vacío</div>
+    </ng-template>
+    <button class="btn-continue-shopping" (click)="closeSidebar()">
+      Cerrar y Continuar Comprando
+    </button>
+  </div>
+</p-sidebar>
 
 <div *ngIf="shouldShowHeader">
   <div
@@ -150,28 +247,11 @@
           acerca de
         </div>
       </mat-menu>
-      <!-- <button *ngIf="!userName" class="menu-btn" (click)="openSignInModal()">
-        <mat-icon class="material-icons2 primary">account_circle</mat-icon>
-      </button> -->
-      <!-- 
-      <button *ngIf="!userName" class="menu-btn" (click)="showDialog()">
-        <mat-icon class="material-icons2 primary">account_circle</mat-icon>
-      </button> -->
+
       <button *ngIf="!userName" class="menu-btn" (click)="openSignInModal()">
         <mat-icon class="material-icons2 primary">account_circle</mat-icon>
       </button>
-<!-- 
-      <div class="card flex justify-content-center">
-        <p-dialog
-          header="Header"
-          [(visible)]="visible"
-          [style]="{ width: '50vw' }"
-        >
 
-        </p-dialog>
-      </div> -->
-
-      <!-- <span *ngIf="userName" class="menu-btn">{{ userName }}</span> -->
       <button
         *ngIf="userName"
         [matMenuTriggerFor]="userOption"

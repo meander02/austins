@@ -11,28 +11,26 @@ export class CartService {
   itemsInCart: Subject<number> = new Subject<number>();
   quantity: number = 0;
 
-  constructor( private storegService: StorageService) {}
+  constructor(private storegService: StorageService) {}
 
   addItem(id: string, quantity: number): void {
-
-    this.cart=this.storegService.getCarrito()
+    this.cart = this.storegService.getCarrito();
     this.cart.forEach((item) => {
       if (item.id === id) {
         item.cantidad = item.cantidad + quantity;
       }
     });
     this.sendQuantity();
-    this.storegService.setCarrito(this.cart)
+    this.storegService.setCarrito(this.cart);
   }
-
 
   add(cartItem: CartItem): void {
     let isExist = false;
-    this.cart=this.storegService.getCarrito()
+    this.cart = this.storegService.getCarrito();
     if (this.cart && this.cart.length > 0) {
       this.cart.forEach((item) => {
         if (item.id === cartItem.id) {
-          item.cantidad = item.cantidad+ 1;
+          item.cantidad = item.cantidad + 1;
           isExist = true;
         }
       });
@@ -44,22 +42,55 @@ export class CartService {
     }
     this.sendQuantity();
     // localStorage.setItem('carrito', JSON.stringify(this.cart));
-    this.storegService.setCarrito(this.cart)
+    this.storegService.setCarrito(this.cart);
   }
 
-  remove(cartItem: CartItem): void {
-    this.cart=this.storegService.getCarrito()
+  // remove(cartItem: CartItem): void {
+  //   this.cart=this.storegService.getCarrito()
+  //   if (this.cart && this.cart.length > 0) {
+  //     this.cart.forEach((item) => {
+  //       if (item.id === cartItem.id && item.cantidad > 0) {
+  //         item.cantidad = item.cantidad- 1;
+  //       } else if (this.quantity === 0) {
+  //         this.cart = this.cart.find(item => item.id != cartItem.id)
+  //       }
+  //     });
+  //   }
+  //   this.sendQuantity();
+  //   this.storegService.setCarrito(this.cart)
+  // }
+  decre(cartItem: CartItem): void {
+    this.cart = this.storegService.getCarrito();
+
     if (this.cart && this.cart.length > 0) {
-      this.cart.forEach((item) => {
+      this.cart.forEach((item, index) => {
         if (item.id === cartItem.id && item.cantidad > 0) {
-          item.cantidad = item.cantidad- 1;
-        } else if (this.quantity === 0) {
-          // this.cart = this.cart.find(item => item.id != cartItem.id)
+          item.cantidad--; // Reduce la cantidad en 1
+
         }
       });
     }
     this.sendQuantity();
-    this.storegService.setCarrito(this.cart)
+ this.storegService.setCarrito(this.cart);
+  }
+
+  //   this.sendQuantity();
+  //   this.storegService.setCarrito(this.cart);
+  // }
+  remove(cartItem: CartItem): void {
+    this.cart = this.storegService.getCarrito();
+
+    if (this.cart && this.cart.length > 0) {
+      this.cart.forEach((item, index) => {
+        if (item.id === cartItem.id) {
+          this.cart.splice(index, 1); // Elimina el elemento del arreglo
+          return; // Termina el bucle forEach una vez que se elimina el elemento
+        }
+      });
+    }
+
+    this.sendQuantity();
+    this.storegService.setCarrito(this.cart);
   }
 
   private sendQuantity(): void {

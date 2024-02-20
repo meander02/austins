@@ -326,6 +326,23 @@
         >Confirmar Contraseña es <strong>requerida</strong></mat-error
       >
 
+      <div class="flex terms-checkbox align-items-center gap-1">
+        <p-checkbox
+        formControlName="priv"
+          [(ngModel)]="termsAccepted"
+          [binary]="true"
+          inputId="binary"
+        ></p-checkbox>
+        <label for="binary"
+          >Acepto los términos y condiciones de la política de
+          privacidad.</label
+        >
+      </div>
+      <mat-error
+      class="error-container3"
+      *ngIf="privFormControl.hasError('required')"
+      > términos y condiciones<strong>requerida</strong></mat-error
+    >
       <div
         [style.display]="
           confirmPasswordFormControl.hasError('passwordMatch') ||
@@ -334,6 +351,7 @@
             : ''
         "
       >
+        <!-- <div [style.display]="termsAccepted ? '' : 'none'"> -->
         <ngx-recaptcha2
           class="capcha"
           #captchaElem
@@ -343,22 +361,41 @@
           (success)="handleSuccess($event)"
         >
         </ngx-recaptcha2>
+        <!-- </div> -->
 
+ 
         <mat-error
           class="error-container3"
           *ngIf="recaptchaFormControl.hasError('required')"
           >captcha<strong>requerida</strong></mat-error
         >
-
-        <div class="button-container">
-          <button class="prev-button" (click)="prevStep()">Anterior</button>
-          <button
-            class="next-button"
-            (click)="onSubmit()"
-            [disabled]="!this.group.valid || isSubmitting"
-          >
-            Registrarse
-          </button>
+        <div
+          [style.display]="
+            recaptchaFormControl.hasError('required') ||
+            confirmPasswordFormControl.hasError('passwordMatch') ||
+            passwordFormControl.hasError('formatError') ||
+            emailFormControl.hasError('required')
+              ? 'none'
+              : ''
+          "
+        >
+          <div class="button-container">
+            <button class="prev-button" (click)="prevStep()">Anterior</button>
+            <!-- <button
+              class="next-button"
+              (click)="onSubmit()"
+              [disabled]="!this.group.valid || isSubmitting"
+            >
+              Registrarse
+            </button> -->
+            <button
+              class="next-button"
+              (click)="onSubmit()"
+              [disabled]="!this.group.valid"
+            >
+              Registrarse
+            </button>
+          </div>
         </div>
       </div>
     </div>

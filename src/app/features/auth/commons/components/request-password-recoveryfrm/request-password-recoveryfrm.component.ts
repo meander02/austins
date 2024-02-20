@@ -71,7 +71,7 @@ export class RequestPasswordRecoveryfrmComponent {
       verificationCode: ['', Validators.required], // Añadir campos adicionales según sea necesario
     });
     this.group3 = this.formBuilder.group({
-      newPassword: ['', [Validators.required, signInValidator.formatPassword]],
+      newPassword: ['', [Validators.required, SignInValidator.formatPassword]],
       confirmPassword: [
         '',
         [Validators.required, this.passwordMatchValidator.bind(this)],

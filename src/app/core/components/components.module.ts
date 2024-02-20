@@ -31,6 +31,11 @@ import { BadgeModule } from 'primeng/badge';
 import { DialogModule } from 'primeng/dialog';
 // import { SignInView } from 'src/app/features/auth/views/sign-in/sign-in.view';
 import { DynamicDialogModule } from 'primeng/dynamicdialog';
+import { DefaultImgModule } from 'src/app/shared/pipes/default-img/default-img.module';
+// import { DefaultImgModule } from 'src/app/shared/pipe/default-img/default-img.module';
+import { ConfirmPopupModule } from 'primeng/confirmpopup';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { ToastModule } from 'primeng/toast';
 @NgModule({
   declarations: [
     ChatComponent,
@@ -44,7 +49,10 @@ import { DynamicDialogModule } from 'primeng/dynamicdialog';
   ],
   exports: [
     // PoliticaComponent,
-
+    ConfirmDialogModule,
+    ToastModule,
+    ConfirmPopupModule,
+    DefaultImgModule,
     ChatComponent,
     BtnFloatComponent,
     HeaderComponent,
@@ -54,7 +62,11 @@ import { DynamicDialogModule } from 'primeng/dynamicdialog';
     StepsComponent,ProgressBarComponent
   ],
   imports: [
-    // BrowserModule,   
+    ToastModule,
+    // BrowserModule,
+    ConfirmDialogModule,
+    ConfirmPopupModule,
+    DefaultImgModule,
     DynamicDialogModule,
      DialogModule,
     BadgeModule,

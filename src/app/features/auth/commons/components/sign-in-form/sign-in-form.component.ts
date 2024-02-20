@@ -99,16 +99,16 @@ export class SignInFormComponent implements OnInit {
       this.applyValidatorsAfterInteraction();
     }
       this.userTouchedForm = true;
-  
 
-    
+
+
   }
 
 
   isFormValid() {
     return (
       this.group.valid &&
-      this.recaptchaValid 
+      this.recaptchaValid
     );
   }
 
@@ -136,7 +136,7 @@ export class SignInFormComponent implements OnInit {
         case 'password':
           control.setValidators([
             Validators.required,
-            validatorCustom.formatPassword,
+            SignInValidator.formatPassword,
           ]);
           break;
         case 'recaptcha':
@@ -171,7 +171,7 @@ export class SignInFormComponent implements OnInit {
     const formData = this.group.value;
     if(formData.password!=''&&formData.password!=''){
       this.formData.emit(formData);
-     
+
     }
     console.log(formData);
     const fieldsToValidate = [

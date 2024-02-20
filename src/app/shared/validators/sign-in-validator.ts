@@ -1,7 +1,7 @@
 import { AbstractControl } from "@angular/forms";
 
 export class SignInValidator {
-  formatPassword(formControl: AbstractControl): { [s: string]: string | boolean } | null {
+  static formatPassword(formControl: AbstractControl): { [s: string]: string | boolean } | null {
     if (!formControl || !formControl.parent) {
       return null;
     }

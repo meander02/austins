@@ -1,18 +1,34 @@
-.error-container{
+.error-container {
   color: brown;
 }
-.error-container2{
+.error-container2 {
   color: brown;
 }
-.error-container3{
-  color: brown;
-}
-
-
-
-.mat-error{
+.error-container3 {
   color: brown;
 }
 
+.mat-error {
+  color: brown;
+}
+.terms-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Espacio entre el checkbox y el texto */
+  margin-top: 20px;
+  font-size: 12px; /* Tamaño de fuente ligeramente mayor para una mejor legibilidad */
+}
 
+.terms-checkbox p-checkbox {
+  margin: 0; /* Elimina el margen predeterminado del componente p-checkbox */
+}
 
+/* Estilo para el texto de los términos y condiciones */
+.terms-checkbox label {
+  font-size: inherit; /* Utiliza el tamaño de fuente heredado */
+}
+
+/* Cambio de cursor para indicar que el texto es interactivo */
+.terms-checkbox label:hover {
+  cursor: pointer;
+}

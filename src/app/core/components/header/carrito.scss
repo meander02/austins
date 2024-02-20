@@ -1,0 +1,78 @@
+
+/* header.component.scss */
+.header-icon {
+  font-size: 2rem;
+  margin-right: 1rem;
+}
+
+.header-title {
+  font-size: 1.5rem;
+  margin: 0;
+}
+
+.product-details {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.product-image {
+  width: 60px; /* Ajusta el tamaño de la imagen según sea necesario */
+  height: 60px;
+  margin-right: 1rem;
+  border-radius: 4px;
+}
+
+.product-name {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.product-price {
+  font-size: 1rem;
+  margin-left: auto; /* Mueve el precio a la derecha */
+}
+
+.product-quantity-controls {
+  display: flex;
+  align-items: center;
+}
+
+.btn-quantity {
+  width: 2rem;
+  height: 2rem;
+  margin: 0 0.5rem;
+  font-size: 1.2rem;
+  border-radius: 50%;
+}
+
+.product-quantity {
+  margin: 0 1rem;
+  font-size: 1.2rem;
+}
+
+.btn-delete {
+  color: #000000;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  margin-left: auto;
+}
+
+.total-section {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+  font-size: 1.2rem;
+}
+
+.empty-cart-message {
+  font-size: 1.2rem;
+}
+
+.btn-finish,
+.btn-continue-shopping {
+  width: 100%;
+  margin-top: 1rem;
+  font-size: 1.2rem;
+}
