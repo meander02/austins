@@ -11,7 +11,7 @@ import { ErrorInterceptor } from './shared/interceptor/error.interceptor';
 import { NgxUiLoaderModule, NgxUiLoaderService } from 'ngx-ui-loader';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { NgxCaptchaModule } from 'ngx-captcha';
-
+// import AOS from 'aos'; //AOS - 1
 @NgModule({
   declarations: [
     AppComponent,

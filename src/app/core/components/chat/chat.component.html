@@ -9,11 +9,18 @@
 </div>
 
 <div class="chat-container" [ngClass]="{ visible: chatOpen }">
-  <div class="close-button" (click)="toggleChat()">
+  <div class="close-button" (click)="toggleChat()" data-aos="zoom-in-down"  data-aos-duration="1500">
     <mat-icon>{{ chatOpen ? "close" : "cancel" }}</mat-icon>
   </div>
 
-  <div class="message-container" *ngFor="let message of chatHistory">
+  <div
+    class="message-container"
+    *ngFor="let message of chatHistory"
+    data-aos="fade-down-left"
+    data-aos-anchor="#example-anchor"
+    data-aos-offset="500"
+    data-aos-duration="500"
+  >
     <div
       [ngClass]="{
         'user-message': message.role === 'user',
@@ -23,26 +30,32 @@
       {{ message.content }}
     </div>
   </div>
-
-  <!-- Mensaje de bienvenida personalizado con el logo de Austins -->
-  <div  [@dialogFadeInOut]  class="welcome-message" *ngIf="!chatHistory.length">
-    <div class="imge">
-      <img
-        src="https://static.wixstatic.com/media/64de7c_4d76bd81efd44bb4a32757eadf78d898~mv2_d_1765_2028_s_2.png"
-        alt="Austins Logo"
-        class="austins-logo"
-      />
+  <div >
+    <!-- Mensaje de bienvenida personalizado con el logo de Austins -->
+    <div class="welcome-message" *ngIf="!chatHistory.length"     data-aos="fade-left"
+    data-aos-anchor="#example-anchor"
+    data-aos-offset="500"
+    data-aos-duration="500">
+      <div class="imge" >
+        <img
+          src="https://static.wixstatic.com/media/64de7c_4d76bd81efd44bb4a32757eadf78d898~mv2_d_1765_2028_s_2.png"
+          alt="Austins Logo"
+          class="austins-logo"
+        />
+      </div>
+      {{ chatHistory.length ? "" : "¡Bienvenido a Austins Repostería! " }}
     </div>
-    {{ chatHistory.length ? '' : '¡Bienvenido a Austins Repostería! ' }}
-
   </div>
-
   <div class="input-container">
     <input
       class="input-message"
       [(ngModel)]="userMessage"
       placeholder="Escribe tu mensaje..."
-    />
+      data-aos="fade-down-left"
+      data-aos-anchor="#example-anchor"
+      data-aos-offset="500"
+      data-aos-duration="500"
+      />
     <button class="send-button" (click)="sendMessage()">
       <mat-icon>send</mat-icon>
     </button>

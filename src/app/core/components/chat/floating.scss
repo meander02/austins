@@ -26,37 +26,37 @@
 
 
 
-/* Configuración de la animación */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: scale(0.5);
-  }
-  to {
-    opacity: 5;
-    transform: scale(1);
-  }
-}
+// /* Configuración de la animación */
+// @keyframes fadeIn {
+//   from {
+//     opacity: 0;
+//     transform: scale(0.5);
+//   }
+//   to {
+//     opacity: 5;
+//     transform: scale(1);
+//   }
+// }
 
-@keyframes fadeOut {
-  from {
-    opacity: 5;
-    transform: scale(1);
-  }
-  to {
-    opacity: 0;
-    transform: scale(0.5);
-  }
-}
+// @keyframes fadeOut {
+//   from {
+//     opacity: 5;
+//     transform: scale(1);
+//   }
+//   to {
+//     opacity: 0;
+//     transform: scale(0.5);
+//   }
+// }
 
 /* Aplica las animaciones al mensaje de bienvenida */
-.welcome-message {
-  animation: fadeIn 0.5s ease forwards; /* Durante la entrada */
-}
+// .welcome-message {
+//   animation: fadeIn 0.5s ease forwards; /* Durante la entrada */
+// }
 
-.welcome-message.leave {
-  animation: fadeOut 0.5s ease forwards; /* Durante la salida */
-}
+// .welcome-message.leave {
+//   animation: fadeOut 0.5s ease forwards; /* Durante la salida */
+// }
 
 /* Añadido el efecto de atención al botón flotante */
 @keyframes attention {

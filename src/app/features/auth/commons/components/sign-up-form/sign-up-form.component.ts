@@ -18,6 +18,8 @@ import { AuthService } from '../../services/auth.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { MenuItem, MessageService } from 'primeng/api';
+
+// import AOS from "aos";
 interface City {
   name: string;
 }
@@ -82,22 +84,7 @@ export class SignUpFormComponent implements OnInit {
     const emailRegex =
       /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
 
-    // this.group = this.formBuilder.group({
-    //   name: [''],
-    //   maternalLastname: [''],
-    //   paternalLastname: [''],
-    //   birthdate: [''],
-    //   email: ['', [Validators.required, Validators.pattern(emailRegex)]],
-    //   securityQuestion: ['', Validators.required],
-    //   securityAnswer: ['', Validators.required],
-    //   phone: [''],
-    //   password: ['', [Validators.required, signInValidator.formatPassword]],
-    //   confirmPassword: [
-    //     '',
-    //     [Validators.required, this.passwordMatchValidator.bind(this)],
-    //   ],
-    //   recaptcha: ['', Validators.required],
-    // });
+
     this.group = this.formBuilder.group({
       name: [''],
       maternalLastname: [''],
@@ -161,6 +148,7 @@ export class SignUpFormComponent implements OnInit {
   }
 
   ngOnInit() {
+
     this.group.valueChanges.subscribe(() => {
       this.userTouchedForm = true;
       if (this.userTouchedForm) {

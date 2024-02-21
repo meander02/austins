@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { StorageService } from './core/services/storage.service';
 import { Router, NavigationEnd } from '@angular/router';
-
+// import AOS from 'aos';
+import * as AOS from 'aos';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -27,6 +28,8 @@ export class AppComponent implements OnInit{
     });
   }
   ngOnInit(): void {
+    AOS.init();
+    window.addEventListener('load',AOS.refresh)
     
       if(!this.storageService.getCarrito){
         this.storageService.setCarrito([])

@@ -1,8 +1,5 @@
-
-
 .log {
   text-align: center;
-
 }
 
 .logo {
@@ -21,7 +18,6 @@ mat-form-field {
 }
 
 .login-form {
-
   border-radius: 20px;
   // box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   text-align: center;
@@ -31,7 +27,7 @@ mat-form-field {
   margin: 0;
   width: 100%;
   padding: 20px;
-  .card{
+  .card {
     // margin-top: 30px;
     margin: 20px 0px;
   }
@@ -39,20 +35,20 @@ mat-form-field {
     height: 40%;
     border-radius: 8px;
     width: 100%;
-
   }
-
 }
-
 
 .login-form fieldset {
   border: 1px solid #ebc9ab;
   border-radius: 8px;
+  // justify-content: center;
   // padding: 5px;
 }
 
 .login-form legend {
-
+  
+  text-align: center;
+  justify-content: center;
   color: #b49173;
 }
 

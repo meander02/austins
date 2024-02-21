@@ -5,12 +5,14 @@ import { Product } from 'src/app/features/admin/models/Product.models';
 import { SearchService } from 'src/app/shared/services/search-service.service';
 // import 'aos/dist/aos.css';
 // import * as AOS from 'aos';
+import * as AOS from 'aos';
 @Component({
   selector: 'app-home',
   templateUrl: './home.views.html',
   styleUrls: [
     './home.views.scss',
-    './hom.scss'
+    './hom.scss',
+    './anima.scss'
   ]
 })
 export class HomeViews implements OnInit {
@@ -19,8 +21,9 @@ export class HomeViews implements OnInit {
   hasSearchResults = true;
   filterPost = '';
   items: number = 0;
-  productsLoaded: boolean = false; // Variable para indicar si los productos se han cargado o no
+  // productsLoaded: boolean = false; // Variable para indicar si los productos se han cargado o no
   loadingProducts = true; // Variable para indicar si los productos se están cargando
+  isMobile: boolean = false; // Variable para verificar si es una pantalla móvil
 
   constructor(
     private router: Router,
@@ -40,6 +43,10 @@ export class HomeViews implements OnInit {
     this.router.navigateByUrl('/portal/' + route);
   }
   ngOnInit(): void {
+     // Verificar el tamaño de la pantalla al cargar el componente
+     this.checkScreenSize();
+    //  AOS.init();
+    //  window.addEventListener('load',AOS.refresh)
     this.searchService.searchQuery$.subscribe((query) => {
       this.filterPost = query;
       this.filterProducts(query);
@@ -56,7 +63,21 @@ export class HomeViews implements OnInit {
         this.loadingProducts = false; // Si hay un error al cargar los productos, establece loadingProducts en false
       }
     );
+ 
   }
+
+  @HostListener('window:resize')
+  onResize(): void {
+    this.checkScreenSize();
+
+  }
+
+  checkScreenSize(): void {
+    this.isMobile = window.innerWidth < 500;
+
+  }
+
+
   filterProducts(query: string): void {
     if (query.trim() !== '') {
       this.filteredProducts = this.originalProducts.filter((product) =>

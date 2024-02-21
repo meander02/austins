@@ -1,0 +1,38 @@
+/* Animaciones para escritorio */
+.desktop-animations {
+    @keyframes fade-up {
+      // from {
+      //   opacity: 0;
+      //   transform: translateY(50px);
+      // }
+      // to {
+      //   opacity: 1;
+      //   transform: translateY(0);
+      // }
+    }
+  
+    @keyframes fade-left {
+      // from {
+      //   opacity: 0;
+      //   transform: translateX(-50px);
+      // }
+      // to {
+      //   opacity: 1;
+      //   transform: translateX(0);
+      // }
+    }
+  
+    [data-aos='fade-up'] {
+      animation: fade-up 1.5s ease;
+    }
+  
+    [data-aos='fade-left'] {
+      animation: fade-left 2.7s ease;
+    }
+  }
+  
+  /* Animaciones para móvil */
+  .mobile-animations {
+    /* Define las animaciones para móvil aquí */
+  }
+  
