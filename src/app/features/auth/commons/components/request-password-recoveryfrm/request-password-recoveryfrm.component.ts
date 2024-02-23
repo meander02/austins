@@ -39,9 +39,9 @@ export class RequestPasswordRecoveryfrmComponent {
   // Add this property to your component class
   // stepCompleted: boolean[] = [false, false, false];
   step1Disabled = false;
-  // step2Disabled = true;
+  step2Disabled = true;
   step3Disabled = true;
-  step2Disabled = false;
+  // step2Disabled = false;
 
   passwordVisible = false;
   passwordFieldType = 'password';
@@ -79,57 +79,7 @@ export class RequestPasswordRecoveryfrmComponent {
     });
     // Marcar todos los campos como "pristine" al inicio
   }
-  // ngOnInit() {
-  //   this.initFormGroups();
-  // }
 
-  // initFormGroups() {
-    // const emailRegex =
-    //   /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
-
-    // this.group = this.formBuilder.group({
-    //   email: ['', [Validators.required, Validators.pattern(emailRegex)]],
-    // });
-
-    // this.group2 = this.formBuilder.group({
-    //   verificationCode: ['', Validators.required],
-    // });
-
-  //   this.group3 = this.formBuilder.group({
-  //     newPassword: ['', [Validators.required, Validators.minLength(6)]],
-  //     confirmPassword: ['', Validators.required],
-  //   });
-  // }
-  // onSubmitStep1() {
-  //   const emailRegex =
-  //   /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
-
-  // this.group = this.formBuilder.group({
-  //   email: [[Validators.required, Validators.pattern(emailRegex)]],
-  // });
-  //   if (this.group.valid) {
-  //     const email = this.group.value.email;
-  //     this.authService.requestPasswordRecovery({ email }).subscribe(
-  //       (response) => {
-  //         // Manejar la respuesta exitosa, por ejemplo, cambiar al siguiente paso
-  //         this.messageService.add({
-  //           severity: 'info',
-  //           summary: 'Info',
-  //           detail: response.message,
-  //         });
-
-  //         this.step1Disabled = true;
-  //         this.step2Disabled = false;
-  //         this.activeIndex = 1;
-  //       },
-  //       (error) => {
-  //         this.snackBar.open(error.error.message, 'Cerrar', {
-  //           duration: 3000,
-  //         });
-  //       }
-  //     );
-  //   }
-  // }
   onSubmitStep1() {
     const emailRegex =
       /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
