@@ -14,9 +14,9 @@
     leaveClass="fadeout"
     class="sidebar-header animation-duration-1000 animation-ease-in-out"
     data-aos="fade-left"
-     data-aos-anchor="#example-anchor"
-     data-aos-offset="500"
-     data-aos-duration="500"
+    data-aos-anchor="#example-anchor"
+    data-aos-offset="500"
+    data-aos-duration="500"
   >
     <span class="pi pi-user"></span>
     <span class="user-name">{{ userName }}</span>
@@ -70,7 +70,12 @@
   >
     <span class="pi pi-clock"></span> Historial
   </div>
-  <div class="mobile-menu-item" (click)="redirectTo('ayuda')" *ngIf="userName" data-aos="zoom-out-left">
+  <div
+    class="mobile-menu-item"
+    (click)="redirectTo('ayuda')"
+    *ngIf="userName"
+    data-aos="zoom-out-left"
+  >
     <span class="pi pi-question-circle"></span> Ayuda/Soporte
   </div>
   <div
@@ -85,19 +90,22 @@
     class="mobile-menu-item"
     (click)="redirectTo('ajustes-cuenta')"
     *ngIf="userName"
-    data-aos="zoom-out-left"
   >
     <span class="pi pi-pencil"></span> Ajustes de Cuenta
   </div>
   <hr class="sidebar-divider" />
-  <div *ngIf="!userName" class="mobile-menu-item" (click)="openSignInModal()"     data-aos="zoom-in-right"
-  data-aos-anchor="#example-anchor"
-  data-aos-offset="500"
-  data-aos-duration="500">
-    <span class="pi pi-sign-in"></span> Sign In
-  </div>
-  <div *ngIf="userName" class="mobile-menu-item" (click)="logout()" data-aos="zoom-in-right">
-    <span class="pi pi-sign-out"></span> Logout
+  <div
+    data-aos="fade-right"
+    data-aos-anchor="#example-anchor"
+    data-aos-offset="500"
+    data-aos-duration="500"
+  >
+    <div *ngIf="!userName" class="mobile-menu-item" (click)="openSignInModal()">
+      <span class="pi pi-sign-in"></span> Sign In
+    </div>
+    <div *ngIf="userName" class="mobile-menu-item" (click)="logout()">
+      <span class="pi pi-sign-out"></span> Logout
+    </div>
   </div>
 </p-sidebar>
 <!-- HTML -->
@@ -116,56 +124,84 @@
           <div class="cart-column">Artículo</div>
           <div class="cart-column">Cantidad</div>
           <div class="cart-column">Precio</div>
-
         </div>
         <div *ngFor="let item of carData" class="cart-row">
           <div class="cart-column">
-            <img [src]="item.image[0] | defaultImg" alt="Producto" class="product-image" />
+            <img
+              [src]="item.image[0] | defaultImg"
+              alt="Producto"
+              class="product-image"
+            />
             <span class="product-name">{{ item.name }}</span>
           </div>
           <div class="cart-column">
             <div class="product-quantity-controls">
               <!-- <button pButton type="button" icon="pi pi-plus" class="btn-quantity" (click)="incrementQuantity(item)"></button> -->
-              <button pButton type="button" icon="pi pi-plus" class="btn-quantity" (click)="incrementQuantity(item)"></button>
+              <button
+                pButton
+                type="button"
+                icon="pi pi-plus"
+                class="btn-quantity"
+                (click)="incrementQuantity(item)"
+              ></button>
               <span class="product-quantity"> {{ item.cantidad }} </span>
-              <button pButton type="button" icon="pi pi-minus" class="btn-quantity" (click)="decrementQuantity(item)" [disabled]="item.cantidad === 1"></button>
+              <button
+                pButton
+                type="button"
+                icon="pi pi-minus"
+                class="btn-quantity"
+                (click)="decrementQuantity(item)"
+                [disabled]="item.cantidad === 1"
+              ></button>
             </div>
           </div>
           <div class="cart-column">
+            <div class="price-and-delete">
+              <!-- Precio del producto -->
+              <span class="product-price">{{ item.precio | currency }}</span>
+              <!-- Botón eliminar -->
+              <p-toast></p-toast>
+              <p-confirmPopup></p-confirmPopup>
 
-          <div class="price-and-delete">
-            <!-- Precio del producto -->
-            <span class="product-price">{{ item.precio | currency }}</span>
-            <!-- Botón eliminar -->
-            <p-toast></p-toast>
-            <p-confirmPopup></p-confirmPopup>
-
-            <button pButton type="button" icon="pi pi-trash" class="btn-delete" (click)="confirm2($event, item)"></button>
-          </div>
+              <button
+                pButton
+                type="button"
+                icon="pi pi-trash"
+                class="btn-delete"
+                (click)="confirm2($event, item)"
+              ></button>
+            </div>
           </div>
         </div>
       </div>
-        <hr class="sidebar-divider" />
+      <hr class="sidebar-divider" />
       <div class="total-section">
         <span class="total-label">Total:</span>
         <span class="total-amount">{{ getTotalAmount() | currency }}</span>
       </div>
-      <div class="btn" data-aos="fade-up"
-      data-aos-anchor-placement="bottom-bottom">
-
-        <button class="btn-finish" (click)="finishPurchase()">Finalizar Compra</button>
+      <div
+        class="btn"
+        data-aos="fade-up"
+        data-aos-anchor-placement="bottom-bottom"
+      >
+        <button class="btn-finish" (click)="finishPurchase()">
+          Finalizar Compra
+        </button>
       </div>
-
-
     </div>
     <ng-template #emptyCart>
       <div class="empty-cart-message">Tu carrito está vacío</div>
     </ng-template>
-    <button pButton class="btn-continue-shopping"   icon="pi pi-angle-left" (click)="closeToCart()">Cerrar y Continuar Comprando</button>
+    <button
+      pButton
+      class="btn-continue-shopping"
+      icon="pi pi-angle-left"
+      (click)="closeToCart()"
+    >
+      Cerrar y Continuar Comprando
+    </button>
   </div>
 </p-sidebar>
-
-
 
 <div *ngIf="shouldShowHeader">
   <div
@@ -183,8 +219,12 @@
         alt="Logo de Tu Empresa"
       />
     </div>
-    <div class="button-container-mobile" data-aos="fade-up"
-    data-aos-anchor-placement="bottom-center"      data-aos-duration="900">
+    <div
+      class="button-container-mobile"
+      data-aos="fade-up"
+      data-aos-anchor-placement="bottom-center"
+      data-aos-duration="900"
+    >
       <!-- <div class="card flex justify-content-center"> -->
       <div>
         <button class="mobile-menu-btn" (click)="sidebarVisible = true">
@@ -204,8 +244,12 @@
       />
     </div>
 
-    <div class="button-container-pc"  data-aos="fade-up"
-    data-aos-anchor-placement="bottom-center"      data-aos-duration="900">
+    <div
+      class="button-container-pc"
+      data-aos="fade-up"
+      data-aos-anchor-placement="bottom-center"
+      data-aos-duration="900"
+    >
       <button class="menu-btn" (click)="redirectTo('home')">home</button>
       <button class="menu-btn" (click)="redirectTo('home')">acerca de</button>
       <button class="menu-btn" (click)="redirectTo('home')">sign in</button>
@@ -253,8 +297,13 @@
         yPosition="below"
       >
         <div mat-menu-item class="mobile-menu-item_b1">perfil</div>
-        <div mat-menu-item class="mobile-menu-item_b1"  data-aos="fade-up"
-        data-aos-anchor-placement="bottom-center"      data-aos-duration="900">
+        <div
+          mat-menu-item
+          class="mobile-menu-item_b1"
+          data-aos="fade-up"
+          data-aos-anchor-placement="bottom-center"
+          data-aos-duration="900"
+        >
           <span class="pi pi-shopping-bag"></span> mis compras
         </div>
         <div mat-menu-item class="mobile-menu-item_b1" (click)="logout()">
@@ -268,10 +317,10 @@
       matBadgeColor="warn"
       class="material-icons primary"
       (click)="goToCart()"
-      
       data-aos="fade-up"
-    data-aos-anchor-placement="bottom-center"      data-aos-duration="900"
-    >shopping_cart</mat-icon
+      data-aos-anchor-placement="bottom-center"
+      data-aos-duration="900"
+      >shopping_cart</mat-icon
     >
   </div>
 

@@ -22,27 +22,27 @@
             />
 
             <label>Email</label>
-       
+
             <span class="p-input-icon-right" style="right: 16px; bottom: 3px;">
-           
+
               <i class="pi pi-envelope"></i>
             </span>
           </span>
         </div>
 
-        
+
         <mat-error *ngIf="emailFormControl.hasError('required')"
           >Email es <strong>requerido</strong></mat-error
         >
         <div class="card flex password-input">
           <span class="p-float-label">
-            <input
-              pInputText
-              type="password"
-              placeholder="********"
-              formControlName="password"
-              [type]="passwordFieldType"
-            />
+              <input
+                pInputText
+                type="password"
+                placeholder="********"
+                formControlName="password"
+                [type]="passwordFieldType"
+              />
             <label>Contraseña</label>
             <span class="p-input-icon-right"> </span>
             <button

@@ -3,6 +3,7 @@ import {
   Component,
   ElementRef,
   OnInit,
+  ViewEncapsulation,
 } from '@angular/core';
 import {
   AbstractControl,
@@ -27,6 +28,7 @@ interface City {
   selector: 'app-sign-up-form',
   templateUrl: './sign-up-form.component.html',
   styleUrls: [
+    './password-input.component.scss',
     './sign-up-form.component.scss',
     './materror.component.scss',
     './form-up.component.scss',
@@ -34,6 +36,7 @@ interface City {
     './up02.scss',
     './up03.scss',
   ],
+  encapsulation: ViewEncapsulation.None,
   providers: [MessageService],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -179,7 +182,7 @@ export class SignUpFormComponent implements OnInit {
       } else {
         console.error("El control 'priv' no fue encontrado en el FormGroup.");
       }
-      
+
       console.log(this.recaptchaValid);
       // this.isSubmitting = true;
     }
@@ -430,7 +433,7 @@ export class SignUpFormComponent implements OnInit {
   //     } else {
   //       console.error("El control 'priv' no fue encontrado en el FormGroup.");
   //     }
-      
+
   //     if (this.termsAccepted && this.recaptchaValid == true) {
   //       this.authService
   //         .signUpAndVerifyEmail(this.group.value)
@@ -484,15 +487,15 @@ export class SignUpFormComponent implements OnInit {
   onSubmit() {
     this.markAllControlsAsTouched();
     this.displayControlErrors();
-    
+
     if (this.group.valid && !this.isSubmitting) {
       this.isSubmitting = true;
-      
+
       if (this.termsAccepted && this.recaptchaValid) {
         this.registerUser();
       } else {
         this.displayControlErrors();
-    
+
         // No se cumplen los requisitos para el envío del formulario
         if (!this.termsAccepted) {
           this.snackBar.open("Para continuar, por favor acepta los términos y condiciones", 'Cerrar', { duration: 3000 });
@@ -506,12 +509,12 @@ export class SignUpFormComponent implements OnInit {
       }
     }
   }
-  
-  
+
+
   markAllControlsAsTouched() {
     this.group.markAllAsTouched();
   }
-  
+
   displayControlErrors() {
     Object.keys(this.group.controls).forEach(key => {
       const controlErrors = this.group.get(key)?.errors;
@@ -523,7 +526,7 @@ export class SignUpFormComponent implements OnInit {
       }
     });
   }
-  
+
   updateControlValidity(controlName: string) {
     const control = this.group.get(controlName);
     if (control) {
@@ -532,7 +535,7 @@ export class SignUpFormComponent implements OnInit {
       console.error(`El control '${controlName}' no fue encontrado en el FormGroup.`);
     }
   }
-  
+
   registerUser() {
     this.authService.signUpAndVerifyEmail(this.group.value).subscribe(
       response => {
@@ -545,7 +548,7 @@ export class SignUpFormComponent implements OnInit {
       this.isSubmitting = false;
     });
   }
-  
+
   handleSuccessResponse(response: any) {
     this.snackBar.open(response.message, 'Cerrar', { duration: 3000 });
     this.messageService.add({
@@ -556,13 +559,13 @@ export class SignUpFormComponent implements OnInit {
     });
     this.router.navigate(['/auth/user-create', { userEmail: this.group.value.email }]);
   }
-  
+
   handleErrorResponse(error: any) {
     const errorMessage = error.error.message || 'Error en el servidor';
     this.snackBar.open(errorMessage, 'Cerrar', { duration: 3000 });
     this.showError(errorMessage);
   }
-  
+
   showError(message: string) {
     this.messageService.add({
       severity: 'error',
@@ -571,7 +574,7 @@ export class SignUpFormComponent implements OnInit {
     });
   }
 
-  
+
 
 
 

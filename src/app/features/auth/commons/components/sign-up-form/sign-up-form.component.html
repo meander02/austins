@@ -1,16 +1,16 @@
-
-
 <!-- <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet"> -->
-
 
 <p-breadcrumb [model]="breadcrumbItems"></p-breadcrumb>
 
 <p-toast></p-toast>
 
-<div class="log" data-aos="fade-right"
-data-aos-anchor="#example-anchor"
-data-aos-offset="400"
-data-aos-duration="700">
+<div
+  class="log"
+  data-aos="fade-right"
+  data-aos-anchor="#example-anchor"
+  data-aos-offset="400"
+  data-aos-duration="700"
+>
   <img
     class="logo"
     src="https://static.wixstatic.com/media/64de7c_4d76bd81efd44bb4a32757eadf78d898~mv2_d_1765_2028_s_2.png"
@@ -21,7 +21,7 @@ data-aos-duration="700">
   <p class="login-link">¿Ya tienes cuenta? <a href="#">Iniciar sesión</a></p>
 </div>
 
-<div class="signup-container" >
+<div class="signup-container">
   <p-steps [model]="items" [(activeIndex)]="activeIndex"></p-steps>
 
   <form (ngSubmit)="onSubmit()" [formGroup]="group">
@@ -142,10 +142,13 @@ data-aos-duration="700">
           </button>
         </div>
 
-        <div class="social-login" data-aos="fade-left"
-        data-aos-anchor="#example-anchor"
-        data-aos-offset="400"
-        data-aos-duration="700">
+        <div
+          class="social-login"
+          data-aos="fade-left"
+          data-aos-anchor="#example-anchor"
+          data-aos-offset="400"
+          data-aos-duration="700"
+        >
           <button class="social-button google-button">
             <img src="assets/icons/icons8-google-30.svg" alt="Google" />
             Registrarse con Google
@@ -250,33 +253,21 @@ data-aos-duration="700">
       >
       <div class="card flex password-input">
         <span class="p-float-label">
-          <!-- <p-password pInputText [toggleMask]="true"></p-password> -->
 
-          <input
-            pInputText
-            type="password"
-            placeholder="********"
+          <p-password
             formControlName="password"
-            [type]="passwordFieldType1"
-          />
+            placeholder="********"
+            promptLabel="Elige una contraseña"
+            weakLabel="Demasiado simple"
+            mediumLabel="Complejidad promedio"
+            strongLabel="Contraseña compleja"
+            [toggleMask]="true"
+            class="custom-password-input"
+          ></p-password>
+
           <label>Contraseña</label>
           <span class="p-input-icon-right"> </span>
-          <button
-            mat-icon-button
-            type="button"
-            (click)="togglePasswordVisibility1()"
-            [attr.aria-label]="
-              passwordVisible1 ? 'Ocultar contraseña' : 'Mostrar contraseña'
-            "
-          >
-            <i
-              class="pi"
-              [ngClass]="{
-                'pi-eye': !passwordVisible1,
-                'pi-eye-slash': passwordVisible1
-              }"
-            ></i>
-          </button>
+
         </span>
       </div>
       <mat-error
@@ -293,17 +284,28 @@ data-aos-duration="700">
         <span class="p-float-label">
           <!-- <p-password pInputText [toggleMask]="true"></p-password> -->
 
-          <input
+          <!-- <input
             pInputText
             type="password"
             placeholder="********"
             formControlName="confirmPassword"
             (input)="onConfirmPasswordInput($event)"
             [type]="passwordFieldType2"
-          />
+          /> -->
+          <p-password
+            formControlName="confirmPassword"
+            placeholder="********"
+            promptLabel="Elige una contraseña"
+            weakLabel="Demasiado simple"
+            mediumLabel="Complejidad promedio"
+            strongLabel="Contraseña compleja"
+            [toggleMask]="true"
+            (input)="onConfirmPasswordInput($event)"
+          ></p-password>
+
           <label>Contraseña</label>
           <span class="p-input-icon-right"> </span>
-          <button
+          <!-- <button
             mat-icon-button
             type="button"
             (click)="togglePasswordVisibility2()"
@@ -318,7 +320,7 @@ data-aos-duration="700">
                 'pi-eye-slash': passwordVisible2
               }"
             ></i>
-          </button>
+          </button> -->
         </span>
       </div>
       <mat-error
@@ -339,7 +341,7 @@ data-aos-duration="700">
 
       <div class="flex terms-checkbox align-items-center gap-1">
         <p-checkbox
-        formControlName="priv"
+          formControlName="priv"
           [(ngModel)]="termsAccepted"
           [binary]="true"
           inputId="binary"
@@ -350,10 +352,11 @@ data-aos-duration="700">
         >
       </div>
       <mat-error
-      class="error-container3"
-      *ngIf="privFormControl.hasError('required')"
-      > términos y condiciones<strong>requerida</strong></mat-error
-    >
+        class="error-container3"
+        *ngIf="privFormControl.hasError('required')"
+      >
+        términos y condiciones<strong>requerida</strong></mat-error
+      >
       <div
         [style.display]="
           confirmPasswordFormControl.hasError('passwordMatch') ||
@@ -374,7 +377,6 @@ data-aos-duration="700">
         </ngx-recaptcha2>
         <!-- </div> -->
 
- 
         <mat-error
           class="error-container3"
           *ngIf="recaptchaFormControl.hasError('required')"
@@ -415,5 +417,5 @@ data-aos-duration="700">
 
 <!-- <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script> -->
 <!-- <script> -->
-  <!-- AOS.init() -->
+<!-- AOS.init() -->
 <!-- </script> -->

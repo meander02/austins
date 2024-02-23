@@ -1,4 +1,4 @@
-import { Component, ElementRef } from '@angular/core';
+import { Component, ElementRef, ViewEncapsulation } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { SignInValidator } from 'src/app/shared/validators/sign-in-validator';
@@ -17,6 +17,7 @@ import { MessageService } from 'primeng/api';
   selector: 'app-request-password-recoveryfrm',
   templateUrl: './request-password-recoveryfrm.component.html',
   styleUrls: [
+    './password-input.component.scss',
     './request-password-recoveryfrm.component.scss',
     './so.scss',
     './so01.scss',
@@ -24,6 +25,7 @@ import { MessageService } from 'primeng/api';
     './so03.scss',
     './form.scss',
   ],
+  encapsulation: ViewEncapsulation.None,
   providers: [MessageService],
 })
 export class RequestPasswordRecoveryfrmComponent {
@@ -37,8 +39,9 @@ export class RequestPasswordRecoveryfrmComponent {
   // Add this property to your component class
   // stepCompleted: boolean[] = [false, false, false];
   step1Disabled = false;
-  step2Disabled = true;
+  // step2Disabled = true;
   step3Disabled = true;
+  step2Disabled = false;
 
   passwordVisible = false;
   passwordFieldType = 'password';
@@ -65,47 +68,91 @@ export class RequestPasswordRecoveryfrmComponent {
       /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
 
     this.group = this.formBuilder.group({
-      email: ['', [Validators.required, Validators.pattern(emailRegex)]],
+      email: [''],
     });
     this.group2 = this.formBuilder.group({
-      verificationCode: ['', Validators.required], // Añadir campos adicionales según sea necesario
+      verificationCode: [''],
     });
     this.group3 = this.formBuilder.group({
-      newPassword: ['', [Validators.required, SignInValidator.formatPassword]],
-      confirmPassword: [
-        '',
-        [Validators.required, this.passwordMatchValidator.bind(this)],
-      ],
+      newPassword: [''],
+      confirmPassword: [''],
     });
+    // Marcar todos los campos como "pristine" al inicio
   }
+  // ngOnInit() {
+  //   this.initFormGroups();
+  // }
 
+  // initFormGroups() {
+    // const emailRegex =
+    //   /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
+
+    // this.group = this.formBuilder.group({
+    //   email: ['', [Validators.required, Validators.pattern(emailRegex)]],
+    // });
+
+    // this.group2 = this.formBuilder.group({
+    //   verificationCode: ['', Validators.required],
+    // });
+
+  //   this.group3 = this.formBuilder.group({
+  //     newPassword: ['', [Validators.required, Validators.minLength(6)]],
+  //     confirmPassword: ['', Validators.required],
+  //   });
+  // }
+  // onSubmitStep1() {
+  //   const emailRegex =
+  //   /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
+
+  // this.group = this.formBuilder.group({
+  //   email: [[Validators.required, Validators.pattern(emailRegex)]],
+  // });
+  //   if (this.group.valid) {
+  //     const email = this.group.value.email;
+  //     this.authService.requestPasswordRecovery({ email }).subscribe(
+  //       (response) => {
+  //         // Manejar la respuesta exitosa, por ejemplo, cambiar al siguiente paso
+  //         this.messageService.add({
+  //           severity: 'info',
+  //           summary: 'Info',
+  //           detail: response.message,
+  //         });
+
+  //         this.step1Disabled = true;
+  //         this.step2Disabled = false;
+  //         this.activeIndex = 1;
+  //       },
+  //       (error) => {
+  //         this.snackBar.open(error.error.message, 'Cerrar', {
+  //           duration: 3000,
+  //         });
+  //       }
+  //     );
+  //   }
+  // }
   onSubmitStep1() {
+    const emailRegex =
+      /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
+    // Agregar validators después de la petición
+    this.group
+      .get('email')
+      ?.setValidators([Validators.required, Validators.pattern(emailRegex)]);
+    this.group.get('email')?.updateValueAndValidity();
     if (this.group.valid) {
       const email = this.group.value.email;
       this.authService.requestPasswordRecovery({ email }).subscribe(
         (response) => {
-          // Manejar la respuesta exitosa, por ejemplo, cambiar al siguiente paso
           this.messageService.add({
             severity: 'info',
             summary: 'Info',
             detail: response.message,
           });
-          // console.log(response)
-          // this.stepCompleted[0] = true;
-          // this.stepCompleted[0] = true;
 
-          // this.messageService.add({ severity: 'info', summary: 'Info', detail: 'Message Content' });
-
-          // this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Message Content' });
-
-          // Enable Step 2
           this.step1Disabled = true;
           this.step2Disabled = false;
           this.activeIndex = 1;
         },
         (error) => {
-          // console.log(error)
-          // Manejar errores, por ejemplo, mostrar un mensaje de error
           this.snackBar.open(error.error.message, 'Cerrar', {
             duration: 3000,
           });
@@ -113,7 +160,10 @@ export class RequestPasswordRecoveryfrmComponent {
       );
     }
   }
+
   onSubmitStep2() {
+    this.group2.get('verificationCode')?.setValidators([Validators.required]);
+    this.group2.get('verificationCode')?.updateValueAndValidity();
     if (this.group2.valid) {
       const email = this.group.value.email;
       const verificationCode = this.group2.value.verificationCode;
@@ -149,6 +199,17 @@ export class RequestPasswordRecoveryfrmComponent {
   }
 
   onSubmitStep3() {
+//     this.group3 = this.formBuilder.group({
+//       newPassword: ['', [Validators.required, SignInValidator.formatPassword]],
+//       confirmPassword: [
+//         '',
+//         [Validators.required, this.passwordMatchValidator.bind(this)],
+//       ],
+    this.group3.get('newPassword')?.setValidators([Validators.required, SignInValidator.formatPassword]);
+    this.group3.get('newPassword')?.updateValueAndValidity();
+    this.group3.get('confirmPassword')?.setValidators([Validators.required, this.passwordMatchValidator.bind(this)]);
+    this.group3.get('confirmPassword')?.updateValueAndValidity();
+
     if (this.group3.valid) {
       const email = this.group.value.email;
       const verificationCode = this.group2.value.verificationCode;
@@ -174,13 +235,12 @@ export class RequestPasswordRecoveryfrmComponent {
             if (response) {
               // Manejar la respuesta exitosa, por ejemplo, redirigir a la página de inicio de sesión
 
-              this.snackBar.open( response.message, 'Cerrar', {
+              this.snackBar.open(response.message, 'Cerrar', {
                 duration: 5000,
               });
               this.router.navigate(['/']).then(() => {
                 window.location.reload();
               });
-
             }
             this.messageService.add({
               severity: 'success',
@@ -210,10 +270,10 @@ export class RequestPasswordRecoveryfrmComponent {
 
   onConfirmPasswordInput(event: Event) {
     const confirmInput = event.target as HTMLInputElement;
-    const confirmPasswordControl = this.group.get('confirmPassword');
+    const confirmPasswordControl = this.group3.get('confirmPassword');
 
     if (confirmPasswordControl) {
-      const password = this.group.get('newPassword')?.value;
+      const password = this.group3.get('newPassword')?.value;
       const confirmPassword = confirmInput.value;
 
       if (password === confirmPassword) {
