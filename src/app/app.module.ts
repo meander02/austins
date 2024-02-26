@@ -1,5 +1,5 @@
 import { CoreComponentsModule } from './core/components/components.module';
-import { NgModule } from '@angular/core';
+import { NgModule, isDevMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -11,6 +11,7 @@ import { ErrorInterceptor } from './shared/interceptor/error.interceptor';
 import { NgxUiLoaderModule, NgxUiLoaderService } from 'ngx-ui-loader';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { NgxCaptchaModule } from 'ngx-captcha';
+import { ServiceWorkerModule } from '@angular/service-worker';
 // import AOS from 'aos'; //AOS - 1
 @NgModule({
   declarations: [
@@ -22,7 +23,12 @@ import { NgxCaptchaModule } from 'ngx-captcha';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    CoreComponentsModule,HttpClientModule
+    CoreComponentsModule,HttpClientModule, ServiceWorkerModule.register('ngsw-worker.js', {
+  enabled: !isDevMode(),
+  // Register the ServiceWorker as soon as the application is stable
+  // or after 30 seconds (whichever comes first).
+  registrationStrategy: 'registerWhenStable:30000'
+})
   ],
   // providers: [
   //   { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
