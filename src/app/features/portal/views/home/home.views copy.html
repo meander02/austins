@@ -26,13 +26,6 @@
   </div>
 
 </div>
-<!--
-<app-catalogo-vista2></app-catalogo-vista2>
-lo mas reciente
-<app-catalogo></app-catalogo>
-
-<h1>lo mas vendido</h1> -->
-
 <div *ngIf="loadingProducts">
   <ng-container class="prod"  *ngFor="let item of skeletonItems" >
     <div class="product" item>
@@ -54,29 +47,19 @@ lo mas reciente
 </div>
 
 <!-- Condición para mostrar los productos una vez que se han cargado -->
-
-<!-- Mostrar productos una vez que se han cargado -->
 <div *ngIf="!loadingProducts">
   <div *ngIf="hasSearchResults; else noResults">
-    <div class="card">
-      <p-carousel [value]="filteredProducts" [numVisible]="3" [numScroll]="3" [circular]="true" [responsiveOptions]="responsiveOptions" [autoplayInterval]="autoplayInterval">
-        <ng-template let-product pTemplate="item">
-          <div class="prod">
-            <app-product [product]="product"></app-product>
-          </div>
-        </ng-template>
-      </p-carousel>
-    </div>
+    <ng-container class="prod" *ngFor="let item of filteredProducts">
+      <div class="product">
+        <app-product [product]="item"></app-product>
+      </div>
+    </ng-container>
   </div>
 </div>
 
-<!-- HTML -->
+
 <ng-template #noResults>
-  <div class="no-results-container">
-    <h3 class="no-results-heading">No se encontraron resultados</h3>
-    <p class="no-results-message">Lo sentimos, no hay resultados disponibles para tu búsqueda.</p>
-    <!-- <img src="assets/no-results-image.png" alt="No Results" class="no-results-image" /> -->
-  </div>
+  <!-- Tu mensaje de no resultados aquí -->
 </ng-template>
 
 <script>

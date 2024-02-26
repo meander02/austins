@@ -9,25 +9,23 @@ import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-product',
   templateUrl: './product.component.html',
-  styleUrls: ['./product.component.scss']
+  styleUrls: ['./product.component.scss'],
 })
-export class ProductComponent  implements OnInit {
+export class ProductComponent implements OnInit {
 
-  @Input()product!: Product;
+
+  @Input() product!: Product;
   hasSearchResults = true;
   filterPost = '';
-  items: number=0;
+  items: number = 0;
   get cartItem(): CartItem {
     return this.setCartItem();
   }
   constructor(
     private router: Router,
     private cartService: CartService,
-    private searchService: SearchService, // Inyecta el servicio de búsqueda
-
+    private searchService: SearchService // Inyecta el servicio de búsqueda
   ) {}
-
-
 
   ngOnInit(): void {
 
@@ -38,7 +36,6 @@ export class ProductComponent  implements OnInit {
     //   this.hasSearchResults = this.product.name.toLowerCase().includes(query.toLowerCase());
     // });
     // console.log('Producto en el presentador', this.product);
-
   }
   setCartItem(): CartItem {
     console.log('set car', this.product);
@@ -47,15 +44,14 @@ export class ProductComponent  implements OnInit {
       name: this.product.name,
       precio: this.product.price,
       cantidad: 1,
-      image: this.product.images
-    }
+      image: this.product.images,
+    };
     return cartItem;
   }
 
   add(): void {
     this.cartService.add(this.cartItem);
   }
-
 
   getImages(url: string): string {
     return `${environment.api}/${url}`;
@@ -73,4 +69,16 @@ export class ProductComponent  implements OnInit {
     console.log('redirect');
     this.router.navigateByUrl('/portal/' + route);
   }
+
+  // ///nuew
+  // getSeverity(status: string) {
+  //   switch (status) {
+  //     case 'INSTOCK':
+  //       return 'success';
+  //     case 'LOWSTOCK':
+  //       return 'warning';
+  //     case 'OUTOFSTOCK':
+  //       return 'danger';
+  //   }
+  // }
 }

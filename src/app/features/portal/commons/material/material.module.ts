@@ -10,8 +10,10 @@ import { MatIconModule } from '@angular/material/icon';
 // import { FormsModule } from '@angular/forms';
 //
 import { SkeletonModule } from 'primeng/skeleton';
-
+import { CarouselModule } from 'primeng/carousel';
+import { Tag } from 'primeng/tag';
+import { ButtonModule } from 'primeng/button';
 @NgModule({
-  exports: [SkeletonModule,MatCardModule, MatIconModule,MatFormFieldModule, MatButtonModule, MatInputModule],
+  exports: [ButtonModule,SkeletonModule,MatCardModule, MatIconModule,MatFormFieldModule, MatButtonModule, MatInputModule,CarouselModule],
 })
 export class MaterialModule {}

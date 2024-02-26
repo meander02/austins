@@ -30,4 +30,17 @@ export class AdminMenuComponent implements OnInit {
   redirectTo(route: string): void {
     this.router.navigate(['/admin', route]); // Utiliza la navegación de Angular
   }
+
+
+  logout(): void {
+    // Elimina el token de autenticación del almacenamiento local
+    // this.sessionService.removeToken(); // Si ya tienes un método removeToken en tu servicio, úsalo
+    localStorage.removeItem('token'); // O elimina directamente el token del almacenamiento local aquí
+
+    // Navega a la ruta principal ('/')
+    this.router.navigate(['/']).then(() => {
+      // Recarga la página después de navegar a la ruta principal
+      window.location.reload();
+    });
+  }
 }

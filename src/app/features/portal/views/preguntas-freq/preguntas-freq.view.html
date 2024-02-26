@@ -1,10 +1,12 @@
 
-<div [@dialogFadeInOut] class="faq-container" #faqListContainer>
+<div class="faq-container" #faqListContainer>
   <h2>Preguntas Frecuentes</h2>
 
-  <div *ngFor="let faqItem of faqList" class="faq-item card flex justify-content-center">
+  <div *ngFor="let faqItem of faqList" class="faq-item card flex justify-content-center" data-aos="fade-right"
+  data-aos-offset="300"
+  data-aos-easing="ease-in-sine">
     <p-fieldset [legend]="faqItem.question" [toggleable]="faqItem.expanded">
-      <p aria-expanded="faqItem.expanded">
+      <p aria-expanded="faqItem.expanded" data-aos="fade-down">
         {{ faqItem.answer }}
       </p>
     </p-fieldset>

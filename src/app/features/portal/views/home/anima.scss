@@ -10,7 +10,7 @@
       //   transform: translateY(0);
       // }
     }
-  
+
     @keyframes fade-left {
       // from {
       //   opacity: 0;
@@ -21,18 +21,39 @@
       //   transform: translateX(0);
       // }
     }
-  
+
     [data-aos='fade-up'] {
       animation: fade-up 1.5s ease;
     }
-  
+
     [data-aos='fade-left'] {
       animation: fade-left 2.7s ease;
     }
   }
-  
+
   /* Animaciones para móvil */
   .mobile-animations {
     /* Define las animaciones para móvil aquí */
   }
-  
+  /* CSS para la sección de no resultados */
+.no-results-container {
+  text-align: center;
+  padding: 20px;
+}
+
+.no-results-heading {
+  font-size: 1.5rem;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.no-results-message {
+  font-size: 1rem;
+  color: #dbd832;
+  margin-bottom: 20px;
+}
+
+.no-results-image {
+  width: 200px;
+  height: auto;
+}

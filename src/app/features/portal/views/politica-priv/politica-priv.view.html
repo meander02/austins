@@ -3,12 +3,13 @@
   rel="stylesheet"
 />
 
-<div id="policy-container"  [@dialogFadeInOut] class="policy-container scrollable">
+<!-- <div id="policy-container"  [@dialogFadeInOut] class="policy-container scrollable"> -->
+<div id="policy-container"  class="policy-container scrollable">
   <div class="titul">
     <h1>AVISO DE PRIVACIDAD</h1>
   </div>
 
-  <section>
+  <section data-aos="zoom-out-up">
     <h2>
       <mat-icon>group</mat-icon>
       ¿Quiénes somos?
@@ -22,7 +23,7 @@
     </p>
   </section>
 
-  <section>
+  <section data-aos="zoom-out-up">
     <h2>
       <mat-icon>settings</mat-icon>
       ¿Para qué fines utilizaremos sus Datos personales?
@@ -68,7 +69,7 @@
     </p>
   </section>
 
-  <section>
+  <section data-aos="zoom-out-up">
     <h2>
       <mat-icon>description</mat-icon>
       ¿Dónde puedo consultar el aviso de privacidad integral?
@@ -90,7 +91,7 @@
   <!-- <a (click)="showSeccionMas = !showSeccionMas">Ver Más..</a> -->
   <a *ngIf="!showSeccionMas" (click)="showSeccionMas = true">Ver Más</a>
 
-  <section class="seccionmas" *ngIf="showSeccionMas">
+  <section class="seccionmas" *ngIf="showSeccionMas" data-aos="zoom-out-up">
     <h2>
       <mat-icon>swap_horizontal_circle</mat-icon>
       Transferencia de Datos Personales y Finalidades

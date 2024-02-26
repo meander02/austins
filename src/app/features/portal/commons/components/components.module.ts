@@ -13,7 +13,9 @@ import { MaterialModule } from '../material/material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FilterPipe } from 'src/app/shared/pipes/filter.pipe';
 import { DefaultImgModule } from 'src/app/shared/pipes/default-img/default-img.module';
-const COMPONENTS = [ProductComponent,DetailImgComponent, DetailInfoComponent]; // Agrega los componentes
+import { CatalogoComponent } from './catalogo/catalogo.component';
+import { CatalogoVista2Component } from './catalogo-vista2/catalogo-vista2.component';
+const COMPONENTS = [ProductComponent,DetailImgComponent, DetailInfoComponent,CatalogoComponent,CatalogoVista2Component]; // Agrega los componentes
 
 @NgModule({
   declarations: [...COMPONENTS,FilterPipe],

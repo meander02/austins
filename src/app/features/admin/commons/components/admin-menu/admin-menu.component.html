@@ -46,7 +46,19 @@
       </mat-list-item>
       <mat-list-item routerLink="/pedidos" (click)="sidenav.toggle()">
         <mat-icon>assignment</mat-icon>
+
+        <!-- <div mat-menu-item class="mobile-menu-item_b1" (click)="logout()">
+          <span><span class="pi pi-sign-out"></span> Cerrar sesión</span>
+        </div> -->
         <span>Pedidos</span>
+      </mat-list-item>
+      <mat-list-item routerLink="/pedidos" (click)="logout()">
+        <!-- <mat-icon>assignment</mat-icon> -->
+
+       <!-- <div mat-menu-item class="mobile-menu-item_b1" > -->
+          <span><span class="pi pi-sign-out"></span> Cerrar sesión</span>
+        <!-- </div> -->
+        <!-- <span>Pedidos</span> -->
       </mat-list-item>
     </mat-nav-list>
   </mat-sidenav>

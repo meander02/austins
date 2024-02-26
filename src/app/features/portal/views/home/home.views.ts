@@ -11,11 +11,17 @@ import * as AOS from 'aos';
   templateUrl: './home.views.html',
   styleUrls: [
     './home.views.scss',
+    './product.scss',
     './hom.scss',
     './anima.scss'
   ]
 })
 export class HomeViews implements OnInit {
+
+  responsiveOptions: any[] | undefined;
+  // autoplayInterval: number = 3000;
+  autoplayInterval: number = 6000;
+
   originalProducts: Product[] = []; // Mantén una copia original de todos los productos
   filteredProducts: Product[] = []; // Almacena los productos filtrados para la búsqueda
   hasSearchResults = true;
@@ -43,6 +49,26 @@ export class HomeViews implements OnInit {
     this.router.navigateByUrl('/portal/' + route);
   }
   ngOnInit(): void {
+
+
+    this.responsiveOptions = [
+      {
+        breakpoint: '1199px',
+        numVisible: 1,
+        numScroll: 1,
+      },
+      {
+        breakpoint: '991px',
+        numVisible: 2,
+        numScroll: 1,
+      },
+      {
+        breakpoint: '767px',
+        numVisible: 1,
+        numScroll: 1,
+      },
+    ];
+
      // Verificar el tamaño de la pantalla al cargar el componente
      this.checkScreenSize();
     //  AOS.init();
@@ -63,7 +89,7 @@ export class HomeViews implements OnInit {
         this.loadingProducts = false; // Si hay un error al cargar los productos, establece loadingProducts en false
       }
     );
- 
+
   }
 
   @HostListener('window:resize')

@@ -36,6 +36,9 @@ import { DefaultImgModule } from 'src/app/shared/pipes/default-img/default-img.m
 import { ConfirmPopupModule } from 'primeng/confirmpopup';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ToastModule } from 'primeng/toast';
+
+
+import { SliderModule } from 'primeng/slider';
 @NgModule({
   declarations: [
     ChatComponent,
@@ -49,6 +52,7 @@ import { ToastModule } from 'primeng/toast';
   ],
   exports: [
     // PoliticaComponent,
+    SliderModule,
     ConfirmDialogModule,
     ToastModule,
     ConfirmPopupModule,
@@ -64,6 +68,7 @@ import { ToastModule } from 'primeng/toast';
   imports: [
     ToastModule,
     // BrowserModule,
+    SliderModule,
     ConfirmDialogModule,
     ConfirmPopupModule,
     DefaultImgModule,

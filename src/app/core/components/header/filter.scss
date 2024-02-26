@@ -1,0 +1,63 @@
+/* CSS para el componente de filtrado de productos */
+.sidebar-content {
+  padding: 20px;
+}
+
+.filter-item {
+  margin-bottom: 20px;
+}
+
+.filter-item label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.filter-item select,
+.filter-item input[type="color"] {
+  width: 100%;
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+}
+
+.filter-item button {
+  padding: 10px 20px;
+  background-color: #ff5733;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.filter-item button:hover {
+  background-color: #ff914d;
+}
+
+.filter-slider {
+  width: 100%;
+}
+
+.filter-color {
+  width: 100%;
+  padding: 5px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+.filter-button {
+  width: 100%;
+  padding: 10px;
+  background-color: #ff5733;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.filter-button:hover {
+  background-color: #ff914d;
+}

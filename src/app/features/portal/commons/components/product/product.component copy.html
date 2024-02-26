@@ -1,0 +1,32 @@
+<mat-card class="product-card">
+  <mat-card-header>
+    <div mat-card-avatar class="example-header-image"></div>
+    <mat-card-title>{{product.name}}</mat-card-title>
+    <mat-card-subtitle>
+      <p>{{product.sku}} <span>Precio: {{product.price | currency}}</span></p>
+    </mat-card-subtitle>
+  </mat-card-header>
+  <div class="content-img" (click)="goToDetail('detail')">
+
+    <img mat-card-image
+    src="{{product.images[0]  | defaultImg}}"
+
+
+    >
+
+  </div>
+  <mat-card-content>
+
+    <p>
+      {{ product.description | slice:0:50 }}{{ product.description.length > 3 ? '...' : '' }}
+
+    </p>
+
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-button (click)="decrement()">-</button>
+    <button class="grow" mat-button (click)="add()">Agregar</button>
+    <button mat-button (click)="increment()">+</button>
+  </mat-card-actions>
+</mat-card>
+

@@ -160,7 +160,7 @@
               <!-- Precio del producto -->
               <span class="product-price">{{ item.precio | currency }}</span>
               <!-- Botón eliminar -->
-              <p-toast></p-toast>
+              <p-toast position="top-center"></p-toast>
               <p-confirmPopup></p-confirmPopup>
 
               <button
@@ -200,6 +200,75 @@
     >
       Cerrar y Continuar Comprando
     </button>
+  </div>
+</p-sidebar>
+
+<!-- HTML -->
+<!-- HTML -->
+<!-- HTML -->
+<!-- HTML -->
+<p-sidebar [(visible)]="sidebarVisible3">
+  <!-- HTML para la sección de filtrado de productos de repostería -->
+  <div class="sidebar-content">
+    <div class="sidebar-header" data-aos="zoom-out-left">
+      <span class="header-icon pi pi-shopping-cart"></span>
+      <h2 class="header-title">Tu Carrito</h2>
+    </div>
+    <!-- Filtro por categoría -->
+    <div class="filter-item">
+      <label for="category">Categoría:</label>
+      <select
+        id="category"
+        [(ngModel)]="selectedCategory"
+        class="filter-select"
+      >
+        <option value="pasteleria">Pastelería</option>
+        <option value="tartas">Tartas</option>
+        <option value="cupcakes">Cupcakes</option>
+        <!-- Agrega más opciones según tus categorías -->
+      </select>
+    </div>
+
+    <!-- Filtro por precio -->
+    <div class="filter-item">
+      <label for="price">Precio:</label>
+      <p-slider
+        [(ngModel)]="rangeValues"
+        [range]="true"
+        class="filter-slider"
+      ></p-slider>
+
+      <!-- <input type="range" id="price" [(ngModel)]="selectedPrice" min="0" max="100" step="1" /> -->
+      <!-- <span>{{ rangeValues | currency }}</span> -->
+    </div>
+
+    <!-- Filtro por color -->
+
+    <!-- Otros filtros -->
+    <!-- Agrega más filtros según tus necesidades -->
+
+    <!-- Botón para aplicar filtros -->
+
+    <ng-template #emptyCart>
+      <div class="empty-cart-message">Tu carrito está vacío</div>
+    </ng-template>
+    <!-- <button
+      pButton
+      class="btn-continue-shopping"
+      icon="pi pi-angle-left"
+      (click)="closeToCart()"
+    >
+      Cerrar y Continuar Comprando
+    </button> -->
+    <div
+    class="btn"
+    data-aos="fade-up"
+    data-aos-anchor-placement="bottom-bottom"
+  >
+    <button class="btn-finish" (click)="finishPurchase()">
+      aplicar filtros
+    </button>
+  </div>
   </div>
 </p-sidebar>
 
@@ -329,7 +398,7 @@
     [class.is-detail-route]="!isRUTA_DISTINTE_ahome()"
   >
     <label for="categoryFilter">Categoría:</label>
-    <button>
+    <button (click)="sidebarVisible3 = true">
       filtrar
       <mat-icon>filter_alt</mat-icon>
     </button>

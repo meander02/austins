@@ -12,30 +12,7 @@ import {
   selector: 'app-politica-cookies',
   templateUrl: './politica-cookies.view.html',
   styleUrls: ['./politica-cookies.view.scss'],
-  animations: [
-    trigger('dialogFadeInOut', [
-      state('void',
-      style({ transform: 'scale(0)', opacity: 0 }
-      )
-      ),
-      transition(':enter', [
-        animate(
-          '300ms ease-in'
-          // style({
-          //   transform: 'scale(1)',
-          //   opacity: 1,
-          //   // scroll :-10,
-          // })
-        ),
-      ]),
-      transition(':leave', [
-        animate(
-          '300ms ease-out'
-          // style({ transform: 'scale(0.5)', opacity: 0 })
-        ),
-      ]),
-    ]),
-  ],
+
 })
 export class PoliticaCookiesView {
   showSeccionMas = false; // Inicialmente oculta

@@ -32,6 +32,7 @@ import { ConfirmationService, MessageService } from 'primeng/api';
     './head03.scss',
     './head04.scss',
     './head05.scss',
+    './filter.scss',
     './carrito.scss',
     './header.component02.scss',
   ],
@@ -93,6 +94,15 @@ export class HeaderComponent implements OnInit {
 
   sidebarVisible: boolean = false;
   sidebarVisible2: boolean = false;
+  sidebarVisible3: boolean = false;
+
+  selectedCategory: string = 'pasteleria';
+  // selectedPrice: number = 50; // Precio inicial
+  selectedColor: string = '#ffffff'; // Color inicial
+  rangeValues: number[] = [20, 80];
+
+
+
   constructor(
     public dialog: MatDialog,
     private dialogService: DialogService,
@@ -302,7 +312,7 @@ export class HeaderComponent implements OnInit {
         '960px': '75vw',
         '640px': '100vw',
       },
- 
+
       data: {},
     });
   }
@@ -340,7 +350,7 @@ export class HeaderComponent implements OnInit {
     if (item.cantidad > 1) {
       item.cantidad--;
     }
-    
+
     // Luego, puedes llamar al servicio para actualizar el carrito, si es necesario
     this.cartService.decre(item);
   }
@@ -390,17 +400,17 @@ export class HeaderComponent implements OnInit {
   removeItem(item: CartItem): void {
     // Actualiza el carrito para reflejar los cambios en this.carData
     this.carData = this.carData.slice();
-    
+
     // Elimina el artículo del carrito
     const index = this.carData.indexOf(item);
     if (index !== -1) {
       this.carData.splice(index, 1);
     }
-  
+
     // Luego, puedes llamar al servicio para actualizar el carrito
     this.cartService.remove(item);
   }
-  
+
   // removeItem(item: CartItem): void {
   //   // Elimina el artículo del carrito
   //   const index = this.carData.indexOf(item);
@@ -430,5 +440,15 @@ export class HeaderComponent implements OnInit {
 
   closeSidebar(): void {
     // Lógica para cerrar la barra lateral y continuar comprando
+  }
+
+
+
+  applyFilters() {
+    // Aquí puedes implementar la lógica para aplicar los filtros
+    console.log('Categoría seleccionada:', this.selectedCategory);
+    // console.log('Precio seleccionado:', this.selectedPrice);
+    console.log('Color seleccionado:', this.selectedColor);
+    // Implementa la lógica para filtrar los productos según las selecciones
   }
 }
