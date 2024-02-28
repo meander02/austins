@@ -4,6 +4,7 @@ import { Router, NavigationEnd } from '@angular/router';
 // import AOS from 'aos';
 import * as AOS from 'aos';
 import { SwPush } from '@angular/service-worker';
+import { NotificService } from './shared/services/notific.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -18,21 +19,35 @@ export class AppComponent implements OnInit{
   // constructor(
   //   private swPush: SwPush,
   //   private newsletterService: NewsletterService) {}
+  // subscribeToNotifications() {
+  //   this.swPush.requestSubscription({
+  //     serverPublicKey: this.VAPID_PUBLIC_KEY
+  //   })
+  //   .then(sub => {
+  //     // Extraer el token de suscripción del endpoint
+  //     // const subscriptionToken = this.getSubscriptionToken(sub.endpoint);
+
+  //     // // Llamar al servicio para guardar el token
+  //     // this.pushNotificationService.sendSubscription({ token: subscriptionToken }).subscribe(
+  //     //   response => console.log("Token saved successfully", response),
+  //     //   error => console.error("Error saving token", error)
+  //     // );
+  //   })
+  //   .catch(err => console.error("Could not subscribe to notifications", err));
+  // }
   subscribeToNotifications() {
     this.swPush.requestSubscription({
       serverPublicKey: this.VAPID_PUBLIC_KEY
     })
     .then(sub => {
-      // Aquí puedes enviar el objeto `sub` al servidor para guardar el suscriptor
-      console.log("Successfully subscribed to notifications.");
-      console.log(sub);
+      // Imprimir el token de suscripción en la consola
+      console.log('Token de suscripción:', sub.toJSON());
     })
     .catch(err => console.error("Could not subscribe to notifications", err));
   }
 
-
   constructor(
-
+    private pushNotificationService: NotificService,
       private swPush: SwPush,
   //  private newsletterService: NewsletterService,
     private storageService:StorageService,private router: Router) {

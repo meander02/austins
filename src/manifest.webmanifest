@@ -1,8 +1,9 @@
 {
   "name": "austins",
   "short_name": "austins",
-  "theme_color": "#ffa500",
-  "background_color": "#ffa500",
+  "theme_color": "transparent",
+  "description": "Autins PWA App",
+  "background_color": "transparent",
   "display": "standalone",
   "scope": "./",
   "start_url": "./",
