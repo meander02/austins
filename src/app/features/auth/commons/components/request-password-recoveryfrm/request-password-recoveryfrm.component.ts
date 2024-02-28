@@ -52,6 +52,9 @@ export class RequestPasswordRecoveryfrmComponent {
   group2: FormGroup;
   group3: FormGroup;
   // tabsInteractive = true;
+  timeRemaining: number = 300; // 5 minutos en segundos
+  intervalId: any;
+  showTimer: boolean = false;
 
   constructor(
     private snackBar: MatSnackBar,
@@ -97,6 +100,9 @@ export class RequestPasswordRecoveryfrmComponent {
             summary: 'Info',
             detail: response.message,
           });
+          this.showTimer = true; // Mostrar el componente de tiempo restante
+
+          this.startTimer();
 
           this.step1Disabled = true;
           this.step2Disabled = false;
@@ -110,6 +116,24 @@ export class RequestPasswordRecoveryfrmComponent {
       );
     }
   }
+  timeLeft: number = 300; // 300 segundos = 5 minutos
+  timer: any;
+ // Función para iniciar el temporizador
+// Función para iniciar el temporizador
+startTimer() {
+  this.intervalId = setInterval(() => {
+    this.timeRemaining--;
+    if (this.timeRemaining <= 0) {
+      clearInterval(this.intervalId); // Detener el temporizador cuando llegue a cero
+    }
+  }, 1000); // Actualizar cada segundo
+}
+formatTimeLeft(): string {
+  const minutes: number = Math.floor(this.timeRemaining / 60);
+  const seconds: number = this.timeRemaining % 60;
+  return `${minutes}:${seconds < 10 ? '0' + seconds : seconds}`;
+}
+
 
   onSubmitStep2() {
     this.group2.get('verificationCode')?.setValidators([Validators.required]);

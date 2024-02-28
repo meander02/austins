@@ -16,39 +16,6 @@ export class AppComponent implements OnInit{
 
   readonly VAPID_PUBLIC_KEY = "BFYtOg9-LQWHmObZKXm4VIV2BImn5nBrhz4h37GQpbdj0hSBcghJG7h-wldz-fx9aTt7oaqKSS3KXhA4nXf32pY";
 
-  // constructor(
-  //   private swPush: SwPush,
-  //   private newsletterService: NewsletterService) {}
-  // subscribeToNotifications() {
-  //   this.swPush.requestSubscription({
-  //     serverPublicKey: this.VAPID_PUBLIC_KEY
-  //   })
-  //   .then(sub => {
-  //     // Extraer el token de suscripción del endpoint
-  //     // const subscriptionToken = this.getSubscriptionToken(sub.endpoint);
-
-  //     // // Llamar al servicio para guardar el token
-  //     // this.pushNotificationService.sendSubscription({ token: subscriptionToken }).subscribe(
-  //     //   response => console.log("Token saved successfully", response),
-  //     //   error => console.error("Error saving token", error)
-  //     // );
-  //   })
-  //   .catch(err => console.error("Could not subscribe to notifications", err));
-  // }
-  // subscribeToNotifications() {
-  //   this.swPush.requestSubscription({
-  //     serverPublicKey: this.VAPID_PUBLIC_KEY
-  //   })
-  //   .then(sub => {
-  //     console.log('Token de suscripción:', sub.toJSON());
-  //     // Enviar la suscripción al backend
-  //     this.pushNotificationService.sendSubscription(sub.toJSON()).subscribe(
-  //       res => console.log('Suscripción enviada al servidor:', res),
-  //       error => console.error('Error al enviar la suscripción al servidor:', error)
-  //     );
-  //   })
-  //   .catch(err => console.error("Could not subscribe to notifications", err));
-  // }
   subscribeToNotifications() {
     this.swPush.requestSubscription({
       serverPublicKey: this.VAPID_PUBLIC_KEY
