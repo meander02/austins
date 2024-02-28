@@ -9,7 +9,7 @@ export class NotificService {
   constructor(private http: HttpClient) { }
 
   sendSubscription(subscription: any) {
-    const url = `${environment.api}/pushSubscription/enviar`;
+    const url = `${environment.api}/pushSubscription`;
 
     return this.http.post(url, subscription);
   }

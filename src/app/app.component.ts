@@ -63,7 +63,6 @@ export class AppComponent implements OnInit{
     })
     .catch(err => console.error("Could not subscribe to notifications", err));
   }
-
   constructor(
     private pushNotificationService: NotificService,
       private swPush: SwPush,
