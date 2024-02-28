@@ -1,5 +1,7 @@
 
-<div class="home-container"  >
+<!-- <div class="home-container"  > -->
+  <div class="home-container" [ngStyle]="{'background-image': 'url(' + backgroundImages[currentImageIndex] + ')'}">
+
   <div class="cursor"></div>
 
     <div class="content" [attr.data-aos]="isMobile ? 'zoom-in-up' : 'fade-up'" data-aos-duration="1500">
@@ -78,7 +80,3 @@ lo mas reciente
     <!-- <img src="assets/no-results-image.png" alt="No Results" class="no-results-image" /> -->
   </div>
 </ng-template>
-
-<script>
-  AOS.init();
-</script>

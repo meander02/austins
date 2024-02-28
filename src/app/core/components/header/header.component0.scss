@@ -1,19 +1,19 @@
-@media (max-width: 768px) {
+@media (max-width: 1440px) {
   .material-icons.primary {
     font-size: 24px;
     margin-left: 3%;
   }
 
 
-  .logo-container {
-    flex: 1;
-    text-align: center;
-    margin-right: 20px;
+  // .logo-container {
+  //   flex: 1;
+  //   text-align: center;
+  //   margin-right: 20px;
 
-    img {
-      max-width: 90%;
-    }
-  }
+  //   img {
+  //     max-width: 90%;
+  //   }
+  // }
 }
 
 @media (min-width: 481px) {
@@ -22,14 +22,7 @@
     overflow-y: hidden;
     background-color: #ffa500;
   }
-  // .logo-container {
-  //   flex: 1;
-  //   text-align: center;
-  //   margin-right: 20px;
-  // }
-  // .logo-container img {
-  //   max-width: 60%;
-  // }
+
   .menu-btn {
     background-color: transparent; /* Color de fondo del botón */
     color: #ffa500; /* Color del texto */

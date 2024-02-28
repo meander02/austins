@@ -1,9 +1,12 @@
-// import { Component,HostListener } from '@angular/core';
-import { Component, HostListener } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { UserStateService } from 'src/app/features/admin/commons/services/user-state.service';
+import { AuthStateService } from 'src/app/features/auth/commons/services/auth-state.service';
+import { ScrollServiceService } from 'src/app/shared/services/scroll-service.service';
 
-import { UserStateService } from '../../../features/admin/commons/services/user-state.service'; //
-import { AuthStateService } from './../../../features/auth/commons/services/auth-state.service';
+// import { UserStateService } from '../../../features/admin/commons/services/user-state.service';
+// import { AuthStateService } from './../../../features/auth/commons/services/auth-state.service';
+
 @Component({
   selector: 'app-footer',
   templateUrl: './footer.component.html',
@@ -14,6 +17,8 @@ export class FooterComponent {
 
   constructor(
     private router: Router,
+    private scrollService: ScrollServiceService,
+
     private authStateService: AuthStateService,
     private userStateService: UserStateService
   ) {}
@@ -24,10 +29,11 @@ export class FooterComponent {
       !this.userStateService.getIsAdminSection()
     );
   }
-  // constructor(private router: Router) {}
+  ngOnInit(): void {
+    this.scrollService.init();
+  }
 
   redirectTo(route: string): void {
-    console.log('redirect');
     this.router.navigateByUrl('/portal/' + route);
   }
 }

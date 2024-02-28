@@ -13,11 +13,10 @@ import * as AOS from 'aos';
     './home.views.scss',
     './product.scss',
     './hom.scss',
-    './anima.scss'
-  ]
+    './anima.scss',
+  ],
 })
 export class HomeViews implements OnInit {
-
   responsiveOptions: any[] | undefined;
   // autoplayInterval: number = 3000;
   autoplayInterval: number = 6000;
@@ -40,17 +39,24 @@ export class HomeViews implements OnInit {
   @HostListener('mousemove', ['$event'])
   onMouseMove(event: MouseEvent): void {
     const cursor = document.querySelector('.cursor') as HTMLElement;
-    cursor.style.left = (event.clientX - 10) + 'px';
-    cursor.style.top = (event.clientY - 10) + 'px';
+    cursor.style.left = event.clientX - 10 + 'px';
+    cursor.style.top = event.clientY - 10 + 'px';
   }
 
   redirectTo(route: string): void {
     console.log('redirect');
     this.router.navigateByUrl('/portal/' + route);
   }
+
+  // ngOnInit() {
+  //   setInterval(() => {
+  //     this.changeBackgroundImage();
+  //   }, 5000); // Cambiar cada 5 segundos (ajusta este valor según sea necesario)
+  // }
   ngOnInit(): void {
-
-
+    setInterval(() => {
+      this.changeBackgroundImage();
+    }, 5000); // Cambiar cada 5 segundos (ajusta este valor según sea necesario)
     this.responsiveOptions = [
       {
         breakpoint: '1199px',
@@ -69,8 +75,8 @@ export class HomeViews implements OnInit {
       },
     ];
 
-     // Verificar el tamaño de la pantalla al cargar el componente
-     this.checkScreenSize();
+    // Verificar el tamaño de la pantalla al cargar el componente
+    this.checkScreenSize();
     //  AOS.init();
     //  window.addEventListener('load',AOS.refresh)
     this.searchService.searchQuery$.subscribe((query) => {
@@ -89,20 +95,16 @@ export class HomeViews implements OnInit {
         this.loadingProducts = false; // Si hay un error al cargar los productos, establece loadingProducts en false
       }
     );
-
   }
 
   @HostListener('window:resize')
   onResize(): void {
     this.checkScreenSize();
-
   }
 
   checkScreenSize(): void {
-    this.isMobile = window.innerWidth < 500;
-
+    this.isMobile = window.innerWidth < 800;
   }
-
 
   filterProducts(query: string): void {
     if (query.trim() !== '') {
@@ -114,10 +116,24 @@ export class HomeViews implements OnInit {
     }
     this.hasSearchResults = this.filteredProducts.length > 0;
   }
+  // "C:\myAngular\austins\src\assets\385875277_803282551806512_7717989195696097860_n.jpg"
+  // Método para generar items de esqueleto
+  get skeletonItems(): any[] {
+    const skeletonItemCount = 4; // Definir la cantidad de items de esqueleto que deseas mostrar
+    return Array(skeletonItemCount).fill(null);
+  }
 
-    // Método para generar items de esqueleto
-    get skeletonItems(): any[] {
-      const skeletonItemCount = 4; // Definir la cantidad de items de esqueleto que deseas mostrar
-      return Array(skeletonItemCount).fill(null);
-    }
+  backgroundImages: string[] = [
+    'https://static.wixstatic.com/media/64de7c_bd452d768bdf43498f0e94694ddc7040~mv2.jpg',
+    '/assets/385875277_803282551806512_7717989195696097860_n.jpg',
+    '/assets/268925960_4787701637958311_155484381208785347_n.jpg',
+    // Agrega más URLs de imágenes según sea necesario
+  ];
+  currentImageIndex = 0;
+
+  // Función para cambiar la imagen de fondo
+  changeBackgroundImage() {
+    this.currentImageIndex =
+      (this.currentImageIndex + 1) % this.backgroundImages.length;
+  }
 }

@@ -18,11 +18,15 @@ body {
   align-items: center;
   justify-content: center;
   height: 100vh;
-  background-image: url("https://static.wixstatic.com/media/64de7c_bd452d768bdf43498f0e94694ddc7040~mv2.jpg");
   background-size: cover;
   background-position: center;
   color: white;
   text-align: center;
+
+  transition: background-image 1.6s cubic-bezier(0.55, 0.085, 0.68, 0.53), filter 1s ease; /* Transición personalizada con desenfoque */
+
+
+
 }
 
 .content {

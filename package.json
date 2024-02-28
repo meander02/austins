@@ -4,7 +4,8 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build": "ng build ",
+    "start-pwa": "ng build --base-href=/ && http-server -p 8080 -c-1 dist/austins",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },

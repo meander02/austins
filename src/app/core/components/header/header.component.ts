@@ -101,8 +101,6 @@ export class HeaderComponent implements OnInit {
   selectedColor: string = '#ffffff'; // Color inicial
   rangeValues: number[] = [20, 80];
 
-
-
   constructor(
     public dialog: MatDialog,
     private dialogService: DialogService,
@@ -198,19 +196,19 @@ export class HeaderComponent implements OnInit {
     this.router.navigate(['/auth', route]); // Utiliza la navegación de Angular
   }
 
-  toggleMobileMenu() {
-    const mobileMenu = document.getElementById('mobileMenu');
-    if (mobileMenu) {
-      this.isMobileMenuOpen = !this.isMobileMenuOpen;
+  // toggleMobileMenu() {
+  //   const mobileMenu = document.getElementById('mobileMenu');
+  //   if (mobileMenu) {
+  //     this.isMobileMenuOpen = !this.isMobileMenuOpen;
 
-      if (this.isMobileMenuOpen) {
-        mobileMenu.style.display = 'block';
-      } else {
-        mobileMenu.style.display = 'none';
-      }
-    }
-    console.log(this.isMobileMenuOpen);
-  }
+  //     if (this.isMobileMenuOpen) {
+  //       mobileMenu.style.display = 'block';
+  //     } else {
+  //       mobileMenu.style.display = 'none';
+  //     }
+  //   }
+  //   console.log(this.isMobileMenuOpen);
+  // }
   // sidebarVisible() :void {
 
   // }
@@ -287,15 +285,6 @@ export class HeaderComponent implements OnInit {
     }
   }
 
-  //   showDialog() {
-  //     this.visible = true;
-  // }
-
-  showDialog() {
-    this.visible = true;
-  }
-
-
   openSignInModal(): void {
     this.sidebarVisible = false;
     const isMobile = window.innerWidth < 480;
@@ -361,28 +350,16 @@ export class HeaderComponent implements OnInit {
       icon: 'pi pi-info-circle',
       acceptButtonStyleClass: 'p-button-danger p-button-sm',
       accept: () => {
-
         this.messageService.add({
           severity: 'error',
           summary: 'Eliminado',
           detail: `El producto "${item.name}" ha sido eliminado del carrito`,
           life: 3000,
         });
-        // this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Message Content' });
-        console.log(item)
-        // this.messageService.add({ severity: 'info', summary: 'Confirmed', detail: 'Record deleted', life: 3000 });
+        console.log(item);
         this.removeItem(item);
-
       },
       reject: () => {
-        // this.messageService.add({
-        //   severity: 'error',
-        //   summary: 'Rechazado',
-        //   detail: 'La eliminación del producto ha sido cancelada',
-        //   life: 3000,
-        // });
-
-        // this.messageService.add({ severity: 'error', summary: 'Rejected', detail: 'You have rejected', life: 3000 });
       },
     });
   }
@@ -441,8 +418,6 @@ export class HeaderComponent implements OnInit {
   closeSidebar(): void {
     // Lógica para cerrar la barra lateral y continuar comprando
   }
-
-
 
   applyFilters() {
     // Aquí puedes implementar la lógica para aplicar los filtros

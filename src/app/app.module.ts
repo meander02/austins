@@ -12,6 +12,7 @@ import { NgxUiLoaderModule, NgxUiLoaderService } from 'ngx-ui-loader';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { NgxCaptchaModule } from 'ngx-captcha';
 import { ServiceWorkerModule } from '@angular/service-worker';
+import { ScrollServiceService } from './shared/services/scroll-service.service';
 // import AOS from 'aos'; //AOS - 1
 @NgModule({
   declarations: [
@@ -30,6 +31,8 @@ import { ServiceWorkerModule } from '@angular/service-worker';
   registrationStrategy: 'registerWhenStable:30000'
 })
   ],
+  providers: [ScrollServiceService], // Asegúrate de proveer el servicio aquí
+
   // providers: [
   //   { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
   // ],

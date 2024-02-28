@@ -3,6 +3,7 @@ import { StorageService } from './core/services/storage.service';
 import { Router, NavigationEnd } from '@angular/router';
 // import AOS from 'aos';
 import * as AOS from 'aos';
+import { SwPush } from '@angular/service-worker';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -10,13 +11,32 @@ import * as AOS from 'aos';
 })
 export class AppComponent implements OnInit{
   title = 'austins';
+  respuesta: any;
+
+  readonly VAPID_PUBLIC_KEY = "BFYtOg9-LQWHmObZKXm4VIV2BImn5nBrhz4h37GQpbdj0hSBcghJG7h-wldz-fx9aTt7oaqKSS3KXhA4nXf32pY";
+
+  // constructor(
+  //   private swPush: SwPush,
+  //   private newsletterService: NewsletterService) {}
+  subscribeToNotifications() {
+    this.swPush.requestSubscription({
+      serverPublicKey: this.VAPID_PUBLIC_KEY
+    })
+    .then(sub => {
+      // Aquí puedes enviar el objeto `sub` al servidor para guardar el suscriptor
+      console.log("Successfully subscribed to notifications.");
+      console.log(sub);
+    })
+    .catch(err => console.error("Could not subscribe to notifications", err));
+  }
 
 
+  constructor(
 
-  // constructor( private storageService:StorageService){
-
-  // }
-  constructor(private storageService:StorageService,private router: Router) {
+      private swPush: SwPush,
+  //  private newsletterService: NewsletterService,
+    private storageService:StorageService,private router: Router) {
+      this.subscribeToNotifications()
     // Suscribirse a los cambios de la ruta y redirigir en caso de rutas no válidas
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
@@ -30,7 +50,7 @@ export class AppComponent implements OnInit{
   ngOnInit(): void {
     AOS.init();
     window.addEventListener('load',AOS.refresh)
-    
+
       if(!this.storageService.getCarrito){
         this.storageService.setCarrito([])
       }
