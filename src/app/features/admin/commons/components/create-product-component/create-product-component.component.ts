@@ -6,7 +6,7 @@ import { MatChipEditedEvent, MatChipInputEvent } from '@angular/material/chips';
 import { environment } from 'src/environments/environment';
 import { forkJoin } from 'rxjs';
 import { DomSanitizer } from '@angular/platform-browser';
-import { RestService } from '../../services/rest.service';
+
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpErrorResponse } from '@angular/common/http';
 import {
@@ -114,7 +114,7 @@ export class CreateProductComponentComponent {
         price: this.createForm.value.price,
         category: this.createForm.value.category,
         maker: this.createForm.value.maker,
-        images: [], 
+        images: [],
         status: this.createForm.value.status ? 'ACTIVE' : 'INACTIVE',
         weight: this.createForm.value.weight,
         ingredients: this.getIngredientsArray(),

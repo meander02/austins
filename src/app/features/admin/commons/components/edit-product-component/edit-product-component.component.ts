@@ -15,7 +15,7 @@ import { MatChipEditedEvent, MatChipInputEvent } from '@angular/material/chips';
 import { environment } from 'src/environments/environment';
 import { forkJoin } from 'rxjs';
 import { DomSanitizer } from '@angular/platform-browser';
-import { RestService } from '../../services/rest.service';
+
 import { CategoryService } from '../../services/category.service';
 import { Categoria } from '../../../models/Category.models';
 import { HttpErrorResponse } from '@angular/common/http';
@@ -47,7 +47,7 @@ export class EditProductComponentComponent {
     private cdRef: ChangeDetectorRef,
 
     private sanitizer: DomSanitizer,
-    private rest: RestService,
+
     private categoryService: CategoryService,
     private productService: ProductService,
     private snackBar: MatSnackBar // Agrega esta línea
