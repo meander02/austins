@@ -35,13 +35,31 @@ export class AppComponent implements OnInit{
   //   })
   //   .catch(err => console.error("Could not subscribe to notifications", err));
   // }
+  // subscribeToNotifications() {
+  //   this.swPush.requestSubscription({
+  //     serverPublicKey: this.VAPID_PUBLIC_KEY
+  //   })
+  //   .then(sub => {
+  //     console.log('Token de suscripción:', sub.toJSON());
+  //     // Enviar la suscripción al backend
+  //     this.pushNotificationService.sendSubscription(sub.toJSON()).subscribe(
+  //       res => console.log('Suscripción enviada al servidor:', res),
+  //       error => console.error('Error al enviar la suscripción al servidor:', error)
+  //     );
+  //   })
+  //   .catch(err => console.error("Could not subscribe to notifications", err));
+  // }
   subscribeToNotifications() {
     this.swPush.requestSubscription({
       serverPublicKey: this.VAPID_PUBLIC_KEY
     })
     .then(sub => {
-      // Imprimir el token de suscripción en la consola
       console.log('Token de suscripción:', sub.toJSON());
+      // Enviar la suscripción al backend
+      this.pushNotificationService.sendSubscription(sub.toJSON()).subscribe(
+        res => console.log('Suscripción enviada al servidor:', res),
+        error => console.error('Error al enviar la suscripción al servidor:', error)
+      );
     })
     .catch(err => console.error("Could not subscribe to notifications", err));
   }
