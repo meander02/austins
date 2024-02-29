@@ -18,8 +18,8 @@ import * as AOS from 'aos';
 })
 export class HomeViews implements OnInit {
   responsiveOptions: any[] | undefined;
-  // autoplayInterval: number = 3000;
-  autoplayInterval: number = 6000;
+  autoplayInterval: number = 3000;
+  // autoplayInterval: number = 9000;
 
   originalProducts: Product[] = []; // Mantén una copia original de todos los productos
   filteredProducts: Product[] = []; // Almacena los productos filtrados para la búsqueda
@@ -123,14 +123,29 @@ export class HomeViews implements OnInit {
     return Array(skeletonItemCount).fill(null);
   }
 
+  // backgroundImages: string[] = [
+  //   'https://static.wixstatic.com/media/64de7c_bd452d768bdf43498f0e94694ddc7040~mv2.jpg',
+  //   '/assets/268925960_4787701637958311_155484381208785347_n.jpg',
+  //   // Agrega más URLs de imágenes según sea necesario
+  // ];
+
   backgroundImages: string[] = [
-    'https://static.wixstatic.com/media/64de7c_bd452d768bdf43498f0e94694ddc7040~mv2.jpg',
-    '/assets/385875277_803282551806512_7717989195696097860_n.jpg',
     '/assets/268925960_4787701637958311_155484381208785347_n.jpg',
+    '/assets/268925960_4787701637958311_155484381208785347_n.jpg',
+    '/assets/268925960_4787701637958311_155484381208785347_n.jpg',
+    '/assets/268925960_4787701637958311_155484381208785347_n.jpg',
+    '/assets/268925960_4787701637958311_155484381208785347_n.jpg',
+    '/assets/268925960_4787701637958311_155484381208785347_n.jpg',
+    '/assets/385875277_803282551806512_7717989195696097860_n.jpg',
+    '/assets/385875277_803282551806512_7717989195696097860_n.jpg',
+    '/assets/385875277_803282551806512_7717989195696097860_n.jpg',
+    '/assets/385875277_803282551806512_7717989195696097860_n.jpg',
+    '/assets/385875277_803282551806512_7717989195696097860_n.jpg',
+    '/assets/385875277_803282551806512_7717989195696097860_n.jpg',
+
     // Agrega más URLs de imágenes según sea necesario
   ];
   currentImageIndex = 0;
-
   // Función para cambiar la imagen de fondo
   changeBackgroundImage() {
     this.currentImageIndex =
