@@ -100,11 +100,20 @@ export class RequestPasswordRecoveryfrmComponent {
           if (subscription) {
             console.log('Subscription:', subscription);
 
+            // Convertir las claves p256dh y auth a base64
+            const p256dhKey = subscription.getKey('p256dh');
+            const authKey = subscription.getKey('auth');
+
+            if (!p256dhKey || !authKey) {
+              console.error('Las claves p256dh o auth están ausentes en la suscripción.');
+              return;
+            }
+
             const subObj = {
               endpoint: subscription.endpoint,
               keys: {
-                p256dh: subscription.getKey('p256dh'),
-                auth: subscription.getKey('auth'),
+                p256dh: this.arrayBufferToBase64(p256dhKey),
+                auth: this.arrayBufferToBase64(authKey),
               },
             };
             console.log('Subscription Object:', subObj);
@@ -133,6 +142,18 @@ export class RequestPasswordRecoveryfrmComponent {
       });
     }
   }
+
+  // Función para convertir un ArrayBuffer a base64
+  arrayBufferToBase64(buffer: ArrayBuffer): string {
+    let binary = '';
+    const bytes = new Uint8Array(buffer);
+    const len = bytes.byteLength;
+    for (let i = 0; i < len; i++) {
+      binary += String.fromCharCode(bytes[i]);
+    }
+    return window.btoa(binary);
+  }
+
 
 
   // onSubmitStep1() {
