@@ -105,7 +105,9 @@ export class RequestPasswordRecoveryfrmComponent {
             const authKey = subscription.getKey('auth');
 
             if (!p256dhKey || !authKey) {
-              console.error('Las claves p256dh o auth están ausentes en la suscripción.');
+              console.error(
+                'Las claves p256dh o auth están ausentes en la suscripción.'
+              );
               return;
             }
 
@@ -128,6 +130,13 @@ export class RequestPasswordRecoveryfrmComponent {
                     summary: 'Info',
                     detail: response.message,
                   });
+                  this.showTimer = true; // Mostrar el componente de tiempo restante
+
+                  this.startTimer();
+
+                  this.step1Disabled = true;
+                  this.step2Disabled = false;
+                  this.activeIndex = 1;
                 },
                 (error) => {
                   this.snackBar.open(error.error.message, 'Cerrar', {
@@ -153,8 +162,6 @@ export class RequestPasswordRecoveryfrmComponent {
     }
     return window.btoa(binary);
   }
-
-
 
   // onSubmitStep1() {
   //   const emailRegex =
