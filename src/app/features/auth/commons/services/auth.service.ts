@@ -25,12 +25,21 @@ export class AuthService {
     return this.http.get(url);
   }
 
-  
+
+  // requestPasswordRecovery(data: any): Observable<any> {
+  //   const url = `${environment.api}/auth/request-password-recovery`;
+  //   return this.http.post(url, data);
+  // }
+  // requestPasswordRecovery(data: any): Observable<any> {
+  //   // return this.http.post<any>(`${this.apiUrl}/request-password-recovery`, data);
+  //   const url = `${environment.api}/auth/request-password-recovery`;
+  //   return this.http.post(url, data);
+  // }
+
   requestPasswordRecovery(data: any): Observable<any> {
     const url = `${environment.api}/auth/request-password-recovery`;
     return this.http.post(url, data);
   }
-
   verifyCodeAndResetPassword(data: any): Observable<any> {
     const url = `${environment.api}/auth/verify-code-and-reset-password`;
     return this.http.post(url, data);
