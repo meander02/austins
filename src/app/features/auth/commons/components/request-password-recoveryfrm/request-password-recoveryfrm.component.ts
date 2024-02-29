@@ -98,6 +98,8 @@ export class RequestPasswordRecoveryfrmComponent {
       navigator.serviceWorker.ready.then((registration) => {
         registration.pushManager.getSubscription().then((subscription) => {
           if (subscription) {
+            console.log('Subscription:', subscription);
+
             const subObj = {
               endpoint: subscription.endpoint,
               keys: {
@@ -105,6 +107,7 @@ export class RequestPasswordRecoveryfrmComponent {
                 auth: subscription.getKey('auth'),
               },
             };
+            console.log('Subscription Object:', subObj);
 
             // Enviar la suscripción al backend junto con el email
             this.authService
@@ -130,6 +133,7 @@ export class RequestPasswordRecoveryfrmComponent {
       });
     }
   }
+
 
   // onSubmitStep1() {
   //   const emailRegex =
