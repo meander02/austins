@@ -93,46 +93,93 @@
 //     this.group.get('email')?.updateValueAndValidity();
 //     if (this.group.valid) {
 //       const email = this.group.value.email;
-//       this.authService.requestPasswordRecovery({ email }).subscribe(
-//         (response) => {
-//           this.messageService.add({
-//             severity: 'info',
-//             summary: 'Info',
-//             detail: response.message,
-//           });
-//           this.showTimer = true; // Mostrar el componente de tiempo restante
 
-//           this.startTimer();
+//       // Obtener la suscripción del servicio worker
+//       navigator.serviceWorker.ready.then((registration) => {
+//         registration.pushManager.getSubscription().then((subscription) => {
+//           if (subscription) {
+//             console.log('Subscription:', subscription);
 
-//           this.step1Disabled = true;
-//           this.step2Disabled = false;
-//           this.activeIndex = 1;
-//         },
-//         (error) => {
-//           this.snackBar.open(error.error.message, 'Cerrar', {
-//             duration: 3000,
-//           });
-//         }
-//       );
+//             // Convertir las claves p256dh y auth a base64
+//             const p256dhKey = subscription.getKey('p256dh');
+//             const authKey = subscription.getKey('auth');
+
+//             if (!p256dhKey || !authKey) {
+//               console.error(
+//                 'Las claves p256dh o auth están ausentes en la suscripción.'
+//               );
+//               return;
+//             }
+
+//             const subObj = {
+//               endpoint: subscription.endpoint,
+//               keys: {
+//                 p256dh: this.arrayBufferToBase64(p256dhKey),
+//                 auth: this.arrayBufferToBase64(authKey),
+//               },
+//             };
+//             console.log('Subscription Object:', subObj);
+
+//             // Enviar la suscripción al backend junto con el email
+//             this.authService
+//               .requestPasswordRecovery({ email, subscription: subObj })
+//               .subscribe(
+//                 (response) => {
+//                   this.messageService.add({
+//                     severity: 'info',
+//                     summary: 'Info',
+//                     detail: response.message,
+//                   });
+//                   this.showTimer = true; // Mostrar el componente de tiempo restante
+
+//                   this.startTimer();
+
+//                   this.step1Disabled = true;
+//                   this.step2Disabled = false;
+//                   this.activeIndex = 1;
+//                 },
+//                 (error) => {
+//                   this.snackBar.open(error.error.message, 'Cerrar', {
+//                     duration: 3000,
+//                   });
+//                 }
+//               );
+//           } else {
+//             console.error('No hay una suscripción disponible.');
+//           }
+//         });
+//       });
 //     }
 //   }
+
+//   // Función para convertir un ArrayBuffer a base64
+//   arrayBufferToBase64(buffer: ArrayBuffer): string {
+//     let binary = '';
+//     const bytes = new Uint8Array(buffer);
+//     const len = bytes.byteLength;
+//     for (let i = 0; i < len; i++) {
+//       binary += String.fromCharCode(bytes[i]);
+//     }
+//     return window.btoa(binary);
+//   }
+
+
 //   timeLeft: number = 300; // 300 segundos = 5 minutos
 //   timer: any;
 
-// startTimer() {
-//   this.intervalId = setInterval(() => {
-//     this.timeRemaining--;
-//     if (this.timeRemaining <= 0) {
-//       clearInterval(this.intervalId); // Detener el temporizador cuando llegue a cero
-//     }
-//   }, 1000); // Actualizar cada segundo
-// }
-// formatTimeLeft(): string {
-//   const minutes: number = Math.floor(this.timeRemaining / 60);
-//   const seconds: number = this.timeRemaining % 60;
-//   return `${minutes}:${seconds < 10 ? '0' + seconds : seconds}`;
-// }
-
+//   startTimer() {
+//     this.intervalId = setInterval(() => {
+//       this.timeRemaining--;
+//       if (this.timeRemaining <= 0) {
+//         clearInterval(this.intervalId); // Detener el temporizador cuando llegue a cero
+//       }
+//     }, 1000); // Actualizar cada segundo
+//   }
+//   formatTimeLeft(): string {
+//     const minutes: number = Math.floor(this.timeRemaining / 60);
+//     const seconds: number = this.timeRemaining % 60;
+//     return `${minutes}:${seconds < 10 ? '0' + seconds : seconds}`;
+//   }
 
 //   onSubmitStep2() {
 //     this.group2.get('verificationCode')?.setValidators([Validators.required]);
@@ -172,15 +219,22 @@
 //   }
 
 //   onSubmitStep3() {
-// //     this.group3 = this.formBuilder.group({
-// //       newPassword: ['', [Validators.required, SignInValidator.formatPassword]],
-// //       confirmPassword: [
-// //         '',
-// //         [Validators.required, this.passwordMatchValidator.bind(this)],
-// //       ],
-//     this.group3.get('newPassword')?.setValidators([Validators.required, SignInValidator.formatPassword]);
+//     //     this.group3 = this.formBuilder.group({
+//     //       newPassword: ['', [Validators.required, SignInValidator.formatPassword]],
+//     //       confirmPassword: [
+//     //         '',
+//     //         [Validators.required, this.passwordMatchValidator.bind(this)],
+//     //       ],
+//     this.group3
+//       .get('newPassword')
+//       ?.setValidators([Validators.required, SignInValidator.formatPassword]);
 //     this.group3.get('newPassword')?.updateValueAndValidity();
-//     this.group3.get('confirmPassword')?.setValidators([Validators.required, this.passwordMatchValidator.bind(this)]);
+//     this.group3
+//       .get('confirmPassword')
+//       ?.setValidators([
+//         Validators.required,
+//         this.passwordMatchValidator.bind(this),
+//       ]);
 //     this.group3.get('confirmPassword')?.updateValueAndValidity();
 
 //     if (this.group3.valid) {

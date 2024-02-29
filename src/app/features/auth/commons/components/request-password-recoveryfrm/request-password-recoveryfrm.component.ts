@@ -55,7 +55,10 @@ export class RequestPasswordRecoveryfrmComponent {
   timeRemaining: number = 300; // 5 minutos en segundos
   intervalId: any;
   showTimer: boolean = false;
-
+  timeRemainingMinutes: number = 5; // Establecemos el tiempo restante inicialmente en 5 minutos
+  // intervalId: any; // Variable para almacenar el ID del intervalo
+  timeRemainingSeconds: number; // Variable para almacenar el tiempo restante en segundos
+//
   constructor(
     private snackBar: MatSnackBar,
     private authService: AuthService,
@@ -66,6 +69,7 @@ export class RequestPasswordRecoveryfrmComponent {
   ) {
     const signInValidator = new SignInValidator();
     const signUpValidator = new SignUpValidator();
+    this.timeRemainingSeconds = this.timeRemainingMinutes * 60; // Convertimos los minutos a segundos
 
     const emailRegex =
       /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
@@ -163,57 +167,37 @@ export class RequestPasswordRecoveryfrmComponent {
     return window.btoa(binary);
   }
 
-  // onSubmitStep1() {
-  //   const emailRegex =
-  //     /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
-  //   // Agregar validators después de la petición
-  //   this.group
-  //     .get('email')
-  //     ?.setValidators([Validators.required, Validators.pattern(emailRegex)]);
-  //   this.group.get('email')?.updateValueAndValidity();
-  //   if (this.group.valid) {
-  //     const email = this.group.value.email;
-  //     this.authService.requestPasswordRecovery({ email }).subscribe(
-  //       (response) => {
-  //         this.messageService.add({
-  //           severity: 'info',
-  //           summary: 'Info',
-  //           detail: response.message,
-  //         });
-  //         this.showTimer = true; // Mostrar el componente de tiempo restante
-
-  //         this.startTimer();
-
-  //         this.step1Disabled = true;
-  //         this.step2Disabled = false;
-  //         this.activeIndex = 1;
-  //       },
-  //       (error) => {
-  //         this.snackBar.open(error.error.message, 'Cerrar', {
-  //           duration: 3000,
-  //         });
-  //       }
-  //     );
-  //   }
-  // }
 
   timeLeft: number = 300; // 300 segundos = 5 minutos
   timer: any;
 
-  startTimer() {
+  // startTimer() {
+  //   this.intervalId = setInterval(() => {
+  //     this.timeRemaining--;
+  //     if (this.timeRemaining <= 0) {
+  //       clearInterval(this.intervalId); // Detener el temporizador cuando llegue a cero
+  //     }
+  //   }, 1000); // Actualizar cada segundo
+  // }
+  // formatTimeLeft(): string {
+  //   const minutes: number = Math.floor(this.timeRemaining / 60);
+  //   const seconds: number = this.timeRemaining % 60;
+  //   return `${minutes}:${seconds < 10 ? '0' + seconds : seconds}`;
+  // }
+  startTimer(): void {
     this.intervalId = setInterval(() => {
-      this.timeRemaining--;
-      if (this.timeRemaining <= 0) {
+      this.timeRemainingSeconds--;
+      if (this.timeRemainingSeconds <= 0) {
         clearInterval(this.intervalId); // Detener el temporizador cuando llegue a cero
       }
     }, 1000); // Actualizar cada segundo
   }
+
   formatTimeLeft(): string {
-    const minutes: number = Math.floor(this.timeRemaining / 60);
-    const seconds: number = this.timeRemaining % 60;
+    const minutes: number = Math.floor(this.timeRemainingSeconds / 60);
+    const seconds: number = this.timeRemainingSeconds % 60;
     return `${minutes}:${seconds < 10 ? '0' + seconds : seconds}`;
   }
-
   onSubmitStep2() {
     this.group2.get('verificationCode')?.setValidators([Validators.required]);
     this.group2.get('verificationCode')?.updateValueAndValidity();
