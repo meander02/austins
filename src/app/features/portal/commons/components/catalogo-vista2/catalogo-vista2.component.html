@@ -1,5 +1,7 @@
 <div class="container">
-  <div class="category-grid"  data-aos="flip-up">
+  <div class="category-grid"  data-aos="fade-down"
+  data-aos-easing="linear"
+  data-aos-duration="1500">
     <div class="category-card" *ngFor="let product of products">
       <div class="category-overlay">{{ product.category }}</div>
       <img [src]="product.imageUrl" alt="Product Image" class="category-image">
