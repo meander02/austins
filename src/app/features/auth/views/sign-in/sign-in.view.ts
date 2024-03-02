@@ -37,12 +37,14 @@ export class SignInView implements OnInit {
   {}
 
   ngOnInit(): void {}
+
+
   signIn(data: ISingInRequest): void {
     const config: MatSnackBarConfig = {
       duration: 5000,
       panelClass: 'error-snackbar',
     };
-    console.log(data)
+    // console.log(data)
     if (data != null) {
       this.signInService
         .signIn(data)
@@ -55,7 +57,6 @@ export class SignInView implements OnInit {
               detail: this.errorMessage,
             });
             this.loginAttempts++; // Incrementa el contador de intentos de inicio de sesión fallidos
-
             return throwError('Error en la solicitud');
           })
         )
@@ -66,7 +67,7 @@ export class SignInView implements OnInit {
             const userData = this.sessionService.getUserData();
             if (userData) {
               this.userROL = userData.rol;
-              console.log(this.userROL);
+              // console.log(this.userROL);
               if (this.userROL === ERol.ADMIN) {
                 this.router.navigateByUrl('/admin');
               }
@@ -74,7 +75,7 @@ export class SignInView implements OnInit {
                 this.router.navigate(['/']).then(() => {
                   window.location.reload();
                 });
-                console.log(this.userROL);
+                // console.log(this.userROL);
               }
               // if (this.ref) {
               //   this.ref.close(); // Cierra el diálogo

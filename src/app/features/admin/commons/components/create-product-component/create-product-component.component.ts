@@ -159,16 +159,16 @@ export class CreateProductComponentComponent {
   private uploadImagesAndAddToForm(product: Product): void {
     this.productService.createProduct(product).subscribe(
       (result: IproductResponse) => {
-        console.log('Producto creado con éxito. ID:', result._id);
+        // console.log('Producto creado con éxito. ID:', result._id);
         const uploadObservables = this.selectedImages.map((image: File) => {
           const position = product.images.length; // Ajustar la posición según tu lógica
-          console.log(
-            'creando.. ',
-            product.category,
-            result._id,
-            position,
-            image
-          );
+          // console.log(
+          //   'creando.. ',
+          //   product.category,
+          //   result._id,
+          //   position,
+          //   image
+          // );
           return this.productService.updateProductImage(
             product.category,
             result._id,
@@ -221,7 +221,7 @@ export class CreateProductComponentComponent {
       .deleteProductImage(this.product._id, imageNameToRemove)
       .subscribe(
         (response) => {
-          console.log('Image deleted successfully:', response);
+          // console.log('Image deleted successfully:', response);
           this.showSuccessSnackBar('Image deleted successfully');
           // You can perform other actions after deletion if necessary
           // this.updateProduct(this.product); // Update the product after deleting the image
@@ -292,7 +292,7 @@ export class CreateProductComponentComponent {
   removeIngredient(index: number) {
     const ingredientsArray = this.createForm.get('ingredients') as FormArray;
     ingredientsArray.removeAt(index);
-    console.log('Ingrediente eliminado:', this.createForm.value.ingredients);
+    // console.log('Ingrediente eliminado:', this.createForm.value.ingredients);
   }
   removeAllergen(index: number) {
     const allergensArray = this.createForm.get('allergens') as FormArray;

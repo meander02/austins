@@ -234,7 +234,7 @@ export class HeaderComponent implements OnInit {
       this.carData = carDataFromStorage;
     }
 
-    console.log('Datos del carrito:', this.carData);
+    // console.log('Datos del carrito:', this.carData);
     this.sidebarVisible2 = true;
     // debugger
     // this.router.navigateByUrl('/payment/cart');
@@ -319,7 +319,7 @@ export class HeaderComponent implements OnInit {
     return this.setCartItem();
   }
   setCartItem(): CartItem {
-    console.log('set car', this.product);
+    // console.log('set car', this.product);
     const cartItem: CartItem = {
       id: this.product._id,
       name: this.product.name,
@@ -356,7 +356,7 @@ export class HeaderComponent implements OnInit {
           detail: `El producto "${item.name}" ha sido eliminado del carrito`,
           life: 3000,
         });
-        console.log(item);
+        // console.log(item);
         this.removeItem(item);
       },
       reject: () => {
@@ -421,9 +421,9 @@ export class HeaderComponent implements OnInit {
 
   applyFilters() {
     // Aquí puedes implementar la lógica para aplicar los filtros
-    console.log('Categoría seleccionada:', this.selectedCategory);
+    // console.log('Categoría seleccionada:', this.selectedCategory);
     // console.log('Precio seleccionado:', this.selectedPrice);
-    console.log('Color seleccionado:', this.selectedColor);
+    // console.log('Color seleccionado:', this.selectedColor);
     // Implementa la lógica para filtrar los productos según las selecciones
   }
 }

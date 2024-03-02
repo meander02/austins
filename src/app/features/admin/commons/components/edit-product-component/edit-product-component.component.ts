@@ -20,6 +20,7 @@ import { CategoryService } from '../../services/category.service';
 import { Categoria } from '../../../models/Category.models';
 import { HttpErrorResponse } from '@angular/common/http';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { IproductResponse } from '../../../interfaces/Product.interface';
 
 @Component({
   selector: 'app-edit-product-component',
@@ -83,83 +84,13 @@ export class EditProductComponentComponent {
     this.editForm.addControl('allergensInput', this.fb.control(''));
   }
 
-  uploadImageAndUpdateProduct(product: Product): void {
-    this.showSuccessSnackBar('Producto actualizado ');
-
-    if (this.selectedImages) {
-      const category = this.editForm.value.category;
-      const productId = this.product._id;
-      const position = this.product.images.length;
-
-      const uploadObservables = this.selectedImages.map((image: File) => {
-        return this.productService.updateProductImage(category, productId, position, image);
-      });
-
-      forkJoin(uploadObservables).subscribe(
-        (imageURLs: any) => {
-          product.images = product.images.concat(imageURLs);
-          // No necesitas suscribirte directamente aquí, ya que forkJoin se encargará de eso.
-          // La lógica de manejo de imágenes se realiza dentro de forkJoin.
-          this.loading = false;
-          this.snackBar.open('Producto editado con éxito', 'Cerrar', {
-            duration: 3000,
-          });
-        },
-        (error) => {
-          console.error('Error uploading images:', error);
-          this.loading = false;
-        }
-      );
-    }
-  }
-
-  // uploadImageAndUpdateProduct(product: Product): void {
-  //   this.showSuccessSnackBar('Producto actualizado ');
-  //   if (this.selectedImages) {
-  //     const category = this.editForm.value.category;
-  //     const productId = this.product._id;
-  //     const position = this.product.images.length;
-
-  //     const uploadObservables = this.selectedImages.map((image: File) => {
-  //       // const position = product.images.length; // Ajustar la posición según tu lógica
-  //       // console.log('creando.. ', category, productId, position, image);
-  //       return this.productService
-  //         .updateProductImage(category, productId, position, image)
-  //         .subscribe(
-  //           (response) => {
-  //             this.showSuccessSnackBar('Imagen subida exitosamente');
-  //           },
-  //           (error) => {
-  //             console.error('Error al subir la imagen:', error);
-  //           }
-  //         );
-  //     });
-
-  //     forkJoin(uploadObservables).subscribe(
-  //       (imageURLs: any) => {
-  //         product.images = product.images.concat(imageURLs);
-  //         // this.editForm.get('images')?.setValue(product.images);
-  //         this.loading = false;
-  //       },
-  //       (error) => {
-  //         console.error('Error uploading images:', error);
-  //         this.loading = false;
-  //       }
-  //     );
-
-  //     this.snackBar.open('Producto editado con éxito', 'Cerrar', {
-  //       duration: 3000,
-  //     });
-  //   }
-  // }
-
   saveChanges(): void {
-    console.log('Save Changes button clicked'); // Add this line
+    console.log('Save Changes button clicked');
     console.log('Product Image:', this.selectedImages);
 
     if (this.editForm.valid) {
       const editedProduct: Product = {
-        ...this.data.product, // Conserva los valores no editados
+        ...this.product,
         name: this.editForm.value.name,
         description: this.editForm.value.description,
         unit: this.editForm.value.unit,
@@ -186,14 +117,134 @@ export class EditProductComponentComponent {
   updateProduct(product: Product): void {
     this.productService.updateProduct(product).subscribe(
       (updatedProduct: Product) => {
-        this.uploadImageAndUpdateProduct(updatedProduct);
-        this.dialogRef.close(updatedProduct);
+        this.uploadImagesAndAddToForm(updatedProduct);
       },
       (error) => {
         console.error('Error updating product', error);
       }
     );
   }
+  // uploadImagesAndAddToForm(product: Product): void {
+  //   if (this.selectedImages.length > 0) {
+  //     const uploadObservables = this.selectedImages.map((image: File) => {
+  //       const position = product.images.length; // Adjust the position according to your logic
+  //       console.log( product.category,
+  //         product._id,
+  //         position,
+  //         image )
+  //       console.log( product.images)
+  //       return this.productService.updateProductImage(
+  //         product.category,
+  //         product._id,
+  //         position,
+  //         image
+  //       );
+  //     });
+
+  //     forkJoin(uploadObservables).subscribe(
+  //       (imageURLs: any) => {
+  //         product.images = product.images.concat(imageURLs);
+  //         const imagesControl = this.editForm.get('images');
+  //         if (imagesControl) {
+  //           imagesControl.setValue(product.images);
+  //         } else {
+  //           console.error('Control "images" not found in the form');
+  //         }
+  //         this.dialogRef.close(product);
+  //         this.showSuccessSnackBar('Images uploaded successfully');
+  //       },
+  //       (error) => {
+  //         console.error('Error uploading images:', error);
+  //         this.showSuccessSnackBar('Error uploading images');
+  //       }
+  //     );
+  //   } else {
+  //     this.showSuccessSnackBar('Product updated without images');
+  //     this.dialogRef.close(product);
+  //   }
+  // }
+  uploadImagesAndAddToForm(product: Product): void {
+    if (this.selectedImages.length > 0) {
+      const uploadObservables = this.selectedImages.map((image: File) => {
+        const position = product.images.length; // Adjust the position according to your logic
+        // console.log(product.category, product._id, position, image);
+        // console.log(product.images);
+        return this.productService.updateProductImage(
+          product.category,
+          product._id,
+          position,
+          image
+        );
+      });
+
+      forkJoin(uploadObservables).subscribe(
+        (imageURLs: any) => {
+          product.images = product.images.concat(imageURLs);
+          const imagesControl = this.editForm.get('images') as FormArray;
+          if (imagesControl) {
+            imageURLs.forEach((url: string) => {
+              imagesControl.push(this.fb.control(url));
+            });
+          } else {
+            console.error('Control "images" not found in the form');
+          }
+          // Close the dialog and update the form with the new images
+          this.dialogRef.close(product);
+          this.updateFormWithImages(imageURLs);
+          this.showSuccessSnackBar('Images uploaded successfully');
+        },
+        (error) => {
+          console.error('Error uploading images:', error);
+          this.showSuccessSnackBar('Error uploading images');
+        }
+      );
+    } else {
+      this.showSuccessSnackBar('Product updated without images');
+      this.dialogRef.close(product);
+    }
+  }
+
+  updateFormWithImages(imageURLs: string[]): void {
+    const imagesControl = this.editForm.get('images') as FormArray;
+    if (imagesControl) {
+      imageURLs.forEach((url: string) => {
+        imagesControl.push(this.fb.control(url));
+      });
+    } else {
+      console.error('Control "images" not found in the form');
+    }
+  }
+
+  // uploadImagesAndAddToForm(product: Product): void {
+  //   if (this.selectedImages.length > 0) {
+  //     const uploadObservables = this.selectedImages.map((image: File) => {
+  //       const position = product.images.length; // Adjust the position according to your logic
+  //       return this.productService.updateProductImage(
+  //         product.category,
+  //         product._id,
+  //         position,
+  //         image
+  //       );
+  //     });
+
+  //     forkJoin(uploadObservables).subscribe(
+  //       (imageURLs: any) => {
+  //         product.images = product.images.concat(imageURLs);
+  //         this.editForm.get('images')?.setValue(product.images);
+  //         this.dialogRef.close(product);
+  //         this.showSuccessSnackBar('Images uploaded successfully');
+  //       },
+  //       (error) => {
+  //         console.error('Error uploading images:', error);
+  //         this.showSuccessSnackBar('Error uploading images');
+  //       }
+  //     );
+  //   } else {
+  //     this.showSuccessSnackBar('Product updated without images');
+  //     this.dialogRef.close(product);
+  //   }
+  // }
+
 
   removeImage(index: number): void {
     const fullImagePath = this.product.images[index];
@@ -209,7 +260,7 @@ export class EditProductComponentComponent {
       .deleteProductImage(this.product._id, imageNameToRemove)
       .subscribe(
         (response) => {
-          console.log('Image deleted successfully:', response);
+          // console.log('Image deleted successfully:', response);
           this.showSuccessSnackBar('Image deleted successfully');
           // You can perform other actions after deletion if necessary
           this.updateProduct(this.product); // Update the product after deleting the image
@@ -270,7 +321,7 @@ export class EditProductComponentComponent {
   }
 
   getImages(url: string): string {
-    return `${environment.api}/${url}`;
+    return `${url}`;
   }
   getIngredientsArray(): string[] {
     const ingredientsControl = this.editForm.get('ingredients');
@@ -291,7 +342,7 @@ export class EditProductComponentComponent {
   agregarIngrediente() {
     const ingredientsArray = this.editForm.get('ingredients') as FormArray;
     ingredientsArray.push(this.fb.control('Nuevo ingrediente'));
-    console.log('Ingrediente agregado:', this.editForm.value.ingredients);
+    // console.log('Ingrediente agregado:', this.editForm.value.ingredients);
   }
   addChip(event: MatChipInputEvent, controlName: string): void {
     const value = (event.value || '').trim();
@@ -304,7 +355,7 @@ export class EditProductComponentComponent {
   removeIngredient(index: number) {
     const ingredientsArray = this.editForm.get('ingredients') as FormArray;
     ingredientsArray.removeAt(index);
-    console.log('Ingrediente eliminado:', this.editForm.value.ingredients);
+    // console.log('Ingrediente eliminado:', this.editForm.value.ingredients);
   }
   removeAllergen(index: number) {
     const allergensArray = this.editForm.get('allergens') as FormArray;

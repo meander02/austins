@@ -1,18 +1,33 @@
+<!-- <div
+  class="home-container"
+  [ngStyle]="{'background-image': 'url(' + backgroundImages[currentImageIndex] + ')'}"
 
-<!-- <div class="home-container"  > -->
-  <div class="home-container" [ngStyle]="{'background-image': 'url(' + backgroundImages[currentImageIndex] + ')'}">
-
+> -->
+<div
+  class="home-container"
+  [ngStyle]="{'background-image': 'url(' + backgroundImages[currentImageIndex] + ')'}"
+  [style.filter]="showAnimation ? 'blur(2px)' : 'none'"
+>
   <div class="cursor"></div>
 
-    <div class="content" [attr.data-aos]="isMobile ? 'zoom-in-up' : 'fade-up'" data-aos-duration="1500">
-
+  <div
+    class="content"
+    [attr.data-aos]="isMobile ? 'zoom-in-up' : 'fade-up'"
+    data-aos-duration="1500"
+  >
     <div class="logo_mobil">
-      <img class="imgaem" src="https://static.wixstatic.com/media/64de7c_4d76bd81efd44bb4a32757eadf78d898~mv2_d_1765_2028_s_2.png" alt="Pastelería" />
+      <img
+        class="imgaem"
+        src="https://static.wixstatic.com/media/64de7c_4d76bd81efd44bb4a32757eadf78d898~mv2_d_1765_2028_s_2.png"
+        alt="Pastelería"
+      />
     </div>
 
-
-
-    <div class="text-content"  [attr.data-aos]="isMobile ? 'zoom-in' : 'fade-left'" data-aos-duration="2700">
+    <div
+      class="text-content"
+      [attr.data-aos]="isMobile ? 'zoom-in' : 'fade-left'"
+      data-aos-duration="2700"
+    >
       <h1 class="bienve">Bienvenidos a Austin’s_</h1>
       <p>
         En Austin's, la tradición europea se encuentra con el encanto local, y
@@ -24,24 +39,33 @@
       <h2>Propiedad de Graham Austin</h2>
       <button class="contact-owner">Contactar al Propietario</button>
     </div>
-
   </div>
-
 </div>
-<!--
-<app-catalogo-vista2></app-catalogo-vista2>
-lo mas reciente
-<app-catalogo></app-catalogo>
+<div data-aos="fade-right" data-aos-offset="300" data-aos-easing="ease-in-sine">
+  <h1 style="color: rgb(255, 140, 25); font-size: 32px; text-align: center; margin-bottom: 20px;">
+    Categorías
+  </h1>
+</div>
 
-<h1>lo mas vendido</h1> -->
+
+<app-catalogo-vista2></app-catalogo-vista2>
+
+<div data-aos="fade-left" data-aos-offset="300" data-aos-easing="ease-in-sine">
+  <h1 style="color: rgb(255, 140, 25); font-size: 32px; text-align: center; margin-bottom: 20px;">
+    Lo más reciente
+  </h1>
+</div>
+
+<!-- <app-catalogo ></app-catalogo> -->
+
 
 <div *ngIf="loadingProducts">
-  <ng-container class="prod"  *ngFor="let item of skeletonItems" >
+  <ng-container class="prod" *ngFor="let item of skeletonItems">
     <div class="product" item>
       <div class="flex mb-10">
         <p-skeleton shape="circle" size="4rem" styleClass="mr-2"></p-skeleton>
         <div>
-          <!-- <!-- <p-skeleton width="10rem" styleClass="mb-2"></p-skeleton> -->
+
           <p-skeleton width="5rem" styleClass="mb-2"></p-skeleton>
           <p-skeleton height=".5rem"></p-skeleton>
         </div>
@@ -61,7 +85,14 @@ lo mas reciente
 <div *ngIf="!loadingProducts">
   <div *ngIf="hasSearchResults; else noResults">
     <div class="card">
-      <p-carousel [value]="filteredProducts" [numVisible]="3" [numScroll]="3" [circular]="true" [responsiveOptions]="responsiveOptions" [autoplayInterval]="autoplayInterval">
+      <p-carousel
+        [value]="filteredProducts"
+        [numVisible]="4"
+        [numScroll]="4"
+        [circular]="true"
+        [responsiveOptions]="responsiveOptions"
+        [autoplayInterval]="autoplayInterval"
+      >
         <ng-template let-product pTemplate="item">
           <div class="prod">
             <app-product [product]="product"></app-product>
@@ -72,11 +103,19 @@ lo mas reciente
   </div>
 </div>
 
+
+
+
+
+
+
 <!-- HTML -->
 <ng-template #noResults>
   <div class="no-results-container">
     <h3 class="no-results-heading">No se encontraron resultados</h3>
-    <p class="no-results-message">Lo sentimos, no hay resultados disponibles para tu búsqueda.</p>
+    <p class="no-results-message">
+      Lo sentimos, no hay resultados disponibles para tu búsqueda.
+    </p>
     <!-- <img src="assets/no-results-image.png" alt="No Results" class="no-results-image" /> -->
   </div>
 </ng-template>

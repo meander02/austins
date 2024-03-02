@@ -38,7 +38,7 @@ export class ProductComponent implements OnInit {
     // console.log('Producto en el presentador', this.product);
   }
   setCartItem(): CartItem {
-    console.log('set car', this.product);
+    // console.log('set car', this.product);
     const cartItem: CartItem = {
       id: this.product._id,
       name: this.product.name,
@@ -66,7 +66,7 @@ export class ProductComponent implements OnInit {
   }
 
   goToDetail(route: string): void {
-    console.log('redirect');
+    // console.log('redirect');
     this.router.navigateByUrl('/portal/' + route);
   }
 

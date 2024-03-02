@@ -49,7 +49,7 @@ export class CookiesComponent {
   ) {
     this.route.url.subscribe((urlSegments) => {
       this.currentRoute = '/' + urlSegments.join('/'); // Construir la ruta completa
-      console.log(this.currentRoute);
+      // console.log(this.currentRoute);
       this.updatePrivacyCookiesVisibility();
 
     });
@@ -66,7 +66,7 @@ export class CookiesComponent {
   }
 
   redirectTo(route: string): void {
-    console.log('Redirecting...');
+    // console.log('Redirecting...');
     this.closePrivacyCookies()
     this.router.navigateByUrl('/portal/' + route);
   }

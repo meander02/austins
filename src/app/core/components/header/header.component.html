@@ -127,8 +127,13 @@
         </div>
         <div *ngFor="let item of carData" class="cart-row">
           <div class="cart-column">
-            <img
+            <!-- <img
               [src]="item.image[0] | defaultImg"
+              alt="Producto"
+              class="product-image"
+            /> -->
+            <img
+            [src]="item.image[0] ? item.image[0] : 'defaultImg'"
               alt="Producto"
               class="product-image"
             />

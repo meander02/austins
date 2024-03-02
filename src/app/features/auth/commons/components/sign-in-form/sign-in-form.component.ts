@@ -90,7 +90,7 @@ export class SignInFormComponent implements OnInit {
     this.recaptchaSHOW = false;
     if(formData.password==''&&formData.password==''){
 
-      console.log("ds")
+      // console.log("ds")
       this.messageService.add({
         severity: 'error',
         summary: 'Error',
@@ -173,7 +173,7 @@ export class SignInFormComponent implements OnInit {
       this.formData.emit(formData);
 
     }
-    console.log(formData);
+    // console.log(formData);
     const fieldsToValidate = [
       'email',
       'password',
@@ -187,7 +187,7 @@ export class SignInFormComponent implements OnInit {
 
   redirectTo(route: string): void {
     // this.dialogRef.close(); // Cierra el modal
-    console.log('redirect');
+    // console.log('redirect');
     this.dialogRef.close(); // Cierra el modal
 
     this.router.navigateByUrl('/portal/' + route);

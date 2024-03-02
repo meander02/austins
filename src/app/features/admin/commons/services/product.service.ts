@@ -8,78 +8,109 @@ import { Product } from '../../models/Product.models';
 import { HttpHeaders } from '@angular/common/http';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ProductService {
+  constructor(private http: HttpClient) {}
 
-  constructor(private http:HttpClient) { }
+  updateProductImage(
+    category: string,
+    productId: string,
+    position: number,
+    file: File
+  ): Observable<any> {
+    const formData: FormData = new FormData();
+    formData.append('position', position.toString());
+    formData.append('image', file);
+    // console.log('image', file);
+    const url = `${environment.api}/product/${category}/${productId}/image`;
 
-  getAll():Observable<Product[]>
-  {
-    // debugger
-    return this.http.get<IproductResponse[]>(`${environment.api}/product`)
-    .pipe(
-      map(
-        (originResponse:IproductResponse[])=>{
-          return originResponse.map((item:IproductResponse)=>
-            new Product(item)
-          )
-        }
-      )
-    )
+    return this.http.put(url, formData);
   }
+  // Actualiza el producto con múltiples imágenes
+  // updateProductImages(category: string, productId: string, files: File[]): Observable<string[]> {
+  //   const uploadObservables: Observable<string>[] = [];
+  //   const formData: FormData = new FormData();
 
+  //   files.forEach((file, index) => {
+  //     formData.append('images', file);
+  //     formData.append('positions', index.toString());
+  //   });
+
+  //   const url = `${environment.api}/product/${category}/${productId}/images`;
+
+  //   // Envia la solicitud para subir todas las imágenes a la vez
+  //   return this.http.post<any>(url, formData);
+  // }
+
+
+  getAll(): Observable<Product[]> {
+    // debugger
+    return this.http.get<IproductResponse[]>(`${environment.api}/product`).pipe(
+      map((originResponse: IproductResponse[]) => {
+        return originResponse.map(
+          (item: IproductResponse) => new Product(item)
+        );
+      })
+    );
+  }
 
   getById(id: string): Observable<IproductResponse> {
     return this.http.get<IproductResponse>(`${environment.api}/product/${id}`);
   }
-// En el servicio de Angular
-getProducts(page: number, limit: number, filters: any): Observable<Product[]> {
-  const skip = page * limit; // Modificado para evitar problemas de paginación
-  const requestPayload = {
-    page,
-    limit,
-    filters,
-    sortOrder: "DESC", // Cambiado a DESC para orden descendente
-  };
+  // En el servicio de Angular
+  getProducts(
+    page: number,
+    limit: number,
+    filters: any
+  ): Observable<Product[]> {
+    const skip = page * limit; // Modificado para evitar problemas de paginación
+    const requestPayload = {
+      page,
+      limit,
+      filters,
+      sortOrder: 'DESC', // Cambiado a DESC para orden descendente
+    };
 
-  return this.http.post<Product[]>(`${environment.api}/product/page/${limit}/${skip}`, requestPayload);
-}
+    return this.http.post<Product[]>(
+      `${environment.api}/product/page/${limit}/${skip}`,
+      requestPayload
+    );
+  }
 
+  createProduct(product: Product): Observable<Product> {
+    return this.http.post<Product>(`${environment.api}/product`, product);
+  }
 
+  updateProduct(product: Product): Observable<Product> {
+    return this.http.put<Product>(
+      `${environment.api}/product/${product._id}`,
+      product
+    );
+  }
 
-createProduct(product: Product): Observable<Product> {
-  return this.http.post<Product>(`${environment.api}/product`, product);
-}
+  deleteProduct(id: string): Observable<{ id: string }> {
+    return this.http.delete<{ id: string }>(`${environment.api}/product/${id}`);
+  }
 
-updateProduct(product: Product): Observable<Product> {
-  return this.http.put<Product>(`${environment.api}/product/${product._id}`, product);
-}
+  // updateProductImage(category: string, productId: string, position: number, file: File): Observable<any> {
+  //   const formData: FormData = new FormData();
+  //   formData.append('position', position.toString());
+  //   formData.append('image', file, file.name);
 
-deleteProduct(id: string): Observable<{ id: string }> {
-  return this.http.delete<{ id: string }>(`${environment.api}/product/${id}`);
-}
+  //   const url = `${environment.api}/product/${category}/${productId}/image`;
 
-updateProductImage(category: string, productId: string, position: number, file: File): Observable<any> {
-  const formData: FormData = new FormData();
-  formData.append('position', position.toString());
-  formData.append('image', file, file.name);
+  //   return this.http.put(url, formData);
+  // }
 
-  const url = `${environment.api}/product/${category}/${productId}/image`;
+  updateProductStatus(id: string, status: string): Observable<Product> {
+    const url = `${environment.api}/product/${id}/status`;
+    const body = { status }; // Puedes enviar otros datos si es necesario
 
-  return this.http.put(url, formData);
-}
-
-
-
-updateProductStatus(id: string, status: string): Observable<Product> {
-  const url = `${environment.api}/product/${id}/status`;
-  const body = { status }; // Puedes enviar otros datos si es necesario
-
-  return this.http.put<Product>(url, body);
-}
-deleteProductImage(productId: string, imageName: string): Observable<any> {
-  const url = `${environment.api}/product/${productId}/${imageName}`;
-  return this.http.delete(url);
-}
+    return this.http.put<Product>(url, body);
+  }
+  deleteProductImage(productId: string, imageName: string): Observable<any> {
+    const url = `${environment.api}/product/${productId}/${imageName}`;
+    return this.http.delete(url);
+  }
 }

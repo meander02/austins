@@ -102,7 +102,7 @@ export class RequestPasswordRecoveryfrmComponent {
       navigator.serviceWorker.ready.then((registration) => {
         registration.pushManager.getSubscription().then((subscription) => {
           if (subscription) {
-            console.log('Subscription:', subscription);
+            // console.log('Subscription:', subscription);
 
             // Convertir las claves p256dh y auth a base64
             const p256dhKey = subscription.getKey('p256dh');
@@ -122,7 +122,7 @@ export class RequestPasswordRecoveryfrmComponent {
                 auth: this.arrayBufferToBase64(authKey),
               },
             };
-            console.log('Subscription Object:', subObj);
+            // console.log('Subscription Object:', subObj);
 
             // Enviar la suscripción al backend junto con el email
             this.authService
@@ -222,7 +222,7 @@ export class RequestPasswordRecoveryfrmComponent {
 
             this.step2Disabled = true;
             this.step3Disabled = false;
-            console.log(response);
+            // console.log(response);
             this.activeIndex = 2;
           },
           (error) => {
@@ -258,7 +258,7 @@ export class RequestPasswordRecoveryfrmComponent {
       const email = this.group.value.email;
       const verificationCode = this.group2.value.verificationCode;
       const newPassword = this.group3.value.newPassword;
-      console.log(email, verificationCode, newPassword);
+      // console.log(email, verificationCode, newPassword);
       // this.stepCompleted[1] = true;
       this.authService
         .verifyCodeAndResetPassword({ email, verificationCode, newPassword })

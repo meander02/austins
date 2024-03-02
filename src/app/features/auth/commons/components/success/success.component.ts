@@ -28,7 +28,7 @@ export class SuccessComponent {
   ) {
     router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
-        console.log('Ruta actual:', event.url);
+        // console.log('Ruta actual:', event.url);
 
       }
     });

@@ -95,7 +95,7 @@ export class ProductListView implements OnInit {
     this.productService.deleteProduct(id).subscribe(
       (result: { id: string }) => {
         // Manejar la respuesta de eliminación, por ejemplo, mostrar un mensaje de éxito.
-        console.log('Producto eliminado con éxito', result);
+        // console.log('Producto eliminado con éxito', result);
         // Después de eliminar, puedes cargar nuevamente la lista de productos si lo deseas.
         this.loadProducts();
       },
@@ -123,7 +123,7 @@ export class ProductListView implements OnInit {
     this.productService.updateProduct(product).subscribe(
       (updatedProduct: Product) => {
         // Manejar la respuesta actualizada, por ejemplo, mostrar un mensaje de éxito.
-        console.log('Producto actualizado con éxito', updatedProduct);
+        // console.log('Producto actualizado con éxito', updatedProduct);
         // Actualiza la lista de productos después de la edición
         this.loadProducts();
       },
@@ -134,6 +134,28 @@ export class ProductListView implements OnInit {
     );
   }
   // Nueva función para abrir el modal de edición
+  // openEditModal(product: Product): void {
+  //   const isMobile = window.innerWidth < 480;
+  //   const dialogRef = this.dialog.open(EditProductComponentComponent, {
+  //     width: isMobile ? '120vw' : '800px',
+  //     height: isMobile ? '700px' : '600px',
+  //     maxWidth: isMobile ? 'auto' : 'auto',
+  //     maxHeight: isMobile ? '100vh' : 'auto',
+  //     panelClass: isMobile
+  //       ? ['mat-dialog', 'no-padding', 'mobile-dialog']
+  //       : ['mat-dialog', 'no-padding', 'web-dialog'],
+  //     // data: {},
+  //     data: { product }, // Pasa el producto al modal
+  //   });
+
+  //   dialogRef.afterClosed().subscribe((result) => {
+  //     if (result) {
+  //       // Lógica para manejar la actualización del producto aquí
+  //       this.updateProduct(result); // Llama a la función de actualización con los datos editados
+  //       console.log(result);
+  //     }
+  //   });
+  // }
   openEditModal(product: Product): void {
     const isMobile = window.innerWidth < 480;
     const dialogRef = this.dialog.open(EditProductComponentComponent, {
@@ -144,7 +166,6 @@ export class ProductListView implements OnInit {
       panelClass: isMobile
         ? ['mat-dialog', 'no-padding', 'mobile-dialog']
         : ['mat-dialog', 'no-padding', 'web-dialog'],
-      // data: {},
       data: { product }, // Pasa el producto al modal
     });
 
@@ -152,7 +173,9 @@ export class ProductListView implements OnInit {
       if (result) {
         // Lógica para manejar la actualización del producto aquí
         this.updateProduct(result); // Llama a la función de actualización con los datos editados
-        console.log(result);
+        // console.log(result);
+        // Carga nuevamente los productos para reflejar los cambios en la lista
+        this.loadProducts();
       }
     });
   }
@@ -175,7 +198,7 @@ export class ProductListView implements OnInit {
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         this.loadProducts(); // Asegúrate de que loadProducts realiza la lógica adecuada para cargar la lista de productos
-        console.log('Producto creado con éxito', result);
+        // console.log('Producto creado con éxito', result);
       }
     });
   }

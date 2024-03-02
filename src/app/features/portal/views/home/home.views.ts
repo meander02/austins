@@ -6,6 +6,7 @@ import { SearchService } from 'src/app/shared/services/search-service.service';
 // import 'aos/dist/aos.css';
 // import * as AOS from 'aos';
 import * as AOS from 'aos';
+import { animate, state, style, transition, trigger } from '@angular/animations';
 @Component({
   selector: 'app-home',
   templateUrl: './home.views.html',
@@ -15,10 +16,11 @@ import * as AOS from 'aos';
     './hom.scss',
     './anima.scss',
   ],
+
 })
 export class HomeViews implements OnInit {
   responsiveOptions: any[] | undefined;
-  autoplayInterval: number = 3000;
+  autoplayInterval: number = 15000;
   // autoplayInterval: number = 9000;
 
   originalProducts: Product[] = []; // Mantén una copia original de todos los productos
@@ -29,6 +31,7 @@ export class HomeViews implements OnInit {
   // productsLoaded: boolean = false; // Variable para indicar si los productos se han cargado o no
   loadingProducts = true; // Variable para indicar si los productos se están cargando
   isMobile: boolean = false; // Variable para verificar si es una pantalla móvil
+  showAnimation: boolean = false;
 
   constructor(
     private router: Router,
@@ -47,13 +50,27 @@ export class HomeViews implements OnInit {
     console.log('redirect');
     this.router.navigateByUrl('/portal/' + route);
   }
+  ngOnDestroy(): void {
+    // Elimina el evento de scroll al destruir el componente
+    window.removeEventListener('scroll', this.onWindowScroll);
+  }
 
-  // ngOnInit() {
-  //   setInterval(() => {
-  //     this.changeBackgroundImage();
-  //   }, 5000); // Cambiar cada 5 segundos (ajusta este valor según sea necesario)
-  // }
+  // Método para manejar el evento de scroll
+  onWindowScroll = (): void => {
+    // Obtiene la posición actual del scroll
+    const scrollPosition = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+
+    // Verifica si la posición del scroll es mayor a 400
+    if (scrollPosition > 450) {
+      this.showAnimation = true;
+    } else {
+      this.showAnimation = false;
+    }
+  };
+
   ngOnInit(): void {
+    window.addEventListener('scroll', this.onWindowScroll);
+
     setInterval(() => {
       this.changeBackgroundImage();
     }, 5000); // Cambiar cada 5 segundos (ajusta este valor según sea necesario)
@@ -130,25 +147,26 @@ export class HomeViews implements OnInit {
   // ];
 
   backgroundImages: string[] = [
-    '/assets/268925960_4787701637958311_155484381208785347_n.jpg',
-    '/assets/268925960_4787701637958311_155484381208785347_n.jpg',
-    '/assets/268925960_4787701637958311_155484381208785347_n.jpg',
-    '/assets/268925960_4787701637958311_155484381208785347_n.jpg',
-    '/assets/268925960_4787701637958311_155484381208785347_n.jpg',
-    '/assets/268925960_4787701637958311_155484381208785347_n.jpg',
-    '/assets/385875277_803282551806512_7717989195696097860_n.jpg',
-    '/assets/385875277_803282551806512_7717989195696097860_n.jpg',
-    '/assets/385875277_803282551806512_7717989195696097860_n.jpg',
-    '/assets/385875277_803282551806512_7717989195696097860_n.jpg',
-    '/assets/385875277_803282551806512_7717989195696097860_n.jpg',
-    '/assets/385875277_803282551806512_7717989195696097860_n.jpg',
+
+    
+        'https://res.cloudinary.com/dfd0b4jhf/image/upload/v1709327171/public__/mbpozw6je9mm8ycsoeih.jpg',
+        'https://res.cloudinary.com/dfd0b4jhf/image/upload/v1709327171/public__/mbpozw6je9mm8ycsoeih.jpg',
+        'https://res.cloudinary.com/dfd0b4jhf/image/upload/v1709327171/public__/mbpozw6je9mm8ycsoeih.jpg',
+    'https://res.cloudinary.com/dfd0b4jhf/image/upload/v1709327171/public__/m2z2hvzekjw0xrmjnji4.jpg',
+    'https://res.cloudinary.com/dfd0b4jhf/image/upload/v1709327171/public__/m2z2hvzekjw0xrmjnji4.jpg',
+    'https://res.cloudinary.com/dfd0b4jhf/image/upload/v1709327171/public__/m2z2hvzekjw0xrmjnji4.jpg',
+
 
     // Agrega más URLs de imágenes según sea necesario
   ];
   currentImageIndex = 0;
   // Función para cambiar la imagen de fondo
   changeBackgroundImage() {
-    this.currentImageIndex =
-      (this.currentImageIndex + 1) % this.backgroundImages.length;
+    setTimeout(() => {
+      this.currentImageIndex =
+        (this.currentImageIndex + 1) % this.backgroundImages.length;
+    }, this.autoplayInterval);
   }
+
+
 }

@@ -1,17 +1,20 @@
-<div class="product-item">
-  <div class="product-item-content">
-    <div class="product-image" (click)="goToDetail('detail')">
-      <img src="{{ product.images[0] | defaultImg }}" [alt]="product.name">
-    </div>
-    <div class="product-info">
-      <h4>{{ product.name }}</h4>
-      <p class="product-price">{{ product.price | currency }}</p>
+<div class="catalog">
+  <div class="product-card">
+    <img
+      [src]="product.images[0] ? product.images[0] : 'defaultImg'"
+      [alt]="product.name"
+      (click)="goToDetail('detail')"
+      class="product-image"
+    />
+    <div class="product-details">
+      <h3 class="product-name">{{ product.name }}</h3>
       <p class="product-description">{{ product.description | slice:0:50 }}{{ product.description.length > 50 ? '...' : '' }}</p>
-    </div>
-    <div class="product-actions">
-      <button mat-button color="accent" (click)="decrement()">-</button>
-      <button mat-button color="accent" (click)="add()">Agregar</button>
-      <button mat-button color="accent" (click)="increment()">+</button>
+      <div data-aos="zoom-out-down">
+        <div class="product-price">{{ product.price | currency }}</div>
+      </div>
+      <button class="add-to-cart-button" (click)="add()">
+        Agregar al Carrito
+      </button>
     </div>
   </div>
 </div>

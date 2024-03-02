@@ -16,19 +16,19 @@
 }
 
 
-/* Estilos para el catálogo de productos */
-.product {
-  display: inline-block;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 20px;
-  margin-top: 2vh;
-}
+// /* Estilos para el catálogo de productos */
+// .product {
+//   display: inline-block;
+//   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+//   gap: 20px;
+//   margin-top: 2vh;
+// }
 
 
-.product h2 {
-  font-size: 2.5vw; /* Ajusta el tamaño de fuente para el título del producto */
-  margin: 10px 0;
-}
+// .product h2 {
+//   font-size: 2.5vw; /* Ajusta el tamaño de fuente para el título del producto */
+//   margin: 10px 0;
+// }
 
 /* Estilos para dispositivos móviles (por ejemplo, pantalla de ancho menor a 600px) */
 @media (max-width: 600px) {

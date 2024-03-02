@@ -61,8 +61,8 @@ deleteProduct(id: string): Observable<{ id: string }> {
 }
 
 uploadImage(formData: FormData, productId: string): Observable<string[]> {
-  console.log(productId)
-  console.log(productId)
+  // console.log(productId)
+  // console.log(productId)
   return this.http.put<string[]>(
     `${environment.api}/product/upload-image/${productId}`,
      formData
@@ -83,7 +83,7 @@ uploadImage(formData: FormData, productId: string): Observable<string[]> {
       throw error;
     }),
     tap((response: string[]) => {
-      console.log('Upload successful:', response);
+      // console.log('Upload successful:', response);
       // Puedes manejar la respuesta exitosa según tus necesidades
     })
   );

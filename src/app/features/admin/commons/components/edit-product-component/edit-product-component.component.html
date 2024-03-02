@@ -194,13 +194,10 @@
       />
 
       <!-- Mostrar Imágenes Existentes -->
-      <div
-        class="image-gallery"
-        *ngIf="product.images && product.images.length > 0"
-      >
+      <div class="image-gallery" *ngIf="product.images && product.images.length > 0">
         <div *ngFor="let image of product.images; let i = index">
           <img
-            [src]="getImages(image)"
+            [src]="getImages(image ? image : 'defaultImg')"
             alt="Imagen del producto"
             width="50"
             height="50"
@@ -211,6 +208,7 @@
           </button>
         </div>
       </div>
+
 
       <!-- Mostrar Vista Previa de Imágenes Seleccionadas -->
       <div class="image-preview" *ngIf="selectedImages.length > 0">
