@@ -13,7 +13,15 @@ import { SkeletonModule } from 'primeng/skeleton';
 import { CarouselModule } from 'primeng/carousel';
 import { Tag } from 'primeng/tag';
 import { ButtonModule } from 'primeng/button';
+import { InputTextModule } from 'primeng/inputtext';
+// import { InputTextModule } from 'primeng/inputtext';
+// import { ButtonModule } from 'primeng/button';
+import { InputNumberModule } from 'primeng/inputnumber';
+// import { ButtonModule } from 'primeng/button';
+import { SplitterModule } from 'primeng/splitter';
+import { CardModule } from 'primeng/card';
+import { ConfirmPopupModule } from 'primeng/confirmpopup';
 @NgModule({
-  exports: [ButtonModule,SkeletonModule,MatCardModule, MatIconModule,MatFormFieldModule, MatButtonModule, MatInputModule,CarouselModule],
+  exports: [ConfirmPopupModule,CardModule,SplitterModule,ButtonModule,SkeletonModule,MatCardModule, MatIconModule,MatFormFieldModule, MatButtonModule, MatInputModule,CarouselModule,InputTextModule,InputNumberModule],
 })
 export class MaterialModule {}

@@ -32,6 +32,7 @@ export class HomeViews implements OnInit {
   loadingProducts = true; // Variable para indicar si los productos se están cargando
   isMobile: boolean = false; // Variable para verificar si es una pantalla móvil
   showAnimation: boolean = false;
+  showAnimation2: boolean = false;
 
   constructor(
     private router: Router,
@@ -61,10 +62,15 @@ export class HomeViews implements OnInit {
     const scrollPosition = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
 
     // Verifica si la posición del scroll es mayor a 400
-    if (scrollPosition > 450) {
+    if (scrollPosition > 530) {
       this.showAnimation = true;
     } else {
       this.showAnimation = false;
+    }
+    if (scrollPosition > 930) {
+      this.showAnimation2 = true;
+    } else {
+      this.showAnimation2 = false;
     }
   };
 

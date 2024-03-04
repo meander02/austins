@@ -26,6 +26,7 @@ const COMPONENTS = [ProductComponent,DetailImgComponent, DetailInfoComponent,Cat
     MaterialModule,
     ReactiveFormsModule,
     DefaultImgModule,
+    
     // Agrega aquí otros módulos compartidos si es necesario
   ]
 })

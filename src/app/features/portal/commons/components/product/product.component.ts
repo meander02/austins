@@ -29,13 +29,6 @@ export class ProductComponent implements OnInit {
 
   ngOnInit(): void {
 
-    // this.searchService.searchQuery$.subscribe((query) => {
-    //   // Filtra los productos en función de la consulta de búsqueda (query).
-    //   this.filterPost = query;
-    //   // Verifica si se han encontrado resultados.
-    //   this.hasSearchResults = this.product.name.toLowerCase().includes(query.toLowerCase());
-    // });
-    // console.log('Producto en el presentador', this.product);
   }
   setCartItem(): CartItem {
     // console.log('set car', this.product);
@@ -64,21 +57,8 @@ export class ProductComponent implements OnInit {
   decrement(): void {
     this.cartService.remove(this.cartItem);
   }
-
-  goToDetail(route: string): void {
-    // console.log('redirect');
-    this.router.navigateByUrl('/portal/' + route);
+  goToDetail(): void {
+    this.router.navigateByUrl(`portal/detail/${this.product._id}`);
   }
 
-  // ///nuew
-  // getSeverity(status: string) {
-  //   switch (status) {
-  //     case 'INSTOCK':
-  //       return 'success';
-  //     case 'LOWSTOCK':
-  //       return 'warning';
-  //     case 'OUTOFSTOCK':
-  //       return 'danger';
-  //   }
-  // }
 }

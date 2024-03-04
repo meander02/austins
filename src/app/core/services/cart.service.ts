@@ -100,4 +100,24 @@ export class CartService {
     });
     this.itemsInCart.next(this.quantity);
   }
+
+
+
+
+
+  // nuevo
+   // Función para obtener un elemento del carrito por su ID
+   getCartItem(productId: string): CartItem | undefined {
+    return this.cart.find(item => item.id === productId);
+  }
+
+  // Función para actualizar la cantidad de un elemento en el carrito
+  updateQuantity(productId: string, newQuantity: number): void {
+    const cartItem = this.cart.find(item => item.id === productId);
+    if (cartItem) {
+      cartItem.cantidad = newQuantity;
+      this.sendQuantity();
+      this.storegService.setCarrito(this.cart);
+    }
+  }
 }

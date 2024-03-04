@@ -7,7 +7,7 @@
 
   .price {
     font-size: 18px;
-    color: #ff3f0a;
+    color: #ffa85c;
     margin-bottom: 10px;
   }
 
@@ -52,45 +52,40 @@
       }
     }
   }
+  p-inputnumber {
+    // width: auto !important;
 
+    justify-content: center ;
+    width: 30%;
+    margin-bottom:  30px;
+    margin-right:  5px;
+    margin-left:  5px;
+    // margin: 10%;
+    // right:  5px;
+  }
   .input-button-container {
     display: flex;
+    margin-right:5px ;
     align-items: center; // Alinea los elementos verticalmente
-    justify-content: space-between; //
-    .font-bold {
-      text-align: center;
+    .font-bold{
+      text-align:  center;
       font-weight: bold;
-      margin-bottom: 8px;
-    }
-    p-splitter {
-      height: auto;
-    }
-    p-inputnumber {
-      width: 30%;
-      margin-right: 5px;
-      margin-left: 5px;
-      border: 1px solid #ccc; // Agrega un borde sólido
-      border-radius: 5px; // Añade bordes redondeados
-    }
-    .p-button{
-      border:  none;
-      background-color: #ff6600;
-    }
 
+      margin-bottom:  8px;
+
+
+    }
     .btn {
-      margin-bottom: 0.2em;
-      height: 45px; // Altura fija del botón
-      right:  2;
-      margin-left:  5px;
+      height:  45px ; /* Altura fija del botón */
+      padding: 0.7rem  ; /* Relleno lateral y superior */
+
       background-color: #ff9d00;
       color: #ffffff;
-      border: 1px solid transparent; // Borde transparente inicial
-      border-radius: 5px; // Bordes redondeados
-
-      &:hover,
-      &:focus {
-        background-color: #ffe8c2;
-      }
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      // min-width: 100px; // Ancho mínimo para el botón
     }
   }
 }

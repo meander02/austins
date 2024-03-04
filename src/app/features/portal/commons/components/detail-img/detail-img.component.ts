@@ -14,48 +14,45 @@ import {
   styleUrls: ['./detail-img.component.scss'],
 })
 export class DetailImgComponent implements OnInit, OnChanges {
-  @ViewChild('slider', { static: true }) sliderImg: ElementRef | undefined;
+  // @ViewChild('slider', { static: true }) sliderImg: ElementRef | undefined;
 
+  // @ViewChild('down')
+  // imgToDown!: ElementRef;
+  // @Input()
+  // srcMain!: string;
+  // images!: string[];
+  @ViewChild('slider')
+  sliderImg!: ElementRef;//// en esta parte se selcciona por el id slider
   @ViewChild('down')
   imgToDown!: ElementRef;
   @Input()
+  images!: string[];
   srcMain!: string;
-
   @ViewChild('zoomBox') zoomBox: ElementRef | undefined;
   zoomActive: boolean = false;
+  currentIndex: number = 0; // Inicializa el índice de la imagen actual en 0
 
-  // @ViewChild('.image-zoom-box') zoomBox: ElementRef | undefined; // Agregar ViewChild para la lupa
 
-  @Input() images: string[] = [
-    '/assets/64de7c_5c0ba351459045d582cf3f4215ee9229~mv2.webp',
-    '/assets/64de7c_87239975fecc4ca3a2eb580f3b40788f~mv2_d_1736_2048_s_2.webp',
-    '/assets/64de7c_bfb1d846083f48f499a9d834fe7beea6~mv2.webp',
-    '/assets/64de7c_cffc88ce04d2467fa3d72c0a2e856f75~mv2_d_2048_1365_s_2.webp',
-    '/assets/64de7c_2df6898e14054b4bb18136013287c3e6~mv2.webp',
-    '/assets/01.png',
-  ];
   constructor() {}
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['images'].currentValue) {
+      this.srcMain = this.images[0]; // Utiliza la URL completa directamente
     } else {
       this.srcMain = '';
     }
   }
-
-  currentIndex: number = 0; // Inicializa el índice de la imagen actual en 0
-
 
   ngOnInit(): void {
     if (this.images.length > 0) {
       this.srcMain = this.images[0];
     }
 
-    const zoomedImg = document.getElementById("zoomed-img");
-    const zoomedContainer = document.querySelector(".image-zoom-container");
+    const zoomedImg = document.getElementById('zoomed-img');
+    const zoomedContainer = document.querySelector('.image-zoom-container');
 
     if (zoomedImg && zoomedContainer instanceof HTMLElement) {
-      zoomedContainer.addEventListener("mousemove", (e: MouseEvent) => {
+      zoomedContainer.addEventListener('mousemove', (e: MouseEvent) => {
         const containerRect = zoomedContainer.getBoundingClientRect();
         const x = (e.clientX - containerRect.left) / containerRect.width;
         const y = (e.clientY - containerRect.top) / containerRect.height;
@@ -65,25 +62,31 @@ export class DetailImgComponent implements OnInit, OnChanges {
         }
       });
 
-      zoomedContainer.addEventListener("mouseenter", () => {
+      zoomedContainer.addEventListener('mouseenter', () => {
         if (zoomedImg) {
-          zoomedImg.classList.add("zoomed");
+          zoomedImg.classList.add('zoomed');
         }
       });
 
-      zoomedContainer.addEventListener("mouseleave", () => {
+      zoomedContainer.addEventListener('mouseleave', () => {
         if (zoomedImg) {
-          zoomedImg.classList.remove("zoomed");
+          zoomedImg.classList.remove('zoomed');
         }
       });
     }
   }
+  getImages(url: string): string {
+    return `${url}`; // Este es el método que debes definir en tu clase
+  }
 
+  // toogleImg(url: string, index: number): void {
+  //   // debugger
+  //   this.srcMain = url;
+  //   this.currentIndex = index;
+  // }
 
-  toogleImg(url: string, index: number): void {
-    // debugger
-    this.srcMain = url;
-    this.currentIndex = index;
+  toogleImg(url: string): void {
+    this.srcMain = this.getImages(url);
   }
 
   up(): void {
@@ -93,6 +96,4 @@ export class DetailImgComponent implements OnInit, OnChanges {
   down(): void {
     this.sliderImg!.nativeElement.scrollTop += 80;
   }
-
-
 }

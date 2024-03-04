@@ -24,8 +24,12 @@ const routes: Routes = [
 
         component: HomeViews,
       },
+      // {
+      //   path: 'detail',
+      //   component: DetailViews,
+      // },
       {
-        path: 'detail',
+        path: 'detail/:id',
         component: DetailViews,
       },
       {

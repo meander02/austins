@@ -1,0 +1,56 @@
+<div class="content">
+  <h1>{{ productDetail?.name }}</h1>
+  <p class="price">Precio: {{ productDetail?.price | currency : "" }}</p>
+  <p class="description">
+    <strong>Descripción:</strong> <br />
+    {{ productDetail?.description }}
+  </p>
+  <p class="availability">
+    <span class="quantity">{{
+      productDetail?.quantity ? "Hay existencias" : "Agotado"
+    }}</span>
+  </p>
+
+  <div class="product-details">
+    <h2>Detalles de la Repostería</h2>
+    <p><strong>Peso:</strong> {{ productDetail?.weight }} gr</p>
+    <p><strong>Ingredientes:</strong></p>
+    <ul>
+      <li *ngFor="let ingredient of productDetail?.ingredients">
+        {{ ingredient }}
+      </li>
+    </ul>
+  </div>
+
+  <form [formGroup]="formGroup">
+    <div class="input-button-container">
+      <div class="flex-wrap gap-3 p-fluid">
+        <label class="font-bold" for="Cantidad">Cantidad</label>
+        <div class="flex-auto">
+          <!-- <h2>Cantidad</h2> -->
+
+          <p-inputNumber
+            formControlName="quantity"
+            [(ngModel)]="value1"
+            mode="decimal"
+            [showButtons]="true"
+            inputId="minmax-buttons"
+            [min]="0"
+            [max]="10"
+          >
+          </p-inputNumber>
+
+
+          <button class="btn" type="button" (click)="addItem()">
+            Añadir al carrito
+          </button>
+        </div>
+      </div>
+
+      <!--
+      <button class="btn" type="button" (click)="addItem()">
+        Añadir al carrito
+      </button> -->
+    </div>
+  </form>
+</div>

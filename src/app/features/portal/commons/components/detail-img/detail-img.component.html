@@ -1,31 +1,17 @@
 <div class="content">
   <div class="slider-wrapper">
-    <img
-      src="assets/icons/up-arrow-svgrepo-com.svg"
-      alt=""
-      class="up"
-      (click)="up()"
-    />
 
     <div #slider class="slider">
-      <ng-container *ngFor="let item of images; let i = index">
-        <img [src]="item" alt="" (click)="toogleImg(item, i)" />
+      <ng-container *ngFor="let item of images">
+        <img [src]="getImages(item)" alt="" (click)="toogleImg(item)" />
       </ng-container>
     </div>
-    <img
-      src="assets/icons/down-arrow-svgrepo-com.svg"
-      #imgDown
-      alt=""
-      class="down"
-      (click)="down()"
-    />
   </div>
   <div class="main-img">
     <div class="image-zoom-container">
       <div class="zoomed-image">
-        <img [src]="srcMain" alt="" id="zoomed-img"/>
+        <img [src]="srcMain" alt="" id="zoomed-img"  />
       </div>
     </div>
-
   </div>
 </div>

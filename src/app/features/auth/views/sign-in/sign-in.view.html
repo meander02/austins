@@ -1,7 +1,4 @@
-
-<p-toast></p-toast>
-
-<app-sign-in-form  (formData)="signIn($event)"></app-sign-in-form>
-<!-- <div class="error-message" *ngIf="errorMessage">
-  {{ errorMessage }}
-</div> -->
+<div class="content scrollbar-hidden">
+  <p-toast></p-toast>
+  <app-sign-in-form (formData)="signIn($event)"></app-sign-in-form>
+</div>

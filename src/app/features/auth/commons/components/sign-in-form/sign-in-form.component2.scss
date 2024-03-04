@@ -46,7 +46,7 @@ mat-form-field {
 }
 
 .login-form legend {
-  
+
   text-align: center;
   justify-content: center;
   color: #b49173;
@@ -78,4 +78,22 @@ mat-form-field {
 
 .login-button:not(:disabled):hover {
   background-color: #a54c2c;
+}
+
+
+
+/* Oculta la barra de desplazamiento en navegadores WebKit (Chrome, Safari, etc.) */
+::-webkit-scrollbar {
+  display: none;
+}
+
+/* Estilos adicionales para navegadores que no son WebKit */
+/* Firefox */
+.login-form {
+  scrollbar-width: none;
+}
+
+/* Estilos adicionales para IE y Edge */
+.login-form {
+  -ms-overflow-style: none;
 }

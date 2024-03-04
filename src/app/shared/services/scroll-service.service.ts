@@ -14,4 +14,11 @@ export class ScrollServiceService {
       }
     });
   }
+  reciente(): void {
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        window.scrollTo(0, 840); // Aquí ajustas la posición a la que quieres hacer scroll
+      }
+    });
+  }
 }

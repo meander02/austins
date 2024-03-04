@@ -1,10 +1,41 @@
 <div class="container">
+  <!-- <p-toast></p-toast> -->
+  <p-confirmPopup class="dia" #confirmPopupRef>
+      <ng-template pTemplate="headless" let-message let-test>
+          <div class="bg-gray" style="text-align: center;" >
+              <span >{{ message.message }}</span>
+              <div class="flex align-items-center gap-2 mt-3">
+                  <button (click)="accept()" pButton label="Aceptar" class="p-button-sm p-button-outlined"></button>
+                  <button (click)="reject()" pButton label="Cancelar" class="p-button-sm p-button-text"></button>
+              </div>
+          </div>
+      </ng-template>
+  </p-confirmPopup>
   <div class="category-grid"  data-aos="fade-down"
   data-aos-easing="linear"
   data-aos-duration="1500">
     <div class="category-card" *ngFor="let product of products">
-      <div class="category-overlay">{{ product.category }}</div>
+      <div (click)="confirm($event)"  class="category-overlay">{{ product.category }}</div>
       <img [src]="product.imageUrl" alt="Product Image" class="category-image">
     </div>
   </div>
 </div>
+
+<!--
+
+
+<div class="card flex justify-content-center gap-2">
+  <p-toast></p-toast>
+  <p-confirmPopup #confirmPopupRef>
+      <ng-template pTemplate="headless" let-message let-test>
+          <div class="bg-gray-900 text-white border-round p-3">
+              <span>{{ message.message }}</span>
+              <div class="flex align-items-center gap-2 mt-3">
+                  <button (click)="accept()" pButton label="Save" class="p-button-sm p-button-outlined"></button>
+                  <button (click)="reject()" pButton label="Cancel" class="p-button-sm p-button-text"></button>
+              </div>
+          </div>
+      </ng-template>
+  </p-confirmPopup>
+<p-button (click)="confirm($event)" icon="pi pi-check" label="Confirm"></p-button> -->
+

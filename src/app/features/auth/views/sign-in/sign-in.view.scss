@@ -21,3 +21,18 @@
   background-color: #ff5757; // Color de fondo para la alerta de error
   color: #fff; // Color del texto
 }
+/* Oculta la barra de desplazamiento en navegadores WebKit (Chrome, Safari, etc.) */
+::-webkit-scrollbar {
+  display: none;
+}
+
+/* Estilos adicionales para navegadores que no son WebKit */
+/* Firefox */
+.scrollbar-hidden {
+  scrollbar-width: none;
+}
+
+/* Estilos adicionales para IE y Edge */
+.scrollbar-hidden {
+  -ms-overflow-style: none;
+}

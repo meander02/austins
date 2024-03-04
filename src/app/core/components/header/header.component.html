@@ -133,7 +133,7 @@
               class="product-image"
             /> -->
             <img
-            [src]="item.image[0] ? item.image[0] : 'defaultImg'"
+              [src]="item.image[0] ? item.image[0] : 'defaultImg'"
               alt="Producto"
               class="product-image"
             />
@@ -259,14 +259,14 @@
     </ng-template>
 
     <div
-    class="btn"
-    data-aos="fade-up"
-    data-aos-anchor-placement="bottom-bottom"
-  >
-    <button class="btn-finish" (click)="finishPurchase()">
-      aplicar filtros
-    </button>
-  </div>
+      class="btn"
+      data-aos="fade-up"
+      data-aos-anchor-placement="bottom-bottom"
+    >
+      <button class="btn-finish" (click)="finishPurchase()">
+        aplicar filtros
+      </button>
+    </div>
   </div>
 </p-sidebar>
 
@@ -295,14 +295,19 @@
       <!-- <div class="card flex justify-content-center"> -->
       <div>
         <button class="mobile-menu-btn" (click)="sidebarVisible = true">
-          <span class="pi pi-bars"></span>
+          <span class="pi pi-bars" ></span>
         </button>
       </div>
     </div>
 
     <div class="search-container">
-      <button class="btnbusa">
+      <!-- <button class="btnbusa">
         <mat-icon class="material-icons primary">search</mat-icon>
+      </button> -->
+      <button class="btnbusa">
+        <mat-icon class="material-icons primary">
+          <i class="pi pi-search" ></i>
+        </mat-icon>
       </button>
       <input
         [(ngModel)]="searchQuery"
@@ -343,9 +348,16 @@
           acerca de
         </div>
       </mat-menu>
-
+<!--
       <button *ngIf="!userName" class="menu-btn" (click)="openSignInModal()">
         <mat-icon class="material-icons2 primary">account_circle</mat-icon>
+      </button> -->
+
+      <button *ngIf="!userName" class="menu-btn" (click)="openSignInModal()">
+        <mat-icon class="material-icons2 primary">
+          <i class="pi pi-user" ></i>
+
+        </mat-icon>
       </button>
 
       <button
@@ -387,8 +399,10 @@
       data-aos="fade-up"
       data-aos-anchor-placement="bottom-center"
       data-aos-duration="900"
-      >shopping_cart</mat-icon
     >
+    <i class="pi pi-shopping-cart"  style="font-size: 1.2rem" ></i>
+    </mat-icon>
+
   </div>
 
   <div

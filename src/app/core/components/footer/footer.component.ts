@@ -4,8 +4,6 @@ import { UserStateService } from 'src/app/features/admin/commons/services/user-s
 import { AuthStateService } from 'src/app/features/auth/commons/services/auth-state.service';
 import { ScrollServiceService } from 'src/app/shared/services/scroll-service.service';
 
-// import { UserStateService } from '../../../features/admin/commons/services/user-state.service';
-// import { AuthStateService } from './../../../features/auth/commons/services/auth-state.service';
 
 @Component({
   selector: 'app-footer',
