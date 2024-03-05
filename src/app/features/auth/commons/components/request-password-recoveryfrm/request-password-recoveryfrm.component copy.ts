@@ -12,6 +12,7 @@
 //   Validators,
 // } from '@angular/forms';
 // import { MessageService } from 'primeng/api';
+// import { NgxUiLoaderService } from 'ngx-ui-loader';
 
 // @Component({
 //   selector: 'app-request-password-recoveryfrm',
@@ -55,8 +56,12 @@
 //   timeRemaining: number = 300; // 5 minutos en segundos
 //   intervalId: any;
 //   showTimer: boolean = false;
-
+//   timeRemainingMinutes: number = 5; // Establecemos el tiempo restante inicialmente en 5 minutos
+//   // intervalId: any; // Variable para almacenar el ID del intervalo
+//   timeRemainingSeconds: number; // Variable para almacenar el tiempo restante en segundos
+// //
 //   constructor(
+//     private ngxService: NgxUiLoaderService,
 //     private snackBar: MatSnackBar,
 //     private authService: AuthService,
 //     private formBuilder: FormBuilder,
@@ -66,6 +71,7 @@
 //   ) {
 //     const signInValidator = new SignInValidator();
 //     const signUpValidator = new SignUpValidator();
+//     this.timeRemainingSeconds = this.timeRemainingMinutes * 60; // Convertimos los minutos a segundos
 
 //     const emailRegex =
 //       /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
@@ -98,7 +104,7 @@
 //       navigator.serviceWorker.ready.then((registration) => {
 //         registration.pushManager.getSubscription().then((subscription) => {
 //           if (subscription) {
-//             console.log('Subscription:', subscription);
+//             // console.log('Subscription:', subscription);
 
 //             // Convertir las claves p256dh y auth a base64
 //             const p256dhKey = subscription.getKey('p256dh');
@@ -118,7 +124,7 @@
 //                 auth: this.arrayBufferToBase64(authKey),
 //               },
 //             };
-//             console.log('Subscription Object:', subObj);
+//             // console.log('Subscription Object:', subObj);
 
 //             // Enviar la suscripción al backend junto con el email
 //             this.authService
@@ -152,6 +158,9 @@
 //     }
 //   }
 
+
+
+
 //   // Función para convertir un ArrayBuffer a base64
 //   arrayBufferToBase64(buffer: ArrayBuffer): string {
 //     let binary = '';
@@ -167,20 +176,33 @@
 //   timeLeft: number = 300; // 300 segundos = 5 minutos
 //   timer: any;
 
-//   startTimer() {
+//   // startTimer() {
+//   //   this.intervalId = setInterval(() => {
+//   //     this.timeRemaining--;
+//   //     if (this.timeRemaining <= 0) {
+//   //       clearInterval(this.intervalId); // Detener el temporizador cuando llegue a cero
+//   //     }
+//   //   }, 1000); // Actualizar cada segundo
+//   // }
+//   // formatTimeLeft(): string {
+//   //   const minutes: number = Math.floor(this.timeRemaining / 60);
+//   //   const seconds: number = this.timeRemaining % 60;
+//   //   return `${minutes}:${seconds < 10 ? '0' + seconds : seconds}`;
+//   // }
+//   startTimer(): void {
 //     this.intervalId = setInterval(() => {
-//       this.timeRemaining--;
-//       if (this.timeRemaining <= 0) {
+//       this.timeRemainingSeconds--;
+//       if (this.timeRemainingSeconds <= 0) {
 //         clearInterval(this.intervalId); // Detener el temporizador cuando llegue a cero
 //       }
 //     }, 1000); // Actualizar cada segundo
 //   }
+
 //   formatTimeLeft(): string {
-//     const minutes: number = Math.floor(this.timeRemaining / 60);
-//     const seconds: number = this.timeRemaining % 60;
+//     const minutes: number = Math.floor(this.timeRemainingSeconds / 60);
+//     const seconds: number = this.timeRemainingSeconds % 60;
 //     return `${minutes}:${seconds < 10 ? '0' + seconds : seconds}`;
 //   }
-
 //   onSubmitStep2() {
 //     this.group2.get('verificationCode')?.setValidators([Validators.required]);
 //     this.group2.get('verificationCode')?.updateValueAndValidity();
@@ -205,7 +227,7 @@
 
 //             this.step2Disabled = true;
 //             this.step3Disabled = false;
-//             console.log(response);
+//             // console.log(response);
 //             this.activeIndex = 2;
 //           },
 //           (error) => {
@@ -241,7 +263,7 @@
 //       const email = this.group.value.email;
 //       const verificationCode = this.group2.value.verificationCode;
 //       const newPassword = this.group3.value.newPassword;
-//       console.log(email, verificationCode, newPassword);
+//       // console.log(email, verificationCode, newPassword);
 //       // this.stepCompleted[1] = true;
 //       this.authService
 //         .verifyCodeAndResetPassword({ email, verificationCode, newPassword })

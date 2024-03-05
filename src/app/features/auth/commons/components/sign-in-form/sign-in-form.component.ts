@@ -17,6 +17,7 @@ import { ISingInRequest } from '../../../interfaces/sign-in-request.interface';
 import { SignInValidator } from 'src/app/shared/validators/sign-in-validator';
 import { DynamicDialogRef } from 'primeng/dynamicdialog';
 import { MessageService } from 'primeng/api';
+import { NgxUiLoaderService } from 'ngx-ui-loader';
 
 @Component({
   selector: 'app-sign-in-form',
@@ -38,8 +39,10 @@ export class SignInFormComponent implements OnInit {
   ref: DynamicDialogRef | undefined;
   @Output() formData: EventEmitter<ISingInRequest> =
     new EventEmitter<ISingInRequest>();
+    // constructor(private ngxService: NgxUiLoaderService) {}
 
-  constructor(
+  constructor(private ngxService: NgxUiLoaderService,
+
     private dialogRef: DynamicDialogRef,
     private router: Router,
     private formBuilder: FormBuilder,

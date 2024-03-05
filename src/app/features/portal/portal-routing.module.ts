@@ -21,7 +21,6 @@ const routes: Routes = [
     children: [
       {
         path: 'home',
-
         component: HomeViews,
       },
       // {

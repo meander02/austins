@@ -4,7 +4,7 @@ import { SignInService } from '../../commons/services/sign-in.service';
 import { StorageService } from 'src/app/core/services/storage.service';
 import { Router } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
-import { catchError } from 'rxjs/operators';
+import { catchError, finalize } from 'rxjs/operators';
 import { throwError } from 'rxjs';
 // import { MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
@@ -12,6 +12,7 @@ import { SessionService } from 'src/app/core/services/session.service';
 import { ERol } from 'src/app/shared/constants/rol.enum';
 import { MessageService } from 'primeng/api';
 import { DynamicDialogRef } from 'primeng/dynamicdialog';
+import { NgxUiLoaderService } from 'ngx-ui-loader';
 
 @Component({
   selector: 'app-sign-in',
@@ -24,77 +25,63 @@ export class SignInView implements OnInit {
   userROL!: string;
   loginAttempts: number = 0; // Variable para almacenar el número de intentos de inicio de sesión fallidos
   ref: DynamicDialogRef | undefined;
+  // constructor(private ngxService: NgxUiLoaderService) {}
+
   constructor(
+    private ngxService: NgxUiLoaderService,
     private snackBar: MatSnackBar, // Inyecta MatSnackBar
     private signInService: SignInService,
     private storageService: StorageService,
     private router: Router,
     private sessionService: SessionService,
     private messageService: MessageService,
-    private dialogRef: DynamicDialogRef
-  ) // private dialogRef: MatDialogRef<SignInView> // Inyecta MatDialogRef
-
-  {}
+    private dialogRef: DynamicDialogRef // private dialogRef: MatDialogRef<SignInView> // Inyecta MatDialogRef
+  ) {}
 
   ngOnInit(): void {}
-
-
   signIn(data: ISingInRequest): void {
-    const config: MatSnackBarConfig = {
-      duration: 5000,
-      panelClass: 'error-snackbar',
-    };
-    // console.log(data)
-    if (data != null) {
-      this.signInService
-        .signIn(data)
-        .pipe(
-          catchError((error: HttpErrorResponse) => {
-            this.errorMessage = error.error.message;
-            this.messageService.add({
-              severity: 'error',
-              summary: 'Error',
-              detail: this.errorMessage,
-            });
-            this.loginAttempts++; // Incrementa el contador de intentos de inicio de sesión fallidos
-            return throwError('Error en la solicitud');
-          })
-        )
-        .subscribe((response) => {
-          if (response) {
-            this.storageService.setToken(response.token);
-            // this.ref.close();
-            const userData = this.sessionService.getUserData();
-            if (userData) {
-              this.userROL = userData.rol;
-              // console.log(this.userROL);
-              if (this.userROL === ERol.ADMIN) {
-                this.router.navigateByUrl('/admin');
-              }
-              if (this.userROL === ERol.CLIENT) {
-                this.router.navigate(['/']).then(() => {
-                  window.location.reload();
-                });
-                // console.log(this.userROL);
-              }
-              // if (this.ref) {
-              //   this.ref.close(); // Cierra el diálogo
-              // }
-              this.dialogRef.close(); // Cierra el modal
-            }
-            // if (this.ref) {
-            //   this.ref.close(); // Cierra el diálogo
-            // }
-            // this.ref.close(); // Cierra el diálogo
-          }
-        });
-    }
-    if (data == null) {
+    if (!data) {
       this.messageService.add({
         severity: 'error',
         summary: 'Error',
-        detail:'datos requeridos',
+        detail: 'Datos requeridos',
       });
+      return;
     }
+
+    this.ngxService.start();
+
+    this.signInService.signIn(data).pipe(
+      catchError((error: HttpErrorResponse) => {
+        this.errorMessage = error.error.message || 'Error en la solicitud';
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Error',
+          detail: this.errorMessage,
+        });
+        this.loginAttempts++;
+        return throwError(this.errorMessage);
+      }),
+      finalize(() => {
+        this.ngxService.stop();
+      })
+    ).subscribe((response) => {
+      if (response) {
+        this.storageService.setToken(response.token);
+        const userData = this.sessionService.getUserData();
+        if (userData) {
+          this.userROL = userData.rol;
+          if (this.userROL === ERol.ADMIN) {
+            this.router.navigateByUrl('/admin');
+          } else if (this.userROL === ERol.CLIENT) {
+            this.router.navigate(['/']).then(() => {
+              window.location.reload();
+            });
+          }
+          this.dialogRef.close();
+        }
+      }
+    });
   }
+
 }

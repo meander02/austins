@@ -19,6 +19,8 @@ import { AuthService } from '../../services/auth.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { MenuItem, MessageService } from 'primeng/api';
+import { catchError, finalize, throwError } from 'rxjs';
+import { NgxUiLoaderService } from 'ngx-ui-loader';
 
 // import AOS from "aos";
 interface City {
@@ -70,6 +72,7 @@ export class SignUpFormComponent implements OnInit {
     '¿En qué ciudad naciste?',
   ];
   constructor(
+    private ngxService: NgxUiLoaderService,
     private snackBar: MatSnackBar,
     private authService: AuthService,
     private formBuilder: FormBuilder,
@@ -536,19 +539,39 @@ export class SignUpFormComponent implements OnInit {
     }
   }
 
+  // registerUser() {
+  //   this.authService.signUpAndVerifyEmail(this.group.value).subscribe(
+  //     response => {
+  //       this.handleSuccessResponse(response);
+  //     },
+  //     error => {
+  //       this.handleErrorResponse(error);
+  //     }
+  //   ).add(() => {
+  //     this.isSubmitting = false;
+  //   });
+  // }
   registerUser() {
-    this.authService.signUpAndVerifyEmail(this.group.value).subscribe(
-      response => {
-        this.handleSuccessResponse(response);
-      },
-      error => {
-        this.handleErrorResponse(error);
-      }
-    ).add(() => {
-      this.isSubmitting = false;
-    });
-  }
+    this.isSubmitting = true;
+    this.ngxService.start(); // Inicia el spinner
 
+    this.authService.signUpAndVerifyEmail(this.group.value)
+      .pipe(
+        catchError((error) => {
+          this.handleErrorResponse(error);
+          return throwError(error);
+        }),
+        finalize(() => {
+          this.isSubmitting = false;
+          this.ngxService.stop(); // Detiene el spinner al finalizar la solicitud
+        })
+      )
+      .subscribe(
+        (response) => {
+          this.handleSuccessResponse(response);
+        }
+      );
+  }
   handleSuccessResponse(response: any) {
     this.snackBar.open(response.message, 'Cerrar', { duration: 3000 });
     this.messageService.add({

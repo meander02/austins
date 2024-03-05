@@ -1,12 +1,11 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { ProductService } from 'src/app/features/admin/commons/services/product.service';
 import { Product } from 'src/app/features/admin/models/Product.models';
 import { SearchService } from 'src/app/shared/services/search-service.service';
 // import 'aos/dist/aos.css';
 // import * as AOS from 'aos';
-import * as AOS from 'aos';
-import { animate, state, style, transition, trigger } from '@angular/animations';
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.views.html',
@@ -16,7 +15,7 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
     './hom.scss',
     './anima.scss',
   ],
-
+  // encapsulation: ViewEncapsulation.None,
 })
 export class HomeViews implements OnInit {
   responsiveOptions: any[] | undefined;
@@ -111,6 +110,7 @@ export class HomeViews implements OnInit {
       (response) => {
         this.originalProducts = response;
         this.loadingProducts = false; // Establece loadingProducts en false una vez que los productos se han cargado
+        // this.loadingProducts = true; // Establece loadingProducts en false una vez que los productos se han cargado
         this.filterProducts(this.filterPost); // Filtra los productos basados en la búsqueda actual
       },
       (error) => {
@@ -154,7 +154,7 @@ export class HomeViews implements OnInit {
 
   backgroundImages: string[] = [
 
-    
+
         'https://res.cloudinary.com/dfd0b4jhf/image/upload/v1709327171/public__/mbpozw6je9mm8ycsoeih.jpg',
         'https://res.cloudinary.com/dfd0b4jhf/image/upload/v1709327171/public__/mbpozw6je9mm8ycsoeih.jpg',
         'https://res.cloudinary.com/dfd0b4jhf/image/upload/v1709327171/public__/mbpozw6je9mm8ycsoeih.jpg',

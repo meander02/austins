@@ -1,10 +1,18 @@
 
 .catalogo1{
- 
-transition: background-image 3s cubic-bezier(0.55, 0.085, 0.68, 0.53), filter 0.6s linear; 
+
+transition: background-image 3s cubic-bezier(0.55, 0.085, 0.68, 0.53), filter 0.6s linear;
 
 }
 .catalogo1.filtered {
   background-color: rgb(255, 255, 255);
   filter: blur(10px); /* Ejemplo de filtro, ajusta según sea necesario */
+}
+
+
+.img{
+  margin-left: 100px;
+}
+.img2{
+  margin-left: 10px;
 }
