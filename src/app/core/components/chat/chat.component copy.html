@@ -21,25 +21,24 @@
     <mat-icon>{{ chatOpen ? "close" : "cancel" }}</mat-icon>
   </div>
 
-
-  <!-- <div *ngFor="let message of chatHistory" class="message-container">
-    <div class="mesasjes">
-      <div [ngClass]="message.role === 'user' ? 'user-message' : 'assistant-message'">
-        {{ message.content }}
-      </div>
-    </div>
-  </div> -->
-  <div *ngFor="let message of chatHistory" class="message-container">
-    <div class="mesasjes">
-      <div [ngClass]="message.role === 'user' ? 'user-message' : 'assistant-message'">
-        {{ message.content }}
-      </div>
-      <div class="message-time">
-        {{ getMessageTime(message.timestamp) }}
-      </div>
+  <div
+    class="message-container"
+    *ngFor="let message of chatHistory"
+    data-aos="fade-down-left"
+    data-aos-anchor="#example-anchor"
+    data-aos-offset="500"
+    data-aos-duration="500"
+  >
+    <div
+      [ngClass]="{
+        'user-message': message.role === 'user',
+        'assistant-message': message.role === 'assistant'
+      }"
+    >
+      {{ message.content }}
     </div>
   </div>
-
+  
   <div>
     <!-- Mensaje de bienvenida personalizado con el logo de Austins -->
     <div

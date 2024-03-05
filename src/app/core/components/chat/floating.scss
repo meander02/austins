@@ -24,41 +24,6 @@
   }
 }
 
-
-
-// /* Configuración de la animación */
-// @keyframes fadeIn {
-//   from {
-//     opacity: 0;
-//     transform: scale(0.5);
-//   }
-//   to {
-//     opacity: 5;
-//     transform: scale(1);
-//   }
-// }
-
-// @keyframes fadeOut {
-//   from {
-//     opacity: 5;
-//     transform: scale(1);
-//   }
-//   to {
-//     opacity: 0;
-//     transform: scale(0.5);
-//   }
-// }
-
-/* Aplica las animaciones al mensaje de bienvenida */
-// .welcome-message {
-//   animation: fadeIn 0.5s ease forwards; /* Durante la entrada */
-// }
-
-// .welcome-message.leave {
-//   animation: fadeOut 0.5s ease forwards; /* Durante la salida */
-// }
-
-/* Añadido el efecto de atención al botón flotante */
 @keyframes attention {
   0% {
     // transform: translateY(0);
@@ -77,3 +42,23 @@
 .floating-button {
   animation: attention 1.2s infinite alternate;
 }
+
+// .user-message {
+//   width: 80%;
+//   background-color: #ffc72c;
+//   color: #333;
+//   padding: 10px;
+//   border-radius: 10px;
+//   margin-bottom: 5px;
+//   text-align: left; /* Alinea el texto a la izquierda */
+// }
+
+// .assistant-message {
+//   width: 80%;
+//   background-color: #f75846;
+//   color: #fff;
+//   padding: 10px;
+//   border-radius: 10px;
+//   margin-bottom: 5px;
+//   text-align: right; /* Alinea el texto a la derecha */
+// }
