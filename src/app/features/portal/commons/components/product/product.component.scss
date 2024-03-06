@@ -1,7 +1,7 @@
 /* CSS */
 .catalog {
   // justify-content: center;
-  
+
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: 20px;
@@ -33,7 +33,7 @@
 }
 
 .product-description {
-  font-size: 1rem;
+  font-size: 0.9rem;
   color: #666;
   margin-bottom: 10px;
 }

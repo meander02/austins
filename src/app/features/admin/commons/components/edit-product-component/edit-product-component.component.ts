@@ -256,6 +256,7 @@ export class EditProductComponentComponent {
     this.product.images.splice(index, 1); // Remove the image from the product's array of images
 
     // Call the productService's deleteImage method to delete the image on the server
+    console.log(imageNameToRemove)
     this.productService
       .deleteProductImage(this.product._id, imageNameToRemove)
       .subscribe(
@@ -266,7 +267,7 @@ export class EditProductComponentComponent {
           this.updateProduct(this.product); // Update the product after deleting the image
         },
         (error) => {
-          console.error('Error deleting the image:', error);
+          console.error('Error deleting the image:', error ,imageNameToRemove);
         }
       );
   }

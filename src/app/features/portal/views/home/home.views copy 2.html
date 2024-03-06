@@ -1,0 +1,124 @@
+<div class="home-container"
+  [ngStyle]="{'background-image': 'url(' + backgroundImages[currentImageIndex] + ')'}"
+  [style.filter]="showAnimation ? 'blur(20px)' : 'none'">
+  <!-- Contenido principal con animaciones AOS -->
+  <div class="content"
+    [attr.data-aos]="isMobile ? 'zoom-in-up' : 'fade-up'"
+    data-aos-duration="1500">
+    <div class="logo_mobil">
+      <!-- Imagen de la pastelería -->
+      <img class="imgaem"
+        src="https://static.wixstatic.com/media/64de7c_4d76bd81efd44bb4a32757eadf78d898~mv2_d_1765_2028_s_2.png"
+        alt="Pastelería" />
+    </div>
+    <div class="text-content"
+      [attr.data-aos]="isMobile ? 'zoom-in' : 'fade-left'"
+      data-aos-duration="2700">
+      <!-- Título y descripción -->
+      <h1 class="bienve">Bienvenidos a Austin’s_</h1>
+      <p>
+        En Austin's, la tradición europea se encuentra con el encanto local,
+        y estamos encantados de compartirlo con ustedes. ¡Bienvenidos a una
+        experiencia de sabor única!
+      </p>
+    </div>
+    <div class="owner">
+      <!-- Información del propietario -->
+      <h2>Propiedad de Graham Austin</h2>
+      <button class="contact-owner">Contactar al Propietario</button>
+    </div>
+  </div>
+</div>
+
+<!-- Sección de Categorías -->
+<div data-aos="fade-up" data-aos-anchor-placement="bottom-bottom">
+  <h1 style="color: rgb(255, 140, 25); font-size: 32px; text-align: center; margin-bottom: 20px;">
+    Categorías
+  </h1>
+</div>
+
+<div class="catalogo1" [style.filter]="showAnimation2 ? 'blur(20px)' : 'none'">
+  <div *ngIf="loadingProducts">
+    <div *ngIf="hasSearchResults; else noResults">
+      <!-- Placeholder de productos con p-skeleton -->
+      <div class="card">
+        <p-carousel [value]="filteredProducts" [numVisible]="4" [numScroll]="4">
+          <ng-template let-product pTemplate="item">
+            <div class="card">
+              <div class="border-round border-1 surface-border p-4 surface-card img">
+                <p-skeleton width="100%" height="200px"></p-skeleton>
+                <div class=" mb-3">
+                  <p-skeleton width="5rem" styleClass="mb-2"></p-skeleton>
+                </div>
+                <div class="flex justify-content-between mt-3">
+                  <p-skeleton width="4rem" height="2rem"></p-skeleton>
+                </div>
+              </div>
+            </div>
+          </ng-template>
+        </p-carousel>
+      </div>
+    </div>
+  </div>
+
+  <!-- Vista alternativa de catálogo mientras se cargan los productos -->
+  <app-catalogo-vista2 *ngIf="!loadingProducts"></app-catalogo-vista2>
+</div>
+
+<!-- Sección de Lo más reciente -->
+<div data-aos="fade-up" data-aos-anchor-placement="bottom-bottom">
+  <h1 style="color: rgb(255, 140, 25); font-size: 32px; text-align: center; margin-bottom: 20px;">
+    Lo más reciente
+  </h1>
+</div>
+
+<div *ngIf="loadingProducts">
+  <div *ngIf="hasSearchResults; else noResults">
+    <!-- Placeholder de productos recientes -->
+    <div class="card">
+      <p-carousel [value]="filteredProducts" [numVisible]="4" [numScroll]="4">
+        <ng-template let-product pTemplate="item">
+          <div class="card">
+            <div class="border-round border-1 surface-border p-4 surface-card img2">
+              <p-skeleton width="100%" height="200px"></p-skeleton>
+              <div class=" mb-3">
+                <p-skeleton width="5rem" styleClass="mb-2"></p-skeleton>
+                <p-skeleton height=".5rem"></p-skeleton>
+              </div>
+              <div class="flex justify-content-between mt-3">
+                <p-skeleton width="4rem" height="2rem"></p-skeleton>
+              </div>
+            </div>
+          </div>
+        </ng-template>
+      </p-carousel>
+    </div>
+  </div>
+</div>
+
+<!-- Mostrar productos una vez que se han cargado -->
+<div *ngIf="!loadingProducts">
+  <div *ngIf="hasSearchResults; else noResults">
+    <!-- Mostrar productos una vez que se han cargado -->
+    <div class="card">
+      <p-carousel [value]="filteredProducts" [numVisible]="4" [numScroll]="4">
+        <ng-template let-product pTemplate="item">
+          <div class="prod">
+            <app-product [product]="product"></app-product>
+          </div>
+        </ng-template>
+      </p-carousel>
+    </div>
+  </div>
+</div>
+
+<!-- Mensaje de No Resultados -->
+<ng-template #noResults>
+  <div class="no-results-container">
+    <h3 class="no-results-heading">No se encontraron resultados</h3>
+    <p class="no-results-message">
+      Lo sentimos, no hay resultados disponibles para tu búsqueda.
+    </p>
+    <!-- <img src="assets/no-results-image.png" alt="No Results" class="no-results-image" /> -->
+  </div>
+</ng-template>

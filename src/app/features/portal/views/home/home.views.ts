@@ -75,7 +75,7 @@ export class HomeViews implements OnInit {
 
   ngOnInit(): void {
     window.addEventListener('scroll', this.onWindowScroll);
-
+    this.loadingProducts = true; // Establece loadingProducts en false una vez que los productos se han cargado
     setInterval(() => {
       this.changeBackgroundImage();
     }, 5000); // Cambiar cada 5 segundos (ajusta este valor según sea necesario)

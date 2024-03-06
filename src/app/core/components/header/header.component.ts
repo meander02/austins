@@ -426,4 +426,14 @@ export class HeaderComponent implements OnInit {
     // console.log('Color seleccionado:', this.selectedColor);
     // Implementa la lógica para filtrar los productos según las selecciones
   }
+
+  // visible: boolean = false;
+
+  position: string = '';
+
+
+  showDialog(position: string) {
+      this.position = position;
+      this.visible = true;
+  }
 }
