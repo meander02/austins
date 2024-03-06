@@ -39,6 +39,7 @@ import { ToastModule } from 'primeng/toast';
 
 
 import { SliderModule } from 'primeng/slider';
+import { PedidoFloatComponent } from './pedido-float/pedido-float.component';
 @NgModule({
   declarations: [
     ChatComponent,
@@ -48,10 +49,12 @@ import { SliderModule } from 'primeng/slider';
     CookiesComponent,
     BtnFloatComponent,
     StepsComponent,
-    ProgressBarComponent
+    ProgressBarComponent,
+    PedidoFloatComponent
   ],
   exports: [
     // PoliticaComponent,
+    PedidoFloatComponent,
     SliderModule,
     ConfirmDialogModule,
     ToastModule,

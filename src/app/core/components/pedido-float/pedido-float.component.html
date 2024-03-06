@@ -1,0 +1,12 @@
+<!-- chat.component.html -->
+<div
+  class="floating-button"
+  [ngClass]="{ 'chat-opened': chatOpen }"
+  [@floatingButtonAttention]="floatingButtonState"
+>
+
+  <i class="pi {{ chatOpen ? 'pi-times' : 'pi-book
+  ' }}" style="font-size: 1.5rem"></i>
+
+
+</div>

@@ -1,0 +1,173 @@
+/* chat.component.scss */
+
+/* Estilos generales */
+:host {
+  display: block;
+}
+
+/* Estilos del contenedor de chat */
+// .mesasjes {
+//   // max-height: 300px; /* Establece la altura máxima del contenedor de chat */
+//   overflow-y: auto; /* Agrega un desbordamiento vertical para permitir el desplazamiento */
+//   padding: 10px; /* Ajusta el espacio alrededor del contenedor */
+// }
+.message-time{
+  color: #ffffff;
+}
+.chat-container {
+  backdrop-filter: blur(10px); /* Aplica el efecto de desenfoque al fondo */
+  z-index: 1000;
+  position: fixed;
+  bottom: 20px;
+  right: 3px;
+  max-width: 300px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  overflow: hidden;
+  // overflow-y: auto;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  display: none; /* Inicialmente oculto */
+  transition: display 0.3s ease;
+    max-height: 300px; /* Establece la altura máxima del contenedor de chat */
+  overflow-y: auto; /* Agrega un desbordamiento vertical para permitir el desplazamiento */
+
+  &.visible {
+    display: block; /* Mostrar cuando tiene la clase 'visible' */
+  }
+}
+
+/* Estilos del historial de mensajes */
+/* Estilos del historial de mensajes */
+/* Estilos del historial de mensajes */
+/* Estilos del historial de mensajes */
+/* Estilos del historial de mensajes */
+.message-container {
+
+  max-height: 200px;
+  overflow-y: auto;
+  padding: 10px;
+  display: flex; /* Utiliza el modelo de caja flexible */
+  flex-direction: column; /* Alinea los mensajes en una columna */
+}
+/* Estilos del contenedor de chat */
+
+
+/* Estilos de los mensajes de usuario y asistente */
+.user-message {
+  width: auto;
+  background-color: #ccfffe;
+  color: #000;
+  padding: 8px;
+
+  // margin: 8px;
+  border-radius: 8px;
+  text-align: left;
+  align-self: flex-start; /* Alinea el mensaje del usuario a la izquierda */
+}
+
+.assistant-message {
+  text-align: right;
+  width: auto;
+  background-color: #ffdeac;
+  color: #000;
+  padding: 8px;
+  // margin: 8px;
+  border-radius: 8px;
+  align-self: flex-end; /* Alinea el mensaje del asistente a la derecha */
+}
+
+
+/* Estilos del área de entrada de mensajes */
+.input-container {
+  // display: flex;
+  // padding: 10px;
+  // border-top: 1px solid #ccc;
+}
+
+.input-message {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.send-button {
+  margin-left: 10px;
+  padding: 8px;
+  // padding: auto;
+  background-color: #ff5733;
+  color: #fff;
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.send-button:hover {
+  background-color: #ff5b20;
+}
+
+/* Añadimos esquinas redondeadas al contenedor del chat */
+.chat-container {
+  border-radius: 10px;
+}
+
+// /* Ajustamos el color de fondo del área de entrada de mensajes */
+.input-container {
+  // position: fixed;
+  background-color: #f5f5f5;
+  display: flex;
+  padding: 10px;
+  border-top: 1px solid #ccc;
+}
+/* Estilos del área de entrada de mensajes */
+// .input-container {
+//   position: fixed; /* Aplica posición fija */
+//   bottom: 0; /* Alinea el área de entrada en la parte inferior del contenedor */
+//   left: 0; /* Alinea el área de entrada a la izquierda del contenedor */
+//   width: 100%; /* Asegura que el área de entrada ocupe todo el ancho */
+//     display: flex;
+//   background-color: #f5f5f5;
+//   padding: 10px;
+//   border-top: 1px solid #ccc;
+// }
+
+.welcome-message {
+  background-color: #f5f5f5;
+  padding: 10px;
+  border-radius: 5px;
+  margin: 5px;
+  text-align: center; /* Alinea el texto al centro */
+}
+
+.austins-logo {
+  margin-right: 2vh;
+  display: inline-block; /* Hace que la imagen sea un bloque en línea */
+  max-width: 20%; /* Asegura que la imagen no se desborde */
+  height: auto;
+}
+
+.imge {
+  text-align: center; /* Centra la imagen dentro de su contenedor */
+}
+/* Ajustes en el botón de cerrar y flotante */
+.close-button {
+  font-size: 28px;
+  background-color: #ffffff;
+  margin-right: 20vh;
+  margin-top: 1vh;
+  margin-bottom: 2vh;
+  margin-left: 1vh;
+  position: static; /* Cambiado a posición absoluta */
+  color: #ff5a35;
+  border: none;
+  border-radius: 50%;
+  font-weight: 100;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
