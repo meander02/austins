@@ -23,6 +23,11 @@ export class FooterComponent {
   ) {}
 
   get shouldShowFooter(): boolean {
+
+      return this.currentRoute.startsWith('/payment/order-detail');
+
+  }
+  get ShowFooter(): boolean {
     return (
       !this.authStateService.getisAuthS() &&
       !this.userStateService.getIsAdminSection()&&
@@ -47,8 +52,23 @@ export class FooterComponent {
 
     // Ahora verifica si la ruta actual incluye '/payment/order-detail'
     // return this.currentRoute.startsWith('/payment/order-detail');
+    // return this.currentRoute === '/payment/order-detail/'
+    return this.currentRoute.startsWith('/payment/order-detail');
+
+  }
+  isRUTA_DISTINTE_ahome(): boolean {
+    // Utiliza el evento de cambio de ruta para actualizar 'currentRoute'
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        this.currentRoute = event.url;
+        // Llamamos a la función que manejará la visibilidad de la sección de filtros
+      }
+    });
+
+    // Ahora verifica si la ruta actual es '/portal/home'
     return (
-      this.currentRoute === '/payment/'
+      this.currentRoute === '/portal/home' ||
+      this.currentRoute === '/auth/sign-up'
     );
   }
 }

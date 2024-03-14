@@ -242,6 +242,22 @@ export class HeaderComponent implements OnInit {
     // this.router.navigateByUrl('/payment/cart');
   }
 
+  // isRUTA_DISTINTE_ahome(): boolean {
+  //   // Utiliza el evento de cambio de ruta para actualizar 'currentRoute'
+  //   this.router.events.subscribe((event) => {
+  //     if (event instanceof NavigationEnd) {
+  //       this.currentRoute = event.url;
+  //       // Llamamos a la función que manejará la visibilidad de la sección de filtros
+  //       this.handleFilterSectionVisibility();
+  //     }
+  //   });
+
+  //   // Ahora verifica si la ruta actual es '/portal/home'
+  //   return (
+  //     this.currentRoute === '/portal/home' ||
+  //     this.currentRoute === '/auth/sign-up' ||  this.currentRoute === '/portal/detail'||  this.currentRoute === '/portal/detail/:id'
+  //   );
+  // }
   isRUTA_DISTINTE_ahome(): boolean {
     // Utiliza el evento de cambio de ruta para actualizar 'currentRoute'
     this.router.events.subscribe((event) => {
@@ -258,7 +274,6 @@ export class HeaderComponent implements OnInit {
       this.currentRoute === '/auth/sign-up'
     );
   }
-
   isruta_orderdetail(): boolean {
     // Utiliza el evento de cambio de ruta para actualizar 'currentRoute'
     this.router.events.subscribe((event) => {
@@ -269,9 +284,9 @@ export class HeaderComponent implements OnInit {
 
     // Ahora verifica si la ruta actual incluye '/payment/order-detail'
     // return this.currentRoute.startsWith('/payment/order-detail');
-    return (
-      this.currentRoute === '/payment/'
-    );
+    // return this.currentRoute === '/payment/order-detail/'
+    return this.currentRoute.startsWith('/payment/order-detail');
+
   }
 
   // Nueva función para manejar la visibilidad de la sección de filtros
