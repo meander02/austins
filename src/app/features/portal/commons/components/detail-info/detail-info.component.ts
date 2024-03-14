@@ -36,11 +36,7 @@ export class DetailInfoComponent implements OnInit {
   }
 
 
-  // addItem(): void {
-  //   const value = this.formGroup.get('quantity')!.value;
-  //   console.log(this.productDetail!._id)
-  //   this.cartService.addItem(this.productDetail!._id, value);
-  // }
+
 
   addItem(): void {
     const value = this.formGroup.get('quantity')!.value;

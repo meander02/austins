@@ -91,74 +91,6 @@ export class RequestPasswordRecoveryfrmComponent {
     // Marcar todos los campos como "pristine" al inicio
   }
 
-  // onSubmitStep1() {
-  //   const emailRegex =
-  //     /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
-  //   // Agregar validators después de la petición
-  //   this.group
-  //     .get('email')
-  //     ?.setValidators([Validators.required, Validators.pattern(emailRegex)]);
-  //   this.group.get('email')?.updateValueAndValidity();
-  //   if (this.group.valid) {
-  //     const email = this.group.value.email;
-
-  //     // Obtener la suscripción del servicio worker
-  //     navigator.serviceWorker.ready.then((registration) => {
-  //       registration.pushManager.getSubscription().then((subscription) => {
-  //         if (subscription) {
-  //           // console.log('Subscription:', subscription);
-
-  //           // Convertir las claves p256dh y auth a base64
-  //           const p256dhKey = subscription.getKey('p256dh');
-  //           const authKey = subscription.getKey('auth');
-
-  //           if (!p256dhKey || !authKey) {
-  //             console.error(
-  //               'Las claves p256dh o auth están ausentes en la suscripción.'
-  //             );
-  //             return;
-  //           }
-
-  //           const subObj = {
-  //             endpoint: subscription.endpoint,
-  //             keys: {
-  //               p256dh: this.arrayBufferToBase64(p256dhKey),
-  //               auth: this.arrayBufferToBase64(authKey),
-  //             },
-  //           };
-  //           // console.log('Subscription Object:', subObj);
-
-  //           // Enviar la suscripción al backend junto con el email
-  //           this.authService
-  //             .requestPasswordRecovery({ email, subscription: subObj })
-  //             .subscribe(
-  //               (response) => {
-  //                 this.messageService.add({
-  //                   severity: 'info',
-  //                   summary: 'Info',
-  //                   detail: response.message,
-  //                 });
-  //                 this.showTimer = true; // Mostrar el componente de tiempo restante
-
-  //                 this.startTimer();
-
-  //                 this.step1Disabled = true;
-  //                 this.step2Disabled = false;
-  //                 this.activeIndex = 1;
-  //               },
-  //               (error) => {
-  //                 this.snackBar.open(error.error.message, 'Cerrar', {
-  //                   duration: 3000,
-  //                 });
-  //               }
-  //             );
-  //         } else {
-  //           console.error('No hay una suscripción disponible.');
-  //         }
-  //       });
-  //     });
-  //   }
-  // }
 
 
   onSubmitStep1() {
@@ -244,19 +176,7 @@ export class RequestPasswordRecoveryfrmComponent {
   timeLeft: number = 300; // 300 segundos = 5 minutos
   timer: any;
 
-  // startTimer() {
-  //   this.intervalId = setInterval(() => {
-  //     this.timeRemaining--;
-  //     if (this.timeRemaining <= 0) {
-  //       clearInterval(this.intervalId); // Detener el temporizador cuando llegue a cero
-  //     }
-  //   }, 1000); // Actualizar cada segundo
-  // }
-  // formatTimeLeft(): string {
-  //   const minutes: number = Math.floor(this.timeRemaining / 60);
-  //   const seconds: number = this.timeRemaining % 60;
-  //   return `${minutes}:${seconds < 10 ? '0' + seconds : seconds}`;
-  // }
+
   startTimer(): void {
     this.intervalId = setInterval(() => {
       this.timeRemainingSeconds--;
@@ -362,75 +282,7 @@ export class RequestPasswordRecoveryfrmComponent {
         );
     }
   }
-  // onSubmitStep3() {
-  //   //     this.group3 = this.formBuilder.group({
-  //   //       newPassword: ['', [Validators.required, SignInValidator.formatPassword]],
-  //   //       confirmPassword: [
-  //   //         '',
-  //   //         [Validators.required, this.passwordMatchValidator.bind(this)],
-  //   //       ],
-  //   this.group3
-  //     .get('newPassword')
-  //     ?.setValidators([Validators.required, SignInValidator.formatPassword]);
-  //   this.group3.get('newPassword')?.updateValueAndValidity();
-  //   this.group3
-  //     .get('confirmPassword')
-  //     ?.setValidators([
-  //       Validators.required,
-  //       this.passwordMatchValidator.bind(this),
-  //     ]);
-  //   this.group3.get('confirmPassword')?.updateValueAndValidity();
 
-  //   if (this.group3.valid) {
-  //     const email = this.group.value.email;
-  //     const verificationCode = this.group2.value.verificationCode;
-  //     const newPassword = this.group3.value.newPassword;
-  //     // console.log(email, verificationCode, newPassword);
-  //     // this.stepCompleted[1] = true;
-  //     this.authService
-  //       .verifyCodeAndResetPassword({ email, verificationCode, newPassword })
-  //       .subscribe(
-  //         (response) => {
-  //           // Manejar la respuesta exitosa, por ejemplo, redirigir a la página de inicio de sesión
-
-  //           // this.messageService.add({
-  //           //   severity: 'success',
-  //           //   summary: 'Success',
-  //           //   detail: response.message
-  //           // });
-  //           // this.router.navigate(['/']).then(() => {
-  //           //   window.location.reload();
-  //           // });
-  //           // console.log(response)
-
-  //           if (response) {
-  //             // Manejar la respuesta exitosa, por ejemplo, redirigir a la página de inicio de sesión
-
-  //             this.snackBar.open(response.message, 'Cerrar', {
-  //               duration: 5000,
-  //             });
-  //             this.router.navigate(['/']).then(() => {
-  //               window.location.reload();
-  //             });
-  //           }
-  //           this.messageService.add({
-  //             severity: 'success',
-  //             summary: 'Success',
-  //             detail: response.message,
-  //           });
-  //           // console.log(response.message);
-  //         },
-  //         (error) => {
-  //           // Manejar errores, por ejemplo, mostrar un mensaje de error
-  //           console.log(error);
-  //           this.snackBar.open(error.error.message, 'Cerrar', {
-  //             duration: 5000,
-  //           });
-  //         }
-  //       );
-  //     // this.tabsInteractive = false;
-  //   }
-  // }
 
   passwordMatchValidator(control: FormControl): ValidationErrors | null {
     const password = control.get('newPassword')?.value;

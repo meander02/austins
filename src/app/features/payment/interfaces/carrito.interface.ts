@@ -3,4 +3,5 @@ export interface _INcarrrito {
   name: string;
   precio: number;
   cantidad: number;
+  
 }

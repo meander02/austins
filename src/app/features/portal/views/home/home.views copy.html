@@ -43,13 +43,20 @@
     </div>
   </div>
 </div>
-<div   data-aos="fade-up"
-data-aos-anchor-placement="bottom-bottom" >
-  <h1 style="color: rgb(255, 140, 25); font-size: 32px; text-align: center; margin-bottom: 20px;">
+<div data-aos="fade-up" data-aos-anchor-placement="bottom-bottom">
+  <h1
+    style="
+      color: rgb(255, 140, 25);
+      font-size: 32px;
+      text-align: center;
+      margin-bottom: 20px;
+    "
+  >
     Categorías
   </h1>
 </div>
 <div class="catalogo1" [style.filter]="showAnimation2 ? 'blur(20px)' : 'none'">
+  <app-catalogo-vista2 *ngIf="!loadingProducts"></app-catalogo-vista2>
 
   <div *ngIf="loadingProducts">
     <div *ngIf="hasSearchResults; else noResults">
@@ -62,51 +69,47 @@ data-aos-anchor-placement="bottom-bottom" >
           [responsiveOptions]="responsiveOptions"
           [autoplayInterval]="autoplayInterval"
         > -->
-        <p-carousel
-          [value]="filteredProducts"
-          [numVisible]="4"
-          [numScroll]="4"
-
-
-        >
+        <p-carousel [value]="filteredProducts" [numVisible]="4" [numScroll]="4">
           <ng-template let-product pTemplate="item">
+            <div class="card">
+              <div
+                class="border-round border-1 surface-border p-4 surface-card img"
+              >
+                <p-skeleton width="100%" height="200px"></p-skeleton>
+                <div class="mb-3">
+                  <!-- <p-skeleton shape="circle" size="4rem" styleClass="mr-2"></p-skeleton> -->
+                  <div>
+                    <!-- <p-skeleton width="10rem" styleClass="mb-2"></p-skeleton> -->
+                    <p-skeleton width="5rem" styleClass="mb-2"></p-skeleton>
 
-                <div class="card">
-                  <div class="border-round border-1 surface-border p-4 surface-card img">
-                    <p-skeleton  width="100%" height="200px"></p-skeleton>
-                      <div class=" mb-3">
-                          <!-- <p-skeleton shape="circle" size="4rem" styleClass="mr-2"></p-skeleton> -->
-                          <div>
-                              <!-- <p-skeleton width="10rem" styleClass="mb-2"></p-skeleton> -->
-                              <p-skeleton width="5rem" styleClass="mb-2"></p-skeleton>
-
-                              <!-- <p-skeleton height=".5rem"></p-skeleton> -->
-                          </div>
-                      </div>
-                      <div class="flex justify-content-between mt-3">
-                          <!-- <p-skeleton width="4rem" height="2rem"></p-skeleton> -->
-                          <!-- <p-skeleton width="4rem" height="2rem"></p-skeleton> -->
-                      </div>
+                    <!-- <p-skeleton height=".5rem"></p-skeleton> -->
                   </div>
+                </div>
+                <div class="flex justify-content-between mt-3">
+                  <!-- <p-skeleton width="4rem" height="2rem"></p-skeleton> -->
+                  <!-- <p-skeleton width="4rem" height="2rem"></p-skeleton> -->
+                </div>
               </div>
-
+            </div>
           </ng-template>
         </p-carousel>
       </div>
     </div>
   </div>
-
-
-  <app-catalogo-vista2 *ngIf="!loadingProducts" ></app-catalogo-vista2>
 </div>
 
-<div data-aos="fade-up"
-data-aos-anchor-placement="bottom-bottom">
-  <h1 style="color: rgb(255, 140, 25); font-size: 32px; text-align: center; margin-bottom: 20px;">
+<div data-aos="fade-up" data-aos-anchor-placement="bottom-bottom">
+  <h1
+    style="
+      color: rgb(255, 140, 25);
+      font-size: 32px;
+      text-align: center;
+      margin-bottom: 20px;
+    "
+  >
     Lo más reciente
   </h1>
 </div>
-
 
 <div *ngIf="loadingProducts">
   <div *ngIf="hasSearchResults; else noResults">
@@ -120,32 +123,31 @@ data-aos-anchor-placement="bottom-bottom">
         [autoplayInterval]="autoplayInterval"
       >
         <ng-template let-product pTemplate="item">
+          <div class="card">
+            <div
+              class="border-round border-1 surface-border p-4 surface-card img2"
+            >
+              <p-skeleton width="100%" height="200px"></p-skeleton>
+              <div class="mb-3">
+                <!-- <p-skeleton shape="circle" size="4rem" styleClass="mr-2"></p-skeleton> -->
+                <div>
+                  <!-- <p-skeleton width="10rem" styleClass="mb-2"></p-skeleton> -->
+                  <p-skeleton width="5rem" styleClass="mb-2"></p-skeleton>
 
-              <div class="card">
-                <div class="border-round border-1 surface-border p-4 surface-card img2">
-                  <p-skeleton width="100%" height="200px"></p-skeleton>
-                    <div class=" mb-3">
-                        <!-- <p-skeleton shape="circle" size="4rem" styleClass="mr-2"></p-skeleton> -->
-                        <div>
-                            <!-- <p-skeleton width="10rem" styleClass="mb-2"></p-skeleton> -->
-                            <p-skeleton width="5rem" styleClass="mb-2"></p-skeleton>
-
-                            <p-skeleton height=".5rem"></p-skeleton>
-                        </div>
-                    </div>
-                    <div class="flex justify-content-between mt-3">
-                        <!-- <p-skeleton width="4rem" height="2rem"></p-skeleton> -->
-                        <p-skeleton width="4rem" height="2rem"></p-skeleton>
-                    </div>
+                  <p-skeleton height=".5rem"></p-skeleton>
                 </div>
+              </div>
+              <div class="flex justify-content-between mt-3">
+                <!-- <p-skeleton width="4rem" height="2rem"></p-skeleton> -->
+                <p-skeleton width="4rem" height="2rem"></p-skeleton>
+              </div>
             </div>
-
+          </div>
         </ng-template>
       </p-carousel>
     </div>
   </div>
 </div>
-
 
 <!-- Condición para mostrar los productos una vez que se han cargado -->
 
@@ -170,12 +172,6 @@ data-aos-anchor-placement="bottom-bottom">
     </div>
   </div>
 </div>
-
-
-
-
-
-
 
 <!-- HTML -->
 <ng-template #noResults>

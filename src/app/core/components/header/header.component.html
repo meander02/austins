@@ -183,6 +183,7 @@
       <div class="total-section">
         <span class="total-label">Total:</span>
         <span class="total-amount">{{ getTotalAmount() | currency }}</span>
+        <!-- <span class="total-amount">{{ totalAmount | currency }}</span> -->
       </div>
       <div
         class="btn"
@@ -392,7 +393,10 @@
       </mat-menu>
     </div>
 
+ 
     <mat-icon
+    *ngIf="!isruta_orderdetail()"
+   
       [matBadge]="badge"
       matBadgeColor="warn"
       class="material-icons primary"
@@ -403,10 +407,23 @@
     >
     <i class="pi pi-shopping-cart"  style="font-size: 1.2rem" ></i>
     </mat-icon>
+ 
+    <mat-icon
+    *ngIf="isruta_orderdetail()"
+      [matBadge]="badge"
+      matBadgeColor="warn"
+      class="material-icons primary"
+      data-aos="fade-up"
+      data-aos-anchor-placement="bottom-center"
+      data-aos-duration="900"
+    >
+    <i class="pi pi-shopping-cart"  style="font-size: 1.2rem" ></i>
+    </mat-icon>
 
   </div>
 
   <div
+  *ngIf="!isruta_orderdetail()"
     class="filter-section"
     [class.is-detail-route]="!isRUTA_DISTINTE_ahome()"
   >

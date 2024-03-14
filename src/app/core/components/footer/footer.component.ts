@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 import { UserStateService } from 'src/app/features/admin/commons/services/user-state.service';
 import { AuthStateService } from 'src/app/features/auth/commons/services/auth-state.service';
 import { ScrollServiceService } from 'src/app/shared/services/scroll-service.service';
@@ -12,6 +12,7 @@ import { ScrollServiceService } from 'src/app/shared/services/scroll-service.ser
 })
 export class FooterComponent {
   anio = new Date().getFullYear().toString();
+  currentRoute!: string;
 
   constructor(
     private router: Router,
@@ -24,7 +25,8 @@ export class FooterComponent {
   get shouldShowFooter(): boolean {
     return (
       !this.authStateService.getisAuthS() &&
-      !this.userStateService.getIsAdminSection()
+      !this.userStateService.getIsAdminSection()&&
+      !this.isruta_orderdetail()
     );
   }
   ngOnInit(): void {
@@ -33,5 +35,17 @@ export class FooterComponent {
 
   redirectTo(route: string): void {
     this.router.navigateByUrl('/portal/' + route);
+  }
+  
+  isruta_orderdetail(): boolean {
+    // Utiliza el evento de cambio de ruta para actualizar 'currentRoute'
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        this.currentRoute = event.url;
+      }
+    });
+
+    // Ahora verifica si la ruta actual incluye '/payment/order-detail'
+    return this.currentRoute.startsWith('/payment/order-detail');
   }
 }

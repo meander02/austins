@@ -1,5 +1,5 @@
 import { Component, HostListener, OnInit, ViewEncapsulation } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 import { ProductService } from 'src/app/features/admin/commons/services/product.service';
 import { Product } from 'src/app/features/admin/models/Product.models';
 import { SearchService } from 'src/app/shared/services/search-service.service';
@@ -21,7 +21,7 @@ export class HomeViews implements OnInit {
   responsiveOptions: any[] | undefined;
   autoplayInterval: number = 15000;
   // autoplayInterval: number = 9000;
-
+  currentRoute!: string;
   originalProducts: Product[] = []; // Mantén una copia original de todos los productos
   filteredProducts: Product[] = []; // Almacena los productos filtrados para la búsqueda
   hasSearchResults = true;
@@ -72,13 +72,81 @@ export class HomeViews implements OnInit {
       this.showAnimation2 = false;
     }
   };
+  isRUTA_DISTINTE_ahome(): boolean {
+    // Utiliza el evento de cambio de ruta para actualizar 'currentRoute'
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        this.currentRoute = event.url;
+        // Llamamos a la función que manejará la visibilidad de la sección de filtros
 
+      }
+    });
+
+    // Ahora verifica si la ruta actual es '/portal/home'
+    return (
+      this.currentRoute === '/portal/home'
+    );
+  }
+
+  // ngOnInit(): void {
+  //   window.addEventListener('scroll', this.onWindowScroll);
+  //   this.loadingProducts = true; // Establece loadingProducts en false una vez que los productos se han cargado
+  //   setInterval(() => {
+  //     this.changeBackgroundImage();
+  //   }, 5000); // Cambiar cada 5 segundos (ajusta este valor según sea necesario)
+  //   this.responsiveOptions = [
+  //     {
+  //       breakpoint: '1199px',
+  //       numVisible: 1,
+  //       numScroll: 1,
+  //     },
+  //     {
+  //       breakpoint: '991px',
+  //       numVisible: 2,
+  //       numScroll: 1,
+  //     },
+  //     {
+  //       breakpoint: '767px',
+  //       numVisible: 1,
+  //       numScroll: 1,
+  //     },
+  //   ];
+
+  //   // Verificar el tamaño de la pantalla al cargar el componente
+  //   this.checkScreenSize();
+  //   //  AOS.init();
+  //   //  window.addEventListener('load',AOS.refresh)
+  //   this.searchService.searchQuery$.subscribe((query) => {
+  //     this.filterPost = query;
+  //     this.filterProducts(query);
+  //   });
+
+  //   this.productService.getAll().subscribe(
+  //     (response) => {
+  //       this.loadingProducts = true; // Establece loadingProducts en false una vez que los productos se han cargado
+  //       this.originalProducts = response;
+  //       if(this.originalProducts.length > 0){
+  //         this.loadingProducts = false; // Establece loadingProducts en false una vez que los productos se han cargado
+  //       }
+  //       console.log(this.originalProducts)
+  //       this.filterProducts(this.filterPost); // Filtra los productos basados en la búsqueda actual
+  //     },
+  //     (error) => {
+  //       console.log('Error al cargar productos', error);
+  //       this.loadingProducts = true; // Establece loadingProducts en false una vez que los productos se han cargado
+  //       // this.loadingProducts = false; // Si hay un error al cargar los productos, establece loadingProducts en false
+  //     }
+  //   );
+  // }
   ngOnInit(): void {
     window.addEventListener('scroll', this.onWindowScroll);
-    this.loadingProducts = true; // Establece loadingProducts en false una vez que los productos se han cargado
+    // this.loadingProducts = true; // Establece loadingProducts en true mientras se cargan los productos
+
+    // Configurar el intervalo para cambiar la imagen de fondo
     setInterval(() => {
       this.changeBackgroundImage();
     }, 5000); // Cambiar cada 5 segundos (ajusta este valor según sea necesario)
+
     this.responsiveOptions = [
       {
         breakpoint: '1199px',
@@ -99,23 +167,30 @@ export class HomeViews implements OnInit {
 
     // Verificar el tamaño de la pantalla al cargar el componente
     this.checkScreenSize();
-    //  AOS.init();
-    //  window.addEventListener('load',AOS.refresh)
+
+    // Suscribirse a cambios en la búsqueda
     this.searchService.searchQuery$.subscribe((query) => {
       this.filterPost = query;
       this.filterProducts(query);
     });
 
+    // Obtener todos los productos
     this.productService.getAll().subscribe(
       (response) => {
-        this.originalProducts = response;
-        this.loadingProducts = false; // Establece loadingProducts en false una vez que los productos se han cargado
-        // this.loadingProducts = true; // Establece loadingProducts en false una vez que los productos se han cargado
-        this.filterProducts(this.filterPost); // Filtra los productos basados en la búsqueda actual
+        // Simular un tiempo de carga del skeleton antes de mostrar los productos reales
+        this.loadingProducts = true; // Establece loadingProducts en false una vez que los productos se han cargado
+        setTimeout(() => {
+          this.originalProducts = response;
+          // if (this.originalProducts.length > 0) {
+            this.loadingProducts = false; // Establece loadingProducts en false una vez que los productos se han cargado
+          // }
+          console.log(this.originalProducts);
+          this.filterProducts(this.filterPost); // Filtra los productos basados en la búsqueda actual
+        }, 1000); // Cambiar a la cantidad de tiempo deseado para mostrar el skeleton (en milisegundos)
       },
       (error) => {
         console.log('Error al cargar productos', error);
-        this.loadingProducts = false; // Si hay un error al cargar los productos, establece loadingProducts en false
+        this.loadingProducts = false; // Establece loadingProducts en false en caso de error al cargar los productos
       }
     );
   }

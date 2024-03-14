@@ -13,7 +13,7 @@ import { NotificService } from './shared/services/notific.service';
 export class AppComponent implements OnInit{
   title = 'austins';
   respuesta: any;
-
+  currentRoute!: string;
   readonly VAPID_PUBLIC_KEY = "BFYtOg9-LQWHmObZKXm4VIV2BImn5nBrhz4h37GQpbdj0hSBcghJG7h-wldz-fx9aTt7oaqKSS3KXhA4nXf32pY";
 
   subscribeToNotifications() {
@@ -59,6 +59,21 @@ export class AppComponent implements OnInit{
 
   toggleChat(isOpen: boolean) {
     this.isChatOpen = isOpen;
+  }
+    isRUTA_DISTINTE_ahome(): boolean {
+    // Utiliza el evento de cambio de ruta para actualizar 'currentRoute'
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        this.currentRoute = event.url;
+        // Llamamos a la función que manejará la visibilidad de la sección de filtros
+
+      }
+    });
+
+    // Ahora verifica si la ruta actual es '/portal/home'
+    return (
+      this.currentRoute === '/portal/home'
+    );
   }
 
 }

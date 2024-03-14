@@ -77,7 +77,8 @@ export class HeaderComponent implements OnInit {
   isHeaderScrolled = false;
   searchQuery: string = '';
   badge: number = 0;
-  currentRoute!: string;
+  totalAmount!: number;
+
   isMobileMenuOpen: boolean = false;
   // carData: CartItem[] = []; // Aquí asignamos el array de elementos del carrito
   @Input() carData: CartItem[] = []; // Recibe los datos del carrito desde el componente padre
@@ -97,16 +98,14 @@ export class HeaderComponent implements OnInit {
   sidebarVisible3: boolean = false;
 
   selectedCategory: string = 'pasteleria';
-  // selectedPrice: number = 50; // Precio inicial
   selectedColor: string = '#ffffff'; // Color inicial
   rangeValues: number[] = [20, 80];
-
+  currentRoute!: string;
   constructor(
     public dialog: MatDialog,
     private dialogService: DialogService,
     private searchService: SearchService,
     private cartService: CartService,
-    // private cartService: CartService,
     private router: Router,
     private userStateService: UserStateService,
     private AuthStateService: AuthStateService,
@@ -125,6 +124,10 @@ export class HeaderComponent implements OnInit {
     this.cartService.itemsInCart.subscribe((value) => {
       this.badge = value;
     });
+    // Suscripción al servicio CartService para obtener los datos del carrito
+    // this.cartService.cartItems$.subscribe(items => {
+    //   this.carData = items;
+    // });
   }
 
   ngOnInit(): void {
@@ -149,6 +152,9 @@ export class HeaderComponent implements OnInit {
     if (carDataFromStorage) {
       this.carData = carDataFromStorage;
     }
+    this.cartService.totalPrice$.subscribe((totalPrice) => {
+      this.totalAmount = totalPrice;
+    });
 
     console.log('Datos del carrito:', this.carData);
     const isAuthenticated = this.sessionService.isAutenticated();
@@ -195,23 +201,6 @@ export class HeaderComponent implements OnInit {
     // this.sidebarVisible = false;
     this.router.navigate(['/auth', route]); // Utiliza la navegación de Angular
   }
-
-  // toggleMobileMenu() {
-  //   const mobileMenu = document.getElementById('mobileMenu');
-  //   if (mobileMenu) {
-  //     this.isMobileMenuOpen = !this.isMobileMenuOpen;
-
-  //     if (this.isMobileMenuOpen) {
-  //       mobileMenu.style.display = 'block';
-  //     } else {
-  //       mobileMenu.style.display = 'none';
-  //     }
-  //   }
-  //   console.log(this.isMobileMenuOpen);
-  // }
-  // sidebarVisible() :void {
-
-  // }
 
   @HostListener('window:scroll', ['$event'])
   onWindowScroll() {
@@ -270,6 +259,18 @@ export class HeaderComponent implements OnInit {
     );
   }
 
+  isruta_orderdetail(): boolean {
+    // Utiliza el evento de cambio de ruta para actualizar 'currentRoute'
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        this.currentRoute = event.url;
+      }
+    });
+
+    // Ahora verifica si la ruta actual incluye '/payment/order-detail'
+    return this.currentRoute.startsWith('/payment/order-detail');
+  }
+
   // Nueva función para manejar la visibilidad de la sección de filtros
   private handleFilterSectionVisibility(): void {
     // Obtenemos la referencia del elemento de la sección de filtros
@@ -306,15 +307,6 @@ export class HeaderComponent implements OnInit {
     });
   }
 
-  // get cartItem(): CartItem {
-  //   return this.cartItem();
-  // }
-
-  // // carrito
-
-  // add(): void {
-  //   this.cartService.add(this.cartService);
-  // }
   get cartItem(): CartItem {
     return this.setCartItem();
   }
@@ -359,8 +351,7 @@ export class HeaderComponent implements OnInit {
         // console.log(item);
         this.removeItem(item);
       },
-      reject: () => {
-      },
+      reject: () => {},
     });
   }
 
@@ -412,6 +403,18 @@ export class HeaderComponent implements OnInit {
   }
 
   finishPurchase(): void {
+    this.sidebarVisible2 = false;
+    const carDataFromStorage = this.storageService.getCarrito();
+
+    // Asignar los datos del carrito al arreglo carData
+    if (carDataFromStorage) {
+      this.carData = carDataFromStorage;
+    }
+
+    // console.log('Datos del carrito:', this.carData);
+
+    // debugger
+    this.router.navigateByUrl('/payment/order-detail');
     // Lógica para finalizar la compra
   }
 
@@ -431,9 +434,8 @@ export class HeaderComponent implements OnInit {
 
   position: string = '';
 
-
   showDialog(position: string) {
-      this.position = position;
-      this.visible = true;
+    this.position = position;
+    this.visible = true;
   }
 }

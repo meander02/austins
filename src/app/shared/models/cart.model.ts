@@ -4,4 +4,5 @@ export class CartItem {
   precio!: number;
   cantidad!: number;
   image!: string[];
+  specialInstructions?: string; // Agregar la propiedad specialInstructions opcional
 }
