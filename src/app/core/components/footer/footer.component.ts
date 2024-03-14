@@ -36,7 +36,7 @@ export class FooterComponent {
   redirectTo(route: string): void {
     this.router.navigateByUrl('/portal/' + route);
   }
-  
+
   isruta_orderdetail(): boolean {
     // Utiliza el evento de cambio de ruta para actualizar 'currentRoute'
     this.router.events.subscribe((event) => {
@@ -46,6 +46,9 @@ export class FooterComponent {
     });
 
     // Ahora verifica si la ruta actual incluye '/payment/order-detail'
-    return this.currentRoute.startsWith('/payment/order-detail');
+    // return this.currentRoute.startsWith('/payment/order-detail');
+    return (
+      this.currentRoute === '/payment/'
+    );
   }
 }

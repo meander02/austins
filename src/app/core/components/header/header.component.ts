@@ -268,7 +268,10 @@ export class HeaderComponent implements OnInit {
     });
 
     // Ahora verifica si la ruta actual incluye '/payment/order-detail'
-    return this.currentRoute.startsWith('/payment/order-detail');
+    // return this.currentRoute.startsWith('/payment/order-detail');
+    return (
+      this.currentRoute === '/payment/'
+    );
   }
 
   // Nueva función para manejar la visibilidad de la sección de filtros
