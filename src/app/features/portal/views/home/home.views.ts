@@ -88,56 +88,6 @@ export class HomeViews implements OnInit {
     );
   }
 
-  // ngOnInit(): void {
-  //   window.addEventListener('scroll', this.onWindowScroll);
-  //   this.loadingProducts = true; // Establece loadingProducts en false una vez que los productos se han cargado
-  //   setInterval(() => {
-  //     this.changeBackgroundImage();
-  //   }, 5000); // Cambiar cada 5 segundos (ajusta este valor según sea necesario)
-  //   this.responsiveOptions = [
-  //     {
-  //       breakpoint: '1199px',
-  //       numVisible: 1,
-  //       numScroll: 1,
-  //     },
-  //     {
-  //       breakpoint: '991px',
-  //       numVisible: 2,
-  //       numScroll: 1,
-  //     },
-  //     {
-  //       breakpoint: '767px',
-  //       numVisible: 1,
-  //       numScroll: 1,
-  //     },
-  //   ];
-
-  //   // Verificar el tamaño de la pantalla al cargar el componente
-  //   this.checkScreenSize();
-  //   //  AOS.init();
-  //   //  window.addEventListener('load',AOS.refresh)
-  //   this.searchService.searchQuery$.subscribe((query) => {
-  //     this.filterPost = query;
-  //     this.filterProducts(query);
-  //   });
-
-  //   this.productService.getAll().subscribe(
-  //     (response) => {
-  //       this.loadingProducts = true; // Establece loadingProducts en false una vez que los productos se han cargado
-  //       this.originalProducts = response;
-  //       if(this.originalProducts.length > 0){
-  //         this.loadingProducts = false; // Establece loadingProducts en false una vez que los productos se han cargado
-  //       }
-  //       console.log(this.originalProducts)
-  //       this.filterProducts(this.filterPost); // Filtra los productos basados en la búsqueda actual
-  //     },
-  //     (error) => {
-  //       console.log('Error al cargar productos', error);
-  //       this.loadingProducts = true; // Establece loadingProducts en false una vez que los productos se han cargado
-  //       // this.loadingProducts = false; // Si hay un error al cargar los productos, establece loadingProducts en false
-  //     }
-  //   );
-  // }
   ngOnInit(): void {
     window.addEventListener('scroll', this.onWindowScroll);
     // this.loadingProducts = true; // Establece loadingProducts en true mientras se cargan los productos
@@ -190,7 +140,7 @@ export class HomeViews implements OnInit {
       },
       (error) => {
         console.log('Error al cargar productos', error);
-        this.loadingProducts = false; // Establece loadingProducts en false en caso de error al cargar los productos
+        this.loadingProducts = true; // Establece loadingProducts en false en caso de error al cargar los productos
       }
     );
   }
@@ -221,11 +171,6 @@ export class HomeViews implements OnInit {
     return Array(skeletonItemCount).fill(null);
   }
 
-  // backgroundImages: string[] = [
-  //   'https://static.wixstatic.com/media/64de7c_bd452d768bdf43498f0e94694ddc7040~mv2.jpg',
-  //   '/assets/268925960_4787701637958311_155484381208785347_n.jpg',
-  //   // Agrega más URLs de imágenes según sea necesario
-  // ];
 
   backgroundImages: string[] = [
 

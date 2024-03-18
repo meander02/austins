@@ -27,6 +27,7 @@ import {
 } from 'primeng/api';
 import { StripeService } from '../../commons/services/stripe.service';
 import { PaypalService } from '../../commons/services/paypal.service';
+import { MercadoPagoService } from '../../commons/services/mercado-pago.service';
 
 interface City {
   name: string;
@@ -112,6 +113,7 @@ export class OrderDetailView implements OnInit {
     private carritoService: StorageService,
     private stripeService: StripeService,
     private paypalService: PaypalService,
+    private mercadoPagoService: MercadoPagoService,
     private formBuilder: FormBuilder
   ) {
     this.paymentForm = this.formBuilder.group({
@@ -213,8 +215,8 @@ export class OrderDetailView implements OnInit {
       const formData = this.paymentForm.value;
       this.inputsDisable = true;
       this.formviww = false;
-      console.log(formData);
-      console.log(this.inputsDisable);
+      // console.log(formData);
+      // console.log(this.inputsDisable);
       const purchaseData = {
         totalneto: this.getTotalNetoValue(),
         tipoEntrega: this.getDeliveryOptionLabel(),
@@ -246,7 +248,7 @@ export class OrderDetailView implements OnInit {
   }
   selectPaymentMethod(paymentMethod: string): void {
     const purchaseDataString = localStorage.getItem('purchaseData');
-    console.log(purchaseDataString);
+    // console.log(purchaseDataString);
 
     if (purchaseDataString) {
       const purchaseData = JSON.parse(purchaseDataString);
@@ -293,7 +295,23 @@ export class OrderDetailView implements OnInit {
             }
           );
           break;
-
+          case 'mercado':
+            this.mercadoPagoService.createOrder(purchaseData).subscribe(
+                (response) => {
+                    console.log('Respuesta del servidor (pago con MercadoPago):', response);
+                    if (response && response.url) {
+                        window.location.href = response.url;
+                    } else {
+                        console.error('URL de redirección no encontrada en la respuesta del servidor.');
+                        // Manejar la ausencia de URL de redirección (por ejemplo, mostrar un mensaje de error)
+                    }
+                },
+                (error) => {
+                    console.error('Error en el pago con MercadoPago:', error);
+                    // Manejar el error (por ejemplo, mostrar un mensaje de error)
+                }
+            );
+            break;
         default:
           console.error('Método de pago no válido:', paymentMethod);
           break;

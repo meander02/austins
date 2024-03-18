@@ -17,7 +17,7 @@ export class isAdminGuard implements CanActivate {
  canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-      if (this.sessionService.getRol() === ERol.ADMIN) {
+      if (this.sessionService .getRol()=== ERol.ADMIN) {
         return true;
       }
         this.router.navigateByUrl('/portal');
