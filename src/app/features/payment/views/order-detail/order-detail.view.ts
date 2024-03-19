@@ -28,6 +28,7 @@ import {
 import { StripeService } from '../../commons/services/stripe.service';
 import { PaypalService } from '../../commons/services/paypal.service';
 import { MercadoPagoService } from '../../commons/services/mercado-pago.service';
+import { HttpClient } from '@angular/common/http';
 
 interface City {
   name: string;
@@ -47,6 +48,8 @@ interface Link {
 })
 export class OrderDetailView implements OnInit {
   date: Date[] | undefined;
+  token: string = '';
+
   dateselect: Date[] | undefined;
   activeIndex: number = 0;
   i: number = 0;
@@ -101,8 +104,10 @@ export class OrderDetailView implements OnInit {
   position: string = 'center';
 
   // constructor(private confirmationService: confirmationService, private messageService: MessageService) {}
+  // constructor(private http: HttpClient) {}
 
   constructor(
+    private http: HttpClient,
     private compraService: CompraService,
     private route: ActivatedRoute,
     private router: Router,
@@ -215,7 +220,6 @@ export class OrderDetailView implements OnInit {
       const formData = this.paymentForm.value;
       this.inputsDisable = true;
       this.formviww = false;
-      // console.log(formData);
       // console.log(this.inputsDisable);
       const purchaseData = {
         totalneto: this.getTotalNetoValue(),
@@ -226,6 +230,7 @@ export class OrderDetailView implements OnInit {
         instrucion: this.instrucion,
         success_url: 'https://austins.vercel.app/payment/order-success',
       };
+      // console.log(purchaseData);
       this.compraService.savePurchaseData(purchaseData);
 
       this.activeIndex = 1;
@@ -278,12 +283,13 @@ export class OrderDetailView implements OnInit {
                 'Respuesta del servidor (pago con PayPal):',
                 response
               );
+
               // Redireccionar a la URL de aprobación proporcionada por PayPal
               const approvalLink = response.data.links.find(
                 (link: Link) => link.rel === 'approve'
               )?.href;
               if (approvalLink) {
-                window.location.href = approvalLink;
+                window.location.href = approvalLink; // Redirigir al usuario a PayPal para completar el pago
               } else {
                 console.error(
                   'No se encontró el enlace de aprobación en la respuesta del servidor.'
@@ -295,23 +301,29 @@ export class OrderDetailView implements OnInit {
             }
           );
           break;
-          case 'mercado':
-            this.mercadoPagoService.createOrder(purchaseData).subscribe(
-                (response) => {
-                    console.log('Respuesta del servidor (pago con MercadoPago):', response);
-                    if (response && response.url) {
-                        window.location.href = response.url;
-                    } else {
-                        console.error('URL de redirección no encontrada en la respuesta del servidor.');
-                        // Manejar la ausencia de URL de redirección (por ejemplo, mostrar un mensaje de error)
-                    }
-                },
-                (error) => {
-                    console.error('Error en el pago con MercadoPago:', error);
-                    // Manejar el error (por ejemplo, mostrar un mensaje de error)
-                }
-            );
-            break;
+
+        case 'mercado':
+          this.mercadoPagoService.createOrder(purchaseData).subscribe(
+            (response) => {
+              console.log(
+                'Respuesta del servidor (pago con MercadoPago):',
+                response
+              );
+              if (response && response.url) {
+                window.location.href = response.url;
+              } else {
+                console.error(
+                  'URL de redirección no encontrada en la respuesta del servidor.'
+                );
+                // Manejar la ausencia de URL de redirección (por ejemplo, mostrar un mensaje de error)
+              }
+            },
+            (error) => {
+              console.error('Error en el pago con MercadoPago:', error);
+              // Manejar el error (por ejemplo, mostrar un mensaje de error)
+            }
+          );
+          break;
         default:
           console.error('Método de pago no válido:', paymentMethod);
           break;
@@ -560,4 +572,62 @@ export class OrderDetailView implements OnInit {
       key: 'positionDialog',
     });
   }
+
+  validateEmail() {
+    if (this.paymentForm !== null && this.paymentForm !== undefined) {
+      const emailControl = this.paymentForm.get('email');
+      if (emailControl) {
+        const email = emailControl.value;
+
+        // Realizar solicitud a la API para validar el correo electrónico
+        this.http
+          .get<any>(`https://www.disify.com/api/email/${email}`)
+          .subscribe(
+            (response) => {
+              // Manejar la respuesta de la API aquí
+              // console.log(response);
+              if (response.format) {
+                console.log('El formato del correo electrónico es válido.');
+
+                // Aquí podrías realizar acciones adicionales si el formato es válido
+              } else {
+                console.error(
+                  'El formato del correo electrónico no es válido.'
+                );
+
+                // Aquí podrías mostrar un mensaje de error al usuario indicando que el formato del correo electrónico no es válido
+              }
+
+            },
+            (error) => {
+              // Manejar errores aquí
+              console.error(error);
+            }
+          );
+      }
+    }
+  }
+
+
+  phoneError: string = '';
+
+  validatePhone(phoneNumber: string) {
+    const apiKey = 'f82282dadb9445308e545d1e1adf52c7';
+    const apiUrl = `https://phonevalidation.abstractapi.com/v1/?api_key=${apiKey}&phone=${phoneNumber}`;
+
+    this.http.get<any>(apiUrl).subscribe(
+      (response) => {
+        if (!response.valid) {
+          this.phoneError = 'El número de teléfono es inválido.';
+        } else {
+          this.phoneError = ''; // Reiniciar el mensaje de error si el número de teléfono es válido
+        }
+      },
+      (error) => {
+        // Manejar errores aquí
+        console.error('Error al validar el número de teléfono:', error);
+      }
+    );
+  }
+
 }

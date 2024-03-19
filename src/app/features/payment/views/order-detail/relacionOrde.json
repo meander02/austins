@@ -1,0 +1,43 @@
+{
+  "purchases": [
+    {
+      "_id": "purchase1_id",
+      "user": [
+        {
+          "_id": "user1_id",
+          "email": "usuario1@example.com",
+          "name": "Usuario 1",
+          "rol": "CLIENT",
+          "status": "ACTIVE",
+          "address": "Dirección 1",
+          "city": "Ciudad 1",
+          "postalCode": "12345",
+          "country": "País 1"
+        }
+      ],
+      "details": [
+        {
+          "_id": "purchaseDetail1_id",
+          "user": "user1_id",
+          "products": [
+            {
+              "product": "product1_id",
+              "quantity": 2
+            },
+            {
+              "product": "product2_id",
+              "quantity": 3
+            }
+          ],
+          "totalAmount": 115,
+          "deliveryType": "Delivery",
+          "deliveryDate": "2024-03-21T12:00:00.000Z",
+          "status": "PENDING",
+          "createdAt": "2024-03-19T12:00:00.000Z"
+        }
+      ],
+      "totalAmount": 115,
+      "createdAt": "2024-03-19T12:00:00.000Z"
+    }
+  ]
+}

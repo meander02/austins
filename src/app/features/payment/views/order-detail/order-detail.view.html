@@ -295,7 +295,7 @@
               </div>
               <div style="margin: 1cap">
                 <span class="p-float-label">
-                  <input
+                  <!-- <input
                     id="disabled-input"
                     [disabled]="inputsDisable"
                     pInputText
@@ -304,15 +304,32 @@
                     tooltipPosition="bottom"
                     formControlName="email"
                     placeholder="EJ:juanPerez@gmail.com"
-                  />
-                  <!-- <input type="text" pInputText pTooltip="Enter your username" tooltipPosition="bottom" placeholder="Bottom"> -->
-
+                  /> -->
+                  <input
+                  id="disabled-input"
+                  [disabled]="inputsDisable"
+                  pInputText
+                  type="email"
+                  id="email"
+                  formControlName="email"
+                  placeholder="EJ:juanPerez@gmail.com"
+                  (keyup)="validateEmail()"
+                />
+                
+                
+                
                   <label>Email</label>
                   <span class="p-input-icon-right">
                     <!-- <mat-icon>email</mat-icon> -->
                     <i class="pi pi-envelope"></i>
                   </span>
                 </span>
+                <!-- <small *ngIf="paymentForm.get('email')?.invalid && (paymentForm.get('email')?.dirty || paymentForm.get('email')?.touched)" class="text-danger">
+                  El correo electrónico es inválido.
+                </small> -->
+                <small *ngIf="paymentForm.get('email')?.invalid && (paymentForm.get('email')?.dirty || paymentForm.get('email')?.touched)" style="color: rgb(196, 2, 2);">
+                  El correo electrónico es inválido.
+                </small>  
               </div>
               <div style="margin: 1cap">
                 <span class="p-float-label">
@@ -329,10 +346,16 @@
                     maxlength="10"
                     placeholder="123-456-7890"
                     formControlName="phone"
-                  />
-
+                    
+                    />
+                    <!-- (blur)="validatePhone(paymentForm.get('phone')?.value)" -->
+         
+                
                   <label for="phone">Teléfono</label>
                 </span>
+                <small *ngIf="phoneError" class="text-danger"  style="color: rgb(196, 2, 2);">
+                  {{ phoneError }}
+                </small>
               </div>
               <p-toast position="top-center"></p-toast>
               <p-confirmDialog
@@ -357,7 +380,7 @@
             </p-card>
           </form>
         </div>
-        
+
         <p-card header="Direccion" *ngIf="getDeliveryOptionLabel() === 'Envío'">
           <div class="card flex justify-content-center">
             <p-dropdown
@@ -429,7 +452,6 @@
           </p-card>
         </div>
 
-   
         <div
           class="payment-details"
           data-aos="fade-right"

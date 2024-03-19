@@ -43,3 +43,53 @@
   },
   "instrucion": "feliz cumpleaños colocar color rosa y floresitas"
 }
+
+
+
+
+,
+{
+  "totalneto": "1689.00",
+  "tipoEntrega": "En tienda",
+  "dateselect": "2024-03-18T19:14:22.000Z",
+  "productos": [
+    {
+      "id": "65e8244b8811e29da1794ff0",
+      "name": "Cupcakes de Vainilla",
+      "precio": 230,
+      "cantidad": 2,
+      "image": [
+        "https://res.cloudinary.com/dfd0b4jhf/image/upload/v1709712459/PastelCelebracion/65e8244b8811e29da1794ff0/64de7c_87239975fecc4ca3a2eb580f3b40788f%7Emv2_d_1736_2048_s_2.webp",
+        "https://res.cloudinary.com/dfd0b4jhf/image/upload/v1709712459/PastelCelebracion/65e8244b8811e29da1794ff0/64de7c_87239975fecc4ca3a2eb580f3b40788f%7Emv2_d_1736_2048_s_2.webp",
+        "https://res.cloudinary.com/dfd0b4jhf/image/upload/v1709712483/PastelCelebracion/65e8244b8811e29da1794ff0/64de7c_95296d1126d240abbe01f2949c623ddf%7Emv2.webp"
+      ]
+    },
+    {
+      "id": "65e8248e8811e29da1795004",
+      "name": "Galletas de Avena y Pasas",
+      "precio": 29,
+      "cantidad": 1,
+      "image": [
+        "https://res.cloudinary.com/dfd0b4jhf/image/upload/v1709712527/Panaderia/65e8248e8811e29da1795004/64de7c_bfb1d846083f48f499a9d834fe7beea6%7Emv2.webp"
+      ]
+    },
+    {
+      "id": "65e816845991cf732b7fa48d",
+      "name": "Tarta de Chocolate y Fresas",
+      "precio": 400,
+      "cantidad": 3,
+      "image": [
+        "https://res.cloudinary.com/dfd0b4jhf/image/upload/v1709708933/Reposteria/65e816845991cf732b7fa48d/64de7c_cffc88ce04d2467fa3d72c0a2e856f75%7Emv2_d_2048_1365_s_2.webp"
+      ]
+    }
+  ],
+  "datoscliente": {
+    "name": "juan",
+    "maternalLastname": "kjlal",
+    "paternalLastname": "kjlla",
+    "phone": "1212111111",
+    "email": "jas@gmail.com"
+  },
+  "instrucion": "",
+  "success_url": "https://austins.vercel.app/payment/order-success"
+}
