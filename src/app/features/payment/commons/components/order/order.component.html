@@ -1,0 +1,206 @@
+<div class="form-container">
+  <p-divider align="left" type="solid">
+    <b>Contacto</b>
+  </p-divider>
+  <div class="row">
+    <div class="form-field">
+      <label for="es">Nombre:</label>
+
+      <input type="text" id="es" placeholder="juanito" />
+    </div>
+    <div class="form-field">
+      <label for="es">Apellido 1</label>
+
+      <input type="text" id="es" placeholder="perez" />
+    </div>
+  </div>
+  <div class="row">
+    <div class="form-field">
+      <label for="es">Apellido 2</label>
+      <input type="text" id="es" placeholder="hernandez" />
+    </div>
+    <div class="form-field">
+      <label for="es">correo:</label>
+      <input type="email" id="es" placeholder="juanPerez@gmail.com" />
+    </div>
+  </div>
+  <div class="row">
+    <div class="form-field">
+      <label for="es">Telefono:</label>
+      <input type="text" id="es" placeholder="juanito" />
+    </div>
+  </div>
+  <p-divider align="left" type="solid">
+    <b>Orden</b>
+  </p-divider>
+
+  <div class="row">
+    <div class="form-field">
+      <label for="es">Sabor:</label>
+      <p-dropdown
+        class="p-inputtext-sm"
+        [options]="flavors"
+        [(ngModel)]="selectedFlavor"
+        optionLabel="name"
+        [showClear]="true"
+        placeholder="Sabores"
+        (ngModelChange)="calcularPrecio(); calcularPersonas()"
+      ></p-dropdown>
+    </div>
+    <div class="form-field">
+      <label for="quantity">Cantidad:</label>
+      <p-dropdown
+        class="p-inputtext-sm"
+        [options]="kilosOptions"
+        [(ngModel)]="selectedQuantity"
+        placeholder="Kilos"
+        (ngModelChange)="calcularPrecio(); calcularPersonas()"
+      ></p-dropdown>
+    </div>
+  </div>
+  <div class="row">
+    <div class="form-field" *ngIf="personasPorKilo !== undefined">
+      <label class="lab" for="personasPorKilo"
+        >Personas: {{ personasPorKilo }}</label
+      >
+    </div>
+    <div
+      class="form-field"
+      *ngIf="precioTotal !== undefined && precioTotal > 0"
+    >
+      <label class="lab" for="precioTotal"
+        >Precio Total: {{ precioTotal }}</label
+      >
+    </div>
+  </div>
+
+  <!-- <p-divider align="left" type="solid">
+    <b>Modo</b>
+  </p-divider>
+  <div class="row2">
+    <div class="form-field-four">
+      <p-radioButton
+        name="modo"
+        value="cuadrado"
+        [(ngModel)]="selectedModo"
+        inputId="modoCuadrado"
+      ></p-radioButton>
+      <label for="modoCuadrado">Cuadrado</label>
+      <i class="pi pi-stop" style="font-size: 1.1rem"></i>
+    </div>
+    <div class="form-field-four">
+      <p-radioButton
+        name="modo"
+        value="redondo"
+        [(ngModel)]="selectedModo"
+        inputId="modoRedondo"
+      ></p-radioButton>
+      <label for="modoRedondo">Redondo</label>
+      <i class="pi pi-circle" style="font-size: 1.1rem"></i>
+    </div>
+    <div class="form-field-four">
+      <p-radioButton
+        name="modo"
+        value="corazon"
+        [(ngModel)]="selectedModo"
+        inputId="modoCorazon"
+      ></p-radioButton>
+      <label for="modoCorazon">Corazón</label>
+      <i class="pi pi-heart" style="font-size: 1.1rem"></i>
+    </div>
+    <div class="form-field-four">
+      <p-radioButton
+        name="modo"
+        value="otro"
+        [(ngModel)]="selectedModo"
+        inputId="modoOtro"
+      ></p-radioButton>
+      <label for="modoOtro">Otro</label>
+      <p-inputText
+        *ngIf="selectedModo === 'otro'"
+        [(ngModel)]="modoPersonalizado"
+      ></p-inputText>
+    </div>
+  </div> -->
+
+  <p-divider align="left" type="solid">
+    <b>Modo</b>
+  </p-divider>
+  <div class="row2">
+    <div class="form-field-four">
+      <p-radioButton
+        name="modo"
+        value="cuadrado"
+        [(ngModel)]="selectedModo"
+        inputId="modoCuadrado"
+      ></p-radioButton>
+      <label class="bel" for="modoCuadrado">Cuadrado</label>
+      <i class="pi pi-stop" style="font-size: 1.1rem"></i>
+    </div>
+    <div class="form-field-four">
+      <p-radioButton
+        name="modo"
+        value="redondo"
+        [(ngModel)]="selectedModo"
+        inputId="modoRedondo"
+      ></p-radioButton>
+      <label class="bel" for="modoRedondo">Redondo</label>
+      <i class="pi pi-circle" style="font-size: 1.1rem"></i>
+    </div>
+    <div class="form-field-four">
+      <p-radioButton
+        name="modo"
+        value="corazon"
+        [(ngModel)]="selectedModo"
+        inputId="modoCorazon"
+      ></p-radioButton>
+      <label class="bel" for="modoCorazon">Corazón</label>
+      <i class="pi pi-heart" style="font-size: 1.1rem"></i>
+    </div>
+    <div class="form-field-four">
+      <p-radioButton
+        name="modo"
+        value="otro"
+        [(ngModel)]="selectedModo"
+        inputId="modoOtro"
+        (ngModelChange)="modoChanged()"
+      ></p-radioButton>
+      <label for="modoOtro">Otro</label>
+   
+    </div>
+  </div>
+  <!-- Para campos que necesitan estar solos en una fila debido a su longitud -->
+  <div class="row">
+  
+    <div class="form-field full-width">
+      <label for="fecha">Fecha:</label>
+      <input
+      *ngIf="selectedModo === 'otro'"
+      [(ngModel)]="modoPersonalizado"
+    >
+      <!-- <input type="text" id="fecha" placeholder="DD/MM/AAAA" /> -->
+    </div>
+  </div>
+  <div class="row">
+    <div class="form-field">
+      <label for="dia">Día:</label>
+      <input type="date" id="dia" placeholder="DD" />
+    </div>
+    <div class="form-field">
+      <label for="anio">hora:</label>
+      <input
+        type="time"
+        id="appt"
+        name="appt"
+        min="09:00"
+        max="18:00"
+        required
+      />
+    </div>
+  </div>
+
+  <!-- Continúa con el resto de los campos siguiendo este patrón -->
+
+
+  <!-- Continuar con los campos restantes -->
+</div>

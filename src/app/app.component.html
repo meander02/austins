@@ -1,7 +1,8 @@
 <app-header></app-header>
 <div class="content">
   <!-- <app-btn-float></app-btn-float> -->
-  <app-pedido-float *ngIf="isRUTA_DISTINTE_ahome()"></app-pedido-float>
+  <!-- <button class="menu-btn" (click)="showDialog()">cotizar otro diseño</button> -->
+  <app-pedido-float *ngIf="isRUTA_DISTINTE_ahome()"  (click)="showDialog()"></app-pedido-float>
   <router-outlet></router-outlet>
 </div>
 <!-- <div data-aos="fade-up" data-aos-duration="1500"> -->
@@ -50,3 +51,5 @@
   minTime="300"
 >
 </ngx-ui-loader>
+
+

@@ -21,6 +21,7 @@ import { StorageService } from '../../services/storage.service';
 import { CartItem } from 'src/app/shared/models/cart.model';
 import { Product } from 'src/app/features/admin/models/Product.models';
 import { ConfirmationService, MessageService } from 'primeng/api';
+import { PedidoviewService } from 'src/app/shared/services/pedidoview.service';
 
 @Component({
   selector: 'app-header',
@@ -78,6 +79,8 @@ export class HeaderComponent implements OnInit {
   searchQuery: string = '';
   badge: number = 0;
   totalAmount!: number;
+  date: Date | undefined;
+  hora: Date | undefined;
 
   isMobileMenuOpen: boolean = false;
   // carData: CartItem[] = []; // Aquí asignamos el array de elementos del carrito
@@ -101,7 +104,10 @@ export class HeaderComponent implements OnInit {
   selectedColor: string = '#ffffff'; // Color inicial
   rangeValues: number[] = [20, 80];
   currentRoute!: string;
+  // constructor(private pedidoviewService: PedidoviewService) {}
+// 
   constructor(
+    private pedidoviewService: PedidoviewService,
     public dialog: MatDialog,
     private dialogService: DialogService,
     private searchService: SearchService,
@@ -450,10 +456,25 @@ export class HeaderComponent implements OnInit {
 
   // visible: boolean = false;
 
-  position: string = '';
+  // position: string = '';
 
-  showDialog(position: string) {
-    this.position = position;
-    this.visible = true;
+  // showDialog(position: string) {
+  //   this.position = position;
+  //   this.visible = true;
+  // }
+
+
+  // isVisible$ = this.pedidoviewService.visible$;
+  isVisible$ = this.pedidoviewService.visible$;
+
+  // constructor(private pedidoviewService: PedidoviewService) {}
+
+  
+  showDialog() {
+    this.pedidoviewService.showDialog();
+  }
+
+  hideDialog() {
+    this.pedidoviewService.hideDialog();
   }
 }

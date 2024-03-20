@@ -442,12 +442,21 @@ export class OrderDetailView implements OnInit {
 
   removeItem(item: CartItem): void {
     this.carData = this.carData.slice();
+    console.log(this.carData.length)
 
     const index = this.carData.indexOf(item);
     if (index !== -1) {
       this.carData.splice(index, 1);
     }
+    this.carData = this.carData.slice();
 
+    console.log(this.carData.length==0)
+    if(this.carData.length==0){
+
+        this.router.navigate(['/portal/home']); // Utiliza la navegación de Angular
+
+
+    }
     this.cartService.remove(item);
 
     this.cdr.detectChanges();

@@ -4,6 +4,7 @@
   [ngStyle]="{'background-image': 'url(' + backgroundImages[currentImageIndex] + ')'}"
   [style.filter]="showAnimation ? 'blur(2px)' : 'none'"
 > -->
+<!-- <script type="module" src="https://unpkg.com/@splinetool/viewer@1.0.68/build/spline-viewer.js"></script> -->
 
 <div
   class="home-container"
@@ -57,6 +58,7 @@
   </h1>
 </div>
 <div class="catalogo1" [style.filter]="showAnimation2 ? 'blur(20px)' : 'none'">
+  <!-- <spline-viewer url="https://prod.spline.design/zz1q8AV3IcL3iyzY/scene.splinecode"></spline-viewer> -->
   <div *ngIf="loadingProducts">
     <!-- <div *ngIf="hasSearchResults; else noResults"> -->
     <div >
@@ -118,7 +120,7 @@
     <div class="card">
       <p-carousel
         *ngIf="loadingProducts"
-       
+
         [numVisible]="4"
         [numScroll]="4"
         [circular]="true"

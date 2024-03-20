@@ -23,7 +23,7 @@ import { StepsComponent } from './steps/steps.component';
 import { ProgressBarComponent } from './progress-bar/progress-bar.component';
 import { SidebarModule } from 'primeng/sidebar';
 import { ToggleButtonModule } from 'primeng/togglebutton';
-import {ButtonModule} from 'primeng/button';
+import { ButtonModule } from 'primeng/button';
 import { AvatarModule } from 'primeng/avatar';
 import { AvatarGroupModule } from 'primeng/avatargroup';
 import { AnimateOnScrollModule } from 'primeng/animateonscroll';
@@ -36,10 +36,13 @@ import { DefaultImgModule } from 'src/app/shared/pipes/default-img/default-img.m
 import { ConfirmPopupModule } from 'primeng/confirmpopup';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ToastModule } from 'primeng/toast';
-
+import { CalendarModule } from 'primeng/calendar';
 
 import { SliderModule } from 'primeng/slider';
 import { PedidoFloatComponent } from './pedido-float/pedido-float.component';
+
+import { InputGroupModule } from 'primeng/inputgroup';
+import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
 @NgModule({
   declarations: [
     ChatComponent,
@@ -50,7 +53,7 @@ import { PedidoFloatComponent } from './pedido-float/pedido-float.component';
     BtnFloatComponent,
     StepsComponent,
     ProgressBarComponent,
-    PedidoFloatComponent
+    PedidoFloatComponent,
   ],
   exports: [
     // PoliticaComponent,
@@ -66,17 +69,22 @@ import { PedidoFloatComponent } from './pedido-float/pedido-float.component';
     FooterComponent,
     PoliticaComponent,
     CookiesComponent,
-    StepsComponent,ProgressBarComponent
+    StepsComponent,
+    ProgressBarComponent,
   ],
   imports: [
+    InputGroupModule,
+    InputGroupAddonModule,
+
     ToastModule,
     // BrowserModule,
+    CalendarModule,
     SliderModule,
     ConfirmDialogModule,
     ConfirmPopupModule,
     DefaultImgModule,
     DynamicDialogModule,
-     DialogModule,
+    DialogModule,
     BadgeModule,
     AnimateOnScrollModule,
     AvatarGroupModule,
@@ -93,7 +101,8 @@ import { PedidoFloatComponent } from './pedido-float/pedido-float.component';
     MatBadgeModule,
     HttpClientModule,
     SidebarModule,
-    ToggleButtonModule,ButtonModule
+    ToggleButtonModule,
+    ButtonModule,
   ],
   providers: [SignInService], // Asegúrate de incluir SignInService en la lista de providers.
 })

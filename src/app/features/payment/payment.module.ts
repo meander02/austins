@@ -27,8 +27,12 @@ import { ButtonModule } from 'primeng/button';
 import { BreadcrumbModule } from 'primeng/breadcrumb';
 import { PayCommonsModule } from './commons/commons.module';
 import { paysuccess } from './views/pay-success/pay-success.view';
+import { OrderviewView } from './views/orderview/orderview.view';
+import { MaterialModule } from './commons/material/material.module';
+// import { OrderviewComponent } from './views/orderview/orderview.component';
 
 const MATERIAL = [
+  
   BreadcrumbModule,
   ButtonModule,
   DropdownModule,
@@ -51,13 +55,14 @@ const MATERIAL = [
 ];
 
 @NgModule({
-  declarations: [CartView, PaymentComponent, OrderDetailView,paysuccess],
+  declarations: [CartView, PaymentComponent, OrderDetailView,paysuccess, OrderviewView],
   imports: [
     ...MATERIAL,
     PaymentRoutingModule,
     CommonModule,
     PayCommonsModule,
     ReactiveFormsModule,
+    MaterialModule,
   ],
 })
 export class PaymentModule {}

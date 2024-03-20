@@ -36,7 +36,7 @@
                   >
                   </p-inputNumber>
 
-                  <button class="btn" type="button" (click)="addItem()">
+                  <button [disabled]="value1==0" class="btn" type="button" (click)="addItem()">
                     Añadir al carrito
                   </button>
 
