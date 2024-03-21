@@ -16,8 +16,8 @@ import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { catchError, finalize, throwError } from 'rxjs';
 
 @Component({
-  selector: 'app-request-password-recoveryfrm',
-  templateUrl: './request-password-recoveryfrm.component.html',
+  selector: 'app-secret-Question-Component',
+  templateUrl: './secret-Question.component.html',
   styleUrls: [
     './password-input.component.scss',
     './request-password-recoveryfrm.component.scss',
@@ -30,7 +30,7 @@ import { catchError, finalize, throwError } from 'rxjs';
   encapsulation: ViewEncapsulation.None,
   providers: [MessageService],
 })
-export class RequestPasswordRecoveryfrmComponent {
+export class secretQuestionComponent {
   breadcrumbItems = [
     { label: 'Inicio', url: '#' },
     { label: 'Solicitud de Recuperación de Contraseña', command: () => { this.redirectTo('#') }, },
@@ -77,16 +77,6 @@ export class RequestPasswordRecoveryfrmComponent {
   // intervalId: any; // Variable para almacenar el ID del intervalo
   timeRemainingSeconds: number; // Variable para almacenar el tiempo restante en segundos
 //
-
-
-
-
-
-// constructor(
-//   private questionviewService: QuestionviewService,
-//   ){
-
-//   }
   constructor(
     private ngxService: NgxUiLoaderService,
     private snackBar: MatSnackBar,
@@ -387,13 +377,4 @@ export class RequestPasswordRecoveryfrmComponent {
     window.location.reload();
   }
 
-
-
-  // showQuestion() {
-  //   this.questionviewService.showQuestion()
-  // }
-
-  // Question() {
-  //   this.pedidoviewService.hideDialog();
-  // }
 }

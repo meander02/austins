@@ -1,5 +1,6 @@
-<!-- <footer *ngIf="isRUTA_DISTINTE_ahome()"> -->
-<footer >
+<!-- <footer *ngIf="!isRUTA_DISTINTE_ahome()"> -->
+<footer *ngIf="isRUTA_DISTINTE_ahome()">
+  <!-- <footer *ngIf="!isruta_orderdetail()" > -->
   <div class="footer-container">
     <div class="footer-logo">
       <img
@@ -78,7 +79,8 @@
   </div>
 
   <div class="copyright">
-    <span>&copy; {{ anio }} Pastelería. Todos los derechos reservados. :.26 02 24 </span>
-
+    <span
+      >&copy; {{ anio }} Pastelería. Todos los derechos reservados. :.26 02 24
+    </span>
   </div>
 </footer>

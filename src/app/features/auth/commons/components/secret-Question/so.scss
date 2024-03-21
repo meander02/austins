@@ -1,0 +1,66 @@
+
+// .p-toast {
+//   background-color: #ff000028; /* Cambia el color de fondo según tus preferencias */
+//   color: #ffffff; /* Cambia el color del texto según tus preferencias */
+//   border-radius: 5px; /* Añade bordes redondeados según tus preferencias */
+// }
+
+
+.breadcrumbs {
+
+  position: absolute;
+  background-color: #33333300;
+  color: #000000;
+  padding: 10px;
+  font-size: 16px;
+}
+
+.breadcrumbs span {
+  margin-right: 5px;
+}
+
+.breadcrumbs a {
+  color: #000000;
+  text-decoration: none;
+}
+
+.breadcrumbs a:hover {
+  text-decoration: underline;
+}
+/* styles.scss */
+
+.breadcrumbs {
+  position: absolute;
+  background-color: #333;
+  color: #fff;
+  padding: 10px;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+
+  a {
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    display: flex;
+    align-items: center;
+  }
+
+  a:hover {
+    text-decoration: underline;
+    color: #ffd700;
+  }
+
+
+  // Animación para las migas de pan
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  animation: fadeIn 0.5s ease;
+}

@@ -1,0 +1,82 @@
+
+/* Estilos para el contenedor de errores adicional */
+.error-container3 {
+  @extend .error-container-base;
+  transform: translateX(100%);
+  margin-top: 150px;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: -10px;
+    width: 10px;
+    margin-top: 8;
+    height: 2px;
+    background-color: #ff5555;
+    transform: translateY(-50%);
+  }
+
+  @media (max-width: 600px) {
+    transform: translateX(20%);
+    font-size: 8px; /* Ajusta el tamaño de la fuente para dispositivos móviles */
+    padding: 0px; /* Ajusta el padding para dispositivos móviles */
+  }
+  .error-container-base {
+    display: none;
+  }
+}
+
+/* Estilos para el mensaje de error individual */
+.error-message {
+  margin-bottom: 0;
+}
+
+
+// Otros estilos para el botón
+.next-button {
+  // Estilos para el botón activado
+  background-color: #a54c2c; // Color verde (cámbialo según tus preferencias)
+  color: #fff; // Texto en color blanco
+  // Otros estilos...
+
+  &:hover {
+    background-color: #a54c2c; // Color verde oscuro en el hover
+    // Otros estilos para el hover...
+  }
+
+  &:disabled {
+    background-color: #ddd; // Color gris cuando está desactivado
+    color: #666; // Texto en color gris oscuro
+    cursor: not-allowed; // Cambia el cursor a "no permitido"
+    // Otros estilos para el estado desactivado...
+  }
+}
+
+
+@media (max-width: 480px) {
+  .signup-container {
+    // padding: 2rem;
+    width: 95%;
+  }
+  .logo {
+    max-width: 60px;
+  }
+  h1,
+  p.section-title {
+    font-size: 16px;
+  }
+  .social-button {
+    font-size: 8px;
+  }
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.disabled-tabs {
+  pointer-events: none;
+  opacity: 0.7; // Optional: Adjust the opacity to visually indicate that the tabs are disabled
+}

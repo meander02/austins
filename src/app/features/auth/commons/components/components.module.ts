@@ -17,10 +17,11 @@ import { SuccessComponent } from './success/success.component';
 import { RequestPasswordRecoveryfrmComponent } from './request-password-recoveryfrm/request-password-recoveryfrm.component';
 import { CoreComponentsModule } from 'src/app/core/components/components.module';
 import { NgxCaptchaModule } from 'ngx-captcha';
+import { secretQuestionComponent } from './secret-Question/secret-Question.component';
 
 @NgModule({
-  declarations: [SignInFormComponent, SignUpFormComponent, SuccessComponent,RequestPasswordRecoveryfrmComponent],
-  exports: [SignUpFormComponent, SignInFormComponent,SuccessComponent,RequestPasswordRecoveryfrmComponent],
+  declarations: [SignInFormComponent, SignUpFormComponent, SuccessComponent,RequestPasswordRecoveryfrmComponent,secretQuestionComponent],
+  exports: [SignUpFormComponent, SignInFormComponent,SuccessComponent,RequestPasswordRecoveryfrmComponent,secretQuestionComponent],
   imports: [NgxCaptchaModule,
     CoreComponentsModule,
     CommonModule,

@@ -13,4 +13,14 @@ import { SignUpValidator } from 'src/app/shared/validators/sign-up-validator';
 })
 export class RequestPasswordRecoveryView  {
 
+
+
+
+  // constructor(
+  //   private questionviewService: QuestionviewService,
+  //   ){
+
+  //   }
 }
+
+

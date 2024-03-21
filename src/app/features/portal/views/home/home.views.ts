@@ -134,7 +134,7 @@ export class HomeViews implements OnInit {
           // if (this.originalProducts.length > 0) {
             this.loadingProducts = false; // Establece loadingProducts en false una vez que los productos se han cargado
           // }
-          console.log(this.originalProducts);
+          // console.log(this.originalProducts);
           this.filterProducts(this.filterPost); // Filtra los productos basados en la búsqueda actual
         }, 1000); // Cambiar a la cantidad de tiempo deseado para mostrar el skeleton (en milisegundos)
       },
@@ -172,27 +172,27 @@ export class HomeViews implements OnInit {
   }
 
 
-  backgroundImages: string[] = [
+    backgroundImages: string[] = [
 
 
-        'https://res.cloudinary.com/dfd0b4jhf/image/upload/v1709327171/public__/mbpozw6je9mm8ycsoeih.jpg',
-        'https://res.cloudinary.com/dfd0b4jhf/image/upload/v1709327171/public__/mbpozw6je9mm8ycsoeih.jpg',
-        'https://res.cloudinary.com/dfd0b4jhf/image/upload/v1709327171/public__/mbpozw6je9mm8ycsoeih.jpg',
-    'https://res.cloudinary.com/dfd0b4jhf/image/upload/v1709327171/public__/m2z2hvzekjw0xrmjnji4.jpg',
-    'https://res.cloudinary.com/dfd0b4jhf/image/upload/v1709327171/public__/m2z2hvzekjw0xrmjnji4.jpg',
-    'https://res.cloudinary.com/dfd0b4jhf/image/upload/v1709327171/public__/m2z2hvzekjw0xrmjnji4.jpg',
+          'https://res.cloudinary.com/dfd0b4jhf/image/upload/v1709327171/public__/mbpozw6je9mm8ycsoeih.jpg',
+          'https://res.cloudinary.com/dfd0b4jhf/image/upload/v1709327171/public__/mbpozw6je9mm8ycsoeih.jpg',
+          'https://res.cloudinary.com/dfd0b4jhf/image/upload/v1709327171/public__/mbpozw6je9mm8ycsoeih.jpg',
+      'https://res.cloudinary.com/dfd0b4jhf/image/upload/v1709327171/public__/m2z2hvzekjw0xrmjnji4.jpg',
+      'https://res.cloudinary.com/dfd0b4jhf/image/upload/v1709327171/public__/m2z2hvzekjw0xrmjnji4.jpg',
+      'https://res.cloudinary.com/dfd0b4jhf/image/upload/v1709327171/public__/m2z2hvzekjw0xrmjnji4.jpg',
 
 
-    // Agrega más URLs de imágenes según sea necesario
-  ];
-  currentImageIndex = 0;
-  // Función para cambiar la imagen de fondo
-  changeBackgroundImage() {
-    setTimeout(() => {
-      this.currentImageIndex =
-        (this.currentImageIndex + 1) % this.backgroundImages.length;
-    }, this.autoplayInterval);
-  }
+      // Agrega más URLs de imágenes según sea necesario
+    ];
+    currentImageIndex = 0;
+    // Función para cambiar la imagen de fondo
+    changeBackgroundImage() {
+      setTimeout(() => {
+        this.currentImageIndex =
+          (this.currentImageIndex + 1) % this.backgroundImages.length;
+      }, this.autoplayInterval);
+    }
 
 
 }

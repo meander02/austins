@@ -172,10 +172,10 @@
   <!-- Para campos que necesitan estar solos en una fila debido a su longitud -->
   <div class="row">
   
-    <div class="form-field full-width">
-      <label for="fecha">Fecha:</label>
+    <div  *ngIf="selectedModo === 'otro'" class="form-field full-width">
+      <label for="fecha">Otro:</label>
       <input
-      *ngIf="selectedModo === 'otro'"
+     
       [(ngModel)]="modoPersonalizado"
     >
       <!-- <input type="text" id="fecha" placeholder="DD/MM/AAAA" /> -->

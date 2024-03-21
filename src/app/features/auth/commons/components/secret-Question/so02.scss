@@ -1,0 +1,73 @@
+
+/* Estiliza la barra de progreso */
+.progress-bar {
+  display: flex;
+  justify-content: space-evenly;
+  font-size: 14px;
+  margin: 15px 0;
+}
+
+.progress-step {
+  flex: 1;
+  text-align: center;
+  color: #777;
+  transition: color 0.3s;
+}
+
+.progress-step.active {
+  color: #ff4400;
+}
+
+h1,
+p.section-title {
+  font-size: 20px;
+}
+
+.next-button,
+.prev-button {
+  text-align: center;
+}
+
+.progress-bar {
+  justify-content: space-evenly;
+  font-size: 12px;
+  margin: 15px 0;
+}
+
+/* Estilos para el campo de fecha */
+.date {
+  width: 100%;
+  margin: 0;
+}
+
+.date {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 5px;
+}
+
+/* Media Queries para hacerlo responsive */
+
+@media (max-width: 768px) {
+  .signup-container {
+    margin-top: 8% !important;
+    padding: 3%  !important;
+    width: 80% ;
+  }
+  .logo {
+    max-width: 80px;
+  }
+  h1,
+  p.section-title {
+    font-size: 18px;
+  }
+  .social-button {
+    border-radius: 40px;
+    padding: 10px;
+    margin: 0 2px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-size: 8px;
+    color: #333;
+  }
+}

@@ -22,6 +22,28 @@
           "products": [
             {
               "product": "product1_id",
+              "product": [
+                {
+                  "_id": "product1_id",
+                  "sku": "SKU123",
+                  "name": "Smartphone",
+                  "description": "Un teléfono inteligente avanzado",
+                  "category": "category1_id", // Relacionado con la categoría de Electrónicos
+                  "category": [
+                    {
+                      "_id": "category1_id",
+                      "title": "Electrónicos",
+                      "parent": null,
+                      "path": "/electronicos",
+                      "status": "ACTIVE"
+                    },
+
+                  ], // Relacionado con la categoría de Electrónicos
+                  "price": 599.99,
+                  "status": "ACTIVE"
+                },
+              ],
+
               "quantity": 2
             },
             {

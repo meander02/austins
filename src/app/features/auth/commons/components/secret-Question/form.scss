@@ -1,0 +1,95 @@
+
+.form-group {
+
+  margin-bottom: 5px;
+  position: relative;
+  margin-top: 2px;
+}
+
+.form-group .animated input {
+  height: 20px;
+  color: #333;
+  outline: none;
+  transition: all 0.3s;
+  width: 100%;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.form-group .animated label {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  font-size: 12px;
+  color: #8e8686;
+  transition: all 0.3s;
+}
+
+.form-group .animated input:focus {
+  border-color: #ba3b0d;
+}
+
+.form-group .animated input:focus + label {
+  top: -5px;
+  font-size: 12px;
+  color: #ba3b0d;
+}
+
+.form-group.mat-form-field .animated {
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: flex-start;
+  padding: 8px;
+  background-color: #f2f2f2;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.form-group.mat-form-field .animated input {
+  margin: 2px 0;
+  color: #333;
+  outline: none;
+  border: none;
+  width: 100%;
+  background-color: transparent;
+}
+
+.form-group.mat-form-field .animated label {
+  position: relative;
+  top: auto;
+  left: auto;
+  font-size: 7px;
+  color: #777;
+  transition: all 0.3s;
+}
+
+.form-group.mat-form-field .animated input:focus {
+  background-color: #f8f8f8;
+}
+
+.form-group.mat-form-field .animated input:focus + label {
+  top: -24px;
+  font-size: 6px;
+  color: #a54c2c;
+}
+.form-group .password-input button {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  font-size: 20px;
+}
+.form-group .password-input mat-icon {
+  color: #aaa;
+}
+
+// .form-group .email-input mat-icon {
+//   color: #aaa;
+//   position: absolute;
+//   // top: 30%;
+//   // left: 90%;
+//   transform: translateY(-50%);
+// }

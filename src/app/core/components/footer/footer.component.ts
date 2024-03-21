@@ -20,7 +20,13 @@ export class FooterComponent {
 
     private authStateService: AuthStateService,
     private userStateService: UserStateService
-  ) {}
+  ) {
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        this.currentRoute = event.url;
+      }
+    });
+  }
 
   get shouldShowFooter(): boolean {
 
@@ -30,8 +36,8 @@ export class FooterComponent {
   get ShowFooter(): boolean {
     return (
       !this.authStateService.getisAuthS() &&
-      !this.userStateService.getIsAdminSection()&&
-      !this.isruta_orderdetail()
+      !this.userStateService.getIsAdminSection()
+
     );
   }
   ngOnInit(): void {
@@ -56,19 +62,29 @@ export class FooterComponent {
     return this.currentRoute.startsWith('/payment/order-detail');
 
   }
-  isRUTA_DISTINTE_ahome(): boolean {
-    // Utiliza el evento de cambio de ruta para actualizar 'currentRoute'
-    this.router.events.subscribe((event) => {
-      if (event instanceof NavigationEnd) {
-        this.currentRoute = event.url;
-        // Llamamos a la función que manejará la visibilidad de la sección de filtros
-      }
-    });
+  // isRUTA_DISTINTE_ahome(): boolean {
+  //   // Utiliza el evento de cambio de ruta para actualizar 'currentRoute'
+  //   this.router.events.subscribe((event) => {
+  //     if (event instanceof NavigationEnd) {
+  //       this.currentRoute = event.url;
+  //       // Llamamos a la función que manejará la visibilidad de la sección de filtros
+  //     }
+  //   });
 
-    // Ahora verifica si la ruta actual es '/portal/home'
-    return (
-      this.currentRoute === '/portal/home' ||
-      this.currentRoute === '/auth/sign-up'
-    );
+  //   // Ahora verifica si la ruta actual es '/portal/home'
+  //   return (
+  //     this.currentRoute === '/portal/home'
+  //   // // Ahora verifica si la ruta actual es '/portal/home'
+  //   // return (
+  //   //   this.currentRoute === '/portal/home' ||
+  //   //   this.currentRoute === '/auth/sign-up'
+  //   );
+  // }
+
+
+
+  // Función para verificar si la ruta actual es '/portal/home'
+  isRUTA_DISTINTE_ahome(): boolean {
+    return this.currentRoute === '/portal/home';
   }
 }
