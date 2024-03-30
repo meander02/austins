@@ -38,28 +38,16 @@ export class RequestPasswordRecoveryfrmComponent {
 
 
 
-//   // Definir los elementos del menú
-// const menuItems: MenuItem[] = [
-//   { label: 'Inicio', icon: 'pi pi-home', routerLink: '/home', target: '_self', styleClass: 'custom-class', disabled: false, visible: true },
-//   { label: 'Productos', icon: 'pi pi-list', routerLink: '/products', target: '_self', styleClass: 'custom-class', disabled: false, visible: true },
-//   { label: 'Contacto', icon: 'pi pi-envelope', command: () => { console.log('Clicked on Contact'); }, target: '_self', styleClass: 'custom-class', disabled: false, visible: true },
-//   { separator: true },
-//   { label: 'Ir a Google', icon: 'pi pi-external-link', url: 'https://www.google.com', target: '_blank', styleClass: 'custom-class', disabled: false, visible: true },
-//   { separator: true },
-//   { label: 'Elemento Deshabilitado', icon: 'pi pi-ban', disabled: true, visible: true },
-//   { label: 'Elemento No Visible', icon: 'pi pi-eye-slash', visible: false },
-// ];
-
 
   items = [{ label: 'Paso 1' }, { label: 'Paso 2' }, { label: 'Paso 3' }];
   step: 'paso1' | 'paso2' | 'paso3' = 'paso1';
   // Add this property to your component class
   // stepCompleted: boolean[] = [false, false, false];
   step1Disabled = false;
-  step2Disabled = true;
+  // step2Disabled = true;
   step3Disabled = true
   // step3Disabled = false;
-  // step2Disabled = false;
+  step2Disabled = false;
 
   passwordVisible = false;
   passwordFieldType = 'password';

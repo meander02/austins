@@ -26,8 +26,12 @@ import { PasswordModule } from 'primeng/password';
 import { KnobModule } from 'primeng/knob';
 import { DividerModule } from 'primeng/divider';
 import { RadioButtonModule } from 'primeng/radiobutton';
+import { InputTextareaModule } from 'primeng/inputtextarea';
+import { TooltipModule } from 'primeng/tooltip';
 @NgModule({
   imports: [
+    TooltipModule,
+    InputTextareaModule,
     RadioButtonModule,
     DividerModule,
     MatSnackBarModule,
@@ -45,6 +49,8 @@ import { RadioButtonModule } from 'primeng/radiobutton';
   ], // Agrega FormsModule a los imports
 
   exports: [
+    TooltipModule,
+    InputTextareaModule,
     RadioButtonModule,
     DividerModule,
     MatSnackBarModule,

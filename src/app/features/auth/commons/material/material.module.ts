@@ -24,10 +24,14 @@ import { InputMaskModule } from 'primeng/inputmask';
 import { CheckboxModule } from 'primeng/checkbox';
 import { PasswordModule } from 'primeng/password';
 import { KnobModule } from 'primeng/knob';
-@NgModule({
-  imports: [MatSnackBarModule,ToastModule,StepsModule,BreadcrumbModule,MatTabsModule,InputTextModule,CalendarModule,DropdownModule,InputMaskModule,PasswordModule,CheckboxModule,KnobModule], // Agrega FormsModule a los imports
+import { InputOtpModule } from 'primeng/inputotp';
 
-  exports: [MatSnackBarModule,ToastModule,StepsModule,BreadcrumbModule, FormsModule,MatCardModule,MatFormFieldModule,MatButtonModule,MatInputModule, MatDatepickerModule, MatNativeDateModule,MatSelectModule,MatTabsModule,InputTextModule,CalendarModule,DropdownModule,InputMaskModule,PasswordModule,CheckboxModule,KnobModule],
+
+
+@NgModule({
+  imports: [MatSnackBarModule,ToastModule,StepsModule,BreadcrumbModule,MatTabsModule,InputTextModule,CalendarModule,DropdownModule,InputMaskModule,PasswordModule,CheckboxModule,KnobModule,InputOtpModule], // Agrega FormsModule a los imports
+
+  exports: [MatSnackBarModule,ToastModule,StepsModule,BreadcrumbModule, FormsModule,MatCardModule,MatFormFieldModule,MatButtonModule,MatInputModule, MatDatepickerModule, MatNativeDateModule,MatSelectModule,MatTabsModule,InputTextModule,CalendarModule,DropdownModule,InputMaskModule,PasswordModule,CheckboxModule,KnobModule,InputOtpModule],
 
 })
 export class MaterialModule { }

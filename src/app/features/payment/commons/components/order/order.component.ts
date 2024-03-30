@@ -13,7 +13,7 @@ interface PasteleriaFlavor {
 })
 export class OrderComponent {
   flavors: PasteleriaFlavor[] | undefined;
-
+  instrucion: string = '';
   selectedFlavor: PasteleriaFlavor | undefined;
   selectedQuantity: number | undefined; // Variable para la cantidad seleccionada
   precioTotal: number | undefined; // Variable para el precio total
@@ -21,6 +21,10 @@ export class OrderComponent {
   modoOptions: string[] = ['cuadrado', 'redondo', 'corazon', 'otro']; // Opciones de modo de repostería
   selectedModo: string | undefined; // Variable para el modo seleccionado
   modoPersonalizado: string | undefined; // Variable para el modo personalizado
+
+
+  selectedModosabor: string = ''; // Variable para almacenar el modo seleccionado
+  saborpersonalizado: string = ''; // Variable para almacenar las instrucciones especiales
 
   ngOnInit() {
     this.flavors = [
@@ -59,5 +63,5 @@ export class OrderComponent {
     }
   }
 
-  
+
 }
