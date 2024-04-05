@@ -9,6 +9,7 @@ import { PedidoviewService } from './shared/services/pedidoview.service';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { OrderviewView } from './features/payment/views/orderview/orderview.view';
+import { CartService } from './core/services/cart.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -17,6 +18,7 @@ import { OrderviewView } from './features/payment/views/orderview/orderview.view
 })
 export class AppComponent implements OnInit {
   title = 'austins';
+  badge: number = 0;
   respuesta: any;
   currentRoute!: string;
   ref: DynamicDialogRef | undefined;
@@ -52,6 +54,7 @@ export class AppComponent implements OnInit {
     private dialogService: DialogService,
     private confirmationService: ConfirmationService,
     private messageService: MessageService,
+    private cartService: CartService,
   ) {
     this.subscribeToNotifications();
     // Suscribirse a los cambios de la ruta y redirigir en caso de rutas no válidas
@@ -71,9 +74,17 @@ export class AppComponent implements OnInit {
     AOS.init();
     window.addEventListener('load', AOS.refresh);
 
-    if (!this.storageService.getCarrito) {
-      this.storageService.setCarrito([]);
-    }
+
+    // // Obtener los datos del carrito desde algún servicio o almacenamiento local
+    // const carDataFromStorage = this.storageService.getCarrito();
+    // // console.log('carDataFromStorage', carDataFromStorage);
+    // this.cartService.itemsInCart.subscribe((value) => {
+    //   this.badge = value;
+    // });
+    //   // this.storageService.setCarrito([]);
+    // // if (!this.storageService.getCarrito) {
+    //   this.storageService.setCarrito(carDataFromStorage);
+    // // }
   }
 
   isChatOpen = false;

@@ -105,7 +105,7 @@ export class HeaderComponent implements OnInit {
   rangeValues: number[] = [20, 80];
   currentRoute!: string;
   // constructor(private pedidoviewService: PedidoviewService) {}
-// 
+//
   constructor(
     private pedidoviewService: PedidoviewService,
     public dialog: MatDialog,
@@ -131,9 +131,9 @@ export class HeaderComponent implements OnInit {
       this.badge = value;
     });
     // Suscripción al servicio CartService para obtener los datos del carrito
-    // this.cartService.cartItems$.subscribe(items => {
-    //   this.carData = items;
-    // });
+    this.cartService.cartItems$.subscribe(items => {
+      this.carData = items;
+    });
   }
 
   ngOnInit(): void {
@@ -157,6 +157,8 @@ export class HeaderComponent implements OnInit {
     // Asignar los datos del carrito al arreglo carData
     if (carDataFromStorage) {
       this.carData = carDataFromStorage;
+      this.badge = this.carData.length; // Actualizar el contador badge
+
     }
     this.cartService.totalPrice$.subscribe((totalPrice) => {
       this.totalAmount = totalPrice;
@@ -469,7 +471,7 @@ export class HeaderComponent implements OnInit {
 
   // constructor(private pedidoviewService: PedidoviewService) {}
 
-  
+
   showDialog() {
     this.pedidoviewService.showDialog();
   }

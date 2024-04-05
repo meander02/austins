@@ -4,12 +4,22 @@
   [ngStyle]="{'background-image': 'url(' + backgroundImages[currentImageIndex] + ')'}"
   [style.filter]="showAnimation ? 'blur(2px)' : 'none'"
 > -->
+<!-- <script type="module" src="https://unpkg.com/@splinetool/viewer@1.0.68/build/spline-viewer.js"></script> -->
 
-<div
+  <!-- <div
+    class="home-container"
+    [ngStyle]="{'background-image': 'url(' + backgroundImages[currentImageIndex] + ')'}"
+    [style.filter]="showAnimation ? 'blur(20px)' : 'none'"
+  > -->
+  <div
   class="home-container"
-  [ngStyle]="{'background-image': 'url(' + backgroundImages[currentImageIndex] + ')'}"
+  [ngStyle]="{
+    'background-image': 'url(' + backgroundImages[currentImageIndex] + ')',
+    'mask-image': 'linear-gradient(black 90%, transparent)'
+  }"
   [style.filter]="showAnimation ? 'blur(20px)' : 'none'"
 >
+
   <div class="cursor"></div>
 
   <div
@@ -43,6 +53,7 @@
     </div>
   </div>
 </div>
+
 <div data-aos="fade-up" data-aos-anchor-placement="bottom-bottom">
   <h1
     style="
@@ -56,10 +67,10 @@
   </h1>
 </div>
 <div class="catalogo1" [style.filter]="showAnimation2 ? 'blur(20px)' : 'none'">
-  <app-catalogo-vista2 *ngIf="!loadingProducts"></app-catalogo-vista2>
-
+  <!-- <spline-viewer url="https://prod.spline.design/zz1q8AV3IcL3iyzY/scene.splinecode"></spline-viewer> -->
   <div *ngIf="loadingProducts">
-    <div *ngIf="hasSearchResults; else noResults">
+    <!-- <div *ngIf="hasSearchResults; else noResults"> -->
+    <div >
       <div class="card">
         <!-- <p-carousel
           [value]="filteredProducts"
@@ -69,8 +80,8 @@
           [responsiveOptions]="responsiveOptions"
           [autoplayInterval]="autoplayInterval"
         > -->
-        <p-carousel [value]="filteredProducts" [numVisible]="4" [numScroll]="4">
-          <ng-template let-product pTemplate="item">
+        <p-carousel  [numVisible]="4" [numScroll]="4">
+          <ng-template>
             <div class="card">
               <div
                 class="border-round border-1 surface-border p-4 surface-card img"
@@ -96,6 +107,7 @@
       </div>
     </div>
   </div>
+  <app-catalogo-vista2 *ngIf="!loadingProducts"></app-catalogo-vista2>
 </div>
 
 <div data-aos="fade-up" data-aos-anchor-placement="bottom-bottom">
@@ -110,19 +122,22 @@
     Lo más reciente
   </h1>
 </div>
-
-<div *ngIf="loadingProducts">
-  <div *ngIf="hasSearchResults; else noResults">
+<!-- <div *ngIf="loadingProducts"> -->
+<div>
+  <!-- <div *ngIf="hasSearchResults; else noResults"> -->
+  <div>
     <div class="card">
       <p-carousel
-        [value]="filteredProducts"
+        *ngIf="loadingProducts"
+
         [numVisible]="4"
         [numScroll]="4"
         [circular]="true"
         [responsiveOptions]="responsiveOptions"
         [autoplayInterval]="autoplayInterval"
       >
-        <ng-template let-product pTemplate="item">
+        <!-- <ng-template let-product pTemplate="item"> -->
+        <ng-template >
           <div class="card">
             <div
               class="border-round border-1 surface-border p-4 surface-card img2"
@@ -152,6 +167,7 @@
 <!-- Condición para mostrar los productos una vez que se han cargado -->
 
 <!-- Mostrar productos una vez que se han cargado -->
+<!-- <div *ngIf="!loadingProducts"> -->
 <div *ngIf="!loadingProducts">
   <div *ngIf="hasSearchResults; else noResults">
     <div class="card">

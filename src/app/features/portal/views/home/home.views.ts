@@ -32,6 +32,7 @@ export class HomeViews implements OnInit {
   isMobile: boolean = false; // Variable para verificar si es una pantalla móvil
   showAnimation: boolean = false;
   showAnimation2: boolean = false;
+  private backgroundImageInterval: NodeJS.Timeout | undefined;
 
   constructor(
     private router: Router,
@@ -50,11 +51,16 @@ export class HomeViews implements OnInit {
     console.log('redirect');
     this.router.navigateByUrl('/portal/' + route);
   }
+  // ngOnDestroy(): void {
+  //   // Elimina el evento de scroll al destruir el componente
+  //   window.removeEventListener('scroll', this.onWindowScroll);
+  // }
   ngOnDestroy(): void {
     // Elimina el evento de scroll al destruir el componente
     window.removeEventListener('scroll', this.onWindowScroll);
-  }
-
+    // Detener el intervalo de cambio de imagen de fondo
+    clearInterval(this.backgroundImageInterval);
+}
   // Método para manejar el evento de scroll
   onWindowScroll = (): void => {
     // Obtiene la posición actual del scroll
@@ -87,15 +93,20 @@ export class HomeViews implements OnInit {
       this.currentRoute === '/portal/home'
     );
   }
-
+  private setupBackgroundImageInterval(): void {
+    this.backgroundImageInterval = setInterval(() => {
+        this.changeBackgroundImage();
+    }, 5000); // Cambiar cada 5 segundos (ajusta este valor según sea necesario)
+}
   ngOnInit(): void {
     window.addEventListener('scroll', this.onWindowScroll);
     // this.loadingProducts = true; // Establece loadingProducts en true mientras se cargan los productos
+    this.setupBackgroundImageInterval();
 
     // Configurar el intervalo para cambiar la imagen de fondo
-    setInterval(() => {
-      this.changeBackgroundImage();
-    }, 5000); // Cambiar cada 5 segundos (ajusta este valor según sea necesario)
+    // setInterval(() => {
+    //   this.changeBackgroundImage();
+    // }, 5000); // Cambiar cada 5 segundos (ajusta este valor según sea necesario)
 
     this.responsiveOptions = [
       {
@@ -136,7 +147,7 @@ export class HomeViews implements OnInit {
           // }
           // console.log(this.originalProducts);
           this.filterProducts(this.filterPost); // Filtra los productos basados en la búsqueda actual
-        }, 1000); // Cambiar a la cantidad de tiempo deseado para mostrar el skeleton (en milisegundos)
+        }, 2000); // Cambiar a la cantidad de tiempo deseado para mostrar el skeleton (en milisegundos)
       },
       (error) => {
         console.log('Error al cargar productos', error);
@@ -173,8 +184,6 @@ export class HomeViews implements OnInit {
 
 
     backgroundImages: string[] = [
-
-
           'https://res.cloudinary.com/dfd0b4jhf/image/upload/v1709327171/public__/mbpozw6je9mm8ycsoeih.jpg',
           'https://res.cloudinary.com/dfd0b4jhf/image/upload/v1709327171/public__/mbpozw6je9mm8ycsoeih.jpg',
           'https://res.cloudinary.com/dfd0b4jhf/image/upload/v1709327171/public__/mbpozw6je9mm8ycsoeih.jpg',
