@@ -2,6 +2,8 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { DialogService } from 'primeng/dynamicdialog';
+import { OrderService } from '../../services/order.service';
+// import { PedidoviewService } from '../../../../../shared/services/pedidoview.service';
 
 interface PasteleriaFlavor {
   name: string;
@@ -44,7 +46,10 @@ export class OrderComponent {
   hora: string | undefined;
   // modoPersonalizado: string | undefined;
   saborpersonalizado: string | undefined;
-  constructor(    private messageService: MessageService){}
+  constructor(
+    private pedidoService: OrderService,
+    private messageService: MessageService
+  ) {}
   ngOnInit() {
     this.flavors = [
       { name: 'Chocolate', code: 'choco', precioPorKilo: 25 }, // Define el precio por kilo para cada sabor
@@ -108,7 +113,6 @@ export class OrderComponent {
     }
   }
 
-
   // enviarPedido() {
   //   // Validar que todos los campos obligatorios estén completos
   //   if (
@@ -156,7 +160,7 @@ export class OrderComponent {
   //     }
   //     return;
   //   }
-  
+
   //   this.messageService.add({
   //     severity: 'info',
   //     summary: 'Info',
@@ -168,7 +172,7 @@ export class OrderComponent {
   //     console.error('Por favor ingrese un correo electrónico válido.');
   //     return;
   //   }
-  
+
   //   // Validar el número de teléfono
   //   const phonePattern = /^[0-9]{10}$/;
   //   if (!phonePattern.test(this.telefono)) {
@@ -177,14 +181,14 @@ export class OrderComponent {
   //     );
   //     return;
   //   }
-  
+
   //   // Validar que la fecha sea en el futuro
   //   const currentDate = new Date();
   //   if (this.dia < currentDate) {
   //     console.error('Por favor seleccione una fecha futura.');
   //     return;
   //   }
-  
+
   //   // Validar que la hora esté dentro del rango válido
   //   const selectedTime = new Date(this.hora);
   //   const minTime = new Date('09:00');
@@ -195,7 +199,7 @@ export class OrderComponent {
   //     );
   //     return;
   //   }
-  
+
   //   // Si todas las validaciones pasan, enviar el pedido
   //   const datosPedido = {
   //     nombre: this.nombre,
@@ -212,108 +216,39 @@ export class OrderComponent {
   //     saborpersonalizado: this.saborpersonalizado,
   //     // Agrega aquí todos los campos necesarios para el pedido
   //   };
-  
+
   //   console.log('Enviando pedido:', datosPedido);
   //   // Llamar al servicio para enviar el pedido al servidor
   // }
-  
+
   enviarPedido() {
-    // Validar que todos los campos obligatorios estén completos
-    if (!this.nombre) {
-      this.messageService.add({
-        severity: 'error',
-        summary: 'Error',
-        detail: 'El campo Nombre es obligatorio.',
-      });
-      return;
-    }
+    // Validar todos los campos obligatorios
+    const camposObligatorios = [
+      { campo: this.nombre, mensaje: 'Nombre' },
+      { campo: this.apellido1, mensaje: 'Apellido 1' },
+      { campo: this.apellido2, mensaje: 'Apellido 2' },
+      { campo: this.correo, mensaje: 'Correo' },
+      { campo: this.telefono, mensaje: 'Teléfono' },
+      { campo: this.selectedQuantity, mensaje: 'Cantidad' },
+      { campo: this.dia, mensaje: 'Día' },
+      { campo: this.hora, mensaje: 'Hora' },
+    ];
 
-    if (!this.apellido1) {
-      this.messageService.add({
-        severity: 'error',
-        summary: 'Error',
-        detail: 'El campo Apellido 1 es obligatorio.',
-      });
-      return;
-    }
-
-    if (!this.apellido2) {
-      this.messageService.add({
-        severity: 'error',
-        summary: 'Error',
-        detail: 'El campo Apellido 2 es obligatorio.',
-      });
-      return;
-    }
-
-    if (!this.correo) {
-      this.messageService.add({
-        severity: 'error',
-        summary: 'Error',
-        detail: 'El campo Correo es obligatorio.',
-      });
-      return;
-    }
-
-    if (!this.telefono) {
-      this.messageService.add({
-        severity: 'error',
-        summary: 'Error',
-        detail: 'El campo Teléfono es obligatorio.',
-      });
-      return;
-    }
-
-    if (!this.selectedFlavor && !this.saborpersonalizado) {
-      this.messageService.add({
-        severity: 'error',
-        summary: 'Error',
-        detail:
-          'Por favor seleccione un sabor o proporcione uno personalizado.',
-      });
-      return;
-    }
-
-    if (!this.selectedModo && !this.modoPersonalizado) {
-      this.messageService.add({
-        severity: 'error',
-        summary: 'Error',
-        detail:
-          'Por favor seleccione un modo o proporcione una modo personalizada.',
-      });
-      return;
-    }
-
-    if (!this.selectedQuantity) {
-      this.messageService.add({
-        severity: 'error',
-        summary: 'Error',
-        detail: 'Seleccione una cantidad.',
-      });
-      return;
-    }
-
-    if (!this.dia) {
-      this.messageService.add({
-        severity: 'error',
-        summary: 'Error',
-        detail: 'El campo Día es obligatorio.',
-      });
-      return;
-    }
-
-    if (!this.hora) {
-      this.messageService.add({
-        severity: 'error',
-        summary: 'Error',
-        detail: 'El campo Hora es obligatorio.',
-      });
-      return;
+    for (const campo of camposObligatorios) {
+      if (!campo.campo) {
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Error',
+          detail: `El campo ${campo.mensaje} es obligatorio.`,
+        });
+        return;
+      }
     }
 
     // Validar el formato del correo electrónico
     const emailPattern = /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/;
-    if (!emailPattern.test(this.correo)) {
+    // Validar el formato del correo electrónico si this.correo es una cadena de texto válida
+    if (typeof this.correo === 'string' && !emailPattern.test(this.correo)) {
       this.messageService.add({
         severity: 'error',
         summary: 'Error',
@@ -324,7 +259,11 @@ export class OrderComponent {
 
     // Validar el número de teléfono
     const phonePattern = /^[0-9]{10}$/;
-    if (!phonePattern.test(this.telefono)) {
+    // Validar el número de teléfono si this.telefono es una cadena de texto válida
+    if (
+      typeof this.telefono === 'string' &&
+      !phonePattern.test(this.telefono)
+    ) {
       this.messageService.add({
         severity: 'error',
         summary: 'Error',
@@ -335,8 +274,9 @@ export class OrderComponent {
     }
 
     // Validar que la fecha sea en el futuro
+    // Validar que la fecha sea en el futuro
     const currentDate = new Date();
-    if (this.dia < currentDate) {
+    if (!this.dia || new Date(this.dia) < currentDate) {
       this.messageService.add({
         severity: 'error',
         summary: 'Error',
@@ -346,6 +286,15 @@ export class OrderComponent {
     }
 
     // Validar que la hora esté dentro del rango válido
+    if (!this.hora) {
+      this.messageService.add({
+        severity: 'error',
+        summary: 'Error',
+        detail: 'El campo Hora es obligatorio.',
+      });
+      return;
+    }
+
     const selectedTime = new Date(this.hora);
     const minTime = new Date('09:00');
     const maxTime = new Date('18:00');
@@ -359,60 +308,90 @@ export class OrderComponent {
       return;
     }
 
-    // Si todas las validaciones pasan, enviar el pedido
-    const datosPedido = {
-      nombre: this.nombre,
-      apellido1: this.apellido1,
-      apellido2: this.apellido2,
-      correo: this.correo,
-      telefono: this.telefono,
-      sabor: this.selectedFlavor,
-      cantidad: this.selectedQuantity,
-      modo: this.selectedModo,
-      dia: this.dia,
-      hora: this.hora,
-      modoPersonalizado: this.modoPersonalizado,
-      saborpersonalizado: this.saborpersonalizado,
-      // Agrega aquí todos los campos necesarios para el pedido
-    };
+    // Obtener la suscripción push del navegador
+    navigator.serviceWorker.ready.then((registration) => {
+      registration.pushManager.getSubscription().then((subscription) => {
+        if (subscription) {
+          const p256dhKey = subscription.getKey('p256dh');
+          const authKey = subscription.getKey('auth');
 
-    console.log('Enviando pedido:', datosPedido);
-    this.messageService.add({
-      severity: 'info',
-      summary: 'Info',
-      detail: 'Enviando pedido',
+          if (!p256dhKey || !authKey) {
+            console.error(
+              'Las claves p256dh o auth están ausentes en la suscripción.'
+            );
+            return;
+          }
+
+          // Convertir las claves a formato base64
+          const subObj = {
+            endpoint: subscription.endpoint,
+            keys: {
+              p256dh: this.arrayBufferToBase64(p256dhKey),
+              auth: this.arrayBufferToBase64(authKey),
+            },
+          };
+          console.log(subObj);
+
+          const datosSuscripcion = {
+            endpoint: subscription.endpoint,
+            keys: {
+              p256dh: this.arrayBufferToBase64(p256dhKey),
+              auth: this.arrayBufferToBase64(authKey),
+            },
+          };
+
+          // Crear objeto con los datos del pedido
+          const datosPedido = {
+            nombre: this.nombre,
+            apellido1: this.apellido1,
+            apellido2: this.apellido2,
+            correo: this.correo,
+            telefono: this.telefono,
+            sabor: this.selectedFlavor,
+            cantidad: this.selectedQuantity,
+            modo: this.selectedModo,
+            dia: this.dia,
+            hora: this.hora,
+            modoPersonalizado: this.modoPersonalizado,
+            saborpersonalizado: this.saborpersonalizado,
+            suscripcion: datosSuscripcion,
+          };
+
+          // Enviar el pedido al servicio
+          this.pedidoService.enviarPedido(datosPedido).subscribe(
+            () => {
+              // Manejar la respuesta del servidor, por ejemplo, mostrar un mensaje de éxito
+              console.log('Pedido enviado con éxito');
+              this.messageService.add({
+                severity: 'success',
+                summary: 'Éxito',
+                detail: 'Pedido enviado con éxito.',
+              });
+            },
+            (error) => {
+              console.error('Error al enviar el pedido:', error);
+              this.messageService.add({
+                severity: 'error',
+                summary: 'Error',
+                detail: 'Error al enviar el pedido.',
+              });
+            }
+          );
+
+          console.log(datosPedido);
+        } else {
+          console.error('La suscripción no está disponible.');
+        }
+      });
     });
-    return;
-    // Llamar al servicio para enviar el pedido al servidor
   }
 
-  // enviarPedido() {
-  //   const datosPedido = {
-  //     nombre: this.nombre,
-  //     apellido1: this.apellido1,
-  //     apellido2: this.apellido2,
-  //     correo: this.correo,
-  //     telefono: this.telefono,
-  //     sabor: this.selectedFlavor,
-  //     cantidad: this.selectedQuantity,
-  //     modo: this.selectedModo,
-  //     dia: this.dia,
-  //     hora: this.hora,
-  //     modoPersonalizado: this.modoPersonalizado,
-  //     saborpersonalizado: this.saborpersonalizado,
-  //     // Agrega aquí todos los campos necesarios para el pedido
-  //   };
-
-  //   console.log(datosPedido);
-  //   // this.pedidoService.enviarPedido(datosPedido).subscribe(
-  //   //   response => {
-  //   //     // Manejar la respuesta del servidor, por ejemplo, mostrar un mensaje de éxito
-  //   //     console.log('Pedido enviado con éxito:', response);
-  //   //   },
-  //   //   error => {
-  //   //     // Manejar cualquier error que ocurra durante el envío del pedido
-  //   //     console.error('Error al enviar el pedido:', error);
-  //   //   }
-  //   // );
-  // }
+  arrayBufferToBase64(buffer: ArrayBuffer): string {
+    const bytes = new Uint8Array(buffer);
+    let binary = '';
+    for (let i = 0; i < bytes.byteLength; i++) {
+      binary += String.fromCharCode(bytes[i]);
+    }
+    return window.btoa(binary);
+  }
 }

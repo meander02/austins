@@ -49,6 +49,8 @@ export class FooterComponent {
   }
 
   isruta_orderdetail(): boolean {
+    this.currentRoute = this.router.url;
+
     // Utiliza el evento de cambio de ruta para actualizar 'currentRoute'
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {

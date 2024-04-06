@@ -16,12 +16,9 @@ export class OrderService {
     const url = `${environment.api}/order/updateStatusOrder`; // Ruta a la que enviar la solicitud POST
     return this.http.post(url, { paypalOrderId, subscription });
   }
-  // updateOrderStatus(paypalOrderId: string) {
-  //   const url = `${environment.api}/order/updateStatusOrder`; // Ruta a la que enviar la solicitud POST
-  //   return this.http.post(url, { paypalOrderId });
-  // }
 
   enviarPedido(datosPedido: any): Observable<any> {
-    return this.http.post<any>(this.apiUrl, datosPedido);
+    const url =`${environment.api}/order/solicitarPedido`; // Ruta a la que enviar la solicitud POST
+    return this.http.post<any>(url, datosPedido);
   }
 }
