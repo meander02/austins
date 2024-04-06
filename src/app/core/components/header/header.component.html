@@ -4,8 +4,13 @@
 ></script>
 <!-- HTML -->
 <!-- HTML -->
+
+<p-sidebar [(visible)]="sidebarVisible4" position="top">
+  <h3>Top Sidebar</h3>
+</p-sidebar>
 <!-- HTML -->
 <!-- HTML -->
+
 
 <p-sidebar [(visible)]="sidebarVisible" class="mobile-sidebar">
   <div
@@ -27,6 +32,9 @@
   </div>
   <div class="mobile-menu-item" (click)="redirectTo('acercade')">
     <span class="pi pi-info-circle"></span> Acerca De
+  </div>
+  <div class="mobile-menu-item" (click)="sidebarVisible4 = true ;  sidebarVisible = false;">
+    <span class="pi pi-info-circle"></span> Seguimiento -pedidos
   </div>
   <div class="mobile-menu-item" (click)="redirectTo('perfil')" *ngIf="userName">
     <span class="pi pi-user"></span> Perfil
@@ -185,10 +193,7 @@
         <span class="total-amount">{{ getTotalAmount() | currency }}</span>
         <!-- <span class="total-amount">{{ totalAmount | currency }}</span> -->
       </div>
-      <div
-        class="btn"
-        data-aos="zoom-in-left">
-
+      <div class="btn" data-aos="zoom-in-left">
         <button class="btn-finish" (click)="finishPurchase()">
           Finalizar Compra
         </button>
@@ -325,7 +330,7 @@
       <button class="menu-btn" (click)="redirectTo('home')">home</button>
 
       <!-- <button class="menu-btn" >cotizar otro diseño</button> -->
-      <button class="menu-btn">Seguimiento -pedidos</button>
+      <button class="menu-btn" (click)="sidebarVisible4 = true">Seguimiento -pedidos</button>
       <button [matMenuTriggerFor]="productsMenu" class="menu-btn">
         catalogo
       </button>
@@ -439,5 +444,3 @@
 
   <!-- Nueva sección de filtrado -->
 </div>
-
-

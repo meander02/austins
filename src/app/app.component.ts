@@ -22,6 +22,7 @@ export class AppComponent implements OnInit {
   respuesta: any;
   currentRoute!: string;
   ref: DynamicDialogRef | undefined;
+  initialReloadDone = false;
 
   readonly VAPID_PUBLIC_KEY =
     'BFYtOg9-LQWHmObZKXm4VIV2BImn5nBrhz4h37GQpbdj0hSBcghJG7h-wldz-fx9aTt7oaqKSS3KXhA4nXf32pY';
@@ -54,7 +55,7 @@ export class AppComponent implements OnInit {
     private dialogService: DialogService,
     private confirmationService: ConfirmationService,
     private messageService: MessageService,
-    private cartService: CartService,
+    private cartService: CartService
   ) {
     this.subscribeToNotifications();
     // Suscribirse a los cambios de la ruta y redirigir en caso de rutas no válidas
@@ -74,18 +75,19 @@ export class AppComponent implements OnInit {
     AOS.init();
     window.addEventListener('load', AOS.refresh);
 
-
-    // // Obtener los datos del carrito desde algún servicio o almacenamiento local
-    // const carDataFromStorage = this.storageService.getCarrito();
-    // // console.log('carDataFromStorage', carDataFromStorage);
-    // this.cartService.itemsInCart.subscribe((value) => {
-    //   this.badge = value;
-    // });
-    //   // this.storageService.setCarrito([]);
-    // // if (!this.storageService.getCarrito) {
-    //   this.storageService.setCarrito(carDataFromStorage);
-    // // }
+    // Realizar la primera recarga solo si no se ha hecho antes
+    // if (!this.initialReloadDone) {
+    //   this.reloadPage();
+    //   this.initialReloadDone = true;
+    // }
   }
+
+  // // Método para realizar la recarga de la página
+  // reloadPage() {
+  //   setTimeout(() => {
+  //     window.location.reload();
+  //   }, 1000); // Especifica un tiempo en milisegundos antes de la recarga
+  // }
 
   isChatOpen = false;
 
@@ -105,17 +107,6 @@ export class AppComponent implements OnInit {
     return this.currentRoute === '/portal/home';
   }
 
-  // isVisible$ = this.pedidoviewService.visible$;
-
-  // // constructor(private pedidoviewService: PedidoviewService) {}
-
-  // showDialog() {
-  //   this.pedidoviewService.showDialog();
-  // }
-
-  // hideDialog() {
-  //   this.pedidoviewService.hideDialog();
-  // }
   showDialog() {
     // this.sidebarVisible = false;
     const isMobile = window.innerWidth < 480;
@@ -135,27 +126,5 @@ export class AppComponent implements OnInit {
       },
       data: {},
     });
-}
-
-  // showDialog() {
-  //   // this.sidebarVisible = false;
-  //   const isMobile = window.innerWidth < 480;
-
-  //   this.ref = this.dialogService.open(OrderviewView, {
-  //     height: isMobile ? 'auto' : 'auto',
-  //     style: {
-  //       'max-width': isMobile ? '110vw' : 'auto',
-  //       'max-height': isMobile ? 'auto' : '100vh',
-  //       padding: '0', // Aquí estableces el padding a 0
-  //     },
-  //     modal: true,
-  //     breakpoints: {
-  //       '960px': '75vw',
-  //       '640px': '100vw',
-  //     },
-
-  //     data: {},
-  //   });
-  // }
-
+  }
 }

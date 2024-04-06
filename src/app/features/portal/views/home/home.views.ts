@@ -9,11 +9,13 @@ import { SearchService } from 'src/app/shared/services/search-service.service';
 @Component({
   selector: 'app-home',
   templateUrl: './home.views.html',
+
   styleUrls: [
     './home.views.scss',
     './product.scss',
     './hom.scss',
     './anima.scss',
+    './skeleton.scss',
   ],
   // encapsulation: ViewEncapsulation.None,
 })
@@ -142,20 +144,25 @@ export class HomeViews implements OnInit {
         this.loadingProducts = true; // Establece loadingProducts en false una vez que los productos se han cargado
         setTimeout(() => {
           this.originalProducts = response;
-          // if (this.originalProducts.length > 0) {
+          if (this.originalProducts.length < 0) {
+            this.reloadPage() 
+          }
             this.loadingProducts = false; // Establece loadingProducts en false una vez que los productos se han cargado
-          // }
-          // console.log(this.originalProducts);
+
           this.filterProducts(this.filterPost); // Filtra los productos basados en la búsqueda actual
         }, 2000); // Cambiar a la cantidad de tiempo deseado para mostrar el skeleton (en milisegundos)
       },
       (error) => {
         console.log('Error al cargar productos', error);
-        this.loadingProducts = true; // Establece loadingProducts en false en caso de error al cargar los productos
+        this.loadingProducts = false; // Establece loadingProducts en false en caso de error al cargar los productos
       }
     );
   }
-
+  reloadPage() {
+    setTimeout(() => {
+      window.location.reload();
+    }, 1000); // Especifica un tiempo en milisegundos antes de la recarga
+  }
   @HostListener('window:resize')
   onResize(): void {
     this.checkScreenSize();

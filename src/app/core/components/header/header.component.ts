@@ -99,6 +99,7 @@ export class HeaderComponent implements OnInit {
   sidebarVisible: boolean = false;
   sidebarVisible2: boolean = false;
   sidebarVisible3: boolean = false;
+  sidebarVisible4: boolean = false;
 
   selectedCategory: string = 'pasteleria';
   selectedColor: string = '#ffffff'; // Color inicial
@@ -158,6 +159,11 @@ export class HeaderComponent implements OnInit {
     if (carDataFromStorage) {
       this.carData = carDataFromStorage;
       this.badge = this.carData.length; // Actualizar el contador badge
+
+
+      // this.cartService.itemsInCart.subscribe((value) => {
+      //   this.badge = value;
+      // });
 
     }
     this.cartService.totalPrice$.subscribe((totalPrice) => {

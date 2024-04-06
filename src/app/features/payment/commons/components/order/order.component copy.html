@@ -73,8 +73,13 @@
       >
     </div>
 
+    <!-- <div class="form-field" *ngIf="selectedFlavor === undefined || selectedFlavor === null"> -->
 
-    <div class="form-field">
+
+
+
+  </div>
+   <div class="form-field" >
       <p-radioButton
         name="modo"
         value="otrosabor"
@@ -84,8 +89,7 @@
       ></p-radioButton>
       <label for="modoOtro">Otro sabor</label>
     </div>
-
-    <div class="row">
+  <div class="row"  *ngIf="selectedFlavor === undefined || selectedFlavor === null">
       <div *ngIf="selectedModosabor === 'otrosabor'" class="form-field full-width">
         <div class="card flex justify-content-center">
           <span class="p-float-label">
@@ -98,7 +102,7 @@
               style="width: 100%"
               pInputTextarea
               [(ngModel)]="saborpersonalizado"
-              placeholder="Ejemplo: alguna figura .."
+              placeholder="Ejemplo: algun otro sabor aqui oue puede indicar .."
             ></textarea>
             <label for="float-input">Instrucciones especiales</label>
           </span>
@@ -106,89 +110,6 @@
       </div>
     </div>
 
-    <!-- <div class="form-fie">
-      <p-radioButton
-        name="modo"
-        value="otrosabor"
-        [(ngModel)]="selectedModo"
-        inputId="modoOtro"
-        (ngModelChange)="modoChanged()"
-      ></p-radioButton>
-      <label for="modoOtro">Otro sabor</label>
-
-    </div>
-    <div class="row">
-      <div *ngIf="selectedModo === 'otrosabor'" class="form-field full-width">
-
-        <div class="card flex justify-content-center">
-          <span class="p-float-label">
-            <textarea
-              pTooltip="es opcional"
-              tooltipPosition="right"
-              class="textarea"
-              id="float-input"
-              rows="2"
-              style="width: 100%"
-              pInputTextarea
-              [(ngModel)]="instrucion"
-              placeholder="Ejemplo: alguna figura .."
-            ></textarea>
-            <label for="float-input">Instrucciones especiales</label>
-          </span>
-        </div>
-
-      </div>
-    </div> -->
-  </div>
-
-  <!-- <p-divider align="left" type="solid">
-    <b>Modo</b>
-  </p-divider>
-  <div class="row2">
-    <div class="form-field-four">
-      <p-radioButton
-        name="modo"
-        value="cuadrado"
-        [(ngModel)]="selectedModo"
-        inputId="modoCuadrado"
-      ></p-radioButton>
-      <label for="modoCuadrado">Cuadrado</label>
-      <i class="pi pi-stop" style="font-size: 1.1rem"></i>
-    </div>
-    <div class="form-field-four">
-      <p-radioButton
-        name="modo"
-        value="redondo"
-        [(ngModel)]="selectedModo"
-        inputId="modoRedondo"
-      ></p-radioButton>
-      <label for="modoRedondo">Redondo</label>
-      <i class="pi pi-circle" style="font-size: 1.1rem"></i>
-    </div>
-    <div class="form-field-four">
-      <p-radioButton
-        name="modo"
-        value="corazon"
-        [(ngModel)]="selectedModo"
-        inputId="modoCorazon"
-      ></p-radioButton>
-      <label for="modoCorazon">Corazón</label>
-      <i class="pi pi-heart" style="font-size: 1.1rem"></i>
-    </div>
-    <div class="form-field-four">
-      <p-radioButton
-        name="modo"
-        value="otro"
-        [(ngModel)]="selectedModo"
-        inputId="modoOtro"
-      ></p-radioButton>
-      <label for="modoOtro">Otro</label>
-      <p-inputText
-        *ngIf="selectedModo === 'otro'"
-        [(ngModel)]="modoPersonalizado"
-      ></p-inputText>
-    </div>
-  </div> -->
 
   <p-divider align="left" type="solid">
     <b>Modo</b>
@@ -254,7 +175,7 @@
             style="width: 100%"
             pInputTextarea
             [(ngModel)]="instrucion"
-            placeholder="Ejemplo: alguna figura .."
+            placeholder="Ejemplo: alguna figura o indique una base .."
           ></textarea>
           <label for="float-input">Instrucciones especiales</label>
         </span>

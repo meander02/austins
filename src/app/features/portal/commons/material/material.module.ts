@@ -9,7 +9,7 @@ import { MatIconModule } from '@angular/material/icon';
 //
 // import { FormsModule } from '@angular/forms';
 //
-import { SkeletonModule } from 'primeng/skeleton';
+// import { SkeletonModule } from 'primeng/skeleton';
 import { CarouselModule } from 'primeng/carousel';
 import { Tag } from 'primeng/tag';
 import { ButtonModule } from 'primeng/button';
@@ -21,6 +21,8 @@ import { InputNumberModule } from 'primeng/inputnumber';
 import { SplitterModule } from 'primeng/splitter';
 import { CardModule } from 'primeng/card';
 import { ConfirmPopupModule } from 'primeng/confirmpopup';
+
+import { SkeletonModule } from 'primeng/skeleton';
 @NgModule({
   exports: [ConfirmPopupModule,CardModule,SplitterModule,ButtonModule,SkeletonModule,MatCardModule, MatIconModule,MatFormFieldModule, MatButtonModule, MatInputModule,CarouselModule,InputTextModule,InputNumberModule],
 })
