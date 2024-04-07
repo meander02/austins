@@ -15,9 +15,18 @@ import {MatChipsModule} from '@angular/material/chips';
 import { MatChipGrid } from '@angular/material/chips';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
-
+import { AccordionModule } from 'primeng/accordion';
+import { PanelModule } from 'primeng/panel';
+import { AvatarModule } from 'primeng/avatar';
+import { ButtonModule } from 'primeng/button';
+import { MenuModule } from 'primeng/menu';
 @NgModule({
   exports: [
+    PanelModule,
+    AvatarModule,
+    ButtonModule,
+    MenuModule,
+    AccordionModule,
     MatPaginatorModule,
     MatTableModule,
     MatCardModule,

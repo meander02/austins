@@ -23,7 +23,13 @@ import { Product } from 'src/app/features/admin/models/Product.models';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { PedidoviewService } from 'src/app/shared/services/pedidoview.service';
 import { OrderService } from 'src/app/features/payment/commons/services/order.service';
-
+interface EventItem {
+  status?: string;
+  date?: string;
+  icon?: string;
+  color?: string;
+  image?: string;
+}
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -102,6 +108,8 @@ export class HeaderComponent implements OnInit {
   sidebarVisible2: boolean = false;
   sidebarVisible3: boolean = false;
   sidebarVisible4: boolean = false;
+  mostrardatos: boolean = false;
+  mostrardatos2: boolean = false;
 
   selectedCategory: string = 'pasteleria';
   selectedColor: string = '#ffffff'; // Color inicial
@@ -110,6 +118,15 @@ export class HeaderComponent implements OnInit {
   // constructor(private pedidoviewService: PedidoviewService) {}
   //
   pedidoInfo: any;
+  pedidoInfo2: any;
+  // events = []; // Aquí deberías tener los datos para alimentar el timeline
+
+
+
+
+  events: EventItem[];
+
+
   codigoPedido: string = '';
   constructor(
     private pedidoviewService: PedidoviewService,
@@ -139,7 +156,13 @@ export class HeaderComponent implements OnInit {
     // Suscripción al servicio CartService para obtener los datos del carrito
     this.cartService.cartItems$.subscribe((items) => {
       this.carData = items;
-    });
+    });    this.events = [
+      { status: 'Ordered', date: '15/10/2020 10:30', icon: 'pi pi-shopping-cart', color: '#9C27B0', image: 'game-controller.jpg' },
+      { status: 'Processing', date: '15/10/2020 14:00', icon: 'pi pi-cog', color: '#673AB7' },
+      { status: 'Shipped', date: '15/10/2020 16:15', icon: 'pi pi-shopping-cart', color: '#FF9800' },
+      { status: 'Delivered', date: '16/10/2020 10:00', icon: 'pi pi-check', color: '#607D8B' }
+  ];
+
   }
 
   consultarPedido() {
@@ -147,10 +170,26 @@ export class HeaderComponent implements OnInit {
     if (this.codigoPedido.trim() !== '') {
       this.orderService.consultarPedido(this.codigoPedido).subscribe(
         (response) => {
-          this.pedidoInfo = response;
-          console.log(response)
-          // this.sidebarVisible4=false
-          // this.toggleSidebar();
+
+          console.log(response);
+
+          // Verificar la estructura de la respuesta
+          if ('resultado' in response && 'codigoPedido' in response.resultado) {
+            this.pedidoInfo = response;
+            this.mostrardatos=true
+            this.mostrardatos2=false
+            // Estructura 1
+            // this.renderStructure1();
+          } else if ('resultado' in response && '_id' in response.resultado) {
+            this.mostrardatos2=true
+            this.mostrardatos=false
+            this.pedidoInfo2 = response;
+            // Estructura 2
+            // this.renderStructure2();
+          } else {
+            console.error('Estructura de respuesta desconocida');
+            // Puedes manejar este caso como desees
+          }
         },
         (error) => {
           console.error('Error al consultar pedido:', error);

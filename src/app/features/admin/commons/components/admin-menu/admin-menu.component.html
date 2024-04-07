@@ -44,7 +44,9 @@
         <mat-icon>store_mall_directory</mat-icon>
         <span>Proveedores</span>
       </mat-list-item>
-      <mat-list-item routerLink="/pedidos" (click)="sidenav.toggle()">
+
+      <!-- order-list -->
+      <mat-list-item  (click)="redirectTo('order-list')" (click)="sidenav.toggle()">
         <mat-icon>assignment</mat-icon>
 
         <!-- <div mat-menu-item class="mobile-menu-item_b1" (click)="logout()">

@@ -6,27 +6,71 @@
   <div class="row">
     <div class="form-field">
       <label for="nombre">Nombre:</label>
-      <input pInputText type="text" id="nombre" placeholder="Juanito" required [(ngModel)]="nombre" />
+      <input
+        pInputText
+        type="text"
+        id="nombre"
+        placeholder="Juanito"
+        required
+        [(ngModel)]="nombre"
+      />
     </div>
     <div class="form-field">
       <label for="apellido1">Apellido 1:</label>
-      <input pInputText type="text" id="apellido1" placeholder="Perez" required [(ngModel)]="apellido1" />
+      <input
+        pInputText
+        type="text"
+        id="apellido1"
+        placeholder="Perez"
+        required
+        [(ngModel)]="apellido1"
+      />
     </div>
   </div>
   <div class="row">
     <div class="form-field">
       <label for="apellido2">Apellido 2:</label>
-      <input pInputText type="text" id="apellido2" placeholder="Hernandez" required [(ngModel)]="apellido2" />
+      <input
+        pInputText
+        type="text"
+        id="apellido2"
+        placeholder="Hernandez"
+        required
+        [(ngModel)]="apellido2"
+      />
     </div>
     <div class="form-field">
       <label for="correo">Correo:</label>
-      <input pInputText type="email" id="correo" placeholder="juanPerez@gmail.com" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" [(ngModel)]="correo" />
+      <input
+        pInputText
+        type="email"
+        id="correo"
+        placeholder="juanPerez@gmail.com"
+        required
+        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+        [(ngModel)]="correo"
+      />
     </div>
   </div>
   <div class="row">
     <div class="form-field">
       <label for="telefono">Teléfono:</label>
-      <input pInputText pKeyFilter="int" type="tel" id="telefono" placeholder="1234567890" required pattern="[0-9]{10}" [(ngModel)]="telefono" />
+
+      <input
+        id="disabled-input"
+
+        pTooltip="nos comunicaremos mediante este numero"
+        tooltipPosition="bottom"
+        pInputText
+        autocomplete="false"
+        type="tel"
+        pKeyFilter="int"
+        pattern="[0-9]*"
+        maxlength="10"
+        placeholder="123-456-7890"
+        [(ngModel)]="telefono"
+      />
+      <!-- <input pInputText pKeyFilter="int" type="tel" id="telefono" placeholder="1234567890" required pattern="[0-9]{10}" [(ngModel)]="telefono" /> -->
     </div>
   </div>
   <p-divider align="left" type="solid">
@@ -43,7 +87,6 @@
         [showClear]="true"
         placeholder="sabores"
         (ngModelChange)="calcularPrecio(); calcularPersonas()"
-        
       ></p-dropdown>
     </div>
     <div class="form-field">
@@ -54,20 +97,26 @@
         [(ngModel)]="selectedQuantity"
         placeholder="en kg"
         (ngModelChange)="calcularPrecio(); calcularPersonas()"
-        
       ></p-dropdown>
     </div>
   </div>
   <div class="row">
     <div class="form-field" *ngIf="personasPorKilo !== undefined">
-      <label class="lab" for="personasPorKilo">Personas: {{ personasPorKilo }}</label>
+      <label class="lab" for="personasPorKilo"
+        >Personas: {{ personasPorKilo }}</label
+      >
     </div>
-    <div class="form-field" *ngIf="precioTotal !== undefined && precioTotal > 0">
-      <label class="lab" for="precioTotal">Precio Total: {{ precioTotal }}</label>
+    <div
+      class="form-field"
+      *ngIf="precioTotal !== undefined && precioTotal > 0"
+    >
+      <label class="lab" for="precioTotal"
+        >Precio Total: {{ precioTotal }}</label
+      >
     </div>
   </div>
   <div class="form-field">
-  <!-- <div class="row"> -->
+    <!-- <div class="row"> -->
     <p-radioButton
       name="modo"
       value="otrosabor"
@@ -77,8 +126,14 @@
     ></p-radioButton>
     <label for="modoOtro">Otro sabor</label>
   </div>
-  <div class="row" *ngIf="selectedFlavor === undefined || selectedFlavor === null">
-    <div *ngIf="selectedModosabor === 'otrosabor'" class="form-field full-width">
+  <div
+    class="row"
+    *ngIf="selectedFlavor === undefined || selectedFlavor === null"
+  >
+    <div
+      *ngIf="selectedModosabor === 'otrosabor'"
+      class="form-field full-width"
+    >
       <div class="card flex justify-content-center">
         <span class="p-float-label">
           <textarea
@@ -136,12 +191,30 @@
   <div class="row">
     <div class="form-field">
       <label for="dia">Día:</label>
-      <input type="date" id="dia" placeholder="Seleccionar fecha" required [(ngModel)]="dia" />
+      <input
+        type="date"
+        id="dia"
+        placeholder="Seleccionar fecha"
+        required
+        [(ngModel)]="dia"
+      />
     </div>
     <div class="form-field">
       <label for="hora">Hora:</label>
-      <input type="time" id="hora" min="09:00" max="18:00" required [(ngModel)]="hora" />
+      <input
+        type="time"
+        id="hora"
+        min="09:00"
+        max="18:00"
+        required
+        [(ngModel)]="hora"
+      />
     </div>
   </div>
-  <button (click)="enviarPedido()">Enviar Pedido</button>
+  <div class="btn" data-aos="zoom-in-left">
+    <button class="btn-finish" (click)="enviarPedido()">
+      Finalizar Compra
+    </button>
+  </div>
+  <!-- <button (click)="enviarPedido()">Enviar Pedido</button> -->
 </div>

@@ -1,1 +1,45 @@
-<p>order-list works!</p>
+<div class="container">
+  <div class="subcontenido">
+    <h1 class="view-title">Pedidos</h1>
+
+    <div>
+      <form class="form">
+        <mat-form-field class="form-field">
+          <input matInput placeholder="Buscar" formControlName="query" />
+        </mat-form-field>
+      </form>
+    </div>
+    <br>
+
+    <div *ngFor="let pedido of pedidos" class="info-container">
+      <p-panel [toggleable]="true" [collapsed]="true">
+        <ng-template pTemplate="header">
+          <div class="order-header">
+            <span class="order-id"> {{ pedido.usuario ? (pedido.usuario.name + ' ' + pedido.usuario.paternalLastname) : 'Cliente desconocido' }}</span>
+            <span class="order-status">{{ pedido.estadoPedido }}</span>
+          </div>
+        </ng-template>
+        <ng-template pTemplate="content">
+          <div class="order-details">
+            <span class="order-id">Pedido #{{ pedido.codigoPedido }}</span>
+            <p>
+              <strong>Cliente:</strong> {{ pedido.usuario ? (pedido.usuario.name + ' ' + pedido.usuario.paternalLastname) : 'Cliente desconocido' }}
+            </p>
+            <p><strong>Email:</strong> {{ pedido.usuario ? pedido.usuario.email : 'No disponible' }}</p>
+            <p><strong>Teléfono:</strong> {{ pedido.usuario ? pedido.usuario.phone : 'No disponible' }}</p>
+            <p><strong>Fecha de creación:</strong> {{ pedido.createdAt | date }}</p>
+            <p><strong>Detalle del pedido:</strong></p>
+            <ul class="order-items">
+              <li *ngFor="let detalle of pedido.detallePedido">
+                <span><strong>Sabor:</strong> {{ detalle.sabor ? detalle.sabor : 'No especificado' }}</span>
+                <span><strong>Cantidad:</strong> {{ detalle.cantidad }}</span>
+                <span><strong>Día:</strong> {{ detalle.dia | date }}</span>
+                <span><strong>Hora:</strong> {{ detalle.hora }}</span>
+              </li>
+            </ul>
+          </div>
+        </ng-template>
+      </p-panel>
+    </div>
+  </div>
+</div>

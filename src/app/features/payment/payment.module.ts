@@ -29,6 +29,8 @@ import { PayCommonsModule } from './commons/commons.module';
 import { paysuccess } from './views/pay-success/pay-success.view';
 import { OrderviewView } from './views/orderview/orderview.view';
 import { MaterialModule } from './commons/material/material.module';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { ErrorInterceptor } from 'src/app/shared/interceptor/error.interceptor';
 // import { OrderviewComponent } from './views/orderview/orderview.component';
 
 const MATERIAL = [
@@ -63,6 +65,9 @@ const MATERIAL = [
     PayCommonsModule,
     ReactiveFormsModule,
     MaterialModule,
+  ],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
   ],
 })
 export class PaymentModule {}

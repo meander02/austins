@@ -63,3 +63,27 @@ b,
 .pi {
   font-size: 1.5rem;
 }
+
+.btn {
+  padding: 0.5rem; /* Reducir el padding */
+  text-align: center;
+  font-size: 0.9rem; /* Reducir el tamaño del texto */
+  font-weight: bold; /* Negrita */
+}
+.btn-finish,
+.btn-continue-shopping {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  margin-top: 0.5rem;
+  width: auto;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.btn-finish {
+  width: 100%;
+  background-color: #ff6112;
+  color: #ffffff;
+  border-radius: 4px;
+}

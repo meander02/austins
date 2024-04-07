@@ -4,16 +4,154 @@
 ></script>
 <!-- HTML -->
 <!-- HTML -->
+<!-- Agrega el componente de PrimeNG para el input -->
+<p-sidebar [(visible)]="sidebarVisible4" [fullScreen]="true">
+  <p-toast position="top-center"></p-toast>
+  <h3 class="titulo">Consulta orden</h3>
+  <div class="card flex justify-content-center busquedacode">
+    <input
+      class="txtcode"
+      type="text"
+      pInputText
+      [(ngModel)]="codigoPedido"
+      placeholder="Ingresa el código del pedido"
+    />
+    <button
+      class="btncode"
+      pButton
+      type="button"
+      icon="pi pi-search"
+      (click)="consultarPedido()"
+    ></button>
+  </div>
+  <!-- Mostrar los detalles del pedido -->
+  <!-- <div *ngIf="pedidoInfo" class="pedido-info">
+    <h4 class="subtitulo">Detalles del Pedido</h4>
+    <div class="detalle">
+      <p>
+        <strong>Código del Pedido:</strong>
+        {{ pedidoInfo.resultado.codigoPedido }}
+      </p>
+      <p>
+        <strong>Estado del Pedido:</strong>
+        {{ pedidoInfo.resultado.estadoPedido }}
+      </p>
+      <p>
+        <strong>Fecha de Creación:</strong> {{ pedidoInfo.resultado.createdAt }}
+      </p>
+      <p><strong>Detalle del Pedido:</strong></p>
+      <ul>
+        <li>
+          <strong>Id:</strong> {{ pedidoInfo.resultado.detallePedido._id }}
+        </li>
+        <li>
+          <strong>Cantidad:</strong>
+          {{ pedidoInfo.resultado.detallePedido.cantidad }}
+        </li>
+        <li>
+          <strong>Día:</strong> {{ pedidoInfo.resultado.detallePedido.dia }}
+        </li>
+        <li>
+          <strong>Hora:</strong> {{ pedidoInfo.resultado.detallePedido.hora }}
+        </li>
+        <li>
+          <strong>Modo:</strong> {{ pedidoInfo.resultado.detallePedido.modo }}
+        </li>
+        <li>
+          <strong>Modo Personalizado:</strong>
+          {{ pedidoInfo.resultado.detallePedido.modoPersonalizado }}
+        </li>
+        <li>
+          <strong>Sabor:</strong> {{ pedidoInfo.resultado.detallePedido.sabor }}
+        </li>
+        <li>
+          <strong>Sabor Personalizado:</strong>
+          {{ pedidoInfo.resultado.detallePedido.saborPersonalizado }}
+        </li>
+        <li>
+          <strong>Precio Total:</strong>
+          {{ pedidoInfo.resultado.detallePedido.precioTotal }}
+        </li>
+      </ul>
+      <p><strong>Usuario:</strong> {{ pedidoInfo.resultado.usuario.name }}</p>
+      <p>
+        <strong>Email del Usuario:</strong>
+        {{ pedidoInfo.resultado.usuario.email }}
+      </p>
+      <p>
+        <strong>Teléfono del Usuario:</strong>
+        {{ pedidoInfo.resultado.usuario.phone }}
+      </p>
 
-<p-sidebar [(visible)]="sidebarVisible4" position="top">
-  <h3>Consulta orden</h3>
-  <input
-    type="text"
-    [(ngModel)]="codigoPedido"
-    placeholder="Ingresa el código del pedido"
-  />
-  <!-- <button (click)="consultarPedido()">Consultar Pedido</button> -->
+      <p>
+        <strong>Estado del Usuario:</strong>
+        {{ pedidoInfo.resultado.usuario.status }}
+      </p>
+
+    </div>
+  </div> -->
+
+<!--
+
+<!<!-- venta -->
+
+<div *ngIf="pedidoInfo">
+  <h2>Detalles del Pedido</h2>
+  <ul>
+    <li><strong>_id del pedido:</strong> {{ pedidoInfo.resultado._id }}</li>
+    <li><strong>Usuario:</strong>
+      <ul>
+        <li><strong>_id del usuario:</strong> {{ pedidoInfo.resultado.user._id }}</li>
+        <li><strong>Email:</strong> {{ pedidoInfo.resultado.user.email }}</li>
+        <li><strong>Rol:</strong> {{ pedidoInfo.resultado.user.rol }}</li>
+        <li><strong>Nombre:</strong> {{ pedidoInfo.resultado.user.name }}</li>
+        <li><strong>Apellido Paterno:</strong> {{ pedidoInfo.resultado.user.paternalLastname }}</li>
+        <li><strong>Apellido Materno:</strong> {{ pedidoInfo.resultado.user.maternalLastname }}</li>
+        <li><strong>Teléfono:</strong> {{ pedidoInfo.resultado.user.phone }}</li>
+        <li><strong>Estado:</strong> {{ pedidoInfo.resultado.user.status }}</li>
+      </ul>
+    </li>
+    <li><strong>Detalles:</strong>
+      <ul>
+        <li *ngFor="let detail of pedidoInfo.resultado.details">
+          <ul>
+            <li><strong>_id:</strong> {{ detail._id }}</li>
+            <li><strong>User:</strong> {{ detail.user }}</li>
+            <li><strong>Total Amount:</strong> {{ detail.totalAmount }}</li>
+            <li><strong>Delivery Type:</strong> {{ detail.deliveryType }}</li>
+            <li><strong>Delivery Date:</strong> {{ detail.deliveryDate }}</li>
+            <li><strong>Instruction:</strong> {{ detail.instrucion }}</li>
+            <li><strong>Status:</strong> {{ detail.status }}</li>
+            <li><strong>Created At:</strong> {{ detail.createdAt }}</li>
+            <!-- Agregar datos del producto -->
+            <li><strong>Productos:</strong>
+              <ul>
+                <li *ngFor="let product of detail.products">
+                  <ul>
+                    <li><strong>ID del Producto:</strong> {{ product.product }}</li>
+                    <li><strong>Cantidad:</strong> {{ product.quantity }}</li>
+                    <!-- Puedes agregar más detalles del producto si es necesario -->
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><strong>Total Amount:</strong> {{ pedidoInfo.resultado.totalAmount }}</li>
+    <li><strong>Paypal Order ID:</strong> {{ pedidoInfo.resultado.paypalOrderID }}</li>
+    <li><strong>Created At:</strong> {{ pedidoInfo.resultado.createdAt }}</li>
+  </ul>
+</div>
+
+
+
+
+
+
 </p-sidebar>
+
 <!-- HTML -->
 <!-- HTML -->
 
