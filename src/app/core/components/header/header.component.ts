@@ -22,6 +22,7 @@ import { CartItem } from 'src/app/shared/models/cart.model';
 import { Product } from 'src/app/features/admin/models/Product.models';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { PedidoviewService } from 'src/app/shared/services/pedidoview.service';
+import { OrderService } from 'src/app/features/payment/commons/services/order.service';
 
 @Component({
   selector: 'app-header',
@@ -36,6 +37,7 @@ import { PedidoviewService } from 'src/app/shared/services/pedidoview.service';
     './filter.scss',
     './carrito.scss',
     './header.component02.scss',
+    './busquedaBy_code.scss'
   ],
   styles: [
     `
@@ -106,7 +108,9 @@ export class HeaderComponent implements OnInit {
   rangeValues: number[] = [20, 80];
   currentRoute!: string;
   // constructor(private pedidoviewService: PedidoviewService) {}
-//
+  //
+  pedidoInfo: any;
+  codigoPedido: string = '';
   constructor(
     private pedidoviewService: PedidoviewService,
     public dialog: MatDialog,
@@ -120,7 +124,8 @@ export class HeaderComponent implements OnInit {
     private storageService: StorageService,
     private confirmationService: ConfirmationService,
     private messageService: MessageService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private orderService: OrderService
   ) {
     router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
@@ -132,9 +137,42 @@ export class HeaderComponent implements OnInit {
       this.badge = value;
     });
     // Suscripción al servicio CartService para obtener los datos del carrito
-    this.cartService.cartItems$.subscribe(items => {
+    this.cartService.cartItems$.subscribe((items) => {
       this.carData = items;
     });
+  }
+
+  consultarPedido() {
+    console.log(this.codigoPedido)
+    if (this.codigoPedido.trim() !== '') {
+      this.orderService.consultarPedido(this.codigoPedido).subscribe(
+        (response) => {
+          this.pedidoInfo = response;
+          console.log(response)
+          // this.sidebarVisible4=false
+          // this.toggleSidebar();
+        },
+        (error) => {
+          console.error('Error al consultar pedido:', error);
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Eliminado',
+            detail: `"${error.error}" `,
+            life: 3000,
+          });
+          // Aquí puedes mostrar un mensaje de error al usuario si lo deseas
+        }
+      );
+    } else {
+      this.messageService.add({
+        severity: 'warn',
+        summary: 'vacío',
+        detail: `"El código del pedido está vacío" `,
+        life: 3000,
+      });
+      console.warn('El código del pedido está vacío');
+      // Aquí puedes mostrar un mensaje al usuario indicando que debe ingresar un código
+    }
   }
 
   ngOnInit(): void {
@@ -160,17 +198,15 @@ export class HeaderComponent implements OnInit {
       this.carData = carDataFromStorage;
       this.badge = this.carData.length; // Actualizar el contador badge
 
-
       // this.cartService.itemsInCart.subscribe((value) => {
       //   this.badge = value;
       // });
-
     }
     this.cartService.totalPrice$.subscribe((totalPrice) => {
       this.totalAmount = totalPrice;
     });
 
-    console.log('Datos del carrito:', this.carData);
+    // console.log('Datos del carrito:', this.carData);
     const isAuthenticated = this.sessionService.isAutenticated();
   }
   logout(): void {
@@ -289,7 +325,6 @@ export class HeaderComponent implements OnInit {
     );
   }
   isruta_orderdetail(): boolean {
-
     this.currentRoute = this.router.url;
 
     // Utiliza el evento de cambio de ruta para actualizar 'currentRoute'
@@ -303,7 +338,6 @@ export class HeaderComponent implements OnInit {
     // return this.currentRoute.startsWith('/payment/order-detail');
     // return this.currentRoute === '/payment/order-detail/'
     return this.currentRoute.startsWith('/payment/order-detail');
-
   }
 
   // Nueva función para manejar la visibilidad de la sección de filtros
@@ -474,12 +508,10 @@ export class HeaderComponent implements OnInit {
   //   this.visible = true;
   // }
 
-
   // isVisible$ = this.pedidoviewService.visible$;
   isVisible$ = this.pedidoviewService.visible$;
 
   // constructor(private pedidoviewService: PedidoviewService) {}
-
 
   showDialog() {
     this.pedidoviewService.showDialog();

@@ -11,11 +11,15 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatIconModule } from '@angular/material/icon';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+import { OrderListView } from './views/order-list/order-list.view';
+
 
 @NgModule({
     declarations: [
       AdminComponent,
-      ProductListView
+      ProductListView,
+
+      OrderListView
     ],
     imports: [ReactiveFormsModule,FormsModule,CommonModule, AdminCommonsModule,AdminRoutingModule]
 })

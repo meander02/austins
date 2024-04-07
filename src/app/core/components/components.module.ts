@@ -43,6 +43,7 @@ import { PedidoFloatComponent } from './pedido-float/pedido-float.component';
 
 import { InputGroupModule } from 'primeng/inputgroup';
 import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
+import { InputTextModule } from 'primeng/inputtext';
 @NgModule({
   declarations: [
     ChatComponent,
@@ -73,6 +74,7 @@ import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
     ProgressBarComponent,
   ],
   imports: [
+    InputTextModule,
     InputGroupModule,
     InputGroupAddonModule,
 

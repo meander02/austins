@@ -368,7 +368,7 @@ export class OrderComponent {
           //       summary: 'Éxito',
           //       detail: 'Pedido enviado con éxito.',
           //     });
-          //   },
+          //   }, 
           //   (error) => {
           //     console.error('Error al enviar el pedido:', error);
           //     this.messageService.add({
