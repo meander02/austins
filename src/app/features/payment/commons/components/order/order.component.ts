@@ -3,6 +3,7 @@ import { Component, ViewEncapsulation } from '@angular/core';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { DialogService } from 'primeng/dynamicdialog';
 import { OrderService } from '../../services/order.service';
+import { catchError, throwError } from 'rxjs';
 // import { PedidoviewService } from '../../../../../shared/services/pedidoview.service';
 
 interface PasteleriaFlavor {
@@ -358,26 +359,62 @@ export class OrderComponent {
           };
 
           // Enviar el pedido al servicio
-          this.pedidoService.enviarPedido(datosPedido).subscribe(
-            () => {
-              // Manejar la respuesta del servidor, por ejemplo, mostrar un mensaje de éxito
+          // this.pedidoService.enviarPedido(datosPedido).subscribe(
+          //   () => {
+          //     // Manejar la respuesta del servidor, por ejemplo, mostrar un mensaje de éxito
+          //     console.log('Pedido enviado con éxito');
+          //     this.messageService.add({
+          //       severity: 'success',
+          //       summary: 'Éxito',
+          //       detail: 'Pedido enviado con éxito.',
+          //     });
+          //   },
+          //   (error) => {
+          //     console.error('Error al enviar el pedido:', error);
+          //     this.messageService.add({
+          //       severity: 'error',
+          //       summary: 'Error',
+          //       detail: 'Error al enviar el pedido.',
+          //     });
+          //   }
+          // );
+
+          // Enviar el pedido al servicio
+          this.pedidoService
+            .enviarPedido(datosPedido)
+            .pipe(
+              catchError((error) => {
+                // Manejar el error HTTP 409 específico
+                if (error.status === 409) {
+                  console.error('Error al enviar el pedido:', error);
+                  this.messageService.add({
+                    severity: 'error',
+                    summary: 'Error',
+                    detail: error.error.message, // Mostrar el mensaje de error del servidor
+                  });
+                } else {
+                  // Manejar otros errores HTTP
+                  console.error('Error al enviar el pedido:', error);
+                  this.messageService.add({
+                    severity: 'error',
+                    summary: 'Error',
+                    detail: 'Error al enviar el pedido.',
+                  });
+                }
+
+                // Propagar el error para que otros observadores también lo manejen si es necesario
+                return throwError(error);
+              })
+            )
+            .subscribe(() => {
+              // Manejar la respuesta del servidor en caso de éxito
               console.log('Pedido enviado con éxito');
               this.messageService.add({
                 severity: 'success',
                 summary: 'Éxito',
                 detail: 'Pedido enviado con éxito.',
               });
-            },
-            (error) => {
-              console.error('Error al enviar el pedido:', error);
-              this.messageService.add({
-                severity: 'error',
-                summary: 'Error',
-                detail: 'Error al enviar el pedido.',
-              });
-            }
-          );
-
+            });
           console.log(datosPedido);
         } else {
           console.error('La suscripción no está disponible.');
