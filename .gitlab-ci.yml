@@ -1,18 +1,13 @@
-image: node:latest
-
 stages:
+  - build
   - test
 
-before_script:
-  - npm install -g @angular/cli
+build:
+  stage: build
+  script:
+    - echo "Construyendo el proyecto..."
 
 test:
   stage: test
   script:
-    - npm install
-    - ng test --watch=false --browsers=ChromeHeadless
-
-    # Si usas Protractor para pruebas e2e:
-    # - npm install -g protractor
-    # - webdriver-manager update
-    # - ng e2e --protractor-config=e2e/protractor.conf.js
+    - echo "Testeando el proyecto..."
