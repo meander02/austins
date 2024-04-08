@@ -32,11 +32,12 @@
         <mat-icon>people</mat-icon>
         <span>Usuarios</span>
       </mat-list-item>
-      <mat-list-item routerLink="/ventas" (click)="sidenav.toggle()">
+      <mat-list-item  (click)="redirectTo('sale-list')"  (click)="sidenav.toggle()">
         <mat-icon>monetization_on</mat-icon>
         <span>Ventas</span>
       </mat-list-item>
-      <mat-list-item routerLink="/compras" (click)="sidenav.toggle()">
+      <mat-list-item (click)="redirectTo('sale-list')" (click)="sidenav.toggle()">
+        <!-- sale-list -->
         <mat-icon>local_grocery_store</mat-icon>
         <span>Compras</span>
       </mat-list-item>

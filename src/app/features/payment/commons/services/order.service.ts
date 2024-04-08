@@ -31,6 +31,10 @@ export class OrderService {
     const url = `${environment.api}/admin/pedidos`; // Ruta para obtener todos los pedidos del administrador
     return this.http.get<any[]>(url);
   }
+  getAllVentas(): Observable<any[]> {
+    const url = `${environment.api}/admin/ventas`; // Ruta para obtener todos los pedidos del administrador
+    return this.http.get<any[]>(url);
+  }
 
 
 }

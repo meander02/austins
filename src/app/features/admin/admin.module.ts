@@ -12,6 +12,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { OrderListView } from './views/order-list/order-list.view';
+import { VentaListView } from './views/venta-list/venta-list.view';
 
 
 @NgModule({
@@ -19,7 +20,9 @@ import { OrderListView } from './views/order-list/order-list.view';
       AdminComponent,
       ProductListView,
 
-      OrderListView
+      OrderListView,
+
+        VentaListView
     ],
     imports: [ReactiveFormsModule,FormsModule,CommonModule, AdminCommonsModule,AdminRoutingModule]
 })
