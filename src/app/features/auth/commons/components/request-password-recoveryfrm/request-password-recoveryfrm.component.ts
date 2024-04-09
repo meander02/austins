@@ -47,7 +47,7 @@ export class RequestPasswordRecoveryfrmComponent {
   // step2Disabled = true;
   step3Disabled = true
   // step3Disabled = false;
-  step2Disabled = false;
+  step2Disabled = true;
 
   passwordVisible = false;
   passwordFieldType = 'password';
@@ -384,4 +384,11 @@ export class RequestPasswordRecoveryfrmComponent {
   // Question() {
   //   this.pedidoviewService.hideDialog();
   // }
+
+
+  navigateTo(route: string) {
+    // this.dialogRef.close()
+    this.router.navigateByUrl(route);
+    // this.showDialog = false; // Opcional: cerrar el diálogo después de navegar
+  }
 }

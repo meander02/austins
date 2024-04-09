@@ -116,3 +116,9 @@ mat-error{
   color: brown;
   font-size: small;
 }
+
+
+// p-confirm-popup-footer ng-tns-c1047169404-8 ng-star-inserted
+.p-confirm-popup-footer {
+  display: none !important; /* Oculta los botones predeterminados */
+}

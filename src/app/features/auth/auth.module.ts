@@ -15,13 +15,14 @@ import { CoreComponentsModule } from 'src/app/core/components/components.module'
 import { RequestPasswordRecoveryView } from './views/request-password-recovery/request-password-recovery.view';
 
 import { NgxCaptchaModule } from 'ngx-captcha';
+import { PreguntaSecretView } from './views/pregunta-secret/pregunta-secret.view';
 
 @NgModule({
   declarations: [
     AuthComponent,
     SignInView,
     SignUpView,
-    SuccessView,RequestPasswordRecoveryView
+    SuccessView,RequestPasswordRecoveryView, PreguntaSecretView,
   ],
   imports: [NgxCaptchaModule,
     CoreComponentsModule,
