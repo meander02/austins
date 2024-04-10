@@ -21,7 +21,15 @@
 // import { CartItem } from 'src/app/shared/models/cart.model';
 // import { Product } from 'src/app/features/admin/models/Product.models';
 // import { ConfirmationService, MessageService } from 'primeng/api';
-
+// import { PedidoviewService } from 'src/app/shared/services/pedidoview.service';
+// import { OrderService } from 'src/app/features/payment/commons/services/order.service';
+// interface EventItem {
+//   status?: string;
+//   date?: string;
+//   icon?: string;
+//   color?: string;
+//   image?: string;
+// }
 // @Component({
 //   selector: 'app-header',
 //   templateUrl: './header.component.html',
@@ -35,6 +43,7 @@
 //     './filter.scss',
 //     './carrito.scss',
 //     './header.component02.scss',
+//     './busquedaBy_code.scss'
 //   ],
 //   styles: [
 //     `
@@ -77,7 +86,10 @@
 //   isHeaderScrolled = false;
 //   searchQuery: string = '';
 //   badge: number = 0;
-//   currentRoute!: string;
+//   totalAmount!: number;
+//   date: Date | undefined;
+//   hora: Date | undefined;
+
 //   isMobileMenuOpen: boolean = false;
 //   // carData: CartItem[] = []; // Aquí asignamos el array de elementos del carrito
 //   @Input() carData: CartItem[] = []; // Recibe los datos del carrito desde el componente padre
@@ -95,18 +107,33 @@
 //   sidebarVisible: boolean = false;
 //   sidebarVisible2: boolean = false;
 //   sidebarVisible3: boolean = false;
+//   sidebarVisible4: boolean = false;
+//   mostrardatos: boolean = false;
+//   mostrardatos2: boolean = false;
 
 //   selectedCategory: string = 'pasteleria';
-//   // selectedPrice: number = 50; // Precio inicial
 //   selectedColor: string = '#ffffff'; // Color inicial
 //   rangeValues: number[] = [20, 80];
+//   currentRoute!: string;
+//   // constructor(private pedidoviewService: PedidoviewService) {}
+//   //
+//   pedidoInfo: any;
+//   pedidoInfo2: any;
+//   // events = []; // Aquí deberías tener los datos para alimentar el timeline
 
+
+
+
+//   events: EventItem[];
+
+
+//   codigoPedido: string = '';
 //   constructor(
+//     private pedidoviewService: PedidoviewService,
 //     public dialog: MatDialog,
 //     private dialogService: DialogService,
 //     private searchService: SearchService,
 //     private cartService: CartService,
-//     // private cartService: CartService,
 //     private router: Router,
 //     private userStateService: UserStateService,
 //     private AuthStateService: AuthStateService,
@@ -114,7 +141,8 @@
 //     private storageService: StorageService,
 //     private confirmationService: ConfirmationService,
 //     private messageService: MessageService,
-//     private route: ActivatedRoute
+//     private route: ActivatedRoute,
+//     private orderService: OrderService
 //   ) {
 //     router.events.subscribe((event) => {
 //       if (event instanceof NavigationEnd) {
@@ -125,6 +153,65 @@
 //     this.cartService.itemsInCart.subscribe((value) => {
 //       this.badge = value;
 //     });
+//     // Suscripción al servicio CartService para obtener los datos del carrito
+//     this.cartService.cartItems$.subscribe((items) => {
+//       this.carData = items;
+//     });    this.events = [
+//       { status: 'Ordered', date: '15/10/2020 10:30', icon: 'pi pi-shopping-cart', color: '#9C27B0', image: 'game-controller.jpg' },
+//       { status: 'Processing', date: '15/10/2020 14:00', icon: 'pi pi-cog', color: '#673AB7' },
+//       { status: 'Shipped', date: '15/10/2020 16:15', icon: 'pi pi-shopping-cart', color: '#FF9800' },
+//       { status: 'Delivered', date: '16/10/2020 10:00', icon: 'pi pi-check', color: '#607D8B' }
+//   ];
+
+//   }
+
+//   consultarPedido() {
+//     console.log(this.codigoPedido)
+//     if (this.codigoPedido.trim() !== '') {
+//       this.orderService.consultarPedido(this.codigoPedido).subscribe(
+//         (response) => {
+
+//           console.log(response);
+
+//           // Verificar la estructura de la respuesta
+//           if ('resultado' in response && 'codigoPedido' in response.resultado) {
+//             this.pedidoInfo = response;
+//             this.mostrardatos=true
+//             this.mostrardatos2=false
+//             // Estructura 1
+//             // this.renderStructure1();
+//           } else if ('resultado' in response && '_id' in response.resultado) {
+//             this.mostrardatos2=true
+//             this.mostrardatos=false
+//             this.pedidoInfo2 = response;
+//             // Estructura 2
+//             // this.renderStructure2();
+//           } else {
+//             console.error('Estructura de respuesta desconocida');
+//             // Puedes manejar este caso como desees
+//           }
+//         },
+//         (error) => {
+//           console.error('Error al consultar pedido:', error);
+//           this.messageService.add({
+//             severity: 'error',
+//             summary: 'Eliminado',
+//             detail: `"${error.error}" `,
+//             life: 3000,
+//           });
+//           // Aquí puedes mostrar un mensaje de error al usuario si lo deseas
+//         }
+//       );
+//     } else {
+//       this.messageService.add({
+//         severity: 'warn',
+//         summary: 'vacío',
+//         detail: `"El código del pedido está vacío" `,
+//         life: 3000,
+//       });
+//       console.warn('El código del pedido está vacío');
+//       // Aquí puedes mostrar un mensaje al usuario indicando que debe ingresar un código
+//     }
 //   }
 
 //   ngOnInit(): void {
@@ -132,8 +219,8 @@
 //     // const carData = this.storageService.getCarrito();
 //     // this.carData = this.storageService.getCarrito();
 
-//     console.log(this.carData);
-//     console.log(this.sidebarVisible2);
+//     // console.log(this.carData);
+//     // console.log(this.sidebarVisible2);
 //     if (userData) {
 //       this.userName = userData.name;
 //       // console.log( userData)
@@ -148,9 +235,17 @@
 //     // Asignar los datos del carrito al arreglo carData
 //     if (carDataFromStorage) {
 //       this.carData = carDataFromStorage;
-//     }
+//       this.badge = this.carData.length; // Actualizar el contador badge
 
-//     console.log('Datos del carrito:', this.carData);
+//       // this.cartService.itemsInCart.subscribe((value) => {
+//       //   this.badge = value;
+//       // });
+//     }
+//     this.cartService.totalPrice$.subscribe((totalPrice) => {
+//       this.totalAmount = totalPrice;
+//     });
+
+//     // console.log('Datos del carrito:', this.carData);
 //     const isAuthenticated = this.sessionService.isAutenticated();
 //   }
 //   logout(): void {
@@ -192,26 +287,9 @@
 //     this.router.navigate(['/admin', route]); // Utiliza la navegación de Angular
 //   }
 //   redirectTo_Auth(route: string): void {
-//     // this.sidebarVisible = false;
+   
 //     this.router.navigate(['/auth', route]); // Utiliza la navegación de Angular
 //   }
-
-//   // toggleMobileMenu() {
-//   //   const mobileMenu = document.getElementById('mobileMenu');
-//   //   if (mobileMenu) {
-//   //     this.isMobileMenuOpen = !this.isMobileMenuOpen;
-
-//   //     if (this.isMobileMenuOpen) {
-//   //       mobileMenu.style.display = 'block';
-//   //     } else {
-//   //       mobileMenu.style.display = 'none';
-//   //     }
-//   //   }
-//   //   console.log(this.isMobileMenuOpen);
-//   // }
-//   // sidebarVisible() :void {
-
-//   // }
 
 //   @HostListener('window:scroll', ['$event'])
 //   onWindowScroll() {
@@ -253,6 +331,22 @@
 //     // this.router.navigateByUrl('/payment/cart');
 //   }
 
+//   // isRUTA_DISTINTE_ahome(): boolean {
+//   //   // Utiliza el evento de cambio de ruta para actualizar 'currentRoute'
+//   //   this.router.events.subscribe((event) => {
+//   //     if (event instanceof NavigationEnd) {
+//   //       this.currentRoute = event.url;
+//   //       // Llamamos a la función que manejará la visibilidad de la sección de filtros
+//   //       this.handleFilterSectionVisibility();
+//   //     }
+//   //   });
+
+//   //   // Ahora verifica si la ruta actual es '/portal/home'
+//   //   return (
+//   //     this.currentRoute === '/portal/home' ||
+//   //     this.currentRoute === '/auth/sign-up' ||  this.currentRoute === '/portal/detail'||  this.currentRoute === '/portal/detail/:id'
+//   //   );
+//   // }
 //   isRUTA_DISTINTE_ahome(): boolean {
 //     // Utiliza el evento de cambio de ruta para actualizar 'currentRoute'
 //     this.router.events.subscribe((event) => {
@@ -268,6 +362,21 @@
 //       this.currentRoute === '/portal/home' ||
 //       this.currentRoute === '/auth/sign-up'
 //     );
+//   }
+//   isruta_orderdetail(): boolean {
+//     this.currentRoute = this.router.url;
+
+//     // Utiliza el evento de cambio de ruta para actualizar 'currentRoute'
+//     this.router.events.subscribe((event) => {
+//       if (event instanceof NavigationEnd) {
+//         this.currentRoute = event.url;
+//       }
+//     });
+
+//     // Ahora verifica si la ruta actual incluye '/payment/order-detail'
+//     // return this.currentRoute.startsWith('/payment/order-detail');
+//     // return this.currentRoute === '/payment/order-detail/'
+//     return this.currentRoute.startsWith('/payment/order-detail');
 //   }
 
 //   // Nueva función para manejar la visibilidad de la sección de filtros
@@ -306,15 +415,6 @@
 //     });
 //   }
 
-//   // get cartItem(): CartItem {
-//   //   return this.cartItem();
-//   // }
-
-//   // // carrito
-
-//   // add(): void {
-//   //   this.cartService.add(this.cartService);
-//   // }
 //   get cartItem(): CartItem {
 //     return this.setCartItem();
 //   }
@@ -359,8 +459,7 @@
 //         // console.log(item);
 //         this.removeItem(item);
 //       },
-//       reject: () => {
-//       },
+//       reject: () => {},
 //     });
 //   }
 
@@ -412,6 +511,18 @@
 //   }
 
 //   finishPurchase(): void {
+//     this.sidebarVisible2 = false;
+//     const carDataFromStorage = this.storageService.getCarrito();
+
+//     // Asignar los datos del carrito al arreglo carData
+//     if (carDataFromStorage) {
+//       this.carData = carDataFromStorage;
+//     }
+
+//     // console.log('Datos del carrito:', this.carData);
+
+//     // debugger
+//     this.router.navigateByUrl('/payment/order-detail');
 //     // Lógica para finalizar la compra
 //   }
 
@@ -429,10 +540,23 @@
 
 //   // visible: boolean = false;
 
-//   position: string = 'center';
+//   // position: string = '';
 
-//   showDialog(position: string) {
-//       this.position = position;
-//       this.visible = true;
+//   // showDialog(position: string) {
+//   //   this.position = position;
+//   //   this.visible = true;
+//   // }
+
+//   // isVisible$ = this.pedidoviewService.visible$;
+//   isVisible$ = this.pedidoviewService.visible$;
+
+//   // constructor(private pedidoviewService: PedidoviewService) {}
+
+//   showDialog() {
+//     this.pedidoviewService.showDialog();
+//   }
+
+//   hideDialog() {
+//     this.pedidoviewService.hideDialog();
 //   }
 // }

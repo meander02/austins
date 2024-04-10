@@ -68,7 +68,7 @@ export class ChatComponent {
             dangerouslyAllowBrowser: true,
           });
         } else {
-          console.log('No se encontraron tokens en la respuesta.');
+          // console.log('No se encontraron tokens en la respuesta.');
         }
       },
       (error) => {

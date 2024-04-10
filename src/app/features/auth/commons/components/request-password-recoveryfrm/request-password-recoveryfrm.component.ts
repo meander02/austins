@@ -385,7 +385,7 @@ export class RequestPasswordRecoveryfrmComponent {
   //   this.pedidoviewService.hideDialog();
   // }
 
-
+  
   navigateTo(route: string) {
     // this.dialogRef.close()
     this.router.navigateByUrl(route);

@@ -56,11 +56,11 @@ export class SuccessComponent {
   // }
   ngOnInit(): void {
     // Verificar si la URL actual es la de éxito
-    console.log('url:', window.location.pathname);
+    // console.log('url:', window.location.pathname);
     if (window.location.pathname === '/payment/order-success') {
       this.token = this.route.snapshot.queryParamMap.get('token') || '';
-      console.log(this.token);
-  
+      // console.log(this.token);
+  // 
       // Obtener la suscripción y enviarla junto con el token del pedido
       navigator.serviceWorker.ready.then((registration) => {
         registration.pushManager.getSubscription().then((subscription) => {
@@ -83,8 +83,8 @@ export class SuccessComponent {
                 auth: this.arrayBufferToBase64(authKey),
               },
             };
-            console.log(subObj)
-            console.log(this.token);
+            // console.log(subObj)
+            // console.log(this.token);
             // Llamar al servicio para actualizar el estado del pedido y enviar la suscripción
             this.orderService.updateOrderStatus(this.token, subObj).subscribe(
               (response) => {

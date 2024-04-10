@@ -146,7 +146,7 @@ export class HeaderComponent implements OnInit {
   ) {
     router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
-        console.log('Ruta actual:', event.url);
+        // console.log('Ruta actual:', event.url);
         this.currentRoute = event.url;
       }
     });
@@ -166,12 +166,12 @@ export class HeaderComponent implements OnInit {
   }
 
   consultarPedido() {
-    console.log(this.codigoPedido)
+    // console.log(this.codigoPedido)
     if (this.codigoPedido.trim() !== '') {
       this.orderService.consultarPedido(this.codigoPedido).subscribe(
         (response) => {
 
-          console.log(response);
+          // console.log(response);
 
           // Verificar la estructura de la respuesta
           if ('resultado' in response && 'codigoPedido' in response.resultado) {
@@ -219,8 +219,8 @@ export class HeaderComponent implements OnInit {
     // const carData = this.storageService.getCarrito();
     // this.carData = this.storageService.getCarrito();
 
-    console.log(this.carData);
-    console.log(this.sidebarVisible2);
+    // console.log(this.carData);
+    // console.log(this.sidebarVisible2);
     if (userData) {
       this.userName = userData.name;
       // console.log( userData)
@@ -287,7 +287,7 @@ export class HeaderComponent implements OnInit {
     this.router.navigate(['/admin', route]); // Utiliza la navegación de Angular
   }
   redirectTo_Auth(route: string): void {
-    // this.sidebarVisible = false;
+   
     this.router.navigate(['/auth', route]); // Utiliza la navegación de Angular
   }
 
@@ -347,21 +347,24 @@ export class HeaderComponent implements OnInit {
   //     this.currentRoute === '/auth/sign-up' ||  this.currentRoute === '/portal/detail'||  this.currentRoute === '/portal/detail/:id'
   //   );
   // }
-  isRUTA_DISTINTE_ahome(): boolean {
-    // Utiliza el evento de cambio de ruta para actualizar 'currentRoute'
-    this.router.events.subscribe((event) => {
-      if (event instanceof NavigationEnd) {
-        this.currentRoute = event.url;
-        // Llamamos a la función que manejará la visibilidad de la sección de filtros
-        this.handleFilterSectionVisibility();
-      }
-    });
+  // isRUTA_DISTINTE_ahome(): boolean {
+  //   // Utiliza el evento de cambio de ruta para actualizar 'currentRoute'
+  //   this.router.events.subscribe((event) => {
+  //     if (event instanceof NavigationEnd) {
+  //       this.currentRoute = event.url;
+  //       // Llamamos a la función que manejará la visibilidad de la sección de filtros
+  //       this.handleFilterSectionVisibility();
+  //     }
+  //   });
 
-    // Ahora verifica si la ruta actual es '/portal/home'
-    return (
-      this.currentRoute === '/portal/home' ||
-      this.currentRoute === '/auth/sign-up'
-    );
+  //   // Ahora verifica si la ruta actual es '/portal/home'
+  //   return (
+  //     this.currentRoute === '/portal/home' ||
+  //     this.currentRoute === '/auth/sign-up'
+  //   );
+  // }
+  isRUTA_DISTINTE_ahome(): boolean {
+    return this.currentRoute === '/portal/home';
   }
   isruta_orderdetail(): boolean {
     this.currentRoute = this.router.url;

@@ -48,4 +48,15 @@ export class AuthService {
     const url = `${environment.api}/auth/verify-verification-code`; // Reemplaza con la ruta adecuada de tu backend
     return this.http.post(url, data);
   }
+
+
+  consultaUsuariosPorTelefonoOCorreo(query: string): Observable<any> {
+    const url = `${environment.api}/auth/consulta_us_tel_correo`;
+    return this.http.post(url, { query });
+  }
+
+  
+  verificca_respuest(formData: any): Observable<any> {
+    return this.http.post<any>(`${environment.api}/auth/verificca_respuest`, formData);
+  }
 }

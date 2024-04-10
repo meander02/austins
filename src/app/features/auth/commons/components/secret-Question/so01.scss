@@ -72,6 +72,7 @@
 }
 
 .button-container {
+  background-color: transparent;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -79,4 +80,10 @@
 .disabled-tabs {
   pointer-events: none;
   opacity: 0.7; // Optional: Adjust the opacity to visually indicate that the tabs are disabled
+}
+
+
+.p-tabview-panels
+{
+  margin-top: 0px;
 }

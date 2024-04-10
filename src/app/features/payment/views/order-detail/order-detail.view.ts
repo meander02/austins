@@ -442,7 +442,7 @@ export class OrderDetailView implements OnInit {
 
   removeItem(item: CartItem): void {
     this.carData = this.carData.slice();
-    console.log(this.carData.length)
+    // console.log(this.carData.length)
 
     const index = this.carData.indexOf(item);
     if (index !== -1) {
