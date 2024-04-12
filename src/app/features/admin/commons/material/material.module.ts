@@ -20,8 +20,16 @@ import { PanelModule } from 'primeng/panel';
 import { AvatarModule } from 'primeng/avatar';
 import { ButtonModule } from 'primeng/button';
 import { MenuModule } from 'primeng/menu';
+import { ChartModule } from 'primeng/chart';
+import { CalendarModule } from 'primeng/calendar';
+import { DropdownModule } from 'primeng/dropdown';
+import { TableModule } from 'primeng/table';
 @NgModule({
   exports: [
+    TableModule,
+    DropdownModule,
+    CalendarModule,
+    ChartModule,
     PanelModule,
     AvatarModule,
     ButtonModule,

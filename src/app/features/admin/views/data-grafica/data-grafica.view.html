@@ -1,0 +1,36 @@
+
+<div class="container">
+  <div class="chart-container">
+    <p-chart type="line" [data]="chartData" [options]="chartOptions"></p-chart>
+  </div>
+
+  <div class="category-selector">
+    <label for="category">Selecciona una categoría:</label>
+    <div class="icon-category-selector">
+      <p-dropdown id="category" [options]="ventas" [(ngModel)]="selectedCategory" optionLabel="categoria" placeholder="Selecciona una categoría" (ngModelChange)="selectCategory($event)">
+        <ng-template let-item pTemplate="selectedItem">
+          {{ item.categoria }}
+        </ng-template>
+
+      </p-dropdown>
+    </div>
+  </div>
+
+  <div class="date-selector">
+    <label for="start-date">Selecciona la fecha inicial:</label>
+    <p-calendar id="start-date" [(ngModel)]="selectedStartDate" dateFormat="yy-mm-dd" (ngModelChange)="selectStartDate($event)"></p-calendar>
+  </div>
+
+  <div class="date-selector">
+    <label for="future-date">Selecciona la fecha futura:</label>
+    <p-calendar id="future-date" [(ngModel)]="selectedFutureDate" dateFormat="yy-mm-dd" (ngModelChange)="selectFutureDate($event)"></p-calendar>
+  </div>
+
+  <div *ngIf="predictedSales !== null" class="prediction-result">
+    <p>Se estima que las ventas futuras para la categoría <strong>{{ selectedCategory?.categoria }}</strong> hasta la fecha {{ selectedFutureDate | date: 'yyyy-MM-dd' }} serán de <strong>{{ predictedSales }}</strong> unidades.</p>
+  </div>
+
+  <div class="chart-container">
+    <p-chart type="line" [data]="chartDataFuturas" [options]="chartOptionsFuturas"></p-chart>
+  </div>
+</div>

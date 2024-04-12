@@ -1,0 +1,36 @@
+<div class="container">
+  <p-chart type="line" [data]="chartData" [options]="chartOptions"></p-chart>
+
+  <div class="category-selector">
+    <label for="category">Selecciona una categoría:</label>
+    <!-- Utilizando el componente de PrimeNG Dropdown -->
+    <!-- <p-dropdown id="category" [options]="ventas" [(ngModel)]="selectedCategory" optionLabel="categoria" optionValue="categoria" placeholder="Selecciona una categoría" (ngModelChange)="selectCategory($event.value)"></p-dropdown> -->
+
+    <div class="category-selector">
+      <label for="category">Selecciona una categoría:</label>
+      <p-dropdown id="category" [options]="ventas" [(ngModel)]="selectedCategory" optionLabel="categoria" placeholder="Selecciona una categoría" (ngModelChange)="selectCategory($event)"></p-dropdown>
+    </div>
+
+  </div>
+
+  <div class="date-selector">
+    <label for="start-date">Selecciona la fecha inicial:</label>
+    <!-- Utilizando el componente de PrimeNG Calendar -->
+    <p-calendar id="start-date" [(ngModel)]="selectedStartDate" dateFormat="yy-mm-dd" (ngModelChange)="selectStartDate($event)"></p-calendar>
+  </div>
+
+  <div class="date-selector">
+    <label for="future-date">Selecciona la fecha futura:</label>
+    <!-- Utilizando el componente de PrimeNG Calendar -->
+    <p-calendar id="future-date" [(ngModel)]="selectedFutureDate" dateFormat="yy-mm-dd" (ngModelChange)="selectFutureDate($event)"></p-calendar>
+  </div>
+
+  <!-- <div *ngIf="predictedSales !== null" class="prediction-result">
+    <p>Se estima que las ventas futuras para la categoría <strong>{{ selectedCategory }}</strong> hasta la fecha {{ selectedFutureDate }} serán de <strong>{{ predictedSales }}</strong> unidades.</p>
+  </div> -->
+  <div *ngIf="predictedSales !== null" class="prediction-result">
+    <p>Se estima que las ventas futuras para la categoría <strong>{{ selectedCategory?.categoria }}</strong> hasta la fecha {{ selectedFutureDate | date: 'yyyy-MM-dd' }} serán de <strong>{{ predictedSales }}</strong> unidades.</p>
+
+  </div>
+
+</div>

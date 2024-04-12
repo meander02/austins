@@ -1,0 +1,105 @@
+[
+  {
+    "categoria": "Gelatina",
+    "sabor": "Frutilla",
+    "cantidad": 10,
+    "fecha": "2024-04-05"
+  },
+  {
+    "categoria": "Tarta de Queso",
+    "sabor": "Queso",
+    "cantidad": 12,
+    "fecha": "2024-04-05"
+  },
+  {
+    "categoria": "Magdalenas",
+    "sabor": "Vainilla",
+    "cantidad": 15,
+    "fecha": "2024-04-04"
+  },
+  {
+    "categoria": "Pastel de Chocolate",
+    "sabor": "Chocolate",
+    "cantidad": 12,
+    "fecha": "2024-04-06"
+  },
+  {
+    "categoria": "Pastel de Fresa",
+    "sabor": "Fresa",
+    "cantidad": 5,
+    "fecha": "2024-04-06"
+  },
+  {
+    "categoria": "Cheesecake",
+    "sabor": "Fresa",
+    "cantidad": 13,
+    "fecha": "2024-04-06"
+  },
+  {
+    "categoria": "Tiramisú",
+    "sabor": "Café",
+    "cantidad": 10,
+    "fecha": "2024-04-06"
+  },
+  {
+    "categoria": "Croissants",
+    "sabor": "Chocolate",
+    "cantidad": 20,
+    "fecha": "2024-04-07"
+  },
+  {
+    "categoria": "Pastel de Vainilla",
+    "sabor": "Vainilla",
+    "cantidad": 10,
+    "fecha": "2024-04-07"
+  },
+  {
+    "categoria": "Tarta de Manzana",
+    "sabor": "Manzana y Canela",
+    "cantidad": 16,
+    "fecha": "2024-04-07"
+  },
+  {
+    "categoria": "Cupcake",
+    "sabor": "Vainilla con Chocolate",
+    "cantidad": 18,
+    "fecha": "2024-04-08"
+  },
+  {
+    "categoria": "Galletas",
+    "sabor": "Chispas de Chocolate",
+    "cantidad": 25,
+    "fecha": "2024-04-08"
+  },
+  {
+    "categoria": "Donas",
+    "sabor": "Glaseadas",
+    "cantidad": 20,
+    "fecha": "2024-04-09"
+  },
+  {
+    "categoria": "Brownies",
+    "sabor": "Chocolate y Nueces",
+    "cantidad": 15,
+    "fecha": "2024-04-09"
+  },
+  {
+    "categoria": "Muffins",
+    "sabor": "Arándanos",
+    "cantidad": 20,
+    "fecha": "2024-04-10"
+  },
+  {
+    "categoria": "Tarta de Limón",
+    "sabor": "Limón",
+    "cantidad": 15,
+    "fecha": "2024-04-10"
+  },
+  {
+    "categoria": "Pastel de Zanahoria",
+    "sabor": "Zanahoria",
+    "cantidad": 8,
+    "fecha": "2024-04-11"
+  }
+
+]

@@ -12,6 +12,10 @@
         <mat-icon>home</mat-icon>
         <span>Inicio</span>
       </mat-list-item>
+      <mat-list-item (click)="sidenav.toggle()" (click)="redirectTo('ventas-grafica')">
+        <mat-icon> show_chart</mat-icon>
+        <span>Charts-ventas</span>
+      </mat-list-item>
       <mat-list-item [matMenuTriggerFor]="productosMenu">
         <mat-icon>store</mat-icon>
         <span>Productos</span>

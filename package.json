@@ -26,6 +26,7 @@
 		"@fortawesome/fontawesome-svg-core": "^6.5.1",
 		"@material/snackbar": "^14.0.0",
 		"aos": "^2.3.4",
+		"chart.js": "^4.4.2",
 		"dotenv": "^16.4.1",
 		"ng-zorro-antd": "^17.3.0",
 		"ngx-captcha": "^13.0.0",
@@ -33,6 +34,7 @@
 		"openai": "^4.26.0",
 		"primeicons": "^6.0.1",
 		"primeng": "^17.12.0",
+		"regression": "^2.0.1",
 		"rxjs": "~7.8.0",
 		"tslib": "^2.3.0",
 		"zone.js": "~0.14.3"
@@ -43,6 +45,7 @@
 		"@angular/compiler-cli": "^17.1.0",
 		"@types/aos": "^3.0.7",
 		"@types/jasmine": "~5.1.0",
+		"@types/regression": "^2.0.6",
 		"css-loader": "^6.9.1",
 		"jasmine-core": "~5.1.0",
 		"karma": "~6.4.0",

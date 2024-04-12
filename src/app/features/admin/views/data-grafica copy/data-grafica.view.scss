@@ -1,0 +1,42 @@
+.sales-dashboard {
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+
+    .main-graph {
+      // Estilos para el gráfico principal si lo tienes
+    }
+
+    .title {
+      font-size: 24px;
+      font-weight: bold;
+    }
+  }
+
+  .info-container {
+    .graph-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+    }
+
+    .graph-card {
+      background-color: #f8f8f8;
+      border-radius: 8px;
+      padding: 20px;
+
+      h2 {
+        font-size: 20px;
+        margin-bottom: 15px;
+      }
+
+      .category-graph,
+      .all-sales-graph,
+      .future-sales-graph {
+        // Estilos para los gráficos individuales
+      }
+    }
+  }
+}
