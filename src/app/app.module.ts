@@ -13,12 +13,22 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { NgxCaptchaModule } from 'ngx-captcha';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { ScrollServiceService } from './shared/services/scroll-service.service';
+import { SocialLoginModule, SocialAuthServiceConfig } from '@abacritt/angularx-social-login';
+import {
+  GoogleLoginProvider,
+  FacebookLoginProvider
+} from '@abacritt/angularx-social-login';
+
+
 // import AOS from 'aos'; //AOS - 1
 @NgModule({
   declarations: [
     AppComponent,
   ],
-  imports: [NgxCaptchaModule,
+  imports: [
+    SocialLoginModule
+    ,
+    NgxCaptchaModule,
     MatSnackBarModule,
     NgxUiLoaderModule,
     BrowserModule,
@@ -31,7 +41,30 @@ import { ScrollServiceService } from './shared/services/scroll-service.service';
   registrationStrategy: 'registerWhenStable:30000'
 })
   ],
-  providers: [ScrollServiceService], // Asegúrate de proveer el servicio aquí
+  // providers: [ScrollServiceService], // Asegúrate de proveer el servicio aquí
+  providers: [
+    ScrollServiceService,
+    {
+      provide: 'SocialAuthServiceConfig',
+      useValue: {
+        autoLogin: false,
+        providers: [
+          {
+            id: GoogleLoginProvider.PROVIDER_ID,
+            provider: new GoogleLoginProvider(
+              'clientId'
+            )
+          },
+          {
+            id: FacebookLoginProvider.PROVIDER_ID,
+            provider: new FacebookLoginProvider('clientId')
+          }
+        ],
+        onError: (err) => {
+          console.error(err);
+        }
+      } as SocialAuthServiceConfig,
+    }] ,
 
   // providers: [
   //   { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },

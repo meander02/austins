@@ -17,6 +17,9 @@ import { RequestPasswordRecoveryView } from './views/request-password-recovery/r
 import { NgxCaptchaModule } from 'ngx-captcha';
 import { PreguntaSecretView } from './views/pregunta-secret/pregunta-secret.view';
 
+
+
+
 @NgModule({
   declarations: [
     AuthComponent,
@@ -24,7 +27,9 @@ import { PreguntaSecretView } from './views/pregunta-secret/pregunta-secret.view
     SignUpView,
     SuccessView,RequestPasswordRecoveryView, PreguntaSecretView,
   ],
-  imports: [NgxCaptchaModule,
+  imports: [
+    
+    NgxCaptchaModule,
     CoreComponentsModule,
     MatSnackBarModule,
     CommonModule,
@@ -35,5 +40,7 @@ import { PreguntaSecretView } from './views/pregunta-secret/pregunta-secret.view
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
   ],
+
+  
 })
 export class AuthModule { }

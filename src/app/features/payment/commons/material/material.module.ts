@@ -6,8 +6,6 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms'; // Importa FormsModule
-// import { BrowserModule } from '@angular/platform-browser';
-
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
@@ -20,7 +18,6 @@ import { InputTextModule } from 'primeng/inputtext';
 import { CalendarModule } from 'primeng/calendar';
 import { DropdownModule } from 'primeng/dropdown';
 import { InputMaskModule } from 'primeng/inputmask';
-// import { PasswordModule } from 'primeng/password';
 import { CheckboxModule } from 'primeng/checkbox';
 import { PasswordModule } from 'primeng/password';
 import { KnobModule } from 'primeng/knob';
@@ -28,51 +25,41 @@ import { DividerModule } from 'primeng/divider';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { TooltipModule } from 'primeng/tooltip';
-@NgModule({
-  imports: [
-    TooltipModule,
-    InputTextareaModule,
-    RadioButtonModule,
-    DividerModule,
-    MatSnackBarModule,
-    ToastModule,
-    StepsModule,
-    BreadcrumbModule,
-    MatTabsModule,
-    InputTextModule,
-    CalendarModule,
-    DropdownModule,
-    InputMaskModule,
-    PasswordModule,
-    CheckboxModule,
-    KnobModule,
-  ], // Agrega FormsModule a los imports
+import { ColorPickerModule } from 'primeng/colorpicker';
+import { FileUploadModule } from 'primeng/fileupload';
 
-  exports: [
-    TooltipModule,
-    InputTextareaModule,
-    RadioButtonModule,
-    DividerModule,
-    MatSnackBarModule,
-    ToastModule,
-    StepsModule,
-    BreadcrumbModule,
-    FormsModule,
-    MatCardModule,
-    MatFormFieldModule,
-    MatButtonModule,
-    MatInputModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
-    MatSelectModule,
-    MatTabsModule,
-    InputTextModule,
-    CalendarModule,
-    DropdownModule,
-    InputMaskModule,
-    PasswordModule,
-    CheckboxModule,
-    KnobModule,
-  ],
+
+const compo = [
+  FileUploadModule,
+  ColorPickerModule,
+  TooltipModule,
+  InputTextareaModule,
+  RadioButtonModule,
+  DividerModule,
+  MatSnackBarModule,
+  ToastModule,
+  StepsModule,
+  BreadcrumbModule,
+  MatTabsModule,
+  InputTextModule,
+  CalendarModule,
+  DropdownModule,
+  InputMaskModule,
+  PasswordModule,
+  CheckboxModule,
+  KnobModule,
+  MatCardModule,
+  MatFormFieldModule,
+  MatButtonModule,
+  MatInputModule,
+  MatDatepickerModule,
+  MatNativeDateModule,
+  MatSelectModule,
+  FormsModule,
+];
+
+@NgModule({
+  imports: compo,
+  exports: compo,
 })
 export class MaterialModule {}

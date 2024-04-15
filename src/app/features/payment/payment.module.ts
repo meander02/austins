@@ -32,6 +32,8 @@ import { MaterialModule } from './commons/material/material.module';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ErrorInterceptor } from 'src/app/shared/interceptor/error.interceptor';
 
+// import { QaComponent } from './views/qa/qa.component';
+
 // import { OrderviewComponent } from './views/orderview/orderview.component';
 
 const MATERIAL = [

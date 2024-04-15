@@ -4,11 +4,6 @@ interface GroupedSales {
   [key: string]: number
 }
 
-// interface Venta {
-//   cantidad: number;
-//   fecha: Date;
-//   // Otras propiedades relacionadas con la venta...
-// }
 interface Venta {
   categoria: string
   cantidad: number
@@ -18,7 +13,8 @@ interface Venta {
 interface SelectedCategory {
   categoria: string
   icono: string // Nueva propiedad para almacenar el nombre del icono
-
+  cantidad: number // Agregar la propiedad 'cantidad'
+  fecha: string
   // Agrega aquí cualquier otra propiedad que tenga selectedCategory
 }
 
@@ -41,14 +37,21 @@ export class DataGraficaView implements OnInit {
   p: number = 0
   c: number = 0
   k: number = 0
+  projectedSales: string = ''
+  proyeccionVentasInfo: string = ''
+
+  ventaInicial: string = ''
+  selectedYear: string = ''
+  diasHastaFechaFutura: number = 0
   chartData: any
   chartOptions: any
   // selectedCategory: SelectedCategory | null = null;
   selectedCategory: SelectedCategory | null = null
-
+  can = 0
   // selectedCategory: string = '';
   selectedStartDate: string = ''
   selectedFutureDate: string = '' // Agrega la variable para almacenar la fecha futura seleccionada
+  date: string = '' // Agrega la variable para almacenar la fecha futura seleccionada
   predictedSales: number | null = null
 
   chartDataFuturas: any
@@ -65,6 +68,10 @@ export class DataGraficaView implements OnInit {
   }
   selectCategory(category: SelectedCategory): void {
     this.selectedCategory = category
+    // let cantidad: number = this.selectedCategory.cantidad;
+    this.can = this.selectedCategory.cantidad
+    // console.log('selectedCategory:', this.selectedCategory.cantidad)
+    this.updatePredictions()
     this.updatePredictions()
   }
 
@@ -75,6 +82,48 @@ export class DataGraficaView implements OnInit {
 
   selectFutureDate(date: string): void {
     this.selectedFutureDate = date
+    this.updatePredictions()
+  }
+  selectotraDate(date: string): void {
+    // Verificar si this.predictedSales es null y asignarle un valor predeterminado si es necesario
+    const initialSales = this.predictedSales ?? 0
+
+    // Convertir la cadena de fecha a un objeto de fecha
+    // const selectedDate = new Date(date);
+    const selectedDate1 = new Date(this.selectedFutureDate)
+    const selectedDate2year = new Date(date)
+
+    //     // Obtener el año, mes y día seleccionados del objeto de fecha
+    const selectedYear = selectedDate2year.getFullYear()
+    const selectedMonth = selectedDate1.getMonth()
+    const selectedDay = selectedDate1.getDate()
+
+    //     // Obtener el año inicial a partir de la fecha futura seleccionada
+    const initialDate = new Date(this.selectedFutureDate)
+    const initialYear = initialDate.getFullYear()
+
+    //     // Calcular la diferencia en años entre el año seleccionado y el año inicial
+    const differenceInYears = selectedYear - initialYear
+
+    //     // Obtener la tasa de crecimiento
+    const growthRate = this.k
+
+    //     // Calcular la proyección de ventas utilizando la fórmula de crecimiento exponencial
+    //     // const projectedSales = initialSales * Math.pow((1 + growthRate), differenceInYears);
+    //     // Calcular la proyección de ventas utilizando la fórmula de crecimiento exponencial
+    const projectedSales =
+      initialSales * Math.pow(1 + growthRate, differenceInYears)
+
+    // // Redondear la proyección de ventas a dos decimales
+    // const roundedProjectedSales = Math.round(projectedSales * 100) / 100; // Redondea a dos decimales
+    const roundedProjectedSales = projectedSales.toFixed(1)
+    this.selectedYear=`${selectedYear}`
+    this.proyeccionVentasInfo = ` Proyección de ventas para el ${selectedDay} de ${
+      selectedMonth + 1
+    } de ${selectedYear}:
+ es de ${roundedProjectedSales} , con  la tasa de crecimiento de =${growthRate} `
+
+    this.projectedSales = roundedProjectedSales;
     this.updatePredictions()
   }
 
@@ -123,18 +172,20 @@ export class DataGraficaView implements OnInit {
   }
 
   // Función para predecir las ventas futuras utilizando la ecuación diferencial de crecimiento exponencial
-// Función para predecir las ventas futuras utilizando un modelo de crecimiento lineal
-predecirVentasFuturas(ventaInicial: any, k: number, t: number): number {
-  const c = ventaInicial.cantidad; // Ventas iniciales
-  return c + k * t; // Utilizamos un modelo de crecimiento lineal en lugar de exponencial
-}
-
+  // Función para predecir las ventas futuras utilizando un modelo de crecimiento lineal
+  predecirVentasFuturas(ventaInicial: any, k: number, t: number): number {
+    const c = ventaInicial.cantidad // Ventas iniciales
+    this.k = k
+    // this.t=t
+    this.c = c
+    return c + k * t // Utilizamos un modelo de crecimiento lineal en lugar de exponencial
+  }
 
   // Función para actualizar las predicciones de ventas
   updatePredictions(): void {
-    console.log('selectedCategory:', this.selectedCategory)
-    console.log('selectedStartDate:', this.selectedStartDate)
-    console.log('selectedFutureDate:', this.selectedFutureDate)
+    // console.log('selectedCategory:', this.selectedCategory)
+    // console.log('selectedStartDate:', this.selectedStartDate)
+    // console.log('selectedFutureDate:', this.selectedFutureDate)
 
     if (
       this.selectedCategory &&
@@ -144,6 +195,7 @@ predecirVentasFuturas(ventaInicial: any, k: number, t: number): number {
       // Encontrar la venta inicial correspondiente a la categoría seleccionada
       const ventaInicial = this.ventas.find(
         (venta) => venta.categoria === this.selectedCategory?.categoria,
+        // this.ventaInicial=venta.categoria
       )
 
       if (!ventaInicial) {
@@ -151,6 +203,7 @@ predecirVentasFuturas(ventaInicial: any, k: number, t: number): number {
         this.predictedSales = null
         return
       }
+      // this.ventaInicial=ventaInicial
 
       const fechaInicio = new Date(this.selectedStartDate)
       const fechaFutura = new Date(this.selectedFutureDate)
@@ -161,6 +214,7 @@ predecirVentasFuturas(ventaInicial: any, k: number, t: number): number {
       const diasHastaFechaFutura = Math.ceil(
         tiempoTranscurrido / (1000 * 60 * 60 * 24),
       )
+      this.diasHastaFechaFutura = diasHastaFechaFutura
       console.log('diasHastaFechaFutura:', diasHastaFechaFutura)
 
       if (diasHastaFechaFutura > 0) {
@@ -182,6 +236,7 @@ predecirVentasFuturas(ventaInicial: any, k: number, t: number): number {
           diasHastaFechaFutura,
         )
         this.predictedSales = Math.round(this.predictedSales)
+
         console.log('predictedSales:', this.predictedSales)
       } else {
         this.predictedSales = null

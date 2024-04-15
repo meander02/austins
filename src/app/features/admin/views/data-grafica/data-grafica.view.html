@@ -1,36 +1,178 @@
-
 <div class="container">
   <div class="chart-container">
     <p-chart type="line" [data]="chartData" [options]="chartOptions"></p-chart>
   </div>
+  <div class="card">
+    <p-table [tableStyle]="{ 'min-width': '50rem' }">
+      <ng-template pTemplate="header">
+        <tr>
+          <th>_____</th>
+          <th>P</th>
+          <th>t</th>
+          <!-- <th>Quantity</th> -->
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-product>
+        <!-- Puedes agregar más filas estáticas según sea necesario -->
+      </ng-template>
+    </p-table>
+    <div class="card">
+      <p class="m-0"></p>
+      <table>
+        <tr>
+          <td><span class="text-danger">C1</span></td>
+          <td style="width: 90px"></td>
+          <td></td>
+          <td><span class="text-danger">P={{can}}</span></td>
+          <td style="width: 90px"></td>
+          <td></td>
+          <td>
+            <span class="text-danger"
+              >t={{ selectedStartDate | date: 'medium' }}</span
+            >
+          </td>
+          <td></td>
+        </tr>
+        <tr>
+          <td><span class="text-danger">p1</span></td>
+          <td style="width: 90px"></td>
+          <td></td>
+          <td><span class="text-danger">P={{ predictedSales }}</span></td>
+          <td style="width: 90px"></td>
+          <td></td>
+          <td>
+            <span class="text-danger"
+              >t={{ selectedFutureDate | date: 'medium' }}</span
+            >
+          </td>
+          <td></td>
+        </tr>
+      </table>
 
-  <div class="category-selector">
-    <label for="category">Selecciona una categoría:</label>
-    <div class="icon-category-selector">
-      <p-dropdown id="category" [options]="ventas" [(ngModel)]="selectedCategory" optionLabel="categoria" placeholder="Selecciona una categoría" (ngModelChange)="selectCategory($event)">
-        <ng-template let-item pTemplate="selectedItem">
-          {{ item.categoria }}
-        </ng-template>
-
-      </p-dropdown>
+      <p-divider data-aos="fade-zoom-in"
+      data-aos-easing="ease-in-back"
+      data-aos-delay="300"
+      data-aos-offset="0" align="center" type="dotted">
+        <b>{{ selectedCategory?.categoria }}</b>
+      </p-divider>
     </div>
   </div>
 
-  <div class="date-selector">
-    <label for="start-date">Selecciona la fecha inicial:</label>
-    <p-calendar id="start-date" [(ngModel)]="selectedStartDate" dateFormat="yy-mm-dd" (ngModelChange)="selectStartDate($event)"></p-calendar>
+  <div class="row">
+    <div class="form-field">
+      <label for="category">Selecciona una categoría:</label>
+      <p-dropdown
+        id="category"
+        [options]="ventas"
+        [(ngModel)]="selectedCategory"
+        optionLabel="categoria"
+        placeholder="Selecciona una categoría"
+        (ngModelChange)="selectCategory($event)"
+      >
+        <ng-template let-item pTemplate="selectedItem">
+          {{ item.categoria }}
+        </ng-template>
+      </p-dropdown>
+    </div>
+    <div class="form-field">
+      <label for="start-date">Selecciona la fecha inicial:</label>
+      <p-calendar
+        id="start-date"
+        [(ngModel)]="selectedStartDate"
+        dateFormat="yy-mm-dd"
+        (ngModelChange)="selectStartDate($event)"
+      ></p-calendar>
+    </div>
   </div>
 
-  <div class="date-selector">
-    <label for="future-date">Selecciona la fecha futura:</label>
-    <p-calendar id="future-date" [(ngModel)]="selectedFutureDate" dateFormat="yy-mm-dd" (ngModelChange)="selectFutureDate($event)"></p-calendar>
-  </div>
+  <div class="row">
+    <div class="form-field">
+      <label for="future-date">Selecciona la fecha futura:</label>
+      <p-calendar
+        id="future-date"
+        [(ngModel)]="selectedFutureDate"
+        dateFormat="yy-mm-dd"
+        (ngModelChange)="selectFutureDate($event)"
+      ></p-calendar>
+    </div>
+    <div class="form-field" *ngIf="predictedSales!>0">
+      <label for="future-venta">Ventas hasta esta fecha:</label>
+      <input
+        class="infiou"
+        pInputText
+        type="text"
+        required
+        [(ngModel)]="predictedSales"
+      />
 
-  <div *ngIf="predictedSales !== null" class="prediction-result">
-    <p>Se estima que las ventas futuras para la categoría <strong>{{ selectedCategory?.categoria }}</strong> hasta la fecha {{ selectedFutureDate | date: 'yyyy-MM-dd' }} serán de <strong>{{ predictedSales }}</strong> unidades.</p>
+      <small
+        *ngIf="predictedSales !== null && predictedSales !== undefined && predictedSales > can"
+      >
+        Hubo un incremento del {{ ((predictedSales - can) ) }} ventas.
+      </small>
+    </div>
   </div>
+  <p-divider data-aos="fade-up-right"  align="center" type="dotted">
+    <b>de la misma categoria: {{ selectedCategory?.categoria }}</b>
+  </p-divider>
 
-  <div class="chart-container">
-    <p-chart type="line" [data]="chartDataFuturas" [options]="chartOptionsFuturas"></p-chart>
+  <div class="row">
+    <div class="form-field">
+      <label for="future-date">Selecciona la otra fecha futura:</label>
+
+      <p-calendar
+        [(ngModel)]="date"
+        view="year"
+        dateFormat="yy"
+        inputId="yearpicker"
+        (ngModelChange)="selectotraDate($event)"
+      ></p-calendar>
+    </div>
+    <div class="form-field" *ngIf="proyeccionVentasInfo !== ''">
+      <label for="future-venta">
+        para el año :{{selectedYear}} el numero de ventas :</label
+      >
+      <input
+        class="infiou"
+        pInputText
+        type="text"
+        required
+        [(ngModel)]="projectedSales"
+      />
+    </div>
   </div>
+  <!-- <div class="row" *ngIf="proyeccionVentasInfo !== ''" > -->
+    <div data-aos="fade-down-left" class="row" *ngIf="predictedSales!>0">
+      <div class="full-width">
+        <div class="card flex justify-content-center">
+          <span class="p-float-label">
+            <textarea id="float-input" rows="5" cols="100" pInputTextarea>
+              Se estima que las ventas futuras para la categoría
+              {{ selectedCategory?.categoria }}
+              hasta la fecha {{ selectedFutureDate | date: 'yyyy-MM-dd' }} serán de
+              {{ predictedSales }} unidades.
+              Se necesitan {{ diasHastaFechaFutura }} días para alcanzar {{ predictedSales }} unidades.
+              {{proyeccionVentasInfo}}
+            </textarea>
+            <label for="float-input">Resumen</label>
+          </span>
+        </div>
+      </div>
+    </div>
+
+
+
+  <!-- <div *ngIf="predictedSales !== null" >
+      <p>
+
+        Se estima que las ventas futuras para la categoría
+        <strong>{{ selectedCategory?.categoria }} <br /></strong> hasta la fecha
+        {{ selectedFutureDate | date: 'yyyy-MM-dd' }} serán de
+        <strong>{{ predictedSales }}</strong><br />
+        unidades. Se necesitan <strong>{{ diasHastaFechaFutura }}</strong> días para alcanzar {{ predictedSales }} unidades.
+      </p>
+      <p *ngIf="proyeccionVentasInfo !== ''" class="form-field">
+        Y se estima que para la {{ proyeccionVentasInfo }}
+      </p>
+    </div> -->
 </div>

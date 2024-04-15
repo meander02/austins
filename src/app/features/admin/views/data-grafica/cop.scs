@@ -56,3 +56,20 @@
   height: auto;
   margin: 20px;
 }
+
+
+.row {
+  margin-top: 20px;
+  display: flex;
+  // justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  margin-left: 10px;
+  // width: 28%; /* Ajusta para que dos campos entren en una fila */
+  width: 38%; /* Ajusta para que dos campos entren en una fila */
+  // width: 48%; /* Ajusta para que dos campos entren en una fila */
+}

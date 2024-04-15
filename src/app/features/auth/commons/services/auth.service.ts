@@ -55,8 +55,15 @@ export class AuthService {
     return this.http.post(url, { query });
   }
 
-  
+
   verificca_respuest(formData: any): Observable<any> {
     return this.http.post<any>(`${environment.api}/auth/verificca_respuest`, formData);
+  }
+
+  // cambiarContrasena_(formData: any): Observable<any> {
+  //   return this.http.post<any>(`${environment.api}/auth/cambiarContrasena_`, formData);
+  // }
+  cambiarContrasena_(formData: any): Observable<any> {
+    return this.http.post<any>(`${environment.api}/auth/cambiarContrasena_`, formData);
   }
 }

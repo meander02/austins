@@ -14,6 +14,7 @@
   display: flex;
   flex-direction: column;
   width: 48%; /* Ajusta para que dos campos entren en una fila */
+  
 }
 
 .form-field.full-width {
@@ -72,7 +73,22 @@ b,
   font-size: 0.9rem; /* Reducir el tamaño del texto */
   font-weight: bold; /* Negrita */
 }
-
+// class="p-ripple p-element p-button p-component p-fileupload-choose"
+.p-fileupload-choose {
+  background-color: #ff6112;
+  border: 2px solid transparent; /* Añadir un borde transparente para la animación */
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 8px; /* Radio de borde */
+  overflow: hidden; /* Ocultar cualquier contenido que se desborde */
+  position: relative; /* Añadir posición relativa para el efecto de subrayado */
+}
 .btn-finish {
   background-color: #ff6112;
   border: 2px solid transparent; /* Añadir un borde transparente para la animación */

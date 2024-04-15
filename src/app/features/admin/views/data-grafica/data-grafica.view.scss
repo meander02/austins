@@ -1,58 +1,110 @@
-/* Colores */
-:root {
-  --color-primario: #ff7f50; /* Naranja */
-  --color-secundario: #f4a460; /* Arena */
-  --color-fondo: #fff8dc; /* Blanco almendra */
-}
+// Variables
+$color-primary: #ff0880; // Naranja
+$color-secondary: #ff8686; // Arena
+$color-background: #ffffff; // Blanco almendra
 
-/* Estructura */
+// Estructura
 .container {
   margin-top: 80px;
-  // padding: 20px;
-  // border: 1px solid var(--color-secundario);
-  // border-radius: 5px
   height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  background-color: var(--color-fondo);
+  background-color: $color-background;
+  padding: 20px;
+  border: 1px solid $color-secondary;
+  border-radius: 5px;
+
+  .chart-container {
+    flex: 1;
+  }
+
+  .card {
+    margin-top: 20px;
+    padding: 20px;
+    // border-style: dotted;
+    border: 3px dotted $color-secondary;
+    border-radius: 5px;
+    background-color: #ffffff;
+  }
+
+  .category-selector,
+  .date-selector,
+  .prediction-result {
+    margin-top: 20px;
+  }
+
+  // Personalización
+  .icon-category-selector .pi {
+    color: $color-primary;
+  }
+
+  // Si necesitas agregar un logo
+  .logo {
+    width: 100px;
+    height: auto;
+    margin: 20px;
+  }
+
+  .row {
+    display: flex;
+    margin-top: 20px;
+
+    .form-field {
+      display: flex;
+      flex-direction: column;
+      margin-left: 10px;
+      width: 40%;
+      input[type="text"],
+      input[type="time"],
+      input[type="email"],
+      input[type="tel"],
+      input[type="date"] {
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        margin-top: 5px;
+      }
+
+      &:first-child {
+        margin-left: 0;
+      }
+    }
+  }
 }
 
-.chart-container {
-  flex: 1;
+.full-width {
+  width: 100%;
+}
+input[type="text"],
+input[type="time"],
+input[type="email"],
+input[type="tel"],
+input[type="date"] {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-top: 5px;
+}
+.infiou {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-top: 5px;
+  max-width: 12;
 }
 
-.category-selector,
-.date-selector,
-.prediction-result {
-  margin: 20px;
+label {
+  font-weight: bold;
+}
+b,
+.p-divide,
+.lab {
+  color: #ffa500; /* Color del texto */
+  // font-weight: bold;
 }
 
-.category-selector,
-.date-selector {
-  display: flex;
-  flex-direction: column;
-}
-
-.category-selector label,
-.date-selector label {
-  margin-bottom: 5px;
-}
-
-.prediction-result {
-  border: 1px solid var(--color-secundario);
-  padding: 10px;
-  background-color: #f9f9f9; /* Mantenemos el mismo fondo */
-}
-
-/* Personalización */
-.icon-category-selector .pi {
-  color: var(--color-primario);
-}
-
-/* Si necesitas agregar un logo */
-.logo {
-  width: 100px;
-  height: auto;
-  margin: 20px;
+.bel {
+  font-size: 0.9rem;
+  // color: #ffa500;
 }

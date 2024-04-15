@@ -30,10 +30,12 @@ import { DialogModule } from 'primeng/dialog';
 
 import { TabViewModule } from 'primeng/tabview';
 
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { MessagesModule } from 'primeng/messages';
 @NgModule({
-  imports: [MatSnackBarModule,ToastModule,StepsModule,BreadcrumbModule,MatTabsModule,InputTextModule,CalendarModule,DropdownModule,InputMaskModule,PasswordModule,CheckboxModule,KnobModule,InputOtpModule,ConfirmPopupModule,DialogModule,TabViewModule], // Agrega FormsModule a los imports
+  imports: [MessagesModule,ProgressSpinnerModule,MatSnackBarModule,ToastModule,StepsModule,BreadcrumbModule,MatTabsModule,InputTextModule,CalendarModule,DropdownModule,InputMaskModule,PasswordModule,CheckboxModule,KnobModule,InputOtpModule,ConfirmPopupModule,DialogModule,TabViewModule], // Agrega FormsModule a los imports
 
-  exports: [TabViewModule,DialogModule,MatSnackBarModule,ToastModule,StepsModule,BreadcrumbModule, FormsModule,MatCardModule,MatFormFieldModule,MatButtonModule,MatInputModule, MatDatepickerModule, MatNativeDateModule,MatSelectModule,MatTabsModule,InputTextModule,CalendarModule,DropdownModule,InputMaskModule,PasswordModule,CheckboxModule,KnobModule,InputOtpModule,ConfirmPopupModule],
+  exports: [MessagesModule,ProgressSpinnerModule,TabViewModule,DialogModule,MatSnackBarModule,ToastModule,StepsModule,BreadcrumbModule, FormsModule,MatCardModule,MatFormFieldModule,MatButtonModule,MatInputModule, MatDatepickerModule, MatNativeDateModule,MatSelectModule,MatTabsModule,InputTextModule,CalendarModule,DropdownModule,InputMaskModule,PasswordModule,CheckboxModule,KnobModule,InputOtpModule,ConfirmPopupModule],
 
 })
 export class MaterialModule { }

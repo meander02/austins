@@ -28,6 +28,8 @@ export class OrderComponent {
   modoOptions: string[] = ['cuadrado', 'redondo', 'corazon', 'otro']; // Opciones de modo de repostería
   selectedModo: string | undefined; // Variable para el modo seleccionado
   modoPersonalizado: string | undefined; // Variable para el modo personalizado
+  color_personalizado: string | undefined; // Variable para el modo personalizado
+  design_personalizado: string | undefined; // Variable para el modo personalizado
 
   selectedModosabor: string = ''; // Variable para almacenar el modo seleccionado
   // saborpersonalizado: string = ''; // Variable para almacenar las instrucciones especiales

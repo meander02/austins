@@ -58,7 +58,6 @@
 
       <input
         id="disabled-input"
-
         pTooltip="nos comunicaremos mediante este numero"
         tooltipPosition="bottom"
         pInputText
@@ -211,10 +210,52 @@
       />
     </div>
   </div>
+  <p-divider align="left" type="solid">
+    <b>personaliza</b>
+  </p-divider>
+  <div class="row">
+    <div class="form-field">
+      <label for="">tematica-color</label>
+      <!-- <form > -->
+      <p-colorPicker [(ngModel)]="color_personalizado"></p-colorPicker>
+      <!-- </form> -->
+    </div>
+    <div class="form-field">
+
+        <p-toast></p-toast>
+        <p-fileUpload
+          class="btn"
+          mode="basic"
+          chooseLabel="Choose"
+          name="demo[]"
+          url="https://www.primefaces.org/cdn/api/upload.php"
+          accept="image/*"
+        
+        ></p-fileUpload>
+ 
+    </div>
+  </div>
+
+  <div class="card flex justify-content-center">
+    <span class="p-float-label">
+      <textarea
+        pTooltip="alguna figura"
+        tooltipPosition="right"
+        class="textarea"
+        id="float-input"
+        rows="4"
+        style="width: 100%"
+        pInputTextarea
+        [(ngModel)]="design_personalizado"
+        placeholder="Por ejemplo: describe la figura o forma del pastel, si prefieres rosas de crema o artificiales, alguna temática específica, favor de proporcionar detalles y adjuntar fotos del diseño deseado."
+
+      ></textarea>
+      <label for="float-input">Instrucciones diseño</label>
+    </span>
+  </div>
+
   <div class="btn">
-    <button class="btn-finish" (click)="enviarPedido()">
-      Enviar Pedido
-    </button>
+    <button class="btn-finish" (click)="enviarPedido()">Enviar Pedido</button>
   </div>
   <!-- <button (click)="enviarPedido()">Enviar Pedido</button> -->
 </div>

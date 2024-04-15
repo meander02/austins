@@ -16,6 +16,7 @@ import { ConfirmationService, MessageService } from 'primeng/api'
 import { NgxUiLoaderService } from 'ngx-ui-loader'
 import { ConfirmPopup } from 'primeng/confirmpopup'
 import { ConfirmDialog } from 'primeng/confirmdialog'
+import { GoogleLoginProvider, SocialAuthService } from '@abacritt/angularx-social-login'
 // import { ConfirmationService, ConfirmPopup } from 'primeng/api';
 
 
@@ -46,7 +47,45 @@ export class SignInFormComponent implements OnInit {
   // constructor() {}
 
   // @ViewChild(ConfirmPopup) confirmPopup!: ConfirmPopup
+
+
+
+  // constructor(private authService: SocialAuthService) { }
+
+  // refreshToken(): void {
+  //   this.authService.refreshAccessToken(GoogleLoginProvider.PROVIDER_ID);
+  // }
+  // signInWithGoogle(): void {
+  //   this.authService.signIn(GoogleLoginProvider.PROVIDER_ID).then((userData) => {
+  //     // Aquí puedes manejar los datos del usuario devueltos por Google después de iniciar sesión
+  //     const signInRequest: ISingInRequest = {
+  //       email: userData.email || '', // Si userData.email no está disponible, se asignará una cadena vacía
+  //       password: '', // Aquí puedes dejar la contraseña vacía ya que no la necesitas para el inicio de sesión con Google
+  //     };
+  //     this.formData.emit(signInRequest);
+  //   }).catch((error) => {
+  //     // Manejo de errores
+  //     console.error('Error al iniciar sesión con Google:', error);
+  //   });
+  // }
+  
+  // signInWithGoogle(): void {
+  //   this.authService.signIn(GoogleLoginProvider.PROVIDER_ID).then((userData) => {
+  //     // Aquí puedes manejar los datos del usuario devueltos por Google después de iniciar sesión
+  //     const signInRequest: ISingInRequest = {
+  //       // Aquí puedes construir el objeto ISingInRequest con los datos del usuario si es necesario
+  //       // Por ejemplo:
+  //       // username: userData.email,
+  //       // password: '', // No necesitas la contraseña si estás usando OAuth para iniciar sesión
+  //     };
+  //     this.formData.emit(signInRequest);
+  //   }).catch((error) => {
+  //     // Manejo de errores
+  //     console.error('Error al iniciar sesión con Google:', error);
+  //   });
+  // }
   constructor(
+    private authService: SocialAuthService,
     private ngxService: NgxUiLoaderService,
     private confirmationService: ConfirmationService,
     private dialogRef: DynamicDialogRef,
@@ -197,43 +236,22 @@ export class SignInFormComponent implements OnInit {
   }
   showDefaultButtons: boolean = false;
 
-  // SELEMETODO(event: Event) {
-  //   this.showDefaultButtons = false; // hide default buttons
-  //   this.confirmationService.confirm({
-  //     target: event.target as EventTarget,
-  //   });
-  // }
 
-
-
-  // @ViewChild(ConfirmPopup) confirmPopup!: ConfirmPopup;
-
-  // accept() {
-  //   this.confirmPopup.accept();
-  // }
-
-  // reject() {
-  //   this.confirmPopup.reject();
-  // }
-
-  // SELEMETODO(event: Event) {
-  //   this.confirmationService.confirm({
-
-  //   });
-  // }
   showDialog: boolean = false;
+  logingf: boolean = true;
 
-  // constructor(
-  //   private confirmationService: ConfirmationService,
-  //   private router: Router
-  // ) { }
 
   showConfirmationDialog() {
+    // this.dialogRef.close() // Cierra el modal
+
+    // this.dialogRef.close(); // Cierra el modal
     this.showDialog = true;
+    this.logingf = false;
   }
 
+
   navigateTo(route: string) {
-    this.dialogRef.close() 
+    this.dialogRef.close()
     this.router.navigateByUrl(route);
     this.showDialog = false; // Opcional: cerrar el diálogo después de navegar
   }
