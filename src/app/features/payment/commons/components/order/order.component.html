@@ -189,7 +189,7 @@
   </div>
   <div class="row">
     <div class="form-field">
-      <label for="dia">Día:</label>
+      <label for="dia">Día - entrega:</label>
       <input
         type="date"
         id="dia"
@@ -198,7 +198,7 @@
         [(ngModel)]="dia"
       />
     </div>
-    <div class="form-field">
+    <!-- <div class="form-field">
       <label for="hora">Hora:</label>
       <input
         type="time"
@@ -208,32 +208,59 @@
         required
         [(ngModel)]="hora"
       />
+    </div> -->
+    <div class="form-field">
+      <label for="hora">Hora:</label>
+      <input
+        type="time"
+        id="hora"
+        min="08:00"
+        max="20:00"
+        required
+        [(ngModel)]="hora"
+        (change)="validarHora()"
+      />
     </div>
+
   </div>
   <p-divider align="left" type="solid">
     <b>personaliza</b>
   </p-divider>
   <div class="row">
-    <div class="form-field">
-      <label for="">tematica-color</label>
-      <!-- <form > -->
-      <p-colorPicker [(ngModel)]="color_personalizado"></p-colorPicker>
-      <!-- </form> -->
-    </div>
-    <div class="form-field">
+    <!-- <div class="form-field"> -->
+      <!-- <label for="">tematica-color</label> -->
+      <!-- <p-colorPicker [(ngModel)]="color_personalizado"></p-colorPicker> -->
+      <div class="form-field">
+        <label for="tematicaColor">Tematica-Color:</label>
+        <p-colorPicker [(ngModel)]="color_personalizado" id="tematicaColor" styleClass="default-color"></p-colorPicker>
+      </div>
 
-        <p-toast></p-toast>
+
+    <!-- </div> -->
+    <!-- <div class="form-field">
+
         <p-fileUpload
           class="btn"
           mode="basic"
-          chooseLabel="Choose"
+          chooseLabel="diseño"
           name="demo[]"
           url="https://www.primefaces.org/cdn/api/upload.php"
           accept="image/*"
-        
+
         ></p-fileUpload>
- 
+
+    </div> -->
+    <div class="form-field">
+      <p-fileUpload
+        class="btn"
+        mode="basic"
+        chooseLabel="diseño"
+        name="demo[]"
+        accept="image/*"
+        (onSelect)="handleFileInput($event)"
+      ></p-fileUpload>
     </div>
+
   </div>
 
   <div class="card flex justify-content-center">
@@ -248,14 +275,27 @@
         pInputTextarea
         [(ngModel)]="design_personalizado"
         placeholder="Por ejemplo: describe la figura o forma del pastel, si prefieres rosas de crema o artificiales, alguna temática específica, favor de proporcionar detalles y adjuntar fotos del diseño deseado."
-
       ></textarea>
       <label for="float-input">Instrucciones diseño</label>
     </span>
   </div>
-
+  <!-- Campo para ingresar un mensaje personalizado en el pastel -->
+<div class="card flex justify-content-center">
+  <label for="mensajePersonalizado">Mensaje personalizado:</label>
+  <span class="p-float-label">
+     <textarea
+     pInputTextarea
+     class="textarea"
+    id="mensajePersonalizado"
+    rows="2"
+    style="width: 100%"
+    placeholder="Mensaje personalizado en el pastel"
+    [(ngModel)]="mensajePersonalizado"
+  ></textarea>
+  </span>
+</div>
   <div class="btn">
     <button class="btn-finish" (click)="enviarPedido()">Enviar Pedido</button>
   </div>
-  <!-- <button (click)="enviarPedido()">Enviar Pedido</button> -->
+
 </div>

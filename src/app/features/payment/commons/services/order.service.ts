@@ -7,7 +7,6 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class OrderService {
-  // private apiUrl = 'http://ejemplo.com/api/pedidos'; // Reemplaza con la URL de tu servidor de pedidos
 
   constructor(private http: HttpClient) { }
 

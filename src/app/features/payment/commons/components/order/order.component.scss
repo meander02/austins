@@ -14,7 +14,7 @@
   display: flex;
   flex-direction: column;
   width: 48%; /* Ajusta para que dos campos entren en una fila */
-  
+
 }
 
 .form-field.full-width {
@@ -123,4 +123,7 @@ b,
 
 .btn-finish:hover::after {
   transform: scaleX(1); /* Ampliar el subrayado al ancho completo */
+}
+.default-color {
+  background-color: #FFFFFF; /* Cambia #FFFFFF por el color deseado */
 }

@@ -45,6 +45,7 @@ import { InputGroupModule } from 'primeng/inputgroup';
 import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
 import { InputTextModule } from 'primeng/inputtext';
 import { TimelineModule } from 'primeng/timeline';
+import { PdfGenerateComponent } from './pdf-generate/pdf-generate.component';
 @NgModule({
   declarations: [
     ChatComponent,
@@ -56,6 +57,7 @@ import { TimelineModule } from 'primeng/timeline';
     StepsComponent,
     ProgressBarComponent,
     PedidoFloatComponent,
+    PdfGenerateComponent,
   ],
   exports: [
     TimelineModule ,
