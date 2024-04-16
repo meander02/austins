@@ -281,7 +281,6 @@ subscribeToNotifications() {
             modoPersonalizado: this.modoPersonalizado,
             saborpersonalizado: this.saborpersonalizado,
             color_personalizado: this.color_personalizado,
-            archivo: this.selectedFile, // Aquí incluyes el archivo seleccionado
             suscripcion: datosSuscripcion,
           }
           // const formDataImagen = new FormData();
@@ -320,6 +319,7 @@ subscribeToNotifications() {
               detail: 'Pedido enviado con éxito.',
             });
         
+            console.log(response)
             // Aquí puedes obtener el ID devuelto por el servidor
             const pedidoId = response.id;
             this.actualizarImagenPedido(pedidoId);
