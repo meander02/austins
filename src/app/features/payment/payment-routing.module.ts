@@ -4,6 +4,7 @@ import { PaymentComponent } from './payment.component';
 import { CartView } from './views/cart/cart.view';
 import { OrderDetailView } from './views/order-detail/order-detail.view';
 import { paysuccess } from './views/pay-success/pay-success.view';
+import { AccepOrderComponent } from './views/accep-order/accep-order.component';
 
 const routes: Routes = [
   {
@@ -21,6 +22,10 @@ const routes: Routes = [
       {
         path: 'order-success',
         component: paysuccess,
+      },
+      {
+        path: 'order-acc',
+        component: AccepOrderComponent,
       },
 
     ],

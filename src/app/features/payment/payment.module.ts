@@ -31,6 +31,7 @@ import { OrderviewView } from './views/orderview/orderview.view';
 import { MaterialModule } from './commons/material/material.module';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ErrorInterceptor } from 'src/app/shared/interceptor/error.interceptor';
+import { AccepOrderComponent } from './views/accep-order/accep-order.component';
 
 // import { QaComponent } from './views/qa/qa.component';
 
@@ -60,7 +61,7 @@ const MATERIAL = [
 ];
 
 @NgModule({
-  declarations: [CartView, PaymentComponent, OrderDetailView,paysuccess, OrderviewView],
+  declarations: [CartView, PaymentComponent, OrderDetailView,paysuccess, OrderviewView, AccepOrderComponent],
   imports: [
     ...MATERIAL,
     PaymentRoutingModule,

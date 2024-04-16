@@ -7,7 +7,8 @@ import { catchError, throwError } from 'rxjs'
 import { NotificService } from 'src/app/shared/services/notific.service'
 import { SwPush } from '@angular/service-worker'
 // import { PedidoviewService } from '../../../../../shared/services/pedidoview.service';
-import { NgxUiLoaderService } from 'ngx-ui-loader';
+import { NgxUiLoaderService } from 'ngx-ui-loader'
+import { Router } from '@angular/router'
 
 interface PasteleriaFlavor {
   name: string
@@ -22,7 +23,6 @@ interface PasteleriaFlavor {
   providers: [DialogService, ConfirmationService, MessageService],
 })
 export class OrderComponent {
-
   // Datos del Cliente
   nombre: string | undefined
   apellido1: string | undefined
@@ -55,27 +55,28 @@ export class OrderComponent {
   selectedModosabor: string = ''
 
   readonly VAPID_PUBLIC_KEY =
-  'BFYtOg9-LQWHmObZKXm4VIV2BImn5nBrhz4h37GQpbdj0hSBcghJG7h-wldz-fx9aTt7oaqKSS3KXhA4nXf32pY'
+    'BFYtOg9-LQWHmObZKXm4VIV2BImn5nBrhz4h37GQpbdj0hSBcghJG7h-wldz-fx9aTt7oaqKSS3KXhA4nXf32pY'
 
-subscribeToNotifications() {
-  this.swPush
-    .requestSubscription({
-      serverPublicKey: this.VAPID_PUBLIC_KEY,
-    })
-    .then((sub) => {
-      // console.log('Token de suscripción:', sub.toJSON())
-      // Enviar la suscripción al backend
-      this.pushNotificationService.sendSubscription(sub.toJSON()).subscribe(
-        (res) => console.log('Suscripción enviada al servidor:', res),
-        (error) =>
-          console.error('Error al enviar la suscripción al servidor:', error),
+  subscribeToNotifications() {
+    this.swPush
+      .requestSubscription({
+        serverPublicKey: this.VAPID_PUBLIC_KEY,
+      })
+      .then((sub) => {
+        // console.log('Token de suscripción:', sub.toJSON())
+        // Enviar la suscripción al backend
+        this.pushNotificationService.sendSubscription(sub.toJSON()).subscribe(
+          (res) => console.log('Suscripción enviada al servidor:', res),
+          (error) =>
+            console.error('Error al enviar la suscripción al servidor:', error),
+        )
+      })
+      .catch((err) =>
+        console.error('Could not subscribe to notifications', err),
       )
-    })
-    .catch((err) =>
-      console.error('Could not subscribe to notifications', err),
-    )
-}
+  }
   constructor(
+    private router: Router,
     private ngxLoader: NgxUiLoaderService,
     private pushNotificationService: NotificService,
     private swPush: SwPush,
@@ -145,12 +146,10 @@ subscribeToNotifications() {
     }
   }
   handleFileInput(event: { files: File[] }): void {
-    this.selectedFile = event.files[0];
-    console.log( this.selectedFile)
+    this.selectedFile = event.files[0]
+    console.log(this.selectedFile)
   }
   enviarPedido() {
-   
-
     // Validar todos los campos obligatorios
     const camposObligatorios = [
       { campo: this.nombre, mensaje: 'Nombre' },
@@ -170,7 +169,7 @@ subscribeToNotifications() {
           summary: 'Error',
           detail: `El campo ${campo.mensaje} es obligatorio.`,
         })
-        this.ngxLoader.stop();
+        this.ngxLoader.stop()
         return
       }
     }
@@ -184,7 +183,7 @@ subscribeToNotifications() {
         summary: 'Error',
         detail: 'Por favor ingrese un correo electrónico válido.',
       })
-      this.ngxLoader.stop();
+      this.ngxLoader.stop()
       return
     }
 
@@ -201,7 +200,7 @@ subscribeToNotifications() {
         detail:
           'Por favor ingrese un número de teléfono válido (10 dígitos numéricos).',
       })
-      this.ngxLoader.stop();
+      this.ngxLoader.stop()
       return
     }
 
@@ -214,7 +213,7 @@ subscribeToNotifications() {
         summary: 'Error',
         detail: 'Por favor seleccione una fecha futura.',
       })
-      this.ngxLoader.stop();
+      this.ngxLoader.stop()
       return
     }
 
@@ -238,11 +237,11 @@ subscribeToNotifications() {
         detail:
           'Por favor seleccione una hora válida (entre las 09:00 y las 18:00).',
       })
-      this.ngxLoader.stop();
+      this.ngxLoader.stop()
       return
     }
 
-    this.subscribeToNotifications() 
+    this.subscribeToNotifications()
     // Obtener la suscripción push del navegador
     navigator.serviceWorker.ready.then((registration) => {
       registration.pushManager.getSubscription().then((subscription) => {
@@ -294,93 +293,99 @@ subscribeToNotifications() {
             color_personalizado: this.color_personalizado,
             suscripcion: datosSuscripcion,
           }
-          this.ngxLoader.start();
+          this.ngxLoader.start()
           // const formDataImagen = new FormData();
           // formDataImagen.append('imagen', this.selectedFile); // Agregar la imagen al FormData
           this.pedidoService
-          .enviarPedido(datosPedido)
-          .pipe(
-            catchError((error) => {
-              // Manejar los errores HTTP
-              if (error.status === 409) {
-                console.error('Error al enviar el pedido:', error);
-                this.messageService.add({
-                  severity: 'error',
-                  summary: 'Error',
-                  detail: error.error.message, // Mostrar el mensaje de error del servidor
-                });
-              } else {
-                console.error('Error al enviar el pedido:', error);
-                this.messageService.add({
-                  severity: 'error',
-                  summary: 'Error',
-                  detail: 'Error al enviar el pedido.',
-                });
-              }
-              this.ngxLoader.stop();
-              // Propagar el error para que otros observadores también lo manejen si es necesario
-              return throwError(error);
+            .enviarPedido(datosPedido)
+            .pipe(
+              catchError((error) => {
+                // Manejar los errores HTTP
+                if (error.status === 409) {
+                  console.error('Error al enviar el pedido:', error)
+                  this.messageService.add({
+                    severity: 'error',
+                    summary: 'Error',
+                    detail: error.error.message, // Mostrar el mensaje de error del servidor
+                  })
+                } else {
+                  console.error('Error al enviar el pedido:', error)
+                  this.messageService.add({
+                    severity: 'error',
+                    summary: 'Error',
+                    detail: 'Error al enviar el pedido.',
+                  })
+                }
+                this.ngxLoader.stop()
+                // Propagar el error para que otros observadores también lo manejen si es necesario
+                return throwError(error)
+              }),
+            )
+            .subscribe((response: any) => {
+              // Manejar la respuesta del servidor en caso de éxito
+              console.log('Pedido enviado con éxito')
+              this.messageService.add({
+                severity: 'success',
+                summary: 'Éxito',
+                detail: 'Pedido enviado con éxito.',
+              })
+
+              // console.log(response)
+              // // Aquí puedes obtener el ID devuelto por el servidor
+              // const pedidoId = response.id;
+              // this.actualizarImagenPedido(pedidoId);
+              console.log('Pedido enviado con éxito')
+              const pedidoId = response.pedido._id // Obtener el ID del pedido
+              const detallePedidoId = response.pedido.detallePedido[0]._id // Obtener el ID del detalle del pedido
+              this.actualizarImagenPedido(
+                detallePedidoId,
+                response.pedido.codigoPedido,
+              ) // Llamar a la función para actualizar la imagen del pedido}
+              console.log(response.pedido.codigoPedido)
+              console.log(response)
+              this.ngxLoader.stop()
             })
-          )
-          .subscribe((response: any) => {
-            // Manejar la respuesta del servidor en caso de éxito
-            console.log('Pedido enviado con éxito');
-            this.messageService.add({
-              severity: 'success',
-              summary: 'Éxito',
-              detail: 'Pedido enviado con éxito.',
-            });
-        
-            // console.log(response)
-            // // Aquí puedes obtener el ID devuelto por el servidor
-            // const pedidoId = response.id;
-            // this.actualizarImagenPedido(pedidoId);
-            console.log('Pedido enviado con éxito');
-            const pedidoId = response.pedido._id; // Obtener el ID del pedido
-            const detallePedidoId = response.pedido.detallePedido[0]._id; // Obtener el ID del detalle del pedido
-            this.actualizarImagenPedido( detallePedidoId); // Llamar a la función para actualizar la imagen del pedido}
-            console.log(response.pedido.codigoPedido,)
-            console.log(response)
-            this.ngxLoader.stop();
-          });
-        
+
           // console.log(datosPedido)
         } else {
-          this.ngxLoader.stop();
+          this.ngxLoader.stop()
           console.error('La suscripción no está disponible.')
         }
       })
     })
-
-
   }
-  actualizarImagenPedido(pedidoId: string) {
+  actualizarImagenPedido(pedidoId: string, SEMUYI: string) {
     // Crear un nuevo FormData para enviar la imagen del pedido
-    const formData = new FormData();
-    formData.append('imagen', this.selectedFile);
-  
+    const formData = new FormData()
+    formData.append('imagen', this.selectedFile)
     // Llamar al servicio para actualizar la imagen del pedido
     this.pedidoService.actualizarImagenPedido(pedidoId, formData).subscribe(
       (response: any) => {
         // Manejar la respuesta del servidor
-        console.log('Imagen del pedido actualizada:', response);
+        console.log('Imagen del pedido actualizada:', response)
         // Mostrar un mensaje de éxito
         this.messageService.add({
           severity: 'success',
           summary: 'Éxito',
-          detail: 'La imagen del pedido se ha actualizado correctamente.'
-        });
+          detail: 'La imagen del pedido se ha actualizado correctamente.',
+        })
+        // Redirigir a otra vista con el parámetro SEMUYI y recargar esa vista
+        this.router
+          .navigate(['/order-acc'], { queryParams: { SEMUYI: SEMUYI } })
+          .then(() => {
+            window.location.reload() // Recargar la página
+          })
       },
       (error) => {
         // Manejar errores
-        console.error('Error al actualizar la imagen del pedido:', error);
+        console.error('Error al actualizar la imagen del pedido:', error)
         this.messageService.add({
           severity: 'error',
           summary: 'Error',
-          detail: 'Error al actualizar la imagen del pedido.'
-        });
-      }
-    );
+          detail: 'Error al actualizar la imagen del pedido.',
+        })
+      },
+    )
   }
   arrayBufferToBase64(buffer: ArrayBuffer): string {
     const bytes = new Uint8Array(buffer)
