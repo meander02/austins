@@ -28,17 +28,17 @@ export class AccepOrderComponent implements OnInit {
   }
   consultarCodigo(SEMUYI: string) {
     // Realizar la consulta HTTP con el código SEMUYI
-    this.http.get(`/publicR?code=${SEMUYI}`).subscribe(
-      (response: any) => {
-        console.log('Respuesta de la consulta:', response);
-        // Aquí puedes manejar la respuesta según sea necesario
-        this.pedidoInfo = response;
-      },
-      (error) => {
-        console.error('Error al realizar la consulta:', error);
-        // Aquí puedes manejar los errores según sea necesario
-      }
-    );
+    // this.http.get(`/publicR?code=${SEMUYI}`).subscribe(
+    //   (response: any) => {
+    //     console.log('Respuesta de la consulta:', response);
+    //     // Aquí puedes manejar la respuesta según sea necesario
+    //     this.pedidoInfo = response;
+    //   },
+    //   (error) => {
+    //     console.error('Error al realizar la consulta:', error);
+    //     // Aquí puedes manejar los errores según sea necesario
+    //   }
+    // );
 
     this.orderService.consultarPedido(SEMUYI).subscribe(
       (response) => {
