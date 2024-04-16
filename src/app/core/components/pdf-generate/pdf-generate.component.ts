@@ -1,4 +1,3 @@
-
 import { Component, OnInit } from '@angular/core';
 import { PedidoService } from '../../services/pedido.service';
 import * as pdfMake from 'pdfmake/build/pdfmake';
@@ -58,51 +57,12 @@ export class PdfGenerateComponent implements OnInit {
           }
         };
 
-        // Crear el PDF y abrirlo
+        // Crear el PDF
         const pdf = pdfMake.createPdf(pdfDefinition);
-        pdf.open();
+
+        // Descargar o abrir el PDF
+        pdf.download('pedido.pdf'); // Cambia 'download' por 'open' si prefieres abrirlo directamente en el navegador
       }
     });
   }
-
-  // createPDF() {
-  //   // Obtener la información del pedido del servicio compartido
-  //   this.pedidoService.pedidoInfo$.subscribe((pedidoInfo) => {
-  //     if (pedidoInfo) {
-  //       // Crear el contenido del PDF con la información del pedido
-  //       const pdfDefinition: any = {
-  //         content: [
-  //           {
-  //             text: 'Información del Pedido:',
-  //             style: 'header'
-  //           },
-  //           {
-  //             text: `Código de Pedido: ${pedidoInfo.codigoPedido}`,
-  //             style: 'info'
-  //           },
-  //           {
-  //             text: `Fecha de Creación: ${pedidoInfo.createdAt}`,
-  //             style: 'info'
-  //           },
-  //           // Agregar más detalles del pedido según sea necesario
-  //         ],
-  //         styles: {
-  //           header: {
-  //             fontSize: 18,
-  //             bold: true,
-  //             margin: [0, 0, 0, 10]
-  //           },
-  //           info: {
-  //             fontSize: 14,
-  //             margin: [0, 0, 0, 5]
-  //           }
-  //         }
-  //       };
-
-  //       // Crear el PDF y abrirlo
-  //       const pdf = pdfMake.createPdf(pdfDefinition);
-  //       pdf.open();
-  //     }
-  //   });
-  // }
 }
