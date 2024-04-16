@@ -160,6 +160,7 @@ export class OrderComponent {
       { campo: this.selectedQuantity, mensaje: 'Cantidad' },
       { campo: this.dia, mensaje: 'Día' },
       { campo: this.hora, mensaje: 'Hora' },
+      { campo: this.selectedFile, mensaje: 'imagen' },
     ]
 
     for (const campo of camposObligatorios) {
