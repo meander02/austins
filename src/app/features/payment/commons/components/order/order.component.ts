@@ -370,12 +370,7 @@ export class OrderComponent {
           detail: 'La imagen del pedido se ha actualizado correctamente.',
         })
         // Redirigir a otra vista con el parámetro SEMUYI y recargar esa vista
-        this.router
-          .navigate(['/order-acc'], { queryParams: { SEMUYI: SEMUYI } })
-          .then(() => {
-            // window.location.reload() // Recargar la página
-
-          })
+        this.router.navigate(['/payment/order-acc'], { queryParams: { SEMUYI: SEMUYI } });
       },
       (error) => {
         // Manejar errores
