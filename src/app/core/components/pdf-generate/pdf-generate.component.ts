@@ -1,3 +1,4 @@
+
 import { Component, OnInit } from '@angular/core';
 import { PedidoService } from '../../services/pedido.service';
 import * as pdfMake from 'pdfmake/build/pdfmake';
@@ -31,17 +32,17 @@ export class PdfGenerateComponent implements OnInit {
         const pdfDefinition: any = {
           content: [
             {
-              text: 'Información del Pedido:',
+              text:`Código de Pedido: ${pedidoInfo}`,
               style: 'header'
             },
-            {
-              text: `Código de Pedido: ${pedidoInfo.codigoPedido}`,
-              style: 'info'
-            },
-            {
-              text: `Fecha de Creación: ${pedidoInfo.createdAt}`,
-              style: 'info'
-            },
+            // {
+            //   text: `Código de Pedido: ${pedidoInfo.codigoPedido}`,
+            //   style: 'info'
+            // },
+            // {
+            //   text: `Fecha de Creación: ${pedidoInfo.createdAt}`,
+            //   style: 'info'
+            // },
             // Agregar más detalles del pedido según sea necesario
           ],
           styles: {
@@ -57,12 +58,11 @@ export class PdfGenerateComponent implements OnInit {
           }
         };
 
-        // Crear el PDF
+        // Crear el PDF y abrirlo
         const pdf = pdfMake.createPdf(pdfDefinition);
-
-        // Descargar o abrir el PDF
-        pdf.download('pedido.pdf'); // Cambia 'download' por 'open' si prefieres abrirlo directamente en el navegador
+        pdf.open();
       }
     });
   }
+
 }
