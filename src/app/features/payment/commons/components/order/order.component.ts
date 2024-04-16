@@ -7,6 +7,7 @@ import { catchError, throwError } from 'rxjs'
 import { NotificService } from 'src/app/shared/services/notific.service'
 import { SwPush } from '@angular/service-worker'
 // import { PedidoviewService } from '../../../../../shared/services/pedidoview.service';
+import { NgxUiLoaderService } from 'ngx-ui-loader';
 
 interface PasteleriaFlavor {
   name: string
@@ -75,6 +76,7 @@ subscribeToNotifications() {
     )
 }
   constructor(
+    private ngxLoader: NgxUiLoaderService,
     private pushNotificationService: NotificService,
     private swPush: SwPush,
     private pedidoService: OrderService,
@@ -147,6 +149,8 @@ subscribeToNotifications() {
     console.log( this.selectedFile)
   }
   enviarPedido() {
+    this.ngxLoader.start();
+
     // Validar todos los campos obligatorios
     const camposObligatorios = [
       { campo: this.nombre, mensaje: 'Nombre' },
@@ -280,6 +284,8 @@ subscribeToNotifications() {
             hora: this.hora,
             modoPersonalizado: this.modoPersonalizado,
             saborpersonalizado: this.saborpersonalizado,
+            decoracion: this.design_personalizado,
+            mensajePersonalizado: this.mensajePersonalizado,
             color_personalizado: this.color_personalizado,
             suscripcion: datosSuscripcion,
           }
@@ -328,16 +334,18 @@ subscribeToNotifications() {
             const detallePedidoId = response.pedido.detallePedido[0]._id; // Obtener el ID del detalle del pedido
             this.actualizarImagenPedido( detallePedidoId); // Llamar a la función para actualizar la imagen del pedido}
             console.log(detallePedidoId)
-            // Luego, puedes actualizar la imagen del pedido utilizando el ID y la imagen seleccionada
-            // this.actualizarImagenPedido(pedidoId, this.selectedFile);
+            this.ngxLoader.stop();
           });
         
           // console.log(datosPedido)
         } else {
+          this.ngxLoader.stop();
           console.error('La suscripción no está disponible.')
         }
       })
     })
+
+
   }
   actualizarImagenPedido(pedidoId: string) {
     // Crear un nuevo FormData para enviar la imagen del pedido
