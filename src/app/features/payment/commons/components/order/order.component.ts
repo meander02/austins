@@ -373,7 +373,8 @@ export class OrderComponent {
         this.router
           .navigate(['/order-acc'], { queryParams: { SEMUYI: SEMUYI } })
           .then(() => {
-            window.location.reload() // Recargar la página
+            // window.location.reload() // Recargar la página
+
           })
       },
       (error) => {
