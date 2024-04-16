@@ -76,6 +76,7 @@ import { PdfGenerateComponent } from './pdf-generate/pdf-generate.component';
     CookiesComponent,
     StepsComponent,
     ProgressBarComponent,
+    PdfGenerateComponent
   ],
   imports: [
     TimelineModule,

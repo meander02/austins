@@ -1,8 +1,10 @@
+import { PdfGenerateComponent } from './../../../../core/components/pdf-generate/pdf-generate.component';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { OrderService } from '../../commons/services/order.service';
 import { PedidoService } from 'src/app/core/services/pedido.service';
+// import { PdfGenerateComponent } from 'src/app/core/services/pedido.service';
 
 @Component({
   selector: 'app-accep-order',
