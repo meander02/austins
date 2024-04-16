@@ -319,11 +319,15 @@ subscribeToNotifications() {
               detail: 'Pedido enviado con éxito.',
             });
         
-            console.log(response)
-            // Aquí puedes obtener el ID devuelto por el servidor
-            const pedidoId = response.id;
-            this.actualizarImagenPedido(pedidoId);
-
+            // console.log(response)
+            // // Aquí puedes obtener el ID devuelto por el servidor
+            // const pedidoId = response.id;
+            // this.actualizarImagenPedido(pedidoId);
+            console.log('Pedido enviado con éxito');
+            const pedidoId = response.pedido._id; // Obtener el ID del pedido
+            const detallePedidoId = response.pedido.detallePedido[0]._id; // Obtener el ID del detalle del pedido
+            this.actualizarImagenPedido( detallePedidoId); // Llamar a la función para actualizar la imagen del pedido}
+            console.log(detallePedidoId)
             // Luego, puedes actualizar la imagen del pedido utilizando el ID y la imagen seleccionada
             // this.actualizarImagenPedido(pedidoId, this.selectedFile);
           });
