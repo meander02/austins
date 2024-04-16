@@ -284,49 +284,85 @@ subscribeToNotifications() {
             archivo: this.selectedFile, // Aquí incluyes el archivo seleccionado
             suscripcion: datosSuscripcion,
           }
+          // const formDataImagen = new FormData();
+          // formDataImagen.append('imagen', this.selectedFile); // Agregar la imagen al FormData
           this.pedidoService
-            .enviarPedido(datosPedido)
-            .pipe(
-              catchError((error) => {
-                // Manejar el error HTTP 409 específico
-                if (error.status === 409) {
-                  console.error('Error al enviar el pedido:', error)
-                  this.messageService.add({
-                    severity: 'error',
-                    summary: 'Error',
-                    detail: error.error.message, // Mostrar el mensaje de error del servidor
-                  })
-                } else {
-                  // Manejar otros errores HTTP
-                  console.error('Error al enviar el pedido:', error)
-                  this.messageService.add({
-                    severity: 'error',
-                    summary: 'Error',
-                    detail: 'Error al enviar el pedido.',
-                  })
-                }
-
-                // Propagar el error para que otros observadores también lo manejen si es necesario
-                return throwError(error)
-              }),
-            )
-            .subscribe(() => {
-              // Manejar la respuesta del servidor en caso de éxito
-              console.log('Pedido enviado con éxito')
-              this.messageService.add({
-                severity: 'success',
-                summary: 'Éxito',
-                detail: 'Pedido enviado con éxito.',
-              })
+          .enviarPedido(datosPedido)
+          .pipe(
+            catchError((error) => {
+              // Manejar los errores HTTP
+              if (error.status === 409) {
+                console.error('Error al enviar el pedido:', error);
+                this.messageService.add({
+                  severity: 'error',
+                  summary: 'Error',
+                  detail: error.error.message, // Mostrar el mensaje de error del servidor
+                });
+              } else {
+                console.error('Error al enviar el pedido:', error);
+                this.messageService.add({
+                  severity: 'error',
+                  summary: 'Error',
+                  detail: 'Error al enviar el pedido.',
+                });
+              }
+        
+              // Propagar el error para que otros observadores también lo manejen si es necesario
+              return throwError(error);
             })
-          console.log(datosPedido)
+          )
+          .subscribe((response: any) => {
+            // Manejar la respuesta del servidor en caso de éxito
+            console.log('Pedido enviado con éxito');
+            this.messageService.add({
+              severity: 'success',
+              summary: 'Éxito',
+              detail: 'Pedido enviado con éxito.',
+            });
+        
+            // Aquí puedes obtener el ID devuelto por el servidor
+            const pedidoId = response.id;
+            this.actualizarImagenPedido(pedidoId);
+
+            // Luego, puedes actualizar la imagen del pedido utilizando el ID y la imagen seleccionada
+            // this.actualizarImagenPedido(pedidoId, this.selectedFile);
+          });
+        
+          // console.log(datosPedido)
         } else {
           console.error('La suscripción no está disponible.')
         }
       })
     })
   }
-
+  actualizarImagenPedido(pedidoId: string) {
+    // Crear un nuevo FormData para enviar la imagen del pedido
+    const formData = new FormData();
+    formData.append('imagen', this.selectedFile);
+  
+    // Llamar al servicio para actualizar la imagen del pedido
+    this.pedidoService.actualizarImagenPedido(pedidoId, formData).subscribe(
+      (response: any) => {
+        // Manejar la respuesta del servidor
+        console.log('Imagen del pedido actualizada:', response);
+        // Mostrar un mensaje de éxito
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Éxito',
+          detail: 'La imagen del pedido se ha actualizado correctamente.'
+        });
+      },
+      (error) => {
+        // Manejar errores
+        console.error('Error al actualizar la imagen del pedido:', error);
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Error',
+          detail: 'Error al actualizar la imagen del pedido.'
+        });
+      }
+    );
+  }
   arrayBufferToBase64(buffer: ArrayBuffer): string {
     const bytes = new Uint8Array(buffer)
     let binary = ''

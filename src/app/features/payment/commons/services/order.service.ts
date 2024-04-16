@@ -35,5 +35,8 @@ export class OrderService {
     return this.http.get<any[]>(url);
   }
 
-
+  actualizarImagenPedido(pedidoId: string, formData: FormData): Observable<any> {
+    // Realizar la solicitud HTTP PUT al backend para actualizar la imagen del pedido
+    return this.http.put<any>(`${environment.api}/order/${pedidoId}/imagen`, formData);
+  }
 }
