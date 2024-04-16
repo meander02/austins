@@ -170,6 +170,7 @@ subscribeToNotifications() {
           summary: 'Error',
           detail: `El campo ${campo.mensaje} es obligatorio.`,
         })
+        this.ngxLoader.stop();
         return
       }
     }
@@ -183,6 +184,7 @@ subscribeToNotifications() {
         summary: 'Error',
         detail: 'Por favor ingrese un correo electrónico válido.',
       })
+      this.ngxLoader.stop();
       return
     }
 
@@ -199,6 +201,7 @@ subscribeToNotifications() {
         detail:
           'Por favor ingrese un número de teléfono válido (10 dígitos numéricos).',
       })
+      this.ngxLoader.stop();
       return
     }
 
@@ -211,6 +214,7 @@ subscribeToNotifications() {
         summary: 'Error',
         detail: 'Por favor seleccione una fecha futura.',
       })
+      this.ngxLoader.stop();
       return
     }
 
@@ -234,6 +238,7 @@ subscribeToNotifications() {
         detail:
           'Por favor seleccione una hora válida (entre las 09:00 y las 18:00).',
       })
+      this.ngxLoader.stop();
       return
     }
 
@@ -339,7 +344,7 @@ subscribeToNotifications() {
         
           // console.log(datosPedido)
         } else {
-        
+          this.ngxLoader.stop();
           console.error('La suscripción no está disponible.')
         }
       })
