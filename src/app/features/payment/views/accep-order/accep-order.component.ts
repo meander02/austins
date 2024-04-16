@@ -26,7 +26,6 @@ export class AccepOrderComponent implements OnInit {
       this.consultarCodigo(this.SEMUYI);
     });
   }
-
   consultarCodigo(SEMUYI: string) {
     // Realizar la consulta HTTP con el código SEMUYI
     this.http.get(`/publicR?code=${SEMUYI}`).subscribe(
