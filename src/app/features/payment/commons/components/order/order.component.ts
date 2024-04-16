@@ -339,7 +339,8 @@ subscribeToNotifications() {
             const pedidoId = response.pedido._id; // Obtener el ID del pedido
             const detallePedidoId = response.pedido.detallePedido[0]._id; // Obtener el ID del detalle del pedido
             this.actualizarImagenPedido( detallePedidoId); // Llamar a la función para actualizar la imagen del pedido}
-            console.log(response.codigoPedido,)
+            console.log(response.pedido.codigoPedido,)
+            console.log(response)
             this.ngxLoader.stop();
           });
         
