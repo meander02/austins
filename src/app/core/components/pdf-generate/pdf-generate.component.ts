@@ -1,4 +1,3 @@
-
 import { Component, OnInit } from '@angular/core';
 import { PedidoService } from '../../services/pedido.service';
 import * as pdfMake from 'pdfmake/build/pdfmake';
@@ -10,7 +9,7 @@ import * as pdfFonts from 'pdfmake/build/vfs_fonts';
   styleUrls: ['./pdf-generate.component.scss']
 })
 export class PdfGenerateComponent implements OnInit {
-
+  cont: string = '';
   constructor(private pedidoService: PedidoService) { }
 
   ngOnInit() {
@@ -28,41 +27,35 @@ export class PdfGenerateComponent implements OnInit {
 
     this.pedidoService.pedidoInfo$.subscribe((pedidoInfo) => {
       if (pedidoInfo) {
-        // Crear el contenido del PDF con la información del pedido
-        const pdfDefinition: any = {
-          content: [
-            {
-              text:`Código de Pedido: ${pedidoInfo}`,
-              style: 'header'
-            },
-            // {
-            //   text: `Código de Pedido: ${pedidoInfo.codigoPedido}`,
-            //   style: 'info'
-            // },
-            // {
-            //   text: `Fecha de Creación: ${pedidoInfo.createdAt}`,
-            //   style: 'info'
-            // },
-            // Agregar más detalles del pedido según sea necesario
-          ],
-          styles: {
-            header: {
-              fontSize: 18,
-              bold: true,
-              margin: [0, 0, 0, 10]
-            },
-            info: {
-              fontSize: 14,
-              margin: [0, 0, 0, 5]
-            }
-          }
+        console.log(pedidoInfo);
+        this.cont = pedidoInfo.contenido;
+
+        // Construir el contenido detallado del pedido para el PDF
+        const contenidoPedido = [
+          { text: 'Código de Pedido: ' + pedidoInfo.codigoPedido, style: 'header' },
+          { text: 'Usuario:', style: 'subheader' },
+          { text: 'Nombre: ' + pedidoInfo.usuario.name },
+          { text: 'Email: ' + pedidoInfo.usuario.email },
+          { text: 'Teléfono: ' + pedidoInfo.usuario.phone },
+          { text: 'Detalle del Pedido:', style: 'subheader' },
+          { text: 'Cantidad: ' + pedidoInfo.detallePedido.cantidad },
+          { text: 'Día: ' + pedidoInfo.detallePedido.dia },
+          { text: 'Hora: ' + pedidoInfo.detallePedido.hora },
+          { text: 'Modo: ' + pedidoInfo.detallePedido.modo },
+          { text: 'Sabor: ' + pedidoInfo.detallePedido.sabor },
+          { text: 'Precio Total: ' + pedidoInfo.detallePedido.precioTotal },
+          { text: 'Estado del Pedido: ' + pedidoInfo.estadoPedido },
+          { text: 'Fecha de Creación: ' + pedidoInfo.createdAt }
+        ];
+
+        // Crear el PDF y abrirlo con el contenido del pedido
+        const pdfDefinition = {
+          content: contenidoPedido
         };
 
-        // Crear el PDF y abrirlo
         const pdf = pdfMake.createPdf(pdfDefinition);
         pdf.open();
       }
     });
   }
-
 }
