@@ -311,7 +311,7 @@ subscribeToNotifications() {
                   detail: 'Error al enviar el pedido.',
                 });
               }
-        
+              this.ngxLoader.stop();
               // Propagar el error para que otros observadores también lo manejen si es necesario
               return throwError(error);
             })
@@ -333,13 +333,13 @@ subscribeToNotifications() {
             const pedidoId = response.pedido._id; // Obtener el ID del pedido
             const detallePedidoId = response.pedido.detallePedido[0]._id; // Obtener el ID del detalle del pedido
             this.actualizarImagenPedido( detallePedidoId); // Llamar a la función para actualizar la imagen del pedido}
-            console.log(detallePedidoId)
+            console.log(response)
             this.ngxLoader.stop();
           });
         
           // console.log(datosPedido)
         } else {
-          this.ngxLoader.stop();
+        
           console.error('La suscripción no está disponible.')
         }
       })
