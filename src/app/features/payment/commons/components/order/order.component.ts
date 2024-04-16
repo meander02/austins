@@ -149,7 +149,7 @@ subscribeToNotifications() {
     console.log( this.selectedFile)
   }
   enviarPedido() {
-    this.ngxLoader.start();
+   
 
     // Validar todos los campos obligatorios
     const camposObligatorios = [
@@ -294,6 +294,7 @@ subscribeToNotifications() {
             color_personalizado: this.color_personalizado,
             suscripcion: datosSuscripcion,
           }
+          this.ngxLoader.start();
           // const formDataImagen = new FormData();
           // formDataImagen.append('imagen', this.selectedFile); // Agregar la imagen al FormData
           this.pedidoService
@@ -338,7 +339,7 @@ subscribeToNotifications() {
             const pedidoId = response.pedido._id; // Obtener el ID del pedido
             const detallePedidoId = response.pedido.detallePedido[0]._id; // Obtener el ID del detalle del pedido
             this.actualizarImagenPedido( detallePedidoId); // Llamar a la función para actualizar la imagen del pedido}
-            console.log(response)
+            console.log(response.codigoPedido,)
             this.ngxLoader.stop();
           });
         
