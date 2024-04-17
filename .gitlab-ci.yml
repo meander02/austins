@@ -6,12 +6,12 @@ build:
   stage: build
   script:
     - echo "Construyendo el proyecto..."
+    # Agrega comandos para construir el proyecto Angular si es necesario
 
 test:
   stage: test
   script:
     - echo "Ejecutando pruebas unitarias..."
-    # Agrega comandos para instalar dependencias y ejecutar pruebas aquí
     - npm install -g @angular/cli # Instala Angular CLI globalmente (si no está instalado)
     - npm install # Instala las dependencias del proyecto
     - ng test --include="**/payment.module.spec.ts" # Ejecuta las pruebas para el módulo PaymentModule
