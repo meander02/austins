@@ -1,17 +1,10 @@
 stages:
-  - build
   - test
-
-build:
-  stage: build
-  script:
-    - echo "Construyendo el proyecto..."
-    # Agrega comandos para construir el proyecto Angular si es necesario
 
 test:
   stage: test
+  image: node:latest
   script:
-    - echo "Ejecutando pruebas unitarias..."
-    - npm install -g @angular/cli # Instala Angular CLI globalmente (si no está instalado)
-    - npm install # Instala las dependencias del proyecto
-    - ng test --include="**/payment.module.spec.ts" # Ejecuta las pruebas para el módulo PaymentModule
+    - npm install -g @angular/cli
+    - npm install
+    - ng test --include="**/payment.module.spec.ts"
