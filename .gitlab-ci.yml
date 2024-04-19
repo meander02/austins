@@ -1,10 +1,22 @@
 stages:
   - test
 
+variables:
+  DOCKER_DRIVER: overlay2
+
+cache:
+  paths:
+    - node_modules/
+    - ~/.npm/
+
 test:
   stage: test
-  image: node:latest
+  image: node:14.17.0-alpine
   script:
     - npm install -g @angular/cli
     - npm install
-    - ng test --include="**/payment.module.spec.ts"
+    - ng lint
+    - ng test --include="src/app/features/payment/payment.module.spec.ts"
+  artifacts:
+    paths:
+      - coverage/
