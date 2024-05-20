@@ -74,7 +74,7 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     AOS.init()
     window.addEventListener('load', AOS.refresh)
-
+   
     // Realizar la primera recarga solo si no se ha hecho antes
     // if (!this.initialReloadDone) {
     //   this.reloadPage();
