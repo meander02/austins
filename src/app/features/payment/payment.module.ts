@@ -32,7 +32,6 @@ import { MaterialModule } from './commons/material/material.module';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ErrorInterceptor } from 'src/app/shared/interceptor/error.interceptor';
 import { AccepOrderComponent } from './views/accep-order/accep-order.component';
-import { PdfGenerateComponent } from 'src/app/core/components/pdf-generate/pdf-generate.component';
 import { CoreComponentsModule } from 'src/app/core/components/components.module';
 
 // import { QaComponent } from './views/qa/qa.component';

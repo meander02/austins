@@ -1,18 +1,13 @@
-import {
-  trigger,
-  state,
-  style,
-  animate,
-  transition,
-  // ...
-} from '@angular/animations';
-
 import { Component, EventEmitter, Output } from '@angular/core';
-
-
+import { trigger, state, style, animate, transition } from '@angular/animations';
 import OpenAI from 'openai';
 import { TokenService } from 'src/app/shared/services/token.service';
 
+// Define el tipo de mensajes de chat esperados por la API de OpenAI
+interface ChatCompletionRequestMessage {
+  role: 'system' | 'user' | 'assistant';
+  content: string;
+}
 
 @Component({
   selector: 'app-chat',
@@ -54,21 +49,22 @@ export class ChatComponent {
   chatHistory: any[] = [];
   floatingButtonState = 'normal';
   openaiInstance: OpenAI | undefined;
+  retryCount: number = 0;
+  maxRetries: number = 5;
 
   message!: string;
   constructor(private tokenService: TokenService) {
     this.tokenService.getAll().subscribe(
       (response) => {
         const firstToken = response[0];
-
+        console.log(firstToken);
         if (firstToken) {
-          // console.log(firstToken.apiToken);
           this.openaiInstance = new OpenAI({
             apiKey: firstToken.apiToken,
             dangerouslyAllowBrowser: true,
           });
         } else {
-          // console.log('No se encontraron tokens en la respuesta.');
+          console.log('No se encontraron tokens en la respuesta.');
         }
       },
       (error) => {
@@ -76,88 +72,86 @@ export class ChatComponent {
       }
     );
   }
+
   async sendMessage() {
     if (this.userMessage.trim() === '') {
       return; // Evitar enviar mensajes vacíos
     }
 
-    // const userMessage = { role: 'user', content: this.userMessage.trim() };
     const userMessage = { role: 'user', content: this.userMessage.trim(), timestamp: Date.now() };
-
     this.chatHistory.push(userMessage);
 
-    // const prompt = `[
-    //     { "role": "system", "content": "Eres un asistente de Austins. Sé amable, contexta amablemente y  da la bienvenida. no respondas preguntas que no tenga relacion con austins  , no respondas preguntas que no tenga relacion con austins   se amable " },
-    //     { "role": "system", "content": "Austins Repostería es una pastelería artesanal dedicada a deleitar los paladares con exquisitos postres y pasteles. Nuestra pasión por la repostería se refleja en cada creación, desde su concepción hasta su presentación en tu mesa." },
-    //     { "role": "system", "content": "La dirección de Austins Repostería es Avenida Profr. Toribio Reyes 5, Huejutla, Hidalgo, México." },
-    //     { "role": "system", "content": "Horario de atención: Abierto de lunes a domingo de 8 am a 8:30 pm." },
-    //     { "role": "system", "content": "Teléfono: 01 789 896 4530." },
-    //     { "role": "system", "content": "Correo electrónico: info@austins.com.mx." },
-    //     { "role": "system", "content": "Para hacer un pedido en nuestro sitio web, sigue estos pasos:\\n1. Visita nuestro sitio web en austins.vercel.app.\\n2. Explora nuestro menú y selecciona los productos que deseas agregar al carrito.\\n3. Ve al carrito y revisa tu selección.\\n4. Procede al pago y sigue las instrucciones para completar tu pedido." },
-    //     { "role": "user", "content": "${this.userMessage}" }
-    //   ]`;
+    const prompt: ChatCompletionRequestMessage[] = [
+      { role: "system", content: "😊 ¡Bienvenido a Austins Repostería! Soy tu asistente virtual de confianza. Estoy aquí para ayudarte con tus pedidos y consultas. 🍰" },
+      { role: "system", content: "Austins Repostería es una pastelería artesanal dedicada a deleitar los paladares con exquisitos postres y pasteles. Nuestra pasión por la repostería se refleja en cada creación, desde su concepción hasta su presentación en tu mesa. 🎂" },
+      { role: "system", content: "📍 La dirección de Austins Repostería es Avenida Profr. Toribio Reyes 5, Huejutla, Hidalgo, México." },
+      { role: "system", content: "⏰ Horario de atención: Abierto de lunes a domingo de 8 am a 8:30 pm." },
+      { role: "system", content: "☎️ Teléfono: 01 789 896 4530." },
+      { role: "system", content: "👨‍🍳 dueño: Graham Austin." },
+      { role: "system", content: "✉️ Correo electrónico: info@austins.com.mx." },
+      { role: "system", content: "Para hacer un pedido en nuestro sitio web, sigue estos pasos: \n1. Visita nuestro sitio web en austins.vercel.app. \n2. Explora nuestro menú y selecciona los productos que deseas agregar al carrito. \n3. Ve al carrito y revisa tu selección. \n4. Procede al pago y sigue las instrucciones para completar tu pedido. 🛒" },
+      { role: "user", content: this.userMessage }
+    ];
 
-    const prompt = `[
-      { "role": "system", "content": "😊 ¡Bienvenido a Austins Repostería! Soy tu asistente virtual de confianza. Estoy aquí para ayudarte con tus pedidos y consultas. 🍰" },
-      { "role": "system", "content": "Austins Repostería es una pastelería artesanal dedicada a deleitar los paladares con exquisitos postres y pasteles. Nuestra pasión por la repostería se refleja en cada creación, desde su concepción hasta su presentación en tu mesa. 🎂" },
-      { "role": "system", "content": "📍 La dirección de Austins Repostería es Avenida Profr. Toribio Reyes 5, Huejutla, Hidalgo, México." },
-      { "role": "system", "content": "⏰ Horario de atención: Abierto de lunes a domingo de 8 am a 8:30 pm." },
-      { "role": "system", "content": "☎️ Teléfono: 01 789 896 4530." },
-      { "role": "system", "content": "👨‍🍳 dueño: Graham Austin  ." },
-      { "role": "system", "content": "✉️ Correo electrónico: info@austins.com.mx." },
-      { "role": "system", "content": "Para hacer un pedido en nuestro sitio web, sigue estos pasos: \\n1. Visita nuestro sitio web en austins.vercel.app. \\n2. Explora nuestro menú y selecciona los productos que deseas agregar al carrito. \\n3. Ve al carrito y revisa tu selección. \\n4. Procede al pago y sigue las instrucciones para completar tu pedido. 🛒" },
-      { "role": "user", "content": "${this.userMessage}" }
-  ]`;
+    try {
+      const response = await this.openaiInstance?.chat.completions.create({
+        messages: prompt,
+        model: "gpt-3.5-turbo",
+      });
 
-      try {
-        const response = await this.openaiInstance?.chat.completions.create({
-          messages: JSON.parse(prompt),
-          model: 'gpt-3.5-turbo',
-        });
-
-        if (response && response.choices && response.choices.length > 0) {
-          const assistantResponse = response.choices[0].message.content;
-          // this.chatHistory.push({
-          //   role: 'assistant',
-          //   content: assistantResponse,
-          // });
+      if (response && response.choices && response.choices.length > 0) {
+        const assistantResponse = response.choices[0].message?.content;
+        if (assistantResponse) {
           this.chatHistory.push({
             role: 'assistant',
             content: assistantResponse,
-            timestamp: Date.now() // Asigna la marca de tiempo actual
+            timestamp: Date.now()
           });
-
-        } else {
-          console.error('Unexpected or undefined OpenAI response:', response);
         }
-      } catch (error) {
+      } else {
+        console.error('Unexpected or undefined OpenAI response:', response);
+      }
+      this.retryCount = 0; // Reset retry count after a successful request
+    } catch (error) {
+      if (this.isRateLimitError(error)) {
+        console.warn('Rate limit exceeded. Retrying after delay...');
+        if (this.retryCount < this.maxRetries) {
+          this.retryCount++;
+          // Espera antes de reenviar la solicitud
+          setTimeout(() => this.sendMessage(), 60000); // Espera 60 segundos antes de intentar nuevamente
+        } else {
+          console.error('Max retries reached. Please try again later.');
+        }
+      } else {
         console.error('Error sending message to OpenAI:', error);
       }
+    }
 
     this.userMessage = ''; // Limpia el mensaje del usuario después de enviar
   }
 
-  @Output() chatOpened = new EventEmitter<boolean>();
+  isRateLimitError(error: any): boolean {
+    return error.response && error.response.status === 429;
+  }
 
-  chatOpen = false; // Set to false by default
+  @Output() chatOpened = new EventEmitter<boolean>();
+  chatOpen = false;
 
   toggleChat() {
     this.chatOpen = !this.chatOpen;
-    // Cambia el estado del botón flotante al abrir el chat
     this.floatingButtonState = this.chatOpen ? 'attention' : 'normal';
 
-    // Restablece el estado del botón flotante después de unos segundos (puedes ajustar el tiempo)
     if (this.chatOpen) {
       setTimeout(() => {
         this.floatingButtonState = 'normal';
-      }, 3000); // Cambia a 'normal' después de 3 segundos
+      }, 3000);
     }
   }
+
   getMessageTime(timestamp: number): string {
     const date = new Date(timestamp);
     const hours = date.getHours().toString().padStart(2, '0');
     const minutes = date.getMinutes().toString().padStart(2, '0');
     return `${hours}:${minutes}`;
   }
-
 }

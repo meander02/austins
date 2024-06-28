@@ -18,6 +18,7 @@ import {
   GoogleLoginProvider,
   FacebookLoginProvider
 } from '@abacritt/angularx-social-login';
+import { PedidoFloatComponent } from './core/components/pedido-float/pedido-float.component';
 
 
 // import AOS from 'aos'; //AOS - 1
@@ -43,7 +44,7 @@ import {
   ],
   // providers: [ScrollServiceService], // Asegúrate de proveer el servicio aquí
   providers: [
-    ScrollServiceService,
+    ScrollServiceService,PedidoFloatComponent,
     {
       provide: 'SocialAuthServiceConfig',
       useValue: {
@@ -73,6 +74,16 @@ import {
 })
 export class AppModule {
 
+  constructor(
+    
+    private ngxLoader: NgxUiLoaderService,
+    private PedidoFloatComponent: PedidoFloatComponent,
+    ) {
+    // this.ngxLoader.start();
+    this.PedidoFloatComponent.ngOnInit
+  }
 
-
+  ngOnInit(): void {
+    
+  }
  }

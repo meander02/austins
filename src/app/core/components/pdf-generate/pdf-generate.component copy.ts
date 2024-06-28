@@ -9,7 +9,7 @@
 //   styleUrls: ['./pdf-generate.component.scss']
 // })
 // export class PdfGenerateComponent implements OnInit {
-//   cont :string=''
+//   cont: string = '';
 //   constructor(private pedidoService: PedidoService) { }
 
 //   ngOnInit() {
@@ -28,23 +28,34 @@
 //     this.pedidoService.pedidoInfo$.subscribe((pedidoInfo) => {
 //       if (pedidoInfo) {
 //         console.log(pedidoInfo);
-//         this.cont=pedidoInfo.contenido
-        
-//         const mensaje = "Mensaje adicional: "+pedidoInfo.codigoPedido;
+//         this.cont = pedidoInfo.contenido;
 
-//         // Crear el contenido del PDF con la información del pedido y el mensaje adicional
+//         // Construir el contenido detallado del pedido para el PDF
+//         const contenidoPedido = [
+//           { text: 'Código de Pedido: ' + pedidoInfo.codigoPedido, style: 'header' },
+//           { text: 'Usuario:', style: 'subheader' },
+//           { text: 'Nombre: ' + pedidoInfo.usuario.name },
+//           { text: 'Email: ' + pedidoInfo.usuario.email },
+//           { text: 'Teléfono: ' + pedidoInfo.usuario.phone },
+//           { text: 'Detalle del Pedido:', style: 'subheader' },
+//           { text: 'Cantidad: ' + pedidoInfo.detallePedido.cantidad },
+//           { text: 'Día: ' + pedidoInfo.detallePedido.dia },
+//           { text: 'Hora: ' + pedidoInfo.detallePedido.hora },
+//           { text: 'Modo: ' + pedidoInfo.detallePedido.modo },
+//           { text: 'Sabor: ' + pedidoInfo.detallePedido.sabor },
+//           { text: 'Precio Total: ' + pedidoInfo.detallePedido.precioTotal },
+//           { text: 'Estado del Pedido: ' + pedidoInfo.estadoPedido },
+//           { text: 'Fecha de Creación: ' + pedidoInfo.createdAt }
+//         ];
+
+//         // Crear el PDF y abrirlo con el contenido del pedido
 //         const pdfDefinition = {
-//             content: [
-              
-//                 { text: mensaje }
-//             ]
+//           content: contenidoPedido
 //         };
 
-//         // Crear el PDF y abrirlo
 //         const pdf = pdfMake.createPdf(pdfDefinition);
 //         pdf.open();
 //       }
 //     });
 //   }
-
 // }

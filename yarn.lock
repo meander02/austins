@@ -2435,6 +2435,20 @@
     node-gyp "^10.0.0"
     which "^4.0.0"
 
+"@pdf-lib/standard-fonts@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.npmjs.org/@pdf-lib/standard-fonts/-/standard-fonts-1.0.0.tgz"
+  integrity sha512-hU30BK9IUN/su0Mn9VdlVKsWBS6GyhVfqjwl1FjZN4TxP6cCw0jP2w7V3Hf5uX7M0AZJ16vey9yE0ny7Sa59ZA==
+  dependencies:
+    pako "^1.0.6"
+
+"@pdf-lib/upng@^1.0.1":
+  version "1.0.1"
+  resolved "https://registry.npmjs.org/@pdf-lib/upng/-/upng-1.0.1.tgz"
+  integrity sha512-dQK2FUMQtowVP00mtIksrlZhdFXQZPC+taih1q4CvPZ5vqdxR/LKBaFg0oAfzd1GlHZXXSPdQfzQnt+ViGvEIQ==
+  dependencies:
+    pako "^1.0.10"
+
 "@pkgjs/parseargs@^0.11.0":
   version "0.11.0"
   resolved "https://registry.npmjs.org/@pkgjs/parseargs/-/parseargs-0.11.0.tgz"
@@ -2608,6 +2622,11 @@
     "@types/express-serve-static-core" "^4.17.33"
     "@types/qs" "*"
     "@types/serve-static" "*"
+
+"@types/file-saver@^2.0.7":
+  version "2.0.7"
+  resolved "https://registry.npmjs.org/@types/file-saver/-/file-saver-2.0.7.tgz"
+  integrity sha512-dNKVfHd/jk0SkR/exKGj2ggkB45MAkzvWCaqLUUgkyjITkGNzH8H+yUwr+BLJUBjZOe9w8X3wgmXhZDRg1ED6A==
 
 "@types/http-errors@*":
   version "2.0.4"
@@ -3130,11 +3149,6 @@ balanced-match@^1.0.0:
   resolved "https://registry.npmjs.org/balanced-match/-/balanced-match-1.0.2.tgz"
   integrity sha512-3oSeUO0TMV67hN1AmbXsK4yaqU7tjiHlbxRDZOpH0KW9+CeX4bRAaX0Anxt0tx2MrpRpWwQaPwIlISEJhYU5Pw==
 
-base-64@^0.1.0:
-  version "0.1.0"
-  resolved "https://registry.npmjs.org/base-64/-/base-64-0.1.0.tgz"
-  integrity sha512-Y5gU45svrR5tI2Vt/X9GPd3L0HNIKzGu202EjxrXMpuc2V2CiKgemAbUUsqYmZJvPtCXoUKjNZwBJzsNScUbXA==
-
 base64-js@^1.1.2, base64-js@^1.2.0, base64-js@^1.3.0, base64-js@^1.3.1:
   version "1.5.1"
   resolved "https://registry.npmjs.org/base64-js/-/base64-js-1.5.1.tgz"
@@ -3362,11 +3376,6 @@ chardet@^0.7.0:
   version "0.7.0"
   resolved "https://registry.npmjs.org/chardet/-/chardet-0.7.0.tgz"
   integrity sha512-mT8iDcrh03qDGRRmoA2hmBJnxpllMR+0/0qlzjqZES6NdiWDcZkCNAk4rPFZ9Q85r27unkiNNg8ZOiwZXBHwcA==
-
-charenc@0.0.2:
-  version "0.0.2"
-  resolved "https://registry.npmjs.org/charenc/-/charenc-0.0.2.tgz"
-  integrity sha512-yrLQ/yVUFXkzg7EDQsPieE/53+0RlaWTs+wBrvW36cyilJ2SaDWfl4Yj7MtLTXleV9uEKefbAGUPv2/iWSooRA==
 
 chart.js@^4.4.2:
   version "4.4.2"
@@ -3653,11 +3662,6 @@ cross-spawn@^7.0.0, cross-spawn@^7.0.3:
     shebang-command "^2.0.0"
     which "^2.0.1"
 
-crypt@0.0.2:
-  version "0.0.2"
-  resolved "https://registry.npmjs.org/crypt/-/crypt-0.0.2.tgz"
-  integrity sha512-mCxBlsHFYh9C+HVpiEacem8FEBnMXgU9gy4zmNC+SXAZNB/1idgp/aulFJ4FgCi7GPEVbfyng092GqL2k2rmow==
-
 crypto-js@^4.2.0:
   version "4.2.0"
   resolved "https://registry.npmjs.org/crypto-js/-/crypto-js-4.2.0.tgz"
@@ -3826,14 +3830,6 @@ di@^0.0.1:
   version "0.0.1"
   resolved "https://registry.npmjs.org/di/-/di-0.0.1.tgz"
   integrity sha512-uJaamHkagcZtHPqCIHZxnFrXlunQXgBOsZSUOWwFw31QJCAbyTBoHMW75YOTur5ZNx8pIeAKgf6GWIgaqqiLhA==
-
-digest-fetch@^1.3.0:
-  version "1.3.0"
-  resolved "https://registry.npmjs.org/digest-fetch/-/digest-fetch-1.3.0.tgz"
-  integrity sha512-CGJuv6iKNM7QyZlM2T3sPAdZWd/p9zQiRNS9G+9COUCwzWFTs0Xp8NF5iePx7wtvhDykReiRRrSeNb4oMmB8lA==
-  dependencies:
-    base-64 "^0.1.0"
-    md5 "^2.3.0"
 
 dir-glob@^3.0.1:
   version "3.0.1"
@@ -4238,6 +4234,11 @@ figures@^5.0.0:
   dependencies:
     escape-string-regexp "^5.0.0"
     is-unicode-supported "^1.2.0"
+
+file-saver@^2.0.5:
+  version "2.0.5"
+  resolved "https://registry.npmjs.org/file-saver/-/file-saver-2.0.5.tgz"
+  integrity sha512-P9bmyZ3h/PRG+Nzga+rbdI4OEpNDzAVyy74uVO9ATgzLK6VtAsYybF/+TOCvrc0MO793d6+42lLyZTw7/ArVzA==
 
 fill-range@^7.0.1:
   version "7.0.1"
@@ -4842,11 +4843,6 @@ is-binary-path@~2.1.0:
   dependencies:
     binary-extensions "^2.0.0"
 
-is-buffer@~1.1.6:
-  version "1.1.6"
-  resolved "https://registry.npmjs.org/is-buffer/-/is-buffer-1.1.6.tgz"
-  integrity sha512-NcdALwpXkTm5Zvvbk7owOUSvVvBKDgKP5/ewfXEznmQFfs4ZRmanOeKBTjRVjka3QFoN6XJ+9F3USqfHqTaU5w==
-
 is-core-module@^2.13.0, is-core-module@^2.8.1:
   version "2.13.1"
   resolved "https://registry.npmjs.org/is-core-module/-/is-core-module-2.13.1.tgz"
@@ -5374,15 +5370,6 @@ make-fetch-happen@^13.0.0:
     promise-retry "^2.0.1"
     ssri "^10.0.0"
 
-md5@^2.3.0:
-  version "2.3.0"
-  resolved "https://registry.npmjs.org/md5/-/md5-2.3.0.tgz"
-  integrity sha512-T1GITYmFaKuO91vxyoQMFETst+O71VUPEU3ze5GNzDm0OWdP8v1ziTaAEPUr/3kLsY3Sftgz242A1SetQiDL7g==
-  dependencies:
-    charenc "0.0.2"
-    crypt "0.0.2"
-    is-buffer "~1.1.6"
-
 media-typer@0.3.0:
   version "0.3.0"
   resolved "https://registry.npmjs.org/media-typer/-/media-typer-0.3.0.tgz"
@@ -5890,16 +5877,15 @@ open@^8.0.9, open@8.4.2:
     is-docker "^2.1.1"
     is-wsl "^2.2.0"
 
-openai@^4.26.0:
-  version "4.26.0"
-  resolved "https://registry.npmjs.org/openai/-/openai-4.26.0.tgz"
-  integrity sha512-HPC7tgYdeP38F3uHA5WgnoXZyGbAp9jgcIo23p6It+q/07u4C+NZ8xHKlMShsPbDDmFRpPsa3vdbXYpbhJH3eg==
+openai@^4.47.3:
+  version "4.47.3"
+  resolved "https://registry.npmjs.org/openai/-/openai-4.47.3.tgz"
+  integrity sha512-470d4ibH5kizXflCzgur22GpM4nOjrg7WQ9jTOa3dNKEn248oBy4+pjOyfcFR4V4YUn/YlDNjp6h83PbviCCKQ==
   dependencies:
     "@types/node" "^18.11.18"
     "@types/node-fetch" "^2.6.4"
     abort-controller "^3.0.0"
     agentkeepalive "^4.2.1"
-    digest-fetch "^1.3.0"
     form-data-encoder "1.7.2"
     formdata-node "^4.3.2"
     node-fetch "^2.6.7"
@@ -6002,7 +5988,7 @@ pako@^0.2.5:
   resolved "https://registry.npmjs.org/pako/-/pako-0.2.9.tgz"
   integrity sha512-NUcwaKxUxWrZLpDG+z/xZaCgQITkA/Dv4V/T6bw7VON6l1Xz/VnrBqrYjZQ12TamKHzITTfOEIYUj48y2KXImA==
 
-pako@^1.0.3:
+pako@^1.0.10, pako@^1.0.11, pako@^1.0.3, pako@^1.0.6:
   version "1.0.11"
   resolved "https://registry.npmjs.org/pako/-/pako-1.0.11.tgz"
   integrity sha512-4hLB8Py4zZce5s4yd9XzopqwVv/yGNhV1Bl8NTmCq1763HeK2+EwVTv+leGeL13Dnh2wfbqowVPXCIO0z4taYw==
@@ -6099,6 +6085,16 @@ path-type@^4.0.0:
   version "4.0.0"
   resolved "https://registry.npmjs.org/path-type/-/path-type-4.0.0.tgz"
   integrity sha512-gDKb8aZMDeD/tZWs9P6+q0J9Mwkdl6xMV8TjnGP3qJVJ06bdMgkbBlLU8IdfOsIsFz2BW1rNVT3XuNEl8zPAvw==
+
+pdf-lib@^1.17.1:
+  version "1.17.1"
+  resolved "https://registry.npmjs.org/pdf-lib/-/pdf-lib-1.17.1.tgz"
+  integrity sha512-V/mpyJAoTsN4cnP31vc0wfNA1+p20evqqnap0KLoRUN0Yk/p3wN52DOEsL4oBFcLdb76hlpKPtzJIgo67j/XLw==
+  dependencies:
+    "@pdf-lib/standard-fonts" "^1.0.0"
+    "@pdf-lib/upng" "^1.0.1"
+    pako "^1.0.11"
+    tslib "^1.11.1"
 
 pdfmake@^0.2.10:
   version "0.2.10"
@@ -7204,6 +7200,11 @@ tree-kill@1.2.2:
   version "1.2.2"
   resolved "https://registry.npmjs.org/tree-kill/-/tree-kill-1.2.2.tgz"
   integrity sha512-L0Orpi8qGpRG//Nd+H90vFB+3iHnue1zSSGmNOOCh1GLJ7rUKVwV2HvijphGQS2UmhUZewS9VgvxYIdgr+fG1A==
+
+tslib@^1.11.1:
+  version "1.14.1"
+  resolved "https://registry.npmjs.org/tslib/-/tslib-1.14.1.tgz"
+  integrity sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==
 
 tslib@^2.0.0, tslib@^2.1.0, tslib@^2.3.0, tslib@>=2.6.2, tslib@2.6.2:
   version "2.6.2"
