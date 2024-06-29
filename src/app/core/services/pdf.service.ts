@@ -103,6 +103,8 @@
 //   }
 // }
 
+
+
 import { Injectable } from '@angular/core';
 import { PDFDocument, rgb } from 'pdf-lib';
 import { saveAs } from 'file-saver';
@@ -135,7 +137,6 @@ export class PdfService {
 
     const pdfBytes = await pdfDoc.save();
     const blob = new Blob([pdfBytes], { type: 'application/pdf' });
-    const fileName = `${pedidoInfo.codigoPedido}-pedido.pdf`;
-    saveAs(blob, fileName);
+    saveAs(blob, 'pedido.pdf');
   }
 }
