@@ -64,6 +64,16 @@ export class PdfService {
       maxWidth: 500,
     });
 
+    // Añadir un párrafo sobre la importancia del documento
+    page.drawText('IMPORTANTE: Este documento es crucial para el seguimiento de su pedido. Si realizó el pedido a la hora indicada, puede pasar a recoger su pedido en el local. Si prefiere, puede esperar a que nuestro personal asignado se comunique con usted para darle el seguimiento correspondiente.', {
+      x: 50,
+      y: 660,
+      size: 12,
+      font: fontTimesRomanBold,
+      color: rgb(0.8, 0.2, 0.2),
+      maxWidth: 500,
+    });
+
     // Dibujar un cuadro de información con borde y sombra
     page.drawRectangle({
       x: 45,
@@ -114,21 +124,21 @@ export class PdfService {
       y -= lineHeight;
     });
 
-    // Agregar pie de página con imagen
-    page.drawImage(footerImage, {
-      x: page.getWidth() / 2 - footerDims.width / 2,
-      y: 20,
-      width: footerDims.width,
-      height: footerDims.height,
-    });
-
     // Agregar una línea decorativa en el pie de página
     page.drawLine({
-      start: { x: 50, y: 60 },
-      end: { x: 550, y: 60 },
+      start: { x: 50, y: 70 },
+      end: { x: 550, y: 70 },
       thickness: 1,
       color: rgb(0.44, 0.22, 0.14), // Color #703824
       opacity: 0.5,
+    });
+
+    // Agregar pie de página con imagen sobre la línea
+    page.drawImage(footerImage, {
+      x: page.getWidth() / 2 - footerDims.width / 2,
+      y: 30,
+      width: footerDims.width,
+      height: footerDims.height,
     });
 
     const pdfBytes = await pdfDoc.save();
