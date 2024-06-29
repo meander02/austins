@@ -1,0 +1,14 @@
+<div class="activate-account-container">
+    <h2>Activar Cuenta</h2>
+    <div *ngIf="error" class="error-message">
+      {{ error }}
+    </div>
+    <form (submit)="activateAccount()">
+      <div class="form-group">
+        <label for="password">Nueva Contraseña:</label>
+        <input type="password" id="password" [(ngModel)]="password" name="password" required>
+      </div>
+      <button type="submit">Activar Cuenta</button>
+    </form>
+  </div>
+  
