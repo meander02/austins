@@ -330,7 +330,7 @@ export class OrderComponent {
               this.actualizarImagenPedido(detallePedidoId, response.pedido.codigoPedido); // Llamar a la función para actualizar la imagen del pedido}
               console.log(response.pedido.codigoPedido);
               console.log(response);
-              this.ngxLoader.stop();
+
             });
 
         } else {
@@ -353,6 +353,7 @@ export class OrderComponent {
           detail: 'La imagen del pedido se ha actualizado correctamente.',
         });
         this.router.navigate(['/payment/order-acc'], { queryParams: { SEMUYI: SEMUYI } });
+        this.ngxLoader.stop();
       },
       (error) => {
         console.error('Error al actualizar la imagen del pedido:', error);

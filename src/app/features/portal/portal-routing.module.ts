@@ -24,10 +24,10 @@ const routes: Routes = [
         path: 'home',
         component: HomeViews,
       },
-      {
-        path: 'order-acc',
-        component: AccepOrderComponent,
-      },
+      // {
+      //   path: 'order-acc',
+      //   component: AccepOrderComponent,
+      // },
       // {
       //   path: 'detail',
       //   component: DetailViews,
