@@ -10,7 +10,7 @@ import { DialogService, DynamicDialogConfig, DynamicDialogRef } from 'primeng/dy
   selector: 'app-accep-order',
   templateUrl: './accep-order.component.html',
   styleUrls: ['./accep-order.component.scss'],
-  providers: [DialogService, ],
+  providers: [DialogService],
 })
 export class AccepOrderComponent implements OnInit {
   SEMUYI: string = '';
