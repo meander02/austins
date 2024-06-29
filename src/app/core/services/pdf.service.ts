@@ -126,8 +126,8 @@ export class PdfService {
 
     // Agregar una línea decorativa en el pie de página
     page.drawLine({
-      start: { x: 50, y: 90 },
-      end: { x: 550, y: 90 },
+      start: { x: 50, y: 60 },
+      end: { x: 550, y: 60 },
       thickness: 1,
       color: rgb(0.44, 0.22, 0.14), // Color #703824
       opacity: 0.5,
@@ -136,7 +136,7 @@ export class PdfService {
     // Agregar pie de página con imagen sobre la línea
     page.drawImage(footerImage, {
       x: page.getWidth() / 2 - footerDims.width / 2,
-      y: 60,
+      y: 20,
       width: footerDims.width,
       height: footerDims.height,
     });
