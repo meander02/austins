@@ -65,9 +65,9 @@ export class PdfService {
     });
 
     // Añadir un párrafo sobre la importancia del documento
-    page.drawText('IMPORTANTE: Este documento es crucial para el seguimiento de su pedido. Si realizó el pedido a la hora indicada, puede pasar a recoger su pedido en el local. Si prefiere, puede esperar a que nuestro personal asignado se comunique con usted para darle el seguimiento correspondiente.', {
+    page.drawText('IMPORTANTE: Este documento es esencial para el seguimiento de su pedido. Si realizó el pedido a la hora indicada, puede recogerlo en el local. Alternativamente, puede esperar a que nuestro personal se ponga en contacto con usted para coordinar los detalles del pago y ofrecer el seguimiento correspondiente.', {
       x: 50,
-      y: 110,
+      y: 180,
       size: 8,
       font: fontTimesRomanBold,
       color: rgb(0.8, 0.2, 0.2),
