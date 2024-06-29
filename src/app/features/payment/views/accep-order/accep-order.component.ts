@@ -4,13 +4,14 @@ import { HttpClient } from '@angular/common/http';
 import { OrderService } from '../../commons/services/order.service';
 import { PedidoService } from 'src/app/core/services/pedido.service';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
-import { DialogService, DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { DialogService } from 'primeng/dynamicdialog';
+import { DialogRefService } from 'src/app/shared/services/dialog-ref.service';
 
 @Component({
   selector: 'app-accep-order',
   templateUrl: './accep-order.component.html',
   styleUrls: ['./accep-order.component.scss'],
-  providers: [DialogService, DynamicDialogRef],
+  providers: [DialogService],
 })
 export class AccepOrderComponent implements OnInit {
   SEMUYI: string = '';
@@ -24,17 +25,13 @@ export class AccepOrderComponent implements OnInit {
     private http: HttpClient,
     private ngxLoader: NgxUiLoaderService,
     private dialogService: DialogService,
-    public dialogRef: DynamicDialogRef  // Asegurarse de que esto sea público
+    private dialogRefService: DialogRefService // Inyectar el servicio
   ) {}
 
   ngOnInit(): void {
-    // Iniciar el loader al llegar al componente
     this.ngxLoader.start();
-
-    // Obtener el parámetro SEMUYI de la URL
     this.route.queryParams.subscribe((params) => {
       this.SEMUYI = params['SEMUYI'];
-      // Realizar la consulta con el código SEMUYI
       this.consultarCodigo(this.SEMUYI);
     });
   }
@@ -43,23 +40,17 @@ export class AccepOrderComponent implements OnInit {
     this.orderService.consultarPedido(SEMUYI).subscribe(
       (response) => {
         if (response && response.resultado) {
-          // Asignar el pedidoInfo
           this.pedidoInfo = response.resultado;
-          // Pasar los datos al servicio para generar el PDF
           this.pedidoService.setPedidoInfo(this.pedidoInfo);
-          // Redirigir al portal
           this.router.navigate(['/portal/home']);
         } else {
           console.error('La estructura de la respuesta no es válida.');
         }
-        // Detener el loader después de la redirección o en caso de error
         this.ngxLoader.stop();
-        // Cerrar el modal después de procesar la respuesta
-        this.dialogRef.close();
+        this.dialogRefService.closeDialog(); // Cerrar el modal usando el servicio
       },
       (error) => {
         console.error('Error al consultar pedido:', error);
-        // Detener el loader en caso de error
         this.ngxLoader.stop();
       }
     );

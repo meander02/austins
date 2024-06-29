@@ -10,6 +10,7 @@ import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog'
 import { ConfirmationService, MessageService } from 'primeng/api'
 import { OrderviewView } from './features/payment/views/orderview/orderview.view'
 import { CartService } from './core/services/cart.service'
+import { DialogRefService } from './shared/services/dialog-ref.service'
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -55,7 +56,8 @@ export class AppComponent implements OnInit {
     private dialogService: DialogService,
     private confirmationService: ConfirmationService,
     private messageService: MessageService,
-    private cartService: CartService,
+    private cartService: CartService,    private dialogRefService: DialogRefService // Inyectar el servicio
+
   ) {
     this.subscribeToNotifications()
     // Suscribirse a los cambios de la ruta y redirigir en caso de rutas no válidas
@@ -74,20 +76,9 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     AOS.init()
     window.addEventListener('load', AOS.refresh)
-   
-    // Realizar la primera recarga solo si no se ha hecho antes
-    // if (!this.initialReloadDone) {
-    //   this.reloadPage();
-    //   this.initialReloadDone = true;
-    // }
-  }
 
-  // // Método para realizar la recarga de la página
-  // reloadPage() {
-  //   setTimeout(() => {
-  //     window.location.reload();
-  //   }, 1000); // Especifica un tiempo en milisegundos antes de la recarga
-  // }
+
+  }
 
   isChatOpen = false
 
@@ -106,25 +97,24 @@ export class AppComponent implements OnInit {
     // Ahora verifica si la ruta actual es '/portal/home'
     return this.currentRoute === '/portal/home'
   }
-
   showDialog() {
-    // this.sidebarVisible = false;
-    const isMobile = window.innerWidth < 480
-
-    this.ref = this.dialogService.open(OrderviewView, {
-      header: 'Otro diseño', // Aquí defines el título de tu diálogo
-      height: isMobile ? 'auto' : 'auto',
-      style: {
-        'max-width': isMobile ? '110vw' : 'auto',
-        'max-height': isMobile ? 'auto' : '100vh',
-        padding: '0', // Aquí estableces el padding a 0
-      },
-      modal: true,
-      breakpoints: {
-        '960px': '75vw',
-        '640px': '100vw',
-      },
-      data: {},
-    })
+    const isMobile = window.innerWidth < 480;
+    this.dialogRefService.setDialogRef( // Usar el servicio para almacenar la referencia
+      this.dialogService.open(OrderviewView, {
+        header: 'Otro diseño',
+        height: isMobile ? 'auto' : 'auto',
+        style: {
+          'max-width': isMobile ? '110vw' : 'auto',
+          'max-height': isMobile ? 'auto' : '100vh',
+          padding: '0',
+        },
+        modal: true,
+        breakpoints: {
+          '960px': '75vw',
+          '640px': '100vw',
+        },
+        data: {},
+      })
+    );
   }
 }

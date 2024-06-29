@@ -10,7 +10,6 @@ import { TerminosCondicionesView } from './views/terminos-condiciones/terminos-c
 import { NotFondViews } from './views/not-fond/not-fond.views';
 import { UnknownView } from './views/unknown/unknown.view';
 import { PreguntasFreqView } from './views/preguntas-freq/preguntas-freq.view';
-import { AccepOrderComponent } from './views/accep-order/accep-order.component';
 
 const routes: Routes = [
   {
