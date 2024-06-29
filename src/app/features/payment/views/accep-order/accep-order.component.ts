@@ -21,7 +21,7 @@ export class AccepOrderComponent implements OnInit {
     private route: ActivatedRoute,
     private pedidoService: PedidoService,
     private http: HttpClient,
-    private ngxLoader: NgxUiLoaderService,    private dialogRef: DynamicDialogRef
+    private ngxLoader: NgxUiLoaderService,
 
   ) {}
 
@@ -52,7 +52,7 @@ export class AccepOrderComponent implements OnInit {
         }
         // Detener el loader después de la redirección o en caso de error
         this.ngxLoader.stop();
-        this.dialogRef.close();
+    
       },
       (error) => {
         console.error('Error al consultar pedido:', error);
