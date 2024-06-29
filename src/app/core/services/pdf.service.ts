@@ -67,7 +67,7 @@ export class PdfService {
     // Añadir un párrafo sobre la importancia del documento
     page.drawText('IMPORTANTE: Este documento es crucial para el seguimiento de su pedido. Si realizó el pedido a la hora indicada, puede pasar a recoger su pedido en el local. Si prefiere, puede esperar a que nuestro personal asignado se comunique con usted para darle el seguimiento correspondiente.', {
       x: 50,
-      y: 660,
+      y: 650,
       size: 12,
       font: fontTimesRomanBold,
       color: rgb(0.8, 0.2, 0.2),
@@ -77,7 +77,7 @@ export class PdfService {
     // Dibujar un cuadro de información con borde y sombra
     page.drawRectangle({
       x: 45,
-      y: 200,
+      y: 180,
       width: 510,
       height: 450,
       borderColor: rgb(0.67, 0.44, 0.22), // Color #AB7038
@@ -86,7 +86,7 @@ export class PdfService {
     });
 
     // Información del pedido con sombra y mejor posicionamiento
-    const yStart = 630;
+    const yStart = 620;
     const lineHeight = 25;
     const fields = [
       { label: 'Código de Pedido:', value: pedidoInfo.codigoPedido },
@@ -126,8 +126,8 @@ export class PdfService {
 
     // Agregar una línea decorativa en el pie de página
     page.drawLine({
-      start: { x: 50, y: 70 },
-      end: { x: 550, y: 70 },
+      start: { x: 50, y: 90 },
+      end: { x: 550, y: 90 },
       thickness: 1,
       color: rgb(0.44, 0.22, 0.14), // Color #703824
       opacity: 0.5,
@@ -136,7 +136,7 @@ export class PdfService {
     // Agregar pie de página con imagen sobre la línea
     page.drawImage(footerImage, {
       x: page.getWidth() / 2 - footerDims.width / 2,
-      y: 30,
+      y: 60,
       width: footerDims.width,
       height: footerDims.height,
     });
