@@ -51,7 +51,7 @@ export class AccepOrderComponent implements OnInit {
           this.pedidoService.setPedidoInfo(this.pedidoInfo);
           // Redirigir al portal
           this.router.navigate(['/portal/home']);
-
+          this.dialogRef.close()
         } else {
           console.error('La estructura de la respuesta no es válida.');
         }
