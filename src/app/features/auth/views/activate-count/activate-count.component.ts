@@ -28,10 +28,14 @@ export class ActivateCountComponent implements OnInit {
     this.http.post<any>(`${environment.api}/auth/activate`, { token: this.token, password: this.password })
       .subscribe(
         () => {
+          alert('¡Cuenta activada correctamente!');
+
           // Activación exitosa, redirigir o mostrar mensaje de éxito
         },
         error => {
           this.error = error.message || 'Error al activar la cuenta.';
+          alert(this.error);
+
         }
       );
   }
