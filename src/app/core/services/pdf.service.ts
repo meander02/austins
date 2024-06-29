@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { PDFDocument, rgb, StandardFonts, degrees } from 'pdf-lib';
+import { PDFDocument, rgb, StandardFonts } from 'pdf-lib';
 import { saveAs } from 'file-saver';
 
 @Injectable({
@@ -12,16 +12,25 @@ export class PdfService {
   async createPdf(pedidoInfo: any): Promise<void> {
     const pdfDoc = await PDFDocument.create();
     const page = pdfDoc.addPage([600, 800]);
+
     const logoUrl = 'https://static.wixstatic.com/media/64de7c_4d76bd81efd44bb4a32757eadf78d898~mv2_d_1765_2028_s_2.png/v1/fill/w_243,h_270,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/64de7c_4d76bd81efd44bb4a32757eadf78d898~mv2_d_1765_2028_s_2.png';
-    const logoImageBytes = await fetch(logoUrl).then(res => res.arrayBuffer());
+    const footerImageUrl = 'https://static.wixstatic.com/media/64de7c_29f387abde884a1e8f9df17220933df6~mv2.png/v1/fill/w_834,h_221,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/64de7c_29f387abde884a1e8f9df17220933df6~mv2.png';
+
+    const [logoImageBytes, footerImageBytes] = await Promise.all([
+      fetch(logoUrl).then(res => res.arrayBuffer()),
+      fetch(footerImageUrl).then(res => res.arrayBuffer())
+    ]);
+
     const logoImage = await pdfDoc.embedPng(logoImageBytes);
+    const footerImage = await pdfDoc.embedPng(footerImageBytes);
 
     const logoDims = logoImage.scale(0.2);
+    const footerDims = footerImage.scale(0.25);
 
     const fontTimesRoman = await pdfDoc.embedFont(StandardFonts.TimesRoman);
     const fontTimesRomanBold = await pdfDoc.embedFont(StandardFonts.TimesRomanBold);
 
-    // Dibujar logo con sombra
+    // Dibujar logo
     page.drawImage(logoImage, {
       x: page.getWidth() / 2 - logoDims.width / 2,
       y: page.getHeight() - logoDims.height - 20,
@@ -29,13 +38,13 @@ export class PdfService {
       height: logoDims.height,
     });
 
-    // Encabezado con sombra
+    // Encabezado con estilo
     page.drawText('Repostería Austins', {
       x: 50,
       y: 750,
       size: 24,
       font: fontTimesRomanBold,
-      color: rgb(0.8, 0.4, 0.4),
+      color: rgb(0.67, 0.44, 0.22), // Color #AB7038
     });
 
     page.drawText('Confirmación de Pedido', {
@@ -43,7 +52,7 @@ export class PdfService {
       y: 720,
       size: 18,
       font: fontTimesRomanBold,
-      color: rgb(0.4, 0.6, 0.8),
+      color: rgb(0.44, 0.22, 0.14), // Color #703824
     });
 
     page.drawText('Este documento sirve como confirmación de su pedido realizado en Repostería Austins. Puede consultar el estado del pedido en la sección "Consultar Estado Pedido" en nuestro sitio web, o presentarlo en nuestro local para obtener información sobre su pedido.', {
@@ -61,7 +70,7 @@ export class PdfService {
       y: 200,
       width: 510,
       height: 450,
-      borderColor: rgb(0.4, 0.6, 0.8),
+      borderColor: rgb(0.67, 0.44, 0.22), // Color #AB7038
       borderWidth: 2,
       opacity: 0.2,
     });
@@ -105,13 +114,12 @@ export class PdfService {
       y -= lineHeight;
     });
 
-    // Agregar pie de página con sombra
-    page.drawText('Gracias por su pedido. ¡Esperamos que disfrute de nuestros productos!', {
-      x: 50,
-      y: 50,
-      size: 12,
-      font: fontTimesRoman,
-      color: rgb(0.3, 0.3, 0.3),
+    // Agregar pie de página con imagen
+    page.drawImage(footerImage, {
+      x: page.getWidth() / 2 - footerDims.width / 2,
+      y: 20,
+      width: footerDims.width,
+      height: footerDims.height,
     });
 
     // Agregar una línea decorativa en el pie de página
@@ -119,7 +127,7 @@ export class PdfService {
       start: { x: 50, y: 60 },
       end: { x: 550, y: 60 },
       thickness: 1,
-      color: rgb(0.4, 0.6, 0.8),
+      color: rgb(0.44, 0.22, 0.14), // Color #703824
       opacity: 0.5,
     });
 
