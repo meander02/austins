@@ -1,19 +1,17 @@
-// import { Component } from '@angular/core';
-import { Component, ViewEncapsulation } from '@angular/core'
-import { ConfirmationService, MessageService } from 'primeng/api'
-import { DialogService } from 'primeng/dynamicdialog'
-import { OrderService } from '../../services/order.service'
-import { catchError, throwError } from 'rxjs'
-import { NotificService } from 'src/app/shared/services/notific.service'
-import { SwPush } from '@angular/service-worker'
-// import { PedidoviewService } from '../../../../../shared/services/pedidoview.service';
-import { NgxUiLoaderService } from 'ngx-ui-loader'
-import { Router } from '@angular/router'
+import { Component, ViewEncapsulation } from '@angular/core';
+import { ConfirmationService, MessageService } from 'primeng/api';
+import { DialogService } from 'primeng/dynamicdialog';
+import { OrderService } from '../../services/order.service';
+import { catchError, throwError } from 'rxjs';
+import { NotificService } from 'src/app/shared/services/notific.service';
+import { SwPush } from '@angular/service-worker';
+import { NgxUiLoaderService } from 'ngx-ui-loader';
+import { Router } from '@angular/router';
 
 interface PasteleriaFlavor {
-  name: string
-  code: string
-  precioPorKilo: number // Agrega el precio por kilo para cada sabor
+  name: string;
+  code: string;
+  precioPorKilo: number; // Agrega el precio por kilo para cada sabor
 }
 
 @Component({
@@ -24,57 +22,66 @@ interface PasteleriaFlavor {
 })
 export class OrderComponent {
   // Datos del Cliente
-  nombre: string | undefined
-  apellido1: string | undefined
-  apellido2: string | undefined
-  correo: string | undefined
-  telefono: string | undefined
+  nombre: string | undefined;
+  apellido1: string | undefined;
+  apellido2: string | undefined;
+  correo: string | undefined;
+  telefono: string | undefined;
 
   // Pedido
-  selectedFlavor: PasteleriaFlavor | undefined
-  selectedQuantity: number | undefined
-  precioTotal: number | undefined
-  personasPorKilo: number | undefined
+  selectedFlavor: PasteleriaFlavor | undefined;
+  selectedQuantity: number | undefined;
+  precioTotal: number | undefined;
+  personasPorKilo: number | undefined;
 
   // Personalización
-  color_personalizado: string | undefined
-  design_personalizado: string | undefined
-  selectedModo: string | undefined
-  modoPersonalizado: string | undefined
-  saborpersonalizado: string | undefined
-  mensajePersonalizado: string = ''
-  selectedFile!: File
+  color_personalizado: string | undefined;
+  design_personalizado: string | undefined;
+  selectedModo: string | undefined;
+  modoPersonalizado: string | undefined;
+  saborpersonalizado: string | undefined;
+  mensajePersonalizado: string = '';
+  selectedFile!: File;
 
   // Fecha y Hora de Entrega
-  dia: Date | undefined
-  hora: string | undefined
+  dia: Date | undefined;
+  hora: string | undefined;
 
   // Opciones de Modo y Sabor
-  flavors: PasteleriaFlavor[] | undefined
-  modoOptions: string[] = ['cuadrado', 'redondo', 'corazon', 'otro']
-  selectedModosabor: string = ''
+  flavors: PasteleriaFlavor[] | undefined;
+  modoOptions: string[] = ['cuadrado', 'redondo', 'corazon', 'otro'];
+  selectedModosabor: string = '';
 
-  readonly VAPID_PUBLIC_KEY =
-    'BFYtOg9-LQWHmObZKXm4VIV2BImn5nBrhz4h37GQpbdj0hSBcghJG7h-wldz-fx9aTt7oaqKSS3KXhA4nXf32pY'
+  readonly VAPID_PUBLIC_KEY = 'BFYtOg9-LQWHmObZKXm4VIV2BImn5nBrhz4h37GQpbdj0hSBcghJG7h-wldz-fx9aTt7oaqKSS3KXhA4nXf32pY';
 
   subscribeToNotifications() {
+    if (!('serviceWorker' in navigator)) {
+      console.error('Service workers are not supported by this browser.');
+      return;
+    }
+
+    if (!('PushManager' in window)) {
+      console.error('Push notifications are not supported by this browser.');
+      return;
+    }
+
     this.swPush
       .requestSubscription({
         serverPublicKey: this.VAPID_PUBLIC_KEY,
       })
       .then((sub) => {
-        // console.log('Token de suscripción:', sub.toJSON())
         // Enviar la suscripción al backend
         this.pushNotificationService.sendSubscription(sub.toJSON()).subscribe(
           (res) => console.log('Suscripción enviada al servidor:', res),
           (error) =>
             console.error('Error al enviar la suscripción al servidor:', error),
-        )
+        );
       })
       .catch((err) =>
         console.error('Could not subscribe to notifications', err),
-      )
+      );
   }
+
   constructor(
     private router: Router,
     private ngxLoader: NgxUiLoaderService,
@@ -83,6 +90,7 @@ export class OrderComponent {
     private pedidoService: OrderService,
     private messageService: MessageService,
   ) {}
+
   ngOnInit() {
     this.flavors = [
       { name: 'Chocolate', code: 'choco', precioPorKilo: 580 }, // Define el precio por kilo para cada sabor
@@ -90,45 +98,44 @@ export class OrderComponent {
       { name: 'Fresa', code: 'fres', precioPorKilo: 380 },
       { name: 'Limón', code: 'lim', precioPorKilo: 350 },
       { name: 'Naranja', code: 'nara', precioPorKilo: 350 },
-    ]
-    this.selectedModo = undefined // Inicializar el modo seleccionado
-    this.modoPersonalizado = undefined // Inicializar el modo personalizado
+    ];
+    this.selectedModo = undefined; // Inicializar el modo seleccionado
+    this.modoPersonalizado = undefined; // Inicializar el modo personalizado
   }
 
-  kilosOptions: number[] = [2, 3, 4, 5, 6, 7, 8, 9, 10] // Opciones de cantidad en kilos
+  kilosOptions: number[] = [2, 3, 4, 5, 6, 7, 8, 9, 10]; // Opciones de cantidad en kilos
 
   calcularPrecio(): void {
     if (this.selectedFlavor && this.selectedQuantity) {
-      this.precioTotal =
-        this.selectedFlavor.precioPorKilo * this.selectedQuantity
+      this.precioTotal = this.selectedFlavor.precioPorKilo * this.selectedQuantity;
     } else {
-      this.precioTotal = undefined
+      this.precioTotal = undefined;
     }
     if (this.selectedFlavor !== undefined && this.selectedFlavor !== null) {
       // Limpiar el textarea de sabor
-      this.saborpersonalizado = ''
+      this.saborpersonalizado = '';
     }
   }
 
   calcularPersonas(): void {
     if (this.selectedQuantity) {
-      this.personasPorKilo = this.selectedQuantity * 25
+      this.personasPorKilo = this.selectedQuantity * 25;
     } else {
-      this.personasPorKilo = undefined
+      this.personasPorKilo = undefined;
     }
     if (this.selectedFlavor !== undefined && this.selectedFlavor !== null) {
       // Limpiar el textarea de sabor
-      this.saborpersonalizado = ''
+      this.saborpersonalizado = '';
     }
   }
 
   modoChanged(): void {
     if (this.selectedModosabor === 'otrosabor') {
-      console.log('Se seleccionó otro sabor')
-      this.selectedFlavor = undefined // Limpiar el select de sabores
+      console.log('Se seleccionó otro sabor');
+      this.selectedFlavor = undefined; // Limpiar el select de sabores
     }
     if (this.selectedModo !== 'otro') {
-      this.modoPersonalizado = undefined
+      this.modoPersonalizado = undefined;
     }
   }
 
@@ -136,19 +143,21 @@ export class OrderComponent {
     // Función para obtener la clase de icono basada en el modo seleccionado
     switch (modo) {
       case 'cuadrado':
-        return 'pi pi-stop'
+        return 'pi pi-stop';
       case 'redondo':
-        return 'pi pi-circle'
+        return 'pi pi-circle';
       case 'corazon':
-        return 'pi pi-heart'
+        return 'pi pi-heart';
       default:
-        return ''
+        return '';
     }
   }
+
   handleFileInput(event: { files: File[] }): void {
-    this.selectedFile = event.files[0]
-    console.log(this.selectedFile)
+    this.selectedFile = event.files[0];
+    console.log(this.selectedFile);
   }
+
   enviarPedido() {
     // Validar todos los campos obligatorios
     const camposObligatorios = [
@@ -161,7 +170,7 @@ export class OrderComponent {
       { campo: this.dia, mensaje: 'Día' },
       { campo: this.hora, mensaje: 'Hora' },
       { campo: this.selectedFile, mensaje: 'imagen' },
-    ]
+    ];
 
     for (const campo of camposObligatorios) {
       if (!campo.campo) {
@@ -169,53 +178,46 @@ export class OrderComponent {
           severity: 'error',
           summary: 'Error',
           detail: `El campo ${campo.mensaje} es obligatorio.`,
-        })
-        this.ngxLoader.stop()
-        return
+        });
+        this.ngxLoader.stop();
+        return;
       }
     }
 
     // Validar el formato del correo electrónico
-    const emailPattern = /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/
-    // Validar el formato del correo electrónico si this.correo es una cadena de texto válida
+    const emailPattern = /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/;
     if (typeof this.correo === 'string' && !emailPattern.test(this.correo)) {
       this.messageService.add({
         severity: 'error',
         summary: 'Error',
         detail: 'Por favor ingrese un correo electrónico válido.',
-      })
-      this.ngxLoader.stop()
-      return
+      });
+      this.ngxLoader.stop();
+      return;
     }
 
     // Validar el número de teléfono
-    const phonePattern = /^[0-9]{10}$/
-    // Validar el número de teléfono si this.telefono es una cadena de texto válida
-    if (
-      typeof this.telefono === 'string' &&
-      !phonePattern.test(this.telefono)
-    ) {
+    const phonePattern = /^[0-9]{10}$/;
+    if (typeof this.telefono === 'string' && !phonePattern.test(this.telefono)) {
       this.messageService.add({
         severity: 'error',
         summary: 'Error',
-        detail:
-          'Por favor ingrese un número de teléfono válido (10 dígitos numéricos).',
-      })
-      this.ngxLoader.stop()
-      return
+        detail: 'Por favor ingrese un número de teléfono válido (10 dígitos numéricos).',
+      });
+      this.ngxLoader.stop();
+      return;
     }
 
     // Validar que la fecha sea en el futuro
-    // Validar que la fecha sea en el futuro
-    const currentDate = new Date()
+    const currentDate = new Date();
     if (!this.dia || new Date(this.dia) < currentDate) {
       this.messageService.add({
         severity: 'error',
         summary: 'Error',
         detail: 'Por favor seleccione una fecha futura.',
-      })
-      this.ngxLoader.stop()
-      return
+      });
+      this.ngxLoader.stop();
+      return;
     }
 
     // Validar que la hora esté dentro del rango válido
@@ -224,48 +226,44 @@ export class OrderComponent {
         severity: 'error',
         summary: 'Error',
         detail: 'El campo Hora es obligatorio.',
-      })
-      return
+      });
+      return;
     }
 
-    const selectedTime = new Date(this.hora)
-    const minTime = new Date('09:00')
-    const maxTime = new Date('18:00')
+    const selectedTime = new Date(`2024-01-01T${this.hora}`);
+    const minTime = new Date(`2024-01-01T09:00`);
+    const maxTime = new Date(`2024-01-01T18:00`);
     if (selectedTime < minTime || selectedTime > maxTime) {
       this.messageService.add({
         severity: 'error',
         summary: 'Error',
-        detail:
-          'Por favor seleccione una hora válida (entre las 09:00 y las 18:00).',
-      })
-      this.ngxLoader.stop()
-      return
+        detail: 'Por favor seleccione una hora válida (entre las 09:00 y las 18:00).',
+      });
+      this.ngxLoader.stop();
+      return;
     }
 
-    this.subscribeToNotifications()
-    // Obtener la suscripción push del navegador
+    this.subscribeToNotifications();
+
     navigator.serviceWorker.ready.then((registration) => {
       registration.pushManager.getSubscription().then((subscription) => {
         if (subscription) {
-          const p256dhKey = subscription.getKey('p256dh')
-          const authKey = subscription.getKey('auth')
+          const p256dhKey = subscription.getKey('p256dh');
+          const authKey = subscription.getKey('auth');
 
           if (!p256dhKey || !authKey) {
-            console.error(
-              'Las claves p256dh o auth están ausentes en la suscripción.',
-            )
-            return
+            console.error('Las claves p256dh o auth están ausentes en la suscripción.');
+            return;
           }
 
-          // Convertir las claves a formato base64
           const subObj = {
             endpoint: subscription.endpoint,
             keys: {
               p256dh: this.arrayBufferToBase64(p256dhKey),
               auth: this.arrayBufferToBase64(authKey),
             },
-          }
-          console.log(subObj)
+          };
+          console.log(subObj);
 
           const datosSuscripcion = {
             endpoint: subscription.endpoint,
@@ -273,9 +271,8 @@ export class OrderComponent {
               p256dh: this.arrayBufferToBase64(p256dhKey),
               auth: this.arrayBufferToBase64(authKey),
             },
-          }
+          };
 
-          // Crear objeto con los datos del pedido
           const datosPedido = {
             nombre: this.nombre,
             apellido1: this.apellido1,
@@ -293,117 +290,98 @@ export class OrderComponent {
             mensajePersonalizado: this.mensajePersonalizado,
             color_personalizado: this.color_personalizado,
             suscripcion: datosSuscripcion,
-          }
-          this.ngxLoader.start()
-          // const formDataImagen = new FormData();
-          // formDataImagen.append('imagen', this.selectedFile); // Agregar la imagen al FormData
+          };
+
+          this.ngxLoader.start();
+
           this.pedidoService
             .enviarPedido(datosPedido)
             .pipe(
               catchError((error) => {
-                // Manejar los errores HTTP
                 if (error.status === 409) {
-                  console.error('Error al enviar el pedido:', error)
+                  console.error('Error al enviar el pedido:', error);
                   this.messageService.add({
                     severity: 'error',
                     summary: 'Error',
-                    detail: error.error.message, // Mostrar el mensaje de error del servidor
-                  })
+                    detail: error.error.message,
+                  });
                 } else {
-                  console.error('Error al enviar el pedido:', error)
+                  console.error('Error al enviar el pedido:', error);
                   this.messageService.add({
                     severity: 'error',
                     summary: 'Error',
                     detail: 'Error al enviar el pedido.',
-                  })
+                  });
                 }
-                this.ngxLoader.stop()
-                // Propagar el error para que otros observadores también lo manejen si es necesario
-                return throwError(error)
+                this.ngxLoader.stop();
+                return throwError(error);
               }),
             )
             .subscribe((response: any) => {
-              // Manejar la respuesta del servidor en caso de éxito
-              console.log('Pedido enviado con éxito')
+              console.log('Pedido enviado con éxito');
               this.messageService.add({
                 severity: 'success',
                 summary: 'Éxito',
                 detail: 'Pedido enviado con éxito.',
-              })
+              });
 
-              // console.log(response)
-              // // Aquí puedes obtener el ID devuelto por el servidor
-              // const pedidoId = response.id;
-              // this.actualizarImagenPedido(pedidoId);
-              console.log('Pedido enviado con éxito')
-              const pedidoId = response.pedido._id // Obtener el ID del pedido
-              const detallePedidoId = response.pedido.detallePedido[0]._id // Obtener el ID del detalle del pedido
-              this.actualizarImagenPedido(
-                detallePedidoId,
-                response.pedido.codigoPedido,
-              ) // Llamar a la función para actualizar la imagen del pedido}
-              console.log(response.pedido.codigoPedido)
-              console.log(response)
-              this.ngxLoader.stop()
-            })
+              const pedidoId = response.pedido._id; // Obtener el ID del pedido
+              const detallePedidoId = response.pedido.detallePedido[0]._id; // Obtener el ID del detalle del pedido
+              this.actualizarImagenPedido(detallePedidoId, response.pedido.codigoPedido); // Llamar a la función para actualizar la imagen del pedido}
+              console.log(response.pedido.codigoPedido);
+              console.log(response);
+              this.ngxLoader.stop();
+            });
 
-          // console.log(datosPedido)
         } else {
-          this.ngxLoader.stop()
-          console.error('La suscripción no está disponible.')
+          this.ngxLoader.stop();
+          console.error('La suscripción no está disponible.');
         }
-      })
-    })
+      });
+    });
   }
+
   actualizarImagenPedido(pedidoId: string, SEMUYI: string) {
-    // Crear un nuevo FormData para enviar la imagen del pedido
-    const formData = new FormData()
-    formData.append('imagen', this.selectedFile)
-    // Llamar al servicio para actualizar la imagen del pedido
+    const formData = new FormData();
+    formData.append('imagen', this.selectedFile);
     this.pedidoService.actualizarImagenPedido(pedidoId, formData).subscribe(
       (response: any) => {
-        // Manejar la respuesta del servidor
-        console.log('Imagen del pedido actualizada:', response)
-        // Mostrar un mensaje de éxito
+        console.log('Imagen del pedido actualizada:', response);
         this.messageService.add({
           severity: 'success',
           summary: 'Éxito',
           detail: 'La imagen del pedido se ha actualizado correctamente.',
-        })
-        // Redirigir a otra vista con el parámetro SEMUYI y recargar esa vista
+        });
         this.router.navigate(['/payment/order-acc'], { queryParams: { SEMUYI: SEMUYI } });
       },
       (error) => {
-        // Manejar errores
-        console.error('Error al actualizar la imagen del pedido:', error)
+        console.error('Error al actualizar la imagen del pedido:', error);
         this.messageService.add({
           severity: 'error',
           summary: 'Error',
           detail: 'Error al actualizar la imagen del pedido.',
-        })
+        });
       },
-    )
+    );
   }
+
   arrayBufferToBase64(buffer: ArrayBuffer): string {
-    const bytes = new Uint8Array(buffer)
-    let binary = ''
+    const bytes = new Uint8Array(buffer);
+    let binary = '';
     for (let i = 0; i < bytes.byteLength; i++) {
-      binary += String.fromCharCode(bytes[i])
+      binary += String.fromCharCode(bytes[i]);
     }
-    return window.btoa(binary)
+    return window.btoa(binary);
   }
+
   validarHora() {
-    const horaSeleccionada = new Date('2024-01-01T' + this.hora)
-    const horaMinima = new Date('2024-01-01T08:00')
-    const horaMaxima = new Date('2024-01-01T22:00')
+    const horaSeleccionada = new Date('2024-01-01T' + this.hora);
+    const horaMinima = new Date('2024-01-01T08:00');
+    const horaMaxima = new Date('2024-01-01T22:00');
 
     if (horaSeleccionada < horaMinima || horaSeleccionada > horaMaxima) {
-      alert(
-        'La hora seleccionada no está dentro del rango permitido (8:00 am - 10:00 pm).',
-      )
-      this.hora = '' // Limpiar el input
-
-      // Aquí puedes agregar cualquier lógica adicional, como mostrar un mensaje en la interfaz de usuario.
+      alert('La hora seleccionada no está dentro del rango permitido (8:00 am - 10:00 pm).');
+      this.hora = ''; // Limpiar el input
     }
   }
 }
