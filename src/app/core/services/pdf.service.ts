@@ -68,12 +68,12 @@ export class PdfService {
       { label: 'Email:', value: pedidoInfo.usuario.email },
       { label: 'Teléfono:', value: pedidoInfo.usuario.phone },
       { label: 'Detalle del Pedido:', value: '' },
-      { label: 'Cantidad:', value: pedidoInfo.detallePedido.cantidad },
+      { label: 'Cantidad:', value: String(pedidoInfo.detallePedido.cantidad) }, // Convertido a string
       { label: 'Día:', value: pedidoInfo.detallePedido.dia },
       { label: 'Hora:', value: pedidoInfo.detallePedido.hora },
       { label: 'Modo:', value: pedidoInfo.detallePedido.modo },
       { label: 'Sabor:', value: pedidoInfo.detallePedido.sabor },
-      { label: 'Precio Total:', value: pedidoInfo.detallePedido.precioTotal },
+      { label: 'Precio Total:', value: String(pedidoInfo.detallePedido.precioTotal) }, // Convertido a string
       { label: 'Estado del Pedido:', value: pedidoInfo.estadoPedido },
       { label: 'Fecha de Creación:', value: pedidoInfo.createdAt },
     ];
@@ -102,4 +102,3 @@ export class PdfService {
     saveAs(blob, 'pedido.pdf');
   }
 }
-
