@@ -8,6 +8,7 @@ import { ErrorVerficaView } from './views/error-verfica/error-verfica.view';
 import { UserCreateView } from './views/user-create/user-create.view';
 import { RequestPasswordRecoveryView } from './views/request-password-recovery/request-password-recovery.view';
 import { PreguntaSecretView } from './views/pregunta-secret/pregunta-secret.view';
+import { ActivateCountComponent } from './views/activate-count/activate-count.component';
 
 const routes: Routes = [
   {
@@ -46,6 +47,10 @@ const routes: Routes = [
       {
         path: 'Recupera-pregunta',
         component: PreguntaSecretView,
+      },
+      {
+        path: 'activate',
+        component: ActivateCountComponent,
       },
     ],
   },

@@ -16,6 +16,7 @@ import { RequestPasswordRecoveryView } from './views/request-password-recovery/r
 
 import { NgxCaptchaModule } from 'ngx-captcha';
 import { PreguntaSecretView } from './views/pregunta-secret/pregunta-secret.view';
+import { ActivateCountComponent } from './views/activate-count/activate-count.component';
 
 
 
@@ -25,7 +26,7 @@ import { PreguntaSecretView } from './views/pregunta-secret/pregunta-secret.view
     AuthComponent,
     SignInView,
     SignUpView,
-    SuccessView,RequestPasswordRecoveryView, PreguntaSecretView,
+    SuccessView,RequestPasswordRecoveryView, PreguntaSecretView, ActivateCountComponent,
   ],
   imports: [
     

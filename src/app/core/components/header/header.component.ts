@@ -23,6 +23,7 @@ import { Product } from 'src/app/features/admin/models/Product.models';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { PedidoviewService } from 'src/app/shared/services/pedidoview.service';
 import { OrderService } from 'src/app/features/payment/commons/services/order.service';
+import { ActivateCountComponent } from 'src/app/features/auth/views/activate-count/activate-count.component';
 interface EventItem {
   status?: string;
   date?: string;
@@ -287,7 +288,7 @@ export class HeaderComponent implements OnInit {
     this.router.navigate(['/admin', route]); // Utiliza la navegación de Angular
   }
   redirectTo_Auth(route: string): void {
-   
+
     this.router.navigate(['/auth', route]); // Utiliza la navegación de Angular
   }
 
@@ -402,6 +403,27 @@ export class HeaderComponent implements OnInit {
     const isMobile = window.innerWidth < 480;
 
     this.ref = this.dialogService.open(SignInView, {
+      height: isMobile ? 'auto' : 'auto',
+      style: {
+        'max-width': isMobile ? '110vw' : 'auto',
+        'max-height': isMobile ? 'auto' : '100vh',
+        padding: '0', // Aquí estableces el padding a 0
+      },
+      modal: true,
+      breakpoints: {
+        '960px': '75vw',
+        '640px': '100vw',
+      },
+
+      data: {},
+    });
+  }
+
+  openActivateCount(): void {
+    this.sidebarVisible = false;
+    const isMobile = window.innerWidth < 480;
+
+    this.ref = this.dialogService.open(ActivateCountComponent, {
       height: isMobile ? 'auto' : 'auto',
       style: {
         'max-width': isMobile ? '110vw' : 'auto',

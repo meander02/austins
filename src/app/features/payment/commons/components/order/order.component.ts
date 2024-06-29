@@ -169,7 +169,7 @@ export class OrderComponent {
       { campo: this.selectedQuantity, mensaje: 'Cantidad' },
       { campo: this.dia, mensaje: 'Día' },
       { campo: this.hora, mensaje: 'Hora' },
-      { campo: this.selectedFile, mensaje: 'imagen' },
+      // { campo: this.selectedFile, mensaje: 'imagen' }, por si querem,os que lña imagen sea obligatorio
     ];
 
     for (const campo of camposObligatorios) {
