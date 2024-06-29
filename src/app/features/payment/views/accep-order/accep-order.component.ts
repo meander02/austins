@@ -4,12 +4,13 @@ import { HttpClient } from '@angular/common/http';
 import { OrderService } from '../../commons/services/order.service';
 import { PedidoService } from 'src/app/core/services/pedido.service';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
-import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { DialogService, DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 
 @Component({
   selector: 'app-accep-order',
   templateUrl: './accep-order.component.html',
   styleUrls: ['./accep-order.component.scss'],
+  providers: [DialogService, ConfirmationService, MessageService],
 })
 export class AccepOrderComponent implements OnInit {
   SEMUYI: string = '';
@@ -21,8 +22,7 @@ export class AccepOrderComponent implements OnInit {
     private route: ActivatedRoute,
     private pedidoService: PedidoService,
     private http: HttpClient,
-    private ngxLoader: NgxUiLoaderService, private dialogRef: DynamicDialogRef, public config: DynamicDialogConfig,
-
+    private ngxLoader: NgxUiLoaderService,  private dialogService: DialogService,
   ) {}
 
   ngOnInit(): void {
@@ -47,12 +47,11 @@ export class AccepOrderComponent implements OnInit {
           this.pedidoService.setPedidoInfo(this.pedidoInfo);
           // Redirigir al portal
           this.router.navigate(['/portal/home']);
-          this.dialogRef.close()
+          
         } else {
           console.error('La estructura de la respuesta no es válida.');
         }
-        this.dialogRef.close()
-
+        this.dialogService.close()
         // Detener el loader después de la redirección o en caso de error
         this.ngxLoader.stop();
     
