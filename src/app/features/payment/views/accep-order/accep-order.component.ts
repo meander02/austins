@@ -10,11 +10,7 @@ import { DialogService, DynamicDialogConfig, DynamicDialogRef } from 'primeng/dy
   selector: 'app-accep-order',
   templateUrl: './accep-order.component.html',
   styleUrls: ['./accep-order.component.scss'],
-
-  providers: [DialogService,DynamicDialogRef ],
-
-
-
+  providers: [DialogService, DynamicDialogRef],
 })
 export class AccepOrderComponent implements OnInit {
   SEMUYI: string = '';
@@ -26,7 +22,9 @@ export class AccepOrderComponent implements OnInit {
     private route: ActivatedRoute,
     private pedidoService: PedidoService,
     private http: HttpClient,
-    private ngxLoader: NgxUiLoaderService,  private dialogService: DialogService,private dialogRef: DynamicDialogRef,
+    private ngxLoader: NgxUiLoaderService,
+    private dialogService: DialogService,
+    public dialogRef: DynamicDialogRef  // Asegurarse de que esto sea público
   ) {}
 
   ngOnInit(): void {
@@ -51,14 +49,13 @@ export class AccepOrderComponent implements OnInit {
           this.pedidoService.setPedidoInfo(this.pedidoInfo);
           // Redirigir al portal
           this.router.navigate(['/portal/home']);
-          this.dialogRef.close()
         } else {
           console.error('La estructura de la respuesta no es válida.');
         }
-        this.dialogRef.close()
         // Detener el loader después de la redirección o en caso de error
         this.ngxLoader.stop();
-
+        // Cerrar el modal después de procesar la respuesta
+        this.dialogRef.close();
       },
       (error) => {
         console.error('Error al consultar pedido:', error);
