@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { OrderService } from '../../commons/services/order.service';
 import { PedidoService } from 'src/app/core/services/pedido.service';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
-import { DynamicDialogRef } from 'primeng/dynamicdialog';
+import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 
 @Component({
   selector: 'app-accep-order',
@@ -21,7 +21,7 @@ export class AccepOrderComponent implements OnInit {
     private route: ActivatedRoute,
     private pedidoService: PedidoService,
     private http: HttpClient,
-    private ngxLoader: NgxUiLoaderService, private dialogRef: DynamicDialogRef,
+    private ngxLoader: NgxUiLoaderService, private dialogRef: DynamicDialogRef, public config: DynamicDialogConfig,
 
   ) {}
 

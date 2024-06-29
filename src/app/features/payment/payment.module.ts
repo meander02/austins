@@ -33,6 +33,7 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ErrorInterceptor } from 'src/app/shared/interceptor/error.interceptor';
 import { AccepOrderComponent } from './views/accep-order/accep-order.component';
 import { CoreComponentsModule } from 'src/app/core/components/components.module';
+import { DynamicDialogModule } from 'primeng/dynamicdialog';
 
 // import { QaComponent } from './views/qa/qa.component';
 
@@ -70,6 +71,7 @@ const MATERIAL = [
     PayCommonsModule,
     ReactiveFormsModule,
     MaterialModule,
+    DynamicDialogModule,
     CoreComponentsModule
   ],
   providers: [
