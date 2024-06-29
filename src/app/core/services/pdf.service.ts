@@ -67,7 +67,7 @@ export class PdfService {
     // Añadir un párrafo sobre la importancia del documento
     page.drawText('IMPORTANTE: Este documento es crucial para el seguimiento de su pedido. Si realizó el pedido a la hora indicada, puede pasar a recoger su pedido en el local. Si prefiere, puede esperar a que nuestro personal asignado se comunique con usted para darle el seguimiento correspondiente.', {
       x: 50,
-      y: 650,
+      y: 40,
       size: 12,
       font: fontTimesRomanBold,
       color: rgb(0.8, 0.2, 0.2),
@@ -126,8 +126,8 @@ export class PdfService {
 
     // Agregar una línea decorativa en el pie de página
     page.drawLine({
-      start: { x: 50, y: 60 },
-      end: { x: 550, y: 60 },
+      start: { x: 50, y: 10 },
+      end: { x: 550, y: 10 },
       thickness: 1,
       color: rgb(0.44, 0.22, 0.14), // Color #703824
       opacity: 0.5,
