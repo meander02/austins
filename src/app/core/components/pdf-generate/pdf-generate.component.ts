@@ -14,7 +14,7 @@ export class PdfGenerateComponent implements OnInit {
   ngOnInit() {
     this.pedidoService.pedidoInfo$.subscribe((pedidoInfo) => {
       if (pedidoInfo) {
-        console.log(pedidoInfo);
+        console.log("pedido",pedidoInfo);
         this.cont = pedidoInfo.contenido;
 
         this.pdfService.createPdf(pedidoInfo);
