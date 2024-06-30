@@ -16,8 +16,8 @@ import { RequestPasswordRecoveryView } from './views/request-password-recovery/r
 
 import { NgxCaptchaModule } from 'ngx-captcha';
 import { PreguntaSecretView } from './views/pregunta-secret/pregunta-secret.view';
+import { ReactiveFormsModule } from '@angular/forms';
 import { ActivateCountComponent } from './views/activate-count/activate-count.component';
-
 
 
 
@@ -26,10 +26,10 @@ import { ActivateCountComponent } from './views/activate-count/activate-count.co
     AuthComponent,
     SignInView,
     SignUpView,
-    SuccessView,RequestPasswordRecoveryView, PreguntaSecretView, ActivateCountComponent,
+    SuccessView,RequestPasswordRecoveryView, PreguntaSecretView,ActivateCountComponent
   ],
   imports: [
-    
+    ReactiveFormsModule ,
     NgxCaptchaModule,
     CoreComponentsModule,
     MatSnackBarModule,

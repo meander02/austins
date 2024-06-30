@@ -48,10 +48,8 @@ const routes: Routes = [
         path: 'Recupera-pregunta',
         component: PreguntaSecretView,
       },
-      {
-        path: 'activate',
-        component: ActivateCountComponent,
-      },
+      { path: 'activate/:token', component: ActivateCountComponent },
+
     ],
   },
 ];

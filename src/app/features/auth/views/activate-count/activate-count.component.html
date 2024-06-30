@@ -1,14 +1,42 @@
 <div class="activate-account-container">
-    <h2>Activar Cuenta</h2>
-    <div *ngIf="error" class="error-message">
-      {{ error }}
-    </div>
-    <form (submit)="activateAccount()">
-      <div class="form-group">
-        <label for="password">Nueva Contraseña:</label>
-        <input type="password" id="password" [(ngModel)]="password" name="password" required>
-      </div>
-      <button type="submit">Activar Cuenta</button>
-    </form>
+  <div class="logo-container">
+    <img src="https://static.wixstatic.com/media/64de7c_4d76bd81efd44bb4a32757eadf78d898~mv2_d_1765_2028_s_2.png/v1/fill/w_243,h_270,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/64de7c_4d76bd81efd44bb4a32757eadf78d898~mv2_d_1765_2028_s_2.png" alt="Logo" class="logo">
   </div>
-  
+  <h2>Activar Cuenta</h2>
+  <div *ngIf="error" class="error-message">
+    {{ error }}
+  </div>
+  <form [formGroup]="activateAccountForm" (ngSubmit)="activateAccount()" class="activation-form">
+    <div class="form-group">
+      <label for="password">Nueva Contraseña:</label>
+      <div class="password-input">
+        <p-password [toggleMask]="true" formControlName="password" [feedback]="false" [weakLabel]="'Débil'" [mediumLabel]="'Media'" [strongLabel]="'Fuerte'" [promptLabel]="'Ingrese una contraseña'"></p-password>
+      </div>
+      <div *ngIf="activateAccountForm.get('password')?.invalid && (activateAccountForm.get('password')?.dirty || activateAccountForm.get('password')?.touched)">
+        <small *ngIf="activateAccountForm.get('password')?.hasError('required')" class="p-error">
+          La contraseña es requerida.
+        </small>
+        <small *ngIf="activateAccountForm.get('password')?.hasError('pattern')" class="p-error">
+          La contraseña debe contener al menos una letra mayúscula, una letra minúscula, un número y un carácter especial.
+        </small>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="confirmPassword">Confirmar Contraseña:</label>
+      <div class="password-input">
+        <p-password [toggleMask]="true" formControlName="confirmPassword" (input)="onConfirmPasswordInput($event)" [feedback]="false"></p-password>
+      </div>
+      <div *ngIf="activateAccountForm.get('confirmPassword')?.invalid && (activateAccountForm.get('confirmPassword')?.dirty || activateAccountForm.get('confirmPassword')?.touched)">
+        <small *ngIf="activateAccountForm.get('confirmPassword')?.hasError('required')" class="p-error">
+          La confirmación de contraseña es requerida.
+        </small>
+        <small *ngIf="activateAccountForm.hasError('passwordMatch')" class="p-error">
+          Las contraseñas no coinciden.
+        </small>
+      </div>
+    </div>
+    <button type="submit" [disabled]="!activateAccountForm.valid" pButton class="activate-button" style="background-color: #ff6112;">Activar Cuenta</button>
+  </form>
+</div>
+<!-- <p-toast></p-toast> -->
+<p-toast position="top-center"></p-toast>

@@ -3,13 +3,33 @@
   margin: 0 auto;
   padding: 20px;
   border: 1px solid #ccc;
-  border-radius: 5px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  text-align: center;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.logo-container {
+  margin-bottom: 20px;
+}
+
+.logo {
+  width: 120px; /* Ajusta el tamaño según tu diseño */
+  height: auto;
 }
 
 h2 {
-  text-align: center;
-  margin-bottom: 20px;
+  color: #333;
+}
+
+.error-message {
+  color: #ff0000;
+  margin-top: 5px;
+}
+
+.activation-form {
+  display: flex;
+  flex-direction: column;
 }
 
 .form-group {
@@ -17,33 +37,52 @@ h2 {
 }
 
 label {
-  display: block;
-  margin-bottom: 5px;
+  font-weight: bold;
 }
 
-input {
-  width: 100%;
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+.password-input {
+  position: relative;
 }
 
-button {
-  width: 100%;
-  padding: 10px;
-  background-color: #007bff;
-  color: white;
+.password-input input {
+  padding-right: 30px;
+}
+
+.password-toggle-button {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
   border: none;
-  border-radius: 4px;
+  background: none;
   cursor: pointer;
 }
 
-button:hover {
-  background-color: #0056b3;
+.password-toggle-button i {
+  color: #555;
+  font-size: 1.2em;
 }
 
-.error-message {
-  color: red;
-  margin-bottom: 15px;
+.activate-button {
+  background-color: #ff6112;
+  color: white;
+  border: none;
+  padding: 10px 20px;
   text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin-top: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: #e65100; /* Color más oscuro al pasar el ratón */
+  }
+
+  &:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
 }
