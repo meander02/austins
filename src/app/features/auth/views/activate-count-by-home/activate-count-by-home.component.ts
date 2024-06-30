@@ -37,13 +37,18 @@ export class ActivateCountByHomeComponent {
             this.success = 'Correo de activación enviado correctamente';
             this.showRecoverLink = false;
             console.log('Correo de activación enviado correctamente');
-            this.messageService.add({ severity: 'success', summary: 'Éxito', detail: 'Correo de activación enviado correctamente' });
+            this.messageService.add({
+              severity: 'success',
+              summary: 'Éxito',
+              detail: 'Correo de activación enviado correctamente',
+              life: 2000 // 2000 milisegundos = 2 segundos
+            });
             this.ngxLoader.stop();
 
             // Mostrar el mensaje durante 2 segundos antes de cerrar el diálogo
             setTimeout(() => {
               this.dialogRefService.closeDialog();
-            }, 5000); // 2000 milisegundos = 2 segundos
+            }, 8000); // 2000 milisegundos = 2 segundos
           },
           (error: HttpErrorResponse) => {
             if (error.status === 400) {
@@ -54,6 +59,7 @@ export class ActivateCountByHomeComponent {
               this.showRecoverLink = false;
             }
             this.messageService.add({ severity: 'error', summary: 'Error', detail: this.error || undefined });
+            this.ngxLoader.stop();
           }
         );
     }
