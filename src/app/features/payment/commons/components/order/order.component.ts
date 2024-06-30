@@ -347,27 +347,29 @@ export class OrderComponent {
     if (this.selectedFile) {
       // this.actualizarImagenPedido(pedidoId, SEMUYI);
       formData.append('imagen', this.selectedFile);
+      this.pedidoService.actualizarImagenPedido(pedidoId, formData).subscribe(
+        (response: any) => {
+          console.log('Imagen del pedido actualizada:', response);
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Éxito',
+            detail: 'La imagen del pedido se ha actualizado correctamente.',
+          });
+          this.router.navigate(['/payment/order-acc'], { queryParams: { SEMUYI: SEMUYI } });
+          this.ngxLoader.stop();
+        },
+        (error) => {
+          console.error('Error al actualizar la imagen del pedido:', error);
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Error',
+            detail: 'Error al actualizar la imagen del pedido.',
+          });
+        },
+      );
     }
-    this.pedidoService.actualizarImagenPedido(pedidoId, formData).subscribe(
-      (response: any) => {
-        console.log('Imagen del pedido actualizada:', response);
-        this.messageService.add({
-          severity: 'success',
-          summary: 'Éxito',
-          detail: 'La imagen del pedido se ha actualizado correctamente.',
-        });
-        this.router.navigate(['/payment/order-acc'], { queryParams: { SEMUYI: SEMUYI } });
-        this.ngxLoader.stop();
-      },
-      (error) => {
-        console.error('Error al actualizar la imagen del pedido:', error);
-        this.messageService.add({
-          severity: 'error',
-          summary: 'Error',
-          detail: 'Error al actualizar la imagen del pedido.',
-        });
-      },
-    );
+    this.router.navigate(['/payment/order-acc'], { queryParams: { SEMUYI: SEMUYI } });
+    this.ngxLoader.stop();
   }
 
   arrayBufferToBase64(buffer: ArrayBuffer): string {
