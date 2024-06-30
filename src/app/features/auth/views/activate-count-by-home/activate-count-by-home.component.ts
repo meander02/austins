@@ -37,6 +37,7 @@ export class ActivateCountByHomeComponent {
             this.showRecoverLink = false;
             console.log('Correo de activación enviado correctamente');
             this.messageService.add({ severity: 'success', summary: 'Éxito', detail: 'Correo de activación enviado correctamente' });
+            this.dialogRefService.closeDialog()
           },
           (error: HttpErrorResponse) => {
             if (error.status === 400) {
