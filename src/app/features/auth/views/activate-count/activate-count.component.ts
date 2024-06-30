@@ -79,8 +79,10 @@ export class ActivateCountComponent implements OnInit {
           () => {
 
             this.messageService.add({ severity: 'success', summary: 'Éxito', detail: '¡Cuenta activada correctamente!' });
-            this.router.navigate(['/portal/home']);
-            
+            // this.router.navigate(['/portal/home']);
+            this.router.navigateByUrl('/home' ).then(() => {
+              window.location.reload()
+            })
           },
           (error: HttpErrorResponse) => {
             if (error.error && error.error.error) {
