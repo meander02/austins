@@ -4,6 +4,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { MessageService } from 'primeng/api';
 import { DialogRefService } from 'src/app/shared/services/dialog-ref.service';
+import { NgxUiLoaderService } from 'ngx-ui-loader';
 
 @Component({
   selector: 'app-activate-account',
@@ -17,7 +18,7 @@ export class ActivateCountByHomeComponent {
   success: string | null = null;
   showRecoverLink: boolean = false;
 
-  constructor(private fb: FormBuilder, private http: HttpClient,private dialogRefService:DialogRefService,
+  constructor(private fb: FormBuilder, private http: HttpClient,private dialogRefService:DialogRefService, private ngxLoader: NgxUiLoaderService,
               private messageService: MessageService) {
     this.activateAccountForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]]
@@ -28,7 +29,7 @@ export class ActivateCountByHomeComponent {
     if (this.activateAccountForm.valid) {
       const email = this.activateAccountForm.get('email')?.value;
       const body = { email };
-
+      this.ngxLoader.start();
       this.http.post(`${environment.api}/auth/send-activation-email`, body)
         .subscribe(
           (res: any) => {
@@ -37,7 +38,12 @@ export class ActivateCountByHomeComponent {
             this.showRecoverLink = false;
             console.log('Correo de activación enviado correctamente');
             this.messageService.add({ severity: 'success', summary: 'Éxito', detail: 'Correo de activación enviado correctamente' });
-            this.dialogRefService.closeDialog()
+            this.ngxLoader.stop();
+
+            // Mostrar el mensaje durante 2 segundos antes de cerrar el diálogo
+            setTimeout(() => {
+              this.dialogRefService.closeDialog();
+            }, 2000); // 2000 milisegundos = 2 segundos
           },
           (error: HttpErrorResponse) => {
             if (error.status === 400) {
