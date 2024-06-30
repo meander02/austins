@@ -310,7 +310,7 @@ export class OrderComponent {
                   this.messageService.add({
                     severity: 'error',
                     summary: 'Error',
-                    detail: 'Error al enviar el pedido.',
+                    detail: error.error.message,
                   });
                 }
                 this.ngxLoader.stop();
