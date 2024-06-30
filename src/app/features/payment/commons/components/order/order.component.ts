@@ -230,9 +230,9 @@ export class OrderComponent {
       return;
     }
 
-    const selectedTime = new Date(`2024-01-01T${this.hora}`);
-    const minTime = new Date(`2024-01-01T09:00`);
-    const maxTime = new Date(`2024-01-01T18:00`);
+    const selectedTime = new Date(this.hora)
+    const minTime = new Date('09:00')
+    const maxTime = new Date('20:00')
     if (selectedTime < minTime || selectedTime > maxTime) {
       this.messageService.add({
         severity: 'error',

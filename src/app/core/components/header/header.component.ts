@@ -24,6 +24,8 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 import { PedidoviewService } from 'src/app/shared/services/pedidoview.service';
 import { OrderService } from 'src/app/features/payment/commons/services/order.service';
 import { ActivateCountComponent } from 'src/app/features/auth/views/activate-count/activate-count.component';
+import { ActivateCountByHomeComponent } from 'src/app/features/auth/views/activate-count-by-home/activate-count-by-home.component';
+import { DialogRefService } from 'src/app/shared/services/dialog-ref.service';
 interface EventItem {
   status?: string;
   date?: string;
@@ -143,7 +145,7 @@ export class HeaderComponent implements OnInit {
     private confirmationService: ConfirmationService,
     private messageService: MessageService,
     private route: ActivatedRoute,
-    private orderService: OrderService
+    private orderService: OrderService, private dialogRefService: DialogRefService
   ) {
     router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
@@ -422,8 +424,8 @@ export class HeaderComponent implements OnInit {
   openActivateCount(): void {
     this.sidebarVisible = false;
     const isMobile = window.innerWidth < 480;
-
-    this.ref = this.dialogService.open(ActivateCountComponent, {
+    this.dialogRefService.setDialogRef(
+    this.ref = this.dialogService.open(ActivateCountByHomeComponent, {
       height: isMobile ? 'auto' : 'auto',
       style: {
         'max-width': isMobile ? '110vw' : 'auto',
@@ -437,7 +439,8 @@ export class HeaderComponent implements OnInit {
       },
 
       data: {},
-    });
+    })
+  )
   }
 
   get cartItem(): CartItem {

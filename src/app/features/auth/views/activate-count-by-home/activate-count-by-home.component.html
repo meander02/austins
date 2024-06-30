@@ -1,0 +1,29 @@
+<div class="activate-account-container">
+  <div class="logo-container">
+    <img src="https://static.wixstatic.com/media/64de7c_4d76bd81efd44bb4a32757eadf78d898~mv2_d_1765_2028_s_2.png/v1/fill/w_243,h_270,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/64de7c_4d76bd81efd44bb4a32757eadf78d898~mv2_d_1765_2028_s_2.png" alt="Logo" class="logo">
+  </div>
+  <h2>Activar Cuenta</h2>
+  <div *ngIf="error" class="error-message">
+    {{ error }}
+  </div>
+  <form [formGroup]="activateAccountForm" (ngSubmit)="activateAccount()" class="activation-form">
+    <div class="form-group">
+      <label for="email">Correo Electrónico:</label>
+      <input type="email" id="email" formControlName="email" required>
+      <div *ngIf="activateAccountForm.get('email')?.errors?.['required']" class="error-message">
+        El correo electrónico es requerido.
+      </div>
+      <div *ngIf="activateAccountForm.get('email')?.errors?.['email']" class="error-message">
+        El correo electrónico no es válido.
+      </div>
+      <div *ngIf="activateAccountForm.get('email')?.hasError('notFound')" class="error-message">
+        El correo electrónico no está registrado o no está en estado inactivo.
+      </div>
+    </div>
+    <button type="submit" [disabled]="!activateAccountForm.valid" class="activate-button">Activar Cuenta</button>
+  </form>
+  <div *ngIf="showRecoverLink">
+    <p>¿Olvidaste tu contraseña? <a (click)="hideActivationForm()" routerLink="/auth/Recupera">Recupérala aquí</a></p>
+  </div>
+</div>
+<p-toast position="top-center"></p-toast>
