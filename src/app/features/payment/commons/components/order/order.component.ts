@@ -343,7 +343,11 @@ export class OrderComponent {
 
   actualizarImagenPedido(pedidoId: string, SEMUYI: string) {
     const formData = new FormData();
-    formData.append('imagen', this.selectedFile);
+
+    if (this.selectedFile) {
+      // this.actualizarImagenPedido(pedidoId, SEMUYI);
+      formData.append('imagen', this.selectedFile);
+    }
     this.pedidoService.actualizarImagenPedido(pedidoId, formData).subscribe(
       (response: any) => {
         console.log('Imagen del pedido actualizada:', response);
